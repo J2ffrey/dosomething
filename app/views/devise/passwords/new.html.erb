@@ -1,0 +1,61 @@
+<%= render :partial => 'dosomething/main_navbar' %>
+
+
+<div class="container forgot_st">
+  <div class="forgot_hearder">Forgot your password?</div>
+    
+  <div class="forgot_content">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+    
+      <div class="field marginfield">
+        <%= f.label :email %> &nbsp
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+    
+      <div class="actions marginfield forgotbtn">
+        <%= f.submit "Send me reset password instructions" %>
+      </div>
+    <% end %>
+    
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+<%= render :partial => 'dosomething/main_footer' %>
+
+<style>
+
+.forgot_st {margin-top: 168px;
+              padding-bottom: 20px;
+              border: 2px solid #10253F;
+              margin-bottom:168px;
+              width: 500px; height: 220px;
+              padding-left:0px; padding-right:0px;
+              border-radius: 3px;
+              }
+.forgot_hearder {
+                background-color: #10253F;
+                color: white;
+                text-align: center;
+                font-size: 25px;
+                margin-bottom: 30px;
+                }
+                
+.forgot_content {
+                margin: auto;
+                text-align: center;
+                margin-top:20px;
+                }
+.marginfield {margin-bottom:10px;}
+.forgotbtn input { border: none;
+                  width: 300px;
+                  height: 30px;
+                  background-color: #10253F;
+                  color: white;
+                  font-size: 16px;
+                  border-radius: 10px;
+                  margin-top: 10px;
+                  margin-bottom: auto;
+                }
+</style>

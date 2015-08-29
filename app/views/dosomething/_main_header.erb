@@ -1,0 +1,160 @@
+<header role="banner" class="header header--home">
+
+  <div class="row">
+    <p class="header__title"> Visit <%= @total_view_count %> members.</p>
+  </div>
+
+
+
+  <!--<script>  // Jquery 메뉴스크립트 
+      $(function() {
+      $( "#school" ).selectmenu();
+   
+      $( "#region" ).selectmenu();
+   
+      $( "#time" ).selectmenu();
+      
+      $( "#type" ).selectmenu();
+    });
+  </script>-->
+
+  <div class="demo">
+    <form action="#">
+     
+      <fieldset class="fieldset_list">
+        <ul>
+          <li class="wantlist">
+        <label for="school">School(학교)</label><br>
+        <select name="school" id="school_select">
+          <option selected="selected">&nbsp ----- 선택 -----</option>
+          <option value="동국대학교">&nbsp 동국대학교</option>
+          <option value="서울대학교">&nbsp 서울대학교</option>
+          <option value="홍익대학교">&nbsp 홍익대학교</option>
+          <option value="고려대학교">&nbsp 고대대학교</option>
+        </select>
+          </li>
+          
+          <li class="wantlist">
+        <label for="region">Region(지역)</label><br>
+        <select name="region" id="region_select">
+          <option selected="selected">&nbsp ----- 선택 -----</option>
+          <option value="서울">&nbsp 서울</option>
+          <option value="대전">&nbsp 대전</option>
+          <option value="청주">&nbsp 청주</option>
+          <option value="순천">&nbsp 순천</option>
+        </select>
+          </li>
+     
+          <li class="wantlist">
+        <label for="time">Time(시간)</label><br>
+        <select name="time" id="time_select">
+          <option selected="selected">&nbsp ----- 선택 -----</option>
+          <option value="1">&nbsp 1시간</option>
+          <option value="2">&nbsp 2시간</option>
+          <option value="3">&nbsp 3시간</option>
+          <option value="4">&nbsp 4시간</option>
+        </select>
+          </li>
+          
+          <li class="wantlist">
+        <label for="type">Type(종류)</label><br>
+        <select name="ctgory" id="type_select">
+          <option selected="selected">&nbsp ----- 선택 -----</option>
+          <option value="1">&nbsp 재능봉사</option></option>
+          <option value="2">&nbsp 노력봉사</option>
+          <option value="3">&nbsp 해외봉사</option>
+          <option value="4">&nbsp 기타</option>
+        </select>
+        </li>
+        
+    </ul>
+    
+      </fieldset>
+    </form>
+  </div>
+  
+</header>
+
+<%= render :partial => 'popup' %>
+<%= render :partial => 'style/main_headercss' %>
+
+
+<style>
+.wantlist {list-style-type :none;
+           float :left;
+           margin-right: 60px;
+           margin-bottom: 30px;
+          }
+.fieldset_list {margin: auto;
+                width: 1080px;
+                }
+</style>
+
+
+
+
+
+
+<script>
+//(function() {
+  $(document).ready(function() {
+    
+    var searchOptions = {
+      filter1: 1,
+      filter2: 2,
+      filter3: 3,
+      filter4: 4
+    };
+    
+    function triggerSearch() {
+      $.ajax({
+        url: '/dosomething/json_test' + '?' + $.param(searchOptions),
+        method: 'GET',
+        beforeSend: function() {
+          $('#ajax_target .bongsas').html('');
+          alert('bofore send');
+        },
+        success: function(data, textStatus, jqXHR) {
+          for(var i in data) {
+            $('#ajax_target .bongsas').append('' +
+            '<div class="bongsas__item">' +
+            '<div class="bongsas__item__name">' + data[i].name + '</div>' +
+            '</div>' + 
+            '</div>');
+          }
+          
+        },
+        error: function(data, textStatus, jqXHR) {
+          alert('error massege');
+        }
+      });
+    }
+    
+    $('#school_select').on('change', function() {
+      var selected_value = $(this).val();
+      searchOptions.filter1 = selected_value;
+      triggerSearch();
+    });
+    
+     $('#region_select').on('change', function() {
+       var selected_value = $(this).val();
+      searchOptions.filter2 = selected_value;
+      triggerSearch();
+    });
+    
+    $('#time_select').on('change', function() {
+      var selected_value = $(this).val();
+      searchOptions.filter3 = selected_value;
+      triggerSearch();
+    });
+    
+    $('#type_select').on('change', function() {
+      var selected_value = $(this).val();
+      searchOptions.filter4 = selected_value;
+      triggerSearch();
+    });
+    
+  });
+//})()
+
+</script>

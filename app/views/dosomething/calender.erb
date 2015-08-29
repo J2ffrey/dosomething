@@ -1,0 +1,170 @@
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/css/main.css?6' />
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/css/fullcalendar.css?3' />
+
+<link rel='stylesheet' type='text/css' href='http://arshaw.com/js/fullcalendar-1.6.3/fullcalendar/fullcalendar.css' />
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/jquery/jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/jquery/jquery-ui-1.10.3.custom.min.js'></script>
+<script type='text/javascript' src='http://arshaw.com/js/fullcalendar-1.6.3/fullcalendar/fullcalendar.min.js'></script>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- 아이콘용 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+<!--글씨체 한나체로 변경-->
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/hanna.css">
+  <style>
+    body {
+      font-family: 'Hanna', Sans-serif;
+    }
+  </style>
+
+<script type='text/javascript'>
+	$(document).ready(function() {
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'month,agendaWeek,agendaDay'
+			},
+			editable : true,
+			events : [ {
+				title : 'All Day Event',
+				start : new Date(y, m, 1)
+			}, {
+				title : 'Long Event',
+				start : new Date(y, m, d - 5),
+				end : new Date(y, m, d - 2)
+			}, {
+				id : 999,
+				title : 'Repeating Event',
+				start : new Date(y, m, d - 3, 16, 0),
+				allDay : false
+			}, {
+				id : 999,
+				title : 'Repeating Event',
+				start : new Date(y, m, d + 4, 16, 0),
+				allDay : false
+			}, {
+				title : 'Meeting',
+				start : new Date(y, m, d, 10, 30),
+				allDay : false
+			}, {
+				title : 'Lunch',
+				start : new Date(y, m, d, 12, 0),
+				end : new Date(y, m, d, 14, 0),
+				allDay : false
+			}, {
+				title : 'Birthday Party',
+				start : new Date(y, m, d + 1, 19, 0),
+				end : new Date(y, m, d + 1, 22, 30),
+				allDay : false
+			}, {
+				title : 'Click for Google',
+				start : new Date(y, m, 28),
+				end : new Date(y, m, 29),
+				url : 'http://google.com/'
+			} ]
+		});
+
+	});
+</script>
+</head>
+
+<body style="background-color:white;">
+
+<%= render :partial => 'dosomething/main_navbar' %>
+
+<style>
+.navbar-default {
+
+    background-repeat: repeat-x;
+    border-radius: 0px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 0px solid transparent;
+    background-color: #10253f;
+}
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #10253f;    
+}
+</style>
+
+<nav id="jogun_menu">
+    <ul>
+      <li class="jogun_list" style="margin-left: 9px;">
+            <label class="checkbox panel panel-dark">
+              <input class="pull-right" type="checkbox" name="room-type" value="Entire home/apt">
+              <p style="margin-left: 5px;">교육봉사</p>
+            </label>
+      </li>
+      <li class="jogun_list" style="margin-left: 9px;">
+            <label class="checkbox panel panel-dark">
+              <input class="pull-right" type="checkbox" name="room-type" value="Entire home/apt">
+              <p style="margin-left: 5px;">재능봉사</p>
+            </label>
+      </li>
+      <li class="jogun_list" style="margin-left: 9px;">
+            <label class="checkbox panel panel-dark">
+              <input class="pull-right" type="checkbox" name="room-type" value="Entire home/apt">
+                <p style="margin-left: 5px;">노력봉사</p>
+            </label>
+      </li>
+      <li class="jogun_list" style="margin-left: 9px;">
+            <label class="checkbox panel panel-dark">
+              <input class="pull-right" type="checkbox" name="room-type" value="Entire home/apt">
+              <p style="margin-left: 5px;">해외봉사</p>
+            </label>
+      </li>
+    	<li class="jogun_list" style="margin-left: 9px;">
+            <label class="checkbox panel panel-dark">
+              <input class="pull-right" type="checkbox" name="room-type" value="Entire home/apt">
+              <p style="margin-left: 5px;">기타봉사</p>
+            </label>
+      </li>
+    </ul>
+</nav>
+	<div id='calendar' style='margin: 3em 0; font-size: 13px'></div>
+	
+	
+<style>
+.jogun_list {list-style-type:none;
+            float:left;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            font-size: 17px;
+            margin-right: 20px;}
+.pull-right {width: 17.5px;
+          height: 17.5px;}
+
+#jogun_menu {float:left;}
+</style>	
+
+</body>
+</html>

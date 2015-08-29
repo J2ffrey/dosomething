@@ -1,0 +1,56 @@
+<div class="blank">
+</div>
+<div id="ajax_target">
+    <div class="bongsas">
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="row">
+            <% @bongsa.sample(6).each do |b| %>
+            <div class="col-md-4 col-xs-12 col-sm-6">
+                <div class="row">
+                    <a href="#" data-toggle="modal" data-target="#abccc"></a>
+                </div>
+                
+                <div class="row">&nbsp</div>
+                <div class="row">&nbsp</div>
+                
+                    <div class="row">
+                        <div class="Total">
+                          <img src="<%= b.bongsa_img %>" style="height:auto; width:100%">
+                          <br>
+                          <br>
+                          <div class="Title"><%= b.name %></div> 
+                          <br>
+                          <div class="Content">&nbsp &nbsp &nbsp <%= b.region %></div>
+                          <br>
+                          &nbsp 
+                          <button type="button" class="btn btn-default"><a href="#" data-toggle="modal" data-target="#abccc">더보기</a></button>
+                          <br>&nbsp</br>
+                        </div>
+                    </div>
+                    
+                <div class="row">&nbsp</div>
+                <div class="row">&nbsp</div>
+                
+            </div>
+            <% end %>
+        </div>
+    </div>
+    
+    <div class="col-md-1"></div>
+</div>
+
+
+<div class="row background-img">
+    <br><br><i class="fa fa-calendar"></i>
+        <a href = 'dosomething/calender'><p> 봉사달력 보러가기 </p></a>
+</div>
+
+
+
+
+<%= render :partial => 'style/main_contentcss' %>

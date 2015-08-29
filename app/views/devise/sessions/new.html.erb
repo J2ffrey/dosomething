@@ -1,0 +1,76 @@
+<%= render :partial => 'dosomething/main_navbar' %>
+
+
+
+<div class="Total" style="margin-top: 110px; padding-bottom: 20px; border: 2px solid #10253F; margin-bottom:110px;">
+  <div class="Heading">로그인</div>
+  <br>
+  
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field login_box">
+    <%= f.label :email %> &nbsp
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %> &nbsp
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="actions loginbtn">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+ 
+ <%= render "devise/shared/links" %>
+ <%= render "style/logincss" %>
+</div>
+
+ <%= render :partial => 'dosomething/main_footer' %>
+ 
+<style>
+.loginbtn input { border: none;
+                  width: 70px;
+                  height: 30px;
+                  background-color: #10253F;
+                  color: white;
+                  font-size: 16px;
+                  border-radius: 10px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                }
+</style>
+
+<!--
+  <div>
+    <div id="edit-header" class="form-item form-type-item">
+       <h2 class="auth-heading">Log in to get started!</h2>
+    </div>
+  
+    <div class="form-item form-type-textfield form-item-name">
+      <label class="field-label" for="edit-name">Email address or cell number <span class="form-required" title="This field is required.">*</span></label>
+       <input type="text" id="edit-name" name="name" value="" size="15" maxlength="60" class="text-field required">
+    </div>
+    
+    <div class="form-item form-type-password form-item-pass">
+      <label class="field-label" for="edit-pass">Password <span class="form-required" title="This field is required.">*</span></label>
+       <input type="password" id="edit-pass" name="pass" size="15" maxlength="128" class="text-field required">
+    </div>
+      <input type="hidden" name="form_build_id" value="form-XS-OSA946J_VpCaj6bO0cxTFlsYqZaz9V6BbdqY7aiM">
+      <input type="hidden" name="form_id" value="user_login_block">
+    <div class="form-actions form-wrapper" id="edit-actions"><input class="button form-submit" type="submit" id="edit-submit" name="op" value="Log in"></div><div id="edit-create-account-link" class="form-item form-type-item">
+     <p class="auth-toggle-link"><a href="/user/register" id="link--register" data-modal-href="#modal--register">Create a DoSomething.org account</a><br><a href="/user/password">Forgot password?</a></p>
+    </div>
+  </div>
+  </div>
+  
+  -->

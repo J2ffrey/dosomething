@@ -1,0 +1,61 @@
+<%= render :partial => 'main_navbar' %>
+
+
+<div class="container container_st">
+<h2>비밀번호 수정</h2>
+
+<div class="signup_content">
+    
+    <form action="/dosomething/private_final/<%=current_user.id%>">
+    new password<br><input type="password" name="u_password"><br><Br>
+    password confirmation<br>
+    <input type = "password" name="con_password"><br><br>
+    <input type="submit" value="변경">
+</form>
+
+  
+</div>
+
+
+
+</div>
+
+
+<%= render :partial => 'main_footer' %>
+
+<style>
+.signupbtn input { border: none;
+                  width: 70px;
+                  height: 30px;
+                  background-color: #10253F;
+                  color: white;
+                  font-size: 16px;
+                  border-radius: 10px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                }
+                
+.container_st {margin-top: 110px;
+              padding-bottom: 20px;
+              border: 2px solid #10253F;
+              margin-bottom:110px;
+              width: 500px; height: 350px;
+              padding-left:0px; padding-right:0px;
+              border-radius: 3px;
+              text-align: center;
+              }
+.signup_hearder {
+                background-color: #10253F;
+                color: white;
+                text-align: center;
+                font-size: 25px;
+                }
+                
+.signup_content {
+                margin: auto;
+                text-align: center;
+                margin-top:20px;
+                }
+                
+.marginfield {margin-bottom:10px;}
+</style>

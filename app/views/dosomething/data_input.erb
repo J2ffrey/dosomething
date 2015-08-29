@@ -1,0 +1,78 @@
+
+<h1>봉사꾼 Admin page</h1><br>
+<a href="/" style="text-align:center">Main page로 돌아가기</a>
+
+<div class="container">
+    
+    <!--봉사꾼 Admin page에서 새로운 데이터를 입력하는 코드입니다. -->
+    <div class="row">
+        <form action="/dosomething/bongsa_save" enctype="multipart/form-data" method="POST">
+            <br><input type="text" name="name"> <== 봉사명 / string<br>
+            <br><input type="file" name="bongbongimg"> <== Mainimage <br>
+            <br><input type="text" name="region"> <== 지역 / string
+            <br><br>
+            <h5>분야 / integer</h5>
+            <select name="ctgory">
+                <option value="0" selected="selected" >분야 미지정</option>
+                <option value="1">교육봉사</option>
+                <option value="2">재능봉사</option>
+                <option value="3">노력봉사</option>
+                <option value="4">해외봉사</option>
+                <option value="5">기타봉사</option>
+            </select><br>
+            <br><input type="text" name="content"> <== 상세 내용 / text
+            <br>
+            <br><input type="file" name="fosterimg"> <==  포스터 이미지 / string
+            <br>
+            <br><input type="text" name="t_start"> <== 시작일 / string(추후 달력이나 최소한 SelectOption으로 구현 예정)<br>
+            <br><input type="text" name="t_end"> <== 종료일 / string(추후 달력이나 최소한 SelectOption으로 구현 예정)
+            <br>
+            <br><input type="text" name="org_name"> <== 주관 / string<br>
+            <br><input type="text" name="clerk"> <== 담당자 / string
+            <br><br><br>
+            <h5>사전교육 유/무 / integer( 0=없음 / 1=있음 )</h5>
+            <select name="pre_edu"> 
+                <option value="3" selected="selected" >선택안함</option>
+                <option value="1">사전교육 있음</option>
+                <option value="2">사전교육 없음</option>
+            </select><br><br><br>
+            <h5>모집현황( 모집중=1, 모집예정=0, 모집종료=2) / integer</h5>
+            <select name="status">
+                <option value="3" selected="selected" >선택안함</option>
+                <option value="0">모집 예정</option>
+                <option value="1">모집 중</option>
+                <option value="2">모집 종료</option>
+            </select>
+            <br>
+            <br><input type="text" name="vltr_age"> <== 지원가능 연령(추후 범주로 지정가능하게 구현 예정. SelectOption ) / integer(나이 숫자만 입력!!! 문자나 기호 안됨;;; 기본 포멧은 "N세 이상"으로 N을 입력.)
+            <br><br><br><h5>지원가능 성별 / integer( 0=남자 / 1=여자 )</h5>
+            <select name="vltr_sex">
+                <option value="3" selected="selected" >성별</option>
+                <option value="0">남자</option>
+                <option value="1">여자</option>
+                <option value="2">무관</option>
+            </select>
+            <br><br><br>
+            <br><input type="text" name="vltr_req"> <== 지원가능 상세조건 / text
+            <br>
+            <br><input type="submit" value="등록하기"><br><br><br><br><br><br><br><br><br><br><br><br>
+        </form>
+    </div>
+   
+    
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <% i = 0 %>
+            <% @bongsa.each do |b| %>
+            <% i += 1 %>
+            <p><%=i%>번째 데이터. | <%= b.name %> | <%= b.region %> | <%= b.org_name %> | <%= b.clerk %> |</p>
+            <a href="/dosomething/data_delete/<%= b.id %>">[삭제]</a> | 
+            <a href="/dosomething/data_modify/<%= b.id %>">[수정]</a>
+            <br>
+            <center>========================================================================</center>
+            <% end %>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

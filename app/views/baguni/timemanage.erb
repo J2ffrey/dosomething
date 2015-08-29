@@ -1,0 +1,187 @@
+<%= render :partial => 'dosomething/main_navbar' %>
+
+
+
+<div class="col-md-12">
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <div class="page-header">
+      <p class="title">봉사시간 관리</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <!-- Single button -->
+      <div class="btn-group">
+        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+          신청내역 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <% @bongsa.each do |bb| %>
+          <li><a href="/baguni/timemanage/<%= bb.id %>"><%= bb.name %></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="btn-group" role="menu">
+        <form action="/baguni/timemanage" method="POST">
+      분류항목: <select name="category" id="category" title="카테고리">
+          				<option value="0" selected="selected"> --선택-- </option>
+          				<option value="1">벽화봉사</option>
+          				<option value="2">재능봉사</option>
+          				<option value="3">현혈</option> 
+          			</select>
+          		<input type="submit" value="검색">
+        </form>
+      </div>
+  
+    <%#= form_for @bongsa, url: {controller: 'baguni', action:'input'} do |f| %>
+        <%#= f.label :"--선택--" %>
+        <%#= f.select(:category_menu) do %>
+            <%# @bongsa2.each do |c| -%>
+                <%#= content_tag(:option, c.first, value: c.last) %>
+            <%# end %>
+        <%# end %>
+    <%# end %>
+    
+
+</div>
+
+<% unless params[:id] == 0 || params[:id].nil? %>
+  <% c = Bongsa.find(params[:id]) %>
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left:0px; margin-top:30px;">
+    <!-- div 내부에 nav?? --><!--세로로 떨어지는 li들을 가로로 정렬시키려고 넣었습니다-->
+    <nav id="menu">    <!-- 이게 nav안하면 이상하게 나와요 테이블이 ㅠㅠ -->
+        <ul class="bog_list">
+          <form action = "/baguni/a_update/<%= c.id %>" method="POST">
+            <li>
+              <input type="text" placeholder="카테고리" class="menu_width" value="<%= c.ctgory %>" name="ctgory">
+            </li>
+            <li>
+              <input type="text" placeholder="봉사명" class="menu_width" value="<%= c.name %>" name="name">
+            </li>
+            <li>
+              <input type="text" placeholder="시행기관"  class="menu_width" value="<%= c.org %>" name="org">
+            </li>
+            <li>
+              <input type="text" placeholder="활동기간" class="menu_width" value="<%= c.term %>" name="term">
+            </li>
+            <li>
+              <input type="text" placeholder="활동내용" class="menu_width" value ="<%= c.content %>" name="content">
+            </li>
+            <li>
+              <input type="text" placeholder="시간" class="menu_width" name="act_time">
+            </li>
+            <li>
+              <input type="submit" value="아!" style="width: 50px; color: black;">
+            </li>
+          </form>
+        </ul>
+    </nav>
+  </div>
+
+<% else %>
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left:0px; margin-top:30px;">
+    <!-- div 내부에 nav?? --><!--세로로 떨어지는 li들을 가로로 정렬시키려고 넣었습니다-->
+    <nav id="menu">    <!-- 이게 nav안하면 이상하게 나와요 테이블이 ㅠㅠ -->
+        <ul class="bog_list">
+          <form action = "/baguni/a_update?confirm=2" method="POST"><!-- 기존 값 없이 추가하는 경우 -->
+            <li>
+              <input type="text" placeholder="카테고리" class="menu_width" value="" name="ctgory">
+            </li>
+            <li>
+              <input type="text" placeholder="봉사명" class="menu_width" value="" name="name">
+            </li>
+            <li>
+              <input type="text" placeholder="시행기관"  class="menu_width" value="" name="org">
+            </li>
+            <li>
+              <input type="text" placeholder="활동기간" class="menu_width" value="" name="term">
+            </li>
+            <li>
+              <input type="text" placeholder="활동내용" class="menu_width" value ="" name="content">
+            </li>
+            <li>
+              <input type="text" placeholder="시간" class="menu_width" name="act_time">
+            </li>
+            <li>
+              <input type="submit" value="아!" style="width: 50px; color: black;">
+            </li>
+          </form>
+        </ul>
+    </nav>
+  </div>
+<% end %>
+
+<div class="col-md-12 col-sm-12 col-xs-12 table_cs">
+  <table class="table_cs">
+    <thead>
+      <tr>
+        <th>카테고리</th>
+        <th>봉사명</th>
+        <th>시행기관</th>
+        <th>활동기간</th>
+        <th>봉사활동 내용</th>
+        <th>시간</th>
+        <th>기능</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @bongsa2.each do |b| %>
+      <%#if b.ctgory == 1
+          bb << "벽화봉사"
+         elsif b.ctgory == 2
+          bb << "재능봉사"
+         elsif b.ctgory == 3
+          bb << "헌혈"
+         else
+          bb << "카테고리가 없습니다"
+         end %>
+          
+        <tr>
+          <th><%= b.ctgory %></th>
+          <th><%= b.name %></th>
+          <th><%= b.org %></th>
+          <th><%= b.term %></th>
+          <th><%= b.content %></th>
+          <% unless b.act_time.nil? || b.act_time==0 %>
+            <th><%= b.act_time %></th>
+          <% else %>
+            <th><a href="/baguni/timemanage/<%= b.id %>">시간 입력하기</a></th>
+          <% end %>
+          <th>
+            <%unless b.act_time.nil? || b.act_time==0%>
+            <a href="/baguni/timemanage/<%= b.id %>">[수정]</a><br><br>
+            <%else%>
+            <%end%>
+            <a href="/baguni/bongsa_delete/<%= b.id %>">[삭제]</a>
+          </th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="col-md-3 col-sm-3 col-xs-3">
+  <div class="container all_time">
+  <% unless @total_time != "0" %>
+  <form>
+    <input type="text" placeholder="총 봉사시간" style="width: 150px; height: 40px; text-align: center;">
+  </form>
+  <% else %>
+  <form>
+    <input type="text" placeholder="총 <%= @total_time %>시간" style="width: 150px; height: 40px; text-align: center;">
+  </form>
+  <% end %>
+  </div>
+</div>
+
+
+
+
+<%= render :partial => 'style/timemanagecss' %>
+
+<%= render :partial => 'dosomething/main_footer' %>
+
+
