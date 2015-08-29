@@ -1,5 +1,9 @@
 class DosomethingController < ApplicationController
     
+    
+    def calender2
+    end
+    
     def index
         mark = ViewCount.new
         mark.ip_adress = request.remote_ip
