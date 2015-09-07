@@ -7,6 +7,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  
+  
 
   
   <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -22,10 +24,10 @@
 
 
   <!--글씨체 한나체로 변경-->
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/earlyaccess/hanna.css">
+<link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
       <style>
         body {
-          font-family: 'Hanna', Sans-serif;
+          font-family: 'Noto Sans', sans-serif;
         }
       </style>
   
@@ -34,5 +36,7 @@
 
 <%= yield %>
 
+<!-- Jquery cd
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </body>
 </html>

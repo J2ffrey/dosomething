@@ -4,6 +4,7 @@ gem 'fog'
 gem 'carrierwave'
 gem 'mailgun_rails'
 gem 'devise'
+gem 'seed_dump'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record

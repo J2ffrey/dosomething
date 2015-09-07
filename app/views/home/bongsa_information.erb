@@ -1,0 +1,179 @@
+
+
+<!-- Tables
+================================================== -->
+<center>
+<section id="tables">
+  <div class="page-header">
+    <h1>봉사 상세정보</h1>
+  </div>
+  
+  <strong>
+  <table class="table table-bordered table-striped table-hover bongsa_information_css">
+    <thead>
+      <tr>
+        <th class="center center_width table_head">구분</th>
+        <th class="center table_head">세부내용</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td class="center center_width">봉사명</td>
+        <td><%= @b.name %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">봉사 기관명</td>
+        <td><%= @b.org_name %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">모집인원</td>
+        <td><%= @b.how_many %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">지역</td>
+        <td><%= @b.region %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">봉사시간</td>
+        <td>Time</td>
+      </tr>
+      <tr>
+        <td class="center center_width">모집시작일 ~ 마감일</td>
+        <td><%= @b.date_mozip_start %> ~ <%= @b.date_mozip_end %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">봉사 시작일 ~ 종료일</td>
+        <td><%= @b.date_real_start %> ~ <%= @b.date_real_end %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">봉사 시작시간 ~ 종료시간</td>
+        <td><%= @b.time_daily_start %> ~ <%= @b.time_daily_end %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">총 획득 예상시간</td>
+        <td><%= @b.time_expect_total %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">인근학교</td>
+        <td><%= @b.school %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">지원가능 상세조건</td>
+        <td><%= @b.vltr_req %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">봉사활동 상세내용</td>
+        <td>Mark</td>
+      </tr>
+      <tr>
+        <td class="center center_width">담당자 연락처</td>
+        <td><%= @b.clerk_call %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">정기/비정기</td>
+        <td><%= @b.clerk %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">정기/비정기</td>
+        <td>Mark</td>
+      </tr>
+      <tr>
+        <td class="center center_width">봉사유형</td>
+        <td>Mark</td>
+      </tr>
+      <tr>
+        <td class="center center_width">사전교육 유/무</td>
+        <td><%= @b.pre_edu %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">모집현황</td>
+        <td><%= @b.status %></td>
+      </tr>
+      <tr>
+        <td class="center center_width">지원가능 성별</td>
+        <td><%= @b.vltr_sex %></td>
+      </tr>
+    </tbody>
+  </table>
+  </strong>
+</section>
+</center>
+
+
+<style>
+ .bongsa_information_css {width: 42%;
+                         }
+.center {text-align:center;
+        }
+.center_width {width: 27%;}
+.table_head {background-color: pink;
+            color: white;
+            font-size: 15px;}
+</style>
+
+        <div class="content body"><p style="text-align: center; margin-top: 50px; background-color:white;"><img alt="" src="http://s3-ap-northeast-1.amazonaws.com/jasoseol.image/home/ec2-user/jasoseol/public/ckeditor_assets/pictures/4937/content_2015-07-20.jpeg" style="height:1155px; width:669px"></p>
+</div>
+        
+        
+        
+        
+<!-- 건들지마삼 -->        
+        
+<!--이창우 파트 건들지마삼 건들면 싸대기 -->        
+
+
+
+<div class="row" "title">
+  <p>자기 소개서 쓰러가기</p>
+</div>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">봉사 지원서 쓰러가기</div>
+  <div class="panel-body">
+    
+    <div class="recruit-header">
+      <div class="col-md-2 name">
+            <p>기관명</p>
+            
+      <div class="row">
+      <p><%= @b.org_name %> </p>
+      </div>
+      </div>
+      
+      <div class="col-md-4 part">
+          <p> 봉사명</p>
+          <div class="row">
+            <p><%= @b.name %></p>
+          </div>
+      </div>
+      
+      <div class="col-md-2 magam">
+          <p> 모집기간 </p>
+          <div class="row">
+            <p><%= @b.date_mozip_start %> ~ <%= @b.date_mozip_end %></p>
+          </div>
+      </div>
+    
+      <div class="col-md-2 magam">
+          <p> 시간 </p>
+      </div>
+    
+      <div class="col-md-2 magam">
+          <p> 지원서 쓰기 </p>
+          <div class="row">
+            <button class="btn btn-default btn-block">
+                                 지원서 쓰러가기</button>
+          </div>
+      </div>
+    
+    </div>
+    
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    ...
+  </table>
+</div>

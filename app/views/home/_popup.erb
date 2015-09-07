@@ -1,0 +1,148 @@
+<!--<script>-->
+<!--  $(function(){-->
+<!--  $('#modal').click('show.bs.modal', function (event) {-->
+<!--  var button = $(event.relatedTarget);-->
+<!--  var id = button.data(id);-->
+<!--  alert("id값이"+id+"로 넘어왔습니다.");-->
+<!--  var modal = $(this);-->
+<!--      modal.find('.modal-body input#id').val(id);-->
+
+<!--  });-->
+<!--});-->
+<!--</script>-->
+<script>          
+            $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
+</script>
+            
+<!-- Modal -->
+<!-- Modal 대가리 시작 -->
+
+<div class="modal fade" id="abccc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+<!-- 대가리 끝 건드릴필요 없음 -->
+
+
+    
+<!-- 바디시작 -->    
+<div class="modal-body">
+      <input type="hidden" name="id" id="id" value="">
+      <img src="http://jasoseol.com/assets/modal/X_btn_white-673fc220021a75f96f7c7d49f1aa03d4.png" data-dismiss="modal">
+      <!-- <button type="button" class="close" data&#45;dismiss="modal"><span aria&#45;hidden="true">&#38;times;</span><span class="sr&#45;only">Close</span></button> -->
+      <h4 class="modal-title first"><img src="http://jasoseol.com/assets/calendar/info-dd6e7844a0ede75183ad4529fd59e5a5.png" alt="">봉사 정보</h4>
+      
+      
+
+ 
+<div class="row-fluid" style="margin-top: 40px;">
+    <div class="company-image"> 
+    <span class="helper"></span> 
+    <img src="http://jasoseol.image.s3-ap-northeast-1.amazonaws.com/employment_companies/images/000/003/433/small/screenshot-www.istarbucks.co.kr_2015-07-20_13-34-53.png?1437369724" alt="" style="display: inline;">
+    </div>
+    
+        <div class="company-information">
+            
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="name head"> 봉사명 </div>
+              <div class="name body"></div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="date head"> 모집 기간 </div>
+              <div class="date body"></div>
+            </div>
+            <div class="row right-button">
+              <a href="http://job.shinsegae.com/recruit_info/notice/notice02_view.jsp?isSearch=&amp;tabKey0=&amp;currentPage=1&amp;rowsPerPage=10&amp;notino=2510&amp;searchWord0=&amp;searchKey0=&amp;searchKey1=&amp;searchWord1=" class="color4-round-button employment-page-url md-button" target="_blank">채용 페이지</a>
+            </div>
+            
+        </div>
+</div>
+      
+
+
+
+
+
+        <div style="clear:both"></div>
+        <h4 class="modal-title"><img src="http://jasoseol.com/assets/calendar/chart-067904653d7cbbaeb8dfddd24aab7d78.png" alt="">채용 정보</h4>
+      
+        <div class="content body"><p style="text-align: center; margin-top: 50px; background-color:white;"><img alt="" src="http://s3-ap-northeast-1.amazonaws.com/jasoseol.image/home/ec2-user/jasoseol/public/ckeditor_assets/pictures/4937/content_2015-07-20.jpeg" style="height:1155px; width:669px"></p>
+</div>
+        
+        
+        
+        
+<!-- 건들지마삼 -->        
+        
+<!--이창우 파트 건들지마삼 건들면 싸대기 -->        
+
+
+
+<div class="row" "title">
+  <p>자기 소개서 쓰러가기</p>
+</div>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">봉사 지원서 쓰러가기</div>
+  <div class="panel-body">
+    
+    <div class="recruit-header">
+      <div class="col-md-2 name">
+            <p> 기관명 </p>
+      <div class="row">
+      <!-- 기관명 db에 없지않나요 --> <p> </p>
+      </div>
+      </div>
+      
+      <div class="col-md-4 part">
+          <p> 봉사명</p>
+          <div class="row">
+            <p></p>
+          </div>
+      </div>
+      
+      <div class="col-md-2 magam">
+          <p> 신청기간 </p>
+      </div>
+    
+      <div class="col-md-2 magam">
+          <p> 시간 </p>
+      </div>
+    
+      <div class="col-md-2 magam">
+          <p> 지원서 쓰기 </p>
+      </div>
+    
+    </div>
+    
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    ...
+  </table>
+</div>
+
+
+<!-- 바디끝 div -->
+</div>
+      
+<!--modal footer 시작 -->
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<%= render :partial => 'style/popupcss' %>
+

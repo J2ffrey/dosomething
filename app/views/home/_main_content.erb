@@ -1,0 +1,58 @@
+<div class="blank"></div>
+<div id="ajax_target">
+    <div class="bongsas">
+    </div>
+</div>
+
+
+<!--봉사정보-->
+<br>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <div>
+            <%  k = 6 
+                
+                unless @s_word.nil?
+                    unless @bongsa.nil?
+                        k = @bongsa.all.count
+                    else
+                        k = 6
+                    end
+                end %>
+                
+            <% @bongsa.sample(k).each do |b| %>
+                      <div class="panel panel-default">
+                       <div class="panel-heading"><%= b.name %></div>
+                       <div class="panel-body">
+                           <%= b.region %><br>
+                         <img src="<%= b.bongsa_img %>" style="width:100%; height:270px;">
+                       </div>
+                       <a href="/home/bongsa_information/<%= b.id %>"><div class="panel-footer">
+                           <button class="btn btn-default btn-block">
+                                 더보기</button></a>
+                       </div> 
+                     </div>
+                    
+            <% end %>
+            </div>  
+        </div>    
+    <div class="col-md-1"></div>
+</div>
+
+
+
+<!--봉사달력-->
+
+<div class="row background-img">
+    <br><br><i class="fa fa-calendar"></i>
+        <a href = 'home/calender'><p> 봉사달력 보러가기 </p></a>
+</div>
+<!--봉사달력-->
+
+
+
+
+<%= render :partial => 'style/main_contentcss' %>
+
+

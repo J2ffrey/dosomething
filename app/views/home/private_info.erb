@@ -1,43 +1,31 @@
-<%= render :partial => 'home/main_navbar' %>
+<%= render :partial => 'main_navbar' %>
+
+<% if flash[:alert].present? %>
+  <div class="col-md-12 alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
 
 
 <div class="container container_st">
-<div class="Header signup_hearder">Sign up</div>
+<h2>비밀번호 수정</h2>
 
 <div class="signup_content">
+    
+    <form action="/home/private_final/<%=current_user.id%>">
+    new password<br><input type="password" name="u_password"><br><Br>
+    password confirmation<br>
+    <input type = "password" name="con_password"><br><br>
+    <input type="submit" value="변경">
+</form>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field login_box marginfield">
-    <%= f.label :email %> </br>
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field marginfield">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %> </br>
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field marginfield">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions marginfield signupbtn">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</div>
+  
 </div>
 
 
-<%= render :partial => 'home/main_footer' %>
+
+</div>
+
+
+<%= render :partial => 'main_footer' %>
 
 <style>
 .signupbtn input { border: none;
@@ -58,6 +46,7 @@
               width: 500px; height: 350px;
               padding-left:0px; padding-right:0px;
               border-radius: 3px;
+              text-align: center;
               }
 .signup_hearder {
                 background-color: #10253F;

@@ -14,24 +14,35 @@
 ActiveRecord::Schema.define(version: 20150824081509) do
 
   create_table "bongsas", force: :cascade do |t|
-    t.string   "name"
     t.string   "bongsa_img"
-    t.string   "region"
-    t.integer  "ctgory"
-    t.text     "content"
     t.string   "foster_img"
-    t.string   "t_start"
-    t.string   "t_end"
-    t.string   "org_name"
-    t.string   "clerk"
+    t.string   "name"
+    t.text     "content"
     t.integer  "pre_edu"
     t.integer  "status"
+    t.string   "org_name"
+    t.string   "clerk"
+    t.text     "clerk_call"
+    t.integer  "regular"
+    t.string   "date_mozip_start"
+    t.string   "date_mozip_end"
+    t.integer  "date_real_start"
+    t.integer  "date_real_end"
+    t.integer  "time_daily_start"
+    t.integer  "time_daily_end"
+    t.integer  "time_expect_total"
+    t.integer  "how_many"
     t.integer  "vltr_age"
     t.integer  "vltr_sex"
     t.text     "vltr_req"
+    t.string   "region"
+    t.string   "school"
+    t.string   "time"
+    t.integer  "ctgory"
+    t.string   "input_admin"
     t.integer  "act_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|

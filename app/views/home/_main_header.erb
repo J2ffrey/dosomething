@@ -1,0 +1,262 @@
+<header role="banner" class="header header--home">
+
+  <div class="row">
+    <center><p class="header__title"> Visit <%= @total_view_count %> members.</p></center>
+  </div>
+
+
+
+  <!--<script>  // Jquery 메뉴스크립트 
+      $(function() {
+      $( "#school" ).selectmenu();
+   
+      $( "#region" ).selectmenu();
+   
+      $( "#time" ).selectmenu();
+      
+      $( "#type" ).selectmenu();
+    });
+  </script>-->
+
+  <div class="demo">
+    <form action="#">
+     
+      <fieldset class="fieldset_list">
+        <ul>
+          <li class="wantlist">
+        <label for="region">Region(지역)</label><br>
+        <select name="region" id="region_select">
+          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
+          <option id="region_option1" value="서울">&nbsp 서울</option>
+          <option id="region_option2" value="경기">&nbsp 경기</option>
+          <option id="region_option3" value="인천">&nbsp 인천</option>
+          <option id="region_option4" value="강원">&nbsp 강원</option>
+          <option id="region_option5" value="대전">&nbsp 대전</option>
+          <option id="region_option5" value="대전">&nbsp 세종</option>
+          <option id="region_option5" value="대전">&nbsp 충남</option>
+          <option id="region_option5" value="대전">&nbsp 충북</option>
+          <option id="region_option5" value="대전">&nbsp 부산</option>
+          <option id="region_option5" value="대전">&nbsp 울산</option>
+          <option id="region_option5" value="대전">&nbsp 경남</option>
+          <option id="region_option5" value="대전">&nbsp 경북</option>
+          <option id="region_option5" value="대전">&nbsp 대구</option>
+          <option id="region_option5" value="대전">&nbsp 광주</option>
+          <option id="region_option5" value="대전">&nbsp 전남</option>
+          <option id="region_option5" value="대전">&nbsp 전북</option>
+          <option id="region_option5" value="대전">&nbsp 제주</option>
+        </select>
+          </li>
+     
+          <li class="wantlist">
+        <label for="school">School(학교)</label><br>
+        <select name="school" id="school_select">
+          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
+          <option value="KC대학교">&nbsp KC대학교</option>
+          <option value="가톨릭대학교">&nbsp 가톨릭대학교</option>
+          <option value="감리교신학대학교">&nbsp 감리교신학대학교</option>
+          <option value="건국대학교">&nbsp 건국대학교</option>
+          <option value="경기관대학교">&nbsp 경기대대학교</option>
+          <option value="고려대학교">&nbsp 고려대학교</option>
+          <option value="광운대학교">&nbsp 광운대학교</option>
+          <option value="국민대학교">&nbsp 국민대학교</option>
+          <option value="덕성대학교">&nbsp 덕성대학교</option>
+          <option value="동국대학교">&nbsp 동국대학교</option>
+          <option value="동덕대학교">&nbsp 동덕대학교</option>
+          <option value="명지대학교">&nbsp 명지대학교</option>
+          <option value="삼육대학교">&nbsp 삼육대학교</option>        
+          <option value="상명대학교">&nbsp 상명대학교</option>
+          <option value="서강대학교">&nbsp 서강대학교</option>
+          <option value="서울과학기술대학교">&nbsp 서울과학기술대학교</option>
+          <option value="서율교육대학교">&nbsp 서울교육대학교</option>
+          <option value="서울기독대학교">&nbsp 서울기독대학교</option>
+          <option value="서울대학교">&nbsp 서울대학교</option>
+          <option value="서울시립대학교">&nbsp 서울시립대학교</option>
+          <option value="서울여대학교">&nbsp 서울여대학교</option>
+          <option value="성공회대학교">&nbsp 성공회대학교</option>
+          <option value="성균관대학교">&nbsp 성균관대학교</option>
+          <option value="성신여대학교">&nbsp 성신여대학교</option>
+          <option value="세종대학교">&nbsp 세종학교</option>
+          <option value="숙명대학교">&nbsp 숙명대학교</option>        
+          <option value="숭실대학교">&nbsp 숭실대학교</option>
+          <option value="연세대학교">&nbsp 연세대학교</option>
+          <option value="육군사관학교">&nbsp 육군사관학교</option>         
+          <option value="이화여대학교">&nbsp 이화여대학교</option>
+          <option value="인제대학교">&nbsp 인제대학교</option>
+          <option value="장로회신학대학교">&nbsp 장로회신학대학교</option>
+          <option value="중앙대학교">&nbsp 중앙대학교</option>
+          <option value="총신대학교">&nbsp 총신대학교</option>
+          <option value="추계대학교">&nbsp 추계대학교</option>
+          <option value="한국과학기술원">&nbsp 한국과학기술원</option>        
+          <option value="방송통신대학교대학교">&nbsp 한국방송통신대학교</option>
+          <option value="한국성서대학교">&nbsp 한국성서대학교</option>
+          <option value="한국예술종합대학교">&nbsp 한국예술종합대학교</option>
+          <option value="한국외국어대학교">&nbsp 한국외국어대학교</option>
+          <option value="한국체육대학교">&nbsp 한국체육대학교</option>
+          <option value="한성대학교">&nbsp 한성대학교</option>        
+          <option value="한양대학교">&nbsp 한양대학교</option>
+          <option value="한영신학대학교">&nbsp 한영신학대학교</option>
+          <option value="홍익대학교">&nbsp 홍익대학교</option>
+          
+
+        </select>
+          </li>
+          
+          <li class="wantlist">
+        <label for="time">Time(하루기준)</label><br>
+        <select name="time" id="time_select">
+          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
+          <option value="1">&nbsp 1~3시간</option>
+          <option value="2">&nbsp 4~7시간</option>
+          <option value="3">&nbsp 8시간 이상</option>
+        </select>
+          </li>
+          
+          <li class="wantlist">
+        <label for="type">Type(종류)</label><br>
+        <select name="ctgory" id="type_select">
+          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
+          <option value="1">&nbsp 교육봉사</option>
+          <option value="1">&nbsp 재능봉사</option>
+          <option value="2">&nbsp 노력봉사</option>
+          <option value="3">&nbsp 해외봉사</option>
+          <option value="4">&nbsp 기타봉사</option>
+        </select>
+        </li>
+        
+    </ul>
+    
+      </fieldset>
+    </form>
+  </div>
+</header>
+
+<!-- 이재철코드 -->
+<% if flash[:alert].present? %>
+  <div class="col-md-12 alert alert-danger"><%= flash[:alert] %></div>
+<% end %> 
+<!-- 이재철코드 -->
+
+
+<%= render :partial => 'popup' %>
+<%= render :partial => 'style/main_headercss' %>
+
+
+<style>
+.wantlist {list-style-type :none;
+           float :left;
+           margin-right: 60px;
+           margin-bottom: 30px;
+          }
+.fieldset_list {margin: auto;
+                width: 1080px;
+                }
+</style>
+
+
+
+
+
+
+<script>
+
+// ajax는 창우님이 해결한다.<== 제발. 제발2
+
+$(function(){
+  $("#region_select, #school_select, #time_select, #type_select").on("change", function(){
+    $.ajax({
+      url:"/home/filter",
+      type: "POST",
+      dataType:"JSON",
+      data:{
+        region: $("#region_select").val(),
+        school: $("#school_select").val(),
+        time: $("#time_select").val(),
+        type: $("#type_select").val()
+      },
+      success: function(data){    //<-성공하면 data를 찍겠다.
+        var bongsa = data
+        for(var i=0;i<bongsa.length;i++){
+          $("#ajax_target").append(bongsa[i].region)
+        }
+      }
+    })
+  })
+  
+})
+
+
+/*
+//(function() {
+  $(document).ready(function() {
+    
+    
+    var searchOptions = {
+      filter1: 1,
+      // filter2: 2,
+      // filter3: 3,
+      // filter4: 4
+    };
+    
+    $('#region_select').on('change', function() {
+    var selected_value = $(this).val();
+    searchOptions.filter1 = selected_value;
+    triggerSearch();
+    });
+  
+    // $('#school_select').on('change', function() {
+    // var selected_value = $(this).val();
+    // searchOptions.filter2 = selected_value;
+    // triggerSearch();
+    // });
+  
+    // $('#time_select').on('change', function() {
+    //   var selected_value = $(this).val();
+    //   searchOptions.filter3 = selected_value;
+    //   triggerSearch();
+    // });
+    
+    // $('#type_select').on('change', function() {
+    //   var selected_value = $(this).val();
+    //   searchOptions.filter4 = selected_value;
+    //   triggerSearch();
+    // });
+    
+    
+    function triggerSearch() {
+      $.ajax({
+        url: '//json_test' + '?' + $.param(searchOptions),
+        method: 'GET',
+        beforeSend: function() {
+          $('#ajax_target .bongsas').html('');
+        },
+        success: function(data, textStatus, jqXHR) {
+          for(var i in data) {
+            $('#ajax_target .bongsas').append('' +
+            '<div class="bongsas__item">' +
+            '<div class="bongsas__item__name">' + data[i].name + '</div>' +
+            '</div>' + 
+            '</div>');
+          };
+        },
+        error: function(data, textStatus, jqXHR) {
+          alert('error massege');
+        }
+      });
+    }
+    
+  });
+//})()
+*/
+</script>
+
+<!--김용현 에젝 연습중 -->
+
+<script>
+  // $(function(){
+  //   $("#region_select").on('change', function(){
+  //     var selected_value = $(this).val();
+  //   });
+    
+    
+  // });
+</script>

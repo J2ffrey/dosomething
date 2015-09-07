@@ -1,4 +1,4 @@
-<%= render :partial => 'dosomething/main_navbar' %>
+<%= render :partial => 'home/main_navbar' %>
 
 
 
@@ -17,7 +17,13 @@
     <%= f.label :password %> &nbsp
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
+  
+  <!-- 비밀번호가 틀렸다면?? -->
+  <% if flash[:alert].present? %>
+  <div class="col-md-12 alert alert-danger">비밀번호를 확인하세요</div>
+  <% end %> 
+  <!-- 여기까지 -->
+  
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
@@ -35,7 +41,7 @@
  <%= render "style/logincss" %>
 </div>
 
- <%= render :partial => 'dosomething/main_footer' %>
+ <%= render :partial => 'home/main_footer' %>
  
 <style>
 .loginbtn input { border: none;
