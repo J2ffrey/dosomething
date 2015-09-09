@@ -111,16 +111,16 @@
         </select>
           </li>
           
-          <li class="wantlist">
-        <label for="type">Type(종류)</label><br>
-        <select name="ctgory" id="type_select">
-          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
-          <option value="1">&nbsp 교육봉사</option>
-          <option value="1">&nbsp 재능봉사</option>
-          <option value="2">&nbsp 노력봉사</option>
-          <option value="3">&nbsp 해외봉사</option>
-          <option value="4">&nbsp 기타봉사</option>
-        </select>
+        <li class="wantlist">
+          <label for="type">Type(종류)</label><br>
+          <select name="ctgory" id="ctgory_select">
+            <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
+            <option value="1">&nbsp 교육봉사</option>
+            <option value="2">&nbsp 재능봉사</option>
+            <option value="3">&nbsp 노력봉사</option>
+            <option value="4">&nbsp 해외봉사</option>
+            <option value="5">&nbsp 기타봉사</option>
+          </select>
         </li>
         
     </ul>
@@ -142,28 +142,41 @@
 
 
 <style>
-.wantlist {list-style-type :none;
-           float :left;
-           margin-right: 60px;
-           margin-bottom: 30px;
-          }
-.fieldset_list {margin: auto;
-                width: 1080px;
-                }
+  .wantlist {list-style-type :none;
+             float :left;
+             margin-right: 60px;
+             margin-bottom: 30px;
+            }
+  .fieldset_list {margin: auto;
+                  width: 1080px;
+                  }
 </style>
 
 
 
 
 
-
-<script>
-
-// ajax는 창우님이 해결한다.<== 제발. 제발2
-
+<script type="text/javascript">
+	
 $(function(){
-  $("#region_select, #school_select, #time_select, #type_select").on("change", function(){
-    $.ajax({
+  $("#region_select, #school_select, #time_select, #ctgory_select").on("change", function(){
+		$.ajax({
+			type:"get",
+			url:"/home/filter2?" + 'region=' + $('#region_select').val() 
+			+ '&school=' + $('#school_select').val() 
+			+ '&time=' + $('#time_select').val() 
+			+ '&ctgory=' + $('#ctgory_select').val(),
+			datatype:"html",
+			success:function(r){
+				$("#main_contents").empty();
+				$("#main_contents").append(r);
+			},
+			error:function(){
+				alert("데이터를 가져오지 못하였습니다.");
+			},
+		});
+		
+    /*$.ajax({
       url:"/home/filter",
       type: "POST",
       dataType:"JSON",
@@ -173,13 +186,14 @@ $(function(){
         time: $("#time_select").val(),
         type: $("#type_select").val()
       },
+      url="/home/filter?region="resion
       success: function(data){    //<-성공하면 data를 찍겠다.
         var bongsa = data
         for(var i=0;i<bongsa.length;i++){
           $("#ajax_target").append(bongsa[i].region)
         }
       }
-    })
+    })*/
   })
   
 })
@@ -247,16 +261,4 @@ $(function(){
   });
 //})()
 */
-</script>
-
-<!--김용현 에젝 연습중 -->
-
-<script>
-  // $(function(){
-  //   $("#region_select").on('change', function(){
-  //     var selected_value = $(this).val();
-  //   });
-    
-    
-  // });
 </script>

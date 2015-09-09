@@ -12,20 +12,20 @@
 <!--봉사 입력창-->
 
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-<div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Modal header</h3>
-	</div>
-	<div class="modal-body">
-		<p>My modal content here…</p>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal">Close</button>
-	</div>
-	</div>
-</div>
+  <div class="modal-dialog">
+  	<div class="modal-content">
+  		<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal">×</button>
+  			<h3>Modal header</h3>
+    	</div>
+    	<div class="modal-body">
+    		<p>My modal content here…</p>
+    	</div>
+    	<div class="modal-footer">
+    		<button class="btn" data-dismiss="modal">Close</button>
+    	</div>
+  	</div>
+  </div>
 </div>
 
 
@@ -65,37 +65,71 @@
           </tr>
           <tr>           
             <td class="table_title">지역</td>
-            <td class="table_content"><input type="text" name="region" placeholder=" ex) 서울 중구" id="admin_region"></td>
+            <td class="table_content"><input type="text" name="region" placeholder=" ex) 서울 중구"></td>
           </tr>
           <!-- 창우가 추가함 -->
           <tr>           
             <td class="table_title">봉사시간</td>
-            <td class="table_content"><input type="text" name="time" placeholder=" ex) 1" id="admin_time"></td>
+            <td class="table_content"><input type="text" name="time" placeholder=" ex) 1"></td>
           </tr>
           <!-- 이부분 -->
           <tr>
             <td class="table_title">모집시작일</td>
-            <td class="table_content"><input type="text" name="date_mozip_start" placeholder=" ex) 150901"></td>
+            <td class="table_content"><input type="date" name="date_mozip_start" placeholder=" ex) 150901"></td>
           </tr>
           <tr>
             <td class="table_title">모집마감일</td>
-            <td class="table_content"><input type="text" name="date_mozip_end" placeholder=" ex) 150901"></td>
+            <td class="table_content"><input type="date" name="date_mozip_end" placeholder=" ex) 150901"></td>
           </tr>
           <tr>
             <td class="table_title">봉사 시작일</td>
-            <td class="table_content"><input type="text" name="date_real_start" placeholder=" ex) 150901"></td>
+            <td class="table_content"><input type="date" name="date_real_start" placeholder=" ex) 150901"></td>
           </tr>
           <tr>
             <td class="table_title">봉사 종료일</td>
-            <td class="table_content"><input type="text" name="date_real_end" placeholder=" ex) 150901"></td>
+            <td class="table_content"><input type="date" name="date_real_end" placeholder=" ex) 150901"></td>
           </tr>
           <tr>
             <td class="table_title">하루 봉사 시작시각</td>
-            <td class="table_content"><input type="text" name="time_daily_start" placeholder=" ex) 9시 정각 => 0900"></td>
+            <td class="table_content">
+              <select name="time_daily_start_hour">
+                <% h = 01
+                   loop do %>
+                      <option><%= h %>시</option>
+                   <% h = h+1 
+                      break if h > 24 
+                   end %>
+              </select>
+              <select name="time_daily_start_minute">
+                <% m = 00
+                   loop do %>
+                     <option><%= m %>분</option>
+                  <% m = m+5
+                     break if m >= 60
+                   end %>
+              </select>
+            </td>
           </tr>
           <tr>
             <td class="table_title">하루 봉사 종료시각</td>
-            <td class="table_content"><input type="text" name="time_daily_end" placeholder=" ex) 15시 30분 => 1530"></td>
+            <td class="table_content">
+              <select name="time_daily_end_hour">
+                <% h = 01
+                   loop do %>
+                      <option><%= h %>시</option>
+                   <% h = h+1 
+                      break if h > 24 
+                   end %>
+              </select>
+              <select name="time_daily_end_minute">
+                <% m = 00
+                   loop do %>
+                     <option><%= m %>분</option>
+                  <% m = m+5
+                     break if m >= 60
+                   end %>
+              </select>
+            </td>
           </tr>
           <tr>
             <td class="table_title">총 획득 예상시간</td>
@@ -115,7 +149,7 @@
           </tr>
           <tr>
             <td class="table_title">담당자 연락처</td>
-            <td class="table_content"><input type="text" name="clerk_call"></td>
+            <td class="table_content"><input type="text" name="clerk_call" placeholder=" ex) 010-1234-4567"></td>
           </tr>
           <tr>
             <td class="table_title">정기/비정기</td>
@@ -213,8 +247,8 @@
     					<th>봉사유형</th>
     					<th>내용</th>
     					<th>포스터</th>
-    					<th>모집시작~모집종료</th>
-    					<th>봉사실제 시작일~봉사실제종료일</th>
+    					<th>모집시작~종료</th>
+    					<th>봉사시작일~종료일</th>
     					<th>하루시작시각~하루종료시각</th>
     					<th>총획득예상시간</th>
     					<th>기관명</th>
@@ -255,7 +289,7 @@
     					  <%= b.region %>
     					</td>
               <td><%= b.ctgory %></td>
-              <td><%= b.content.first(8) + "..." %></td>
+              <td><%= b.content %></td>
               <td>
                 <% unless b.foster_img==nil? %>
                 이미지 있음
@@ -316,7 +350,7 @@
         <% end %>
         봉사지역:<%= b.region %> | 
         봉사type:<%= b.ctgory %> |
-        내용:<%= b.content.first(8) + "..." %> |
+        내용:<%= b.content %> |
         포스터:<% unless b.foster_img==nil? %>
         이미지 있음 |
         <% else %>

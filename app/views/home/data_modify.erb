@@ -45,28 +45,62 @@
             <!-- 이부분 -->
             <tr>
               <td class="table_title">모집시작일</td>
-              <td class="table_content"><input type="text" name="date_mozip_start" value="<%=bb.date_mozip_start%>"></td>
+              <td class="table_content"><input type="date" name="date_mozip_start" value="<%=bb.date_mozip_start%>"></td>
             </tr>
             <tr>
               <td class="table_title">모집마감일</td>
-              <td class="table_content"><input type="text" name="date_mozip_end" value="<%=bb.date_mozip_end%>"></td>
+              <td class="table_content"><input type="date" name="date_mozip_end" value="<%=bb.date_mozip_end%>"></td>
             </tr>
             <tr>
               <td class="table_title">봉사 시작일</td>
-              <td class="table_content"><input type="text" name="date_real_start" value="<%=bb.date_real_start%>"></td>
+              <td class="table_content"><input type="date" name="date_real_start" value="<%=bb.date_real_start%>"></td>
             </tr>
             <tr>
               <td class="table_title">봉사 종료일</td>
-              <td class="table_content"><input type="text" name="date_real_end" value="<%=bb.date_real_end%>"></td>
+              <td class="table_content"><input type="date" name="date_real_end" value="<%=bb.date_real_end%>"></td>
             </tr>
             <tr>
-              <td class="table_title">하루 봉사 시작시각</td>
-              <td class="table_content"><input type="text" name="time_daily_start" value="<%=bb.time_daily_start%>"></td>
-            </tr>
-            <tr>
-              <td class="table_title">하루 봉사 종료시각</td>
-              <td class="table_content"><input type="text" name="time_daily_end" value="<%=bb.time_daily_end%>"></td>
-            </tr>
+            <td class="table_title">하루 봉사 시작시각</td>
+            <td class="table_content">
+              <select name="time_daily_start_hour">
+                <% h = 01
+                   loop do %>
+                      <option><%= h %>시</option>
+                   <% h = h+1 
+                      break if h > 24 
+                   end %>
+              </select>
+              <select name="time_daily_start_minute">
+                <% m = 00
+                   loop do %>
+                     <option><%= m %>분</option>
+                  <% m = m+5
+                     break if m >= 60
+                   end %>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="table_title">하루 봉사 종료시각</td>
+            <td class="table_content">
+              <select name="time_daily_end_hour">
+                <% h = 01
+                   loop do %>
+                      <option><%= h %>시</option>
+                   <% h = h+1 
+                      break if h > 24 
+                   end %>
+              </select>
+              <select name="time_daily_end_minute">
+                <% m = 00
+                   loop do %>
+                     <option><%= m %>분</option>
+                  <% m = m+5
+                     break if m >= 60
+                   end %>
+              </select>
+            </td>
+          </tr>
             <tr>
               <td class="table_title">총 획득 예상시간</td>
               <td class="table_content"><input type="text" name="time_expect_total" value="<%=bb.time_expect_total%>"></td>

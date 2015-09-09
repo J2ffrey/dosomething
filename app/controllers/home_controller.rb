@@ -1,5 +1,22 @@
 class HomeController < ApplicationController
-
+    respond_to :html, :js
+    
+    def filter2
+        #검색기능 미완성
+        respond_to do |format|
+            format.html
+            format.json
+        end
+        @bongsa = Bongsa.new
+        
+        @s_word = params[:s_word]
+        @region = params[:region]
+        @school = params[:school]
+        @time = params[:time]
+        @type = params[:type]
+        
+    end
+    
     def filter
         region = params[:region]
         school = params[:school]
@@ -25,6 +42,7 @@ class HomeController < ApplicationController
     end
     
     def calender2
+        
     end
     
     def index
@@ -32,31 +50,35 @@ class HomeController < ApplicationController
         mark.ip_adress = request.remote_ip
         mark.save
         
+        #검색기능 미완성
+        @s_word = String.new
         @s_word = params[:s_word]
         @bongsa = Bongsa.all
-        Bongsa.all.each do |sb|
-            unless @s_word.nil?
-              if sb.name.include?@s_word == true
-              @bongsa << sb
-              end
-              next
-            end
-        end
+        #unless @s_word.nil?
+        #    @bongsa = Bongsa.new
+        #    #<% if x.user_name.include?(@word) %>
+        #    Bongsa.all.each do |sb|
+        #        @bongsa << sb if sb.name.include?(@s_word)
+        #    end
+        #end
         
+        #방문자
         ip_adress_set = Array.new
         ViewCount.all.each do |x|
-        ip_adress_set << x.ip_adress
-        @total_view_count = ip_adress_set.count
-        end                                                 
+            ip_adress_set << x.ip_adress
+            @total_view_count = ip_adress_set.count
+        end
+        
+        # render layout: false #J커리 코드 중첩 피하는 코드
     end
    
     def mypage
     end
        
     def calender
-       render layout: false  
+       render layout: false
     end
-               
+    
     def private_info
       @u_password = params[:u_password]
       @con_password = params[:con_password]

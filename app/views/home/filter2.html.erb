@@ -1,0 +1,88 @@
+<div class="blank"></div>
+<div id="ajax_target">
+    <div class="bongsas">
+    </div>
+</div>
+
+<% @region = params[:region] if @region.nil? && !params[:region].nil? %>
+<% @school = params[:school] if @school.nil? && !params[:school].nil? %>
+<% @time = params[:time] if @time.nil? && !params[:time].nil? %>
+<% @ctgory = params[:ctgory] if @ctgory.nil? && !params[:ctgory].nil? %>
+
+
+<%= @region %><br>
+<%= @school %><br>
+<%= @time %><br>
+<%= @ctgory %><br>
+<!--봉사정보-->
+<br>
+<div class="row">
+    <div class="col-md-1"></div>
+            
+    <%  k = 6 
+        k = Bongsa.count if k < Bongsa.count %>
+    <% if @s_word.nil? && @region == "empty" && @school == "empty" && @time == "empty" && @ctgory == "empty" %>
+        <% Bongsa.all.sample(k).each do |b| %>
+            <div class="col-md-3">
+                <div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><%= b.name %></div>
+                        <div class="panel-body">
+                           <%= b.region %><br>
+                         <img src="<%= b.bongsa_img %>" style="width:100%; height:270px;">
+                        </div>
+                        <div class="panel-footer">
+                        <a href="/home/bongsa_information/<%= b.id %>">
+                           <button class="btn btn-default btn-block">
+                                 더보기</button>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% else %>
+        <% Bongsa.all.each do |b| %>
+            <div class="col-md-3">
+                <div>
+                    <% next if @region != "empty" && @region != b.region %>
+                    <% next if @school != "empty" && @school != b.school %>
+                    <% next if @time   != "empty" && @time   != b.time %>
+                    <% next if @ctgory != "empty" && b.ctgory != @ctgory.to_i %>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><%= b.name %></div>
+                        <div class="panel-body">
+                            <%= b.region %><br>
+                            <img src="<%= b.bongsa_img %>" style="width:100%; height:270px;">
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/home/bongsa_information/<%= b.id %>">
+                                <button class="btn btn-default btn-block">
+                                    더보기
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>   
+    <div class="col-md-1"></div>
+</div>
+
+
+
+<!--봉사달력-->
+
+<div class="row background-img">
+    <br><br><i class="fa fa-calendar"></i>
+        <a href = 'home/calender'><p> 봉사달력 보러가기 </p></a>
+</div>
+<!--봉사달력-->
+
+
+
+
+<%= render :partial => 'style/main_contentcss' %>
+
+
