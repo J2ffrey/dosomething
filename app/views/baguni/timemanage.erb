@@ -11,7 +11,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4>
-            <strong>봉사시간 입력</strong>  
+            <strong>내가 찜한 봉사</strong>  
           </h4>
         </div>
         
@@ -23,10 +23,10 @@
                 <tr>
                   <div class="btn-group">
                     <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                      신청내역 <span class="caret"></span>
+                      찜+신청 리스트보기 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <% @bongsa.each do |bb| %>
+                      <% @my_bongsa_in_bucket.each do |bb| %>
                       <li><a href="/baguni/timemanage/<%= bb.id %>"><%= bb.name %></a></li>
                       <% end %>
                     </ul>
@@ -38,7 +38,8 @@
                   
             <!--봉사시간 입력-->
             <% unless params[:id] == 0 || params[:id].nil? %>
-              <% c = Bongsa.find(params[:id]) %>
+              <% mb = @my_bongsa_in_bucket %>
+              <% c = Bucket.find(params[:id]) %>
               <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left: 0px; margin-top:30px; margin-bottom: 30px; padding-left: 0px; padding-right: 0px; margin-left: -10px;">
                 <!-- div 내부에 nav?? --><!--세로로 떨어지는 li들을 가로로 정렬시키려고 넣었습니다-->
                 <nav id="menu">    <!-- 이게 nav안하면 이상하게 나와요 테이블이 ㅠㅠ -->
@@ -46,19 +47,19 @@
                       <form action = "/baguni/a_update/<%= c.id %>" method="POST">
             
                         <li>
-                          <input type="text" placeholder="봉사명" class="menu_width" value="<%= c.name %>" name="name">
+                          <input type="text" placeholder="봉사명" class="menu_width" value="<%= mb.name %>" name="name">
                         </li>
                         <li>
-                          <input type="text" placeholder="시행기관"  class="menu_width" value="<%= c.org_name %>" name="org_name">
+                          <input type="text" placeholder="시행기관"  class="menu_width" value="<%= mb.org_name %>" name="org_name">
                         </li>
                         <li>
-                          <input type="text" placeholder="활동내용" class="menu_width" value ="<%= c.content %>" name="content">
+                          <input type="text" placeholder="활동내용" class="menu_width" value ="<%= mb.content %>" name="content">
                         </li>
                         <li>
-                          <input type="text" placeholder="활동시작일" class="menu_width" value="<%= c.date_real_start %>" name="t_start">
+                          <input type="text" placeholder="활동시작일" class="menu_width" value="<%= mb.date_real_start %>" name="t_start">
                         </li>
                         <li>
-                          <input type="text" placeholder="활동종료일" class="menu_width" value="<%= c.date_real_end %>" name="t_end">
+                          <input type="text" placeholder="활동종료일" class="menu_width" value="<%= mb.date_real_end %>" name="t_end">
                         </li>
             
                         <li>
@@ -128,7 +129,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4>
-            <strong>봉사시간 관리</strong>  
+            <strong>실제 봉사 리스트</strong>  
           </h4>
         </div>
         
@@ -149,7 +150,16 @@
           
           <tbody>
       
-      <% @bongsa2.each do |b| %>
+      <% @my_bongsa_in_bucket.each do |b| %>
+      <% matched_bucket = @bongsa2.where(:target_bongsa_id => b.id).first %>
+      <%# bv = Array.new
+         matched_buckets.each do |v|
+           next if v.user_id != current_user.id
+           if v.user_id == current_user.id 
+             bv << v
+           end
+         end 
+         matched_bucket_only_mine = bv.first %>
       <%#if b.ctgory == 1
           bb << "벽화봉사"
          elsif b.ctgory == 2
@@ -169,17 +179,17 @@
             <% unless b.act_time.nil? || b.act_time==0 %>
               <th><%= b.act_time %></th>
             <% else %>
-              <th><a href="/baguni/timemanage/<%= b.id %>">시간 입력하기</a></th>
+              <th><a href="/baguni/timemanage/<%= matched_bucket.id %>">시간 입력하기</a></th>
             <% end %>
             <th>
               <%unless b.act_time.nil? || b.act_time==0%>
-              <a href="/baguni/timemanage/<%= b.id %>">[수정]</a><br><br>
+              <a href="/baguni/timemanage/<%= matched_bucket.id %>">[수정]</a><br><br>
               <%else%>
               <%end%>
-              <a href="/baguni/bongsa_delete/<%= b.id %>">[삭제]</a>
+              <a href="/baguni/bongsa_delete/<%= matched_bucket.id %>">[삭제]</a>
             </th>
           </tr>
-            <% end %>
+      <% end %>
           <!--총 봉사시간-->  
           <tr>
             <td>&nbsp</td>

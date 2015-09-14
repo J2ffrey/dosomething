@@ -11,38 +11,94 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824081509) do
+ActiveRecord::Schema.define(version: 20150913082101) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bongsas", force: :cascade do |t|
-    t.string   "bongsa_img"
-    t.string   "foster_img"
+    t.string   "img_main"
+    t.string   "img_poster"
     t.string   "name"
     t.text     "content"
-    t.integer  "pre_edu"
+    t.boolean  "is_edu"
     t.integer  "status"
-    t.string   "org_name"
-    t.string   "clerk"
-    t.text     "clerk_call"
-    t.integer  "regular"
-    t.string   "date_mozip_start"
-    t.string   "date_mozip_end"
+    t.integer  "organization_id"
+    t.string   "clerk_name"
+    t.string   "clerk_call"
+    t.boolean  "is_regular"
+    t.string   "date_recruit_start"
+    t.string   "date_recruit_end"
     t.integer  "date_real_start"
     t.integer  "date_real_end"
     t.integer  "time_daily_start"
     t.integer  "time_daily_end"
     t.integer  "time_expect_total"
-    t.integer  "how_many"
-    t.integer  "vltr_age"
+    t.integer  "vltr_num"
+    t.integer  "vltr_age_id"
     t.integer  "vltr_sex"
     t.text     "vltr_req"
-    t.string   "region"
-    t.string   "school"
-    t.string   "time"
-    t.integer  "ctgory"
-    t.string   "input_admin"
+    t.integer  "region_id"
+    t.integer  "school_id"
+    t.integer  "btime_id"
+    t.integer  "category_id"
+    t.string   "admin_add"
+    t.string   "admin_mod"
     t.integer  "act_time"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "btimes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "min"
+    t.integer  "max"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "buckets", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "target_bongsa_id"
+    t.integer  "act_time"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "region2s", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,6 +121,14 @@ ActiveRecord::Schema.define(version: 20150824081509) do
 
   create_table "view_counts", force: :cascade do |t|
     t.string   "ip_adress"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vltr_ages", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "min"
+    t.integer  "max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

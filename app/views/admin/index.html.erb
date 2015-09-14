@@ -1,0 +1,20 @@
+<%= render :partial => 'home/main_navbar' %>
+
+<div class='row'>
+    <div class="blank">
+    <div class='col-md-3' style="padding-left:55px;">
+        <%= render :partial => 'side' %>
+    </div>
+    <div class='col-md-9'>
+        <%= render :partial => 'admin_header' %>
+        <% if @admin.nil? %>
+        <%= render :partial => 'main' %>
+        <% else %>
+        <%#= render :partial => 'sampleboard' if @admin=="sb" %>
+        <%= render :partial => "#{@admin}" %>
+        <% end %>
+        
+    </div>
+</div>
+
+<%= render :partial => 'style/admin' %>

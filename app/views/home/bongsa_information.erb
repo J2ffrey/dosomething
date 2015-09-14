@@ -1,4 +1,4 @@
-
+<%= render :partial => 'home/main_navbar' %>
 
 <!-- Tables
 ================================================== -->
@@ -6,6 +6,8 @@
 <section id="tables">
   <div class="page-header">
     <h1>봉사 상세정보</h1>
+    <button><a href="/baguni/bucket_save/<%= @b.id %>">신청내역으로 스크랩</a></button>
+    <button><a href="/">홈으로</a></button>
   </div>
   
   <strong>
@@ -24,15 +26,15 @@
       </tr>
       <tr>
         <td class="center center_width">봉사 기관명</td>
-        <td><%= @b.org_name %></td>
+        <td><%= Organization.find(@b.organization_id).name %></td>
       </tr>
       <tr>
         <td class="center center_width">모집인원</td>
-        <td><%= @b.how_many %></td>
+        <td><%= @b.vltr_num %></td>
       </tr>
       <tr>
         <td class="center center_width">지역</td>
-        <td><%= @b.region %></td>
+        <td><%= Region.find(@b.region_id).name %></td>
       </tr>
       <tr>
         <td class="center center_width">봉사시간</td>
@@ -40,7 +42,7 @@
       </tr>
       <tr>
         <td class="center center_width">모집시작일 ~ 마감일</td>
-        <td><%= @b.date_mozip_start %> ~ <%= @b.date_mozip_end %></td>
+        <td><%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></td>
       </tr>
       <tr>
         <td class="center center_width">봉사 시작일 ~ 종료일</td>
@@ -56,7 +58,7 @@
       </tr>
       <tr>
         <td class="center center_width">인근학교</td>
-        <td><%= @b.school %></td>
+        <td><%= School.find(@b.school_id).name %></td>
       </tr>
       <tr>
         <td class="center center_width">지원가능 상세조건</td>
@@ -64,7 +66,7 @@
       </tr>
       <tr>
         <td class="center center_width">봉사활동 상세내용</td>
-        <td>Mark</td>
+        <td><%= @b.content %></td>
       </tr>
       <tr>
         <td class="center center_width">담당자 연락처</td>
@@ -72,7 +74,7 @@
       </tr>
       <tr>
         <td class="center center_width">정기/비정기</td>
-        <td><%= @b.clerk %></td>
+        <td><%= "정기" if @b.is_regular %></td>
       </tr>
       <tr>
         <td class="center center_width">정기/비정기</td>
@@ -80,11 +82,15 @@
       </tr>
       <tr>
         <td class="center center_width">봉사유형</td>
-        <td>Mark</td>
+        <td><% Category.find(@b.category_id).name %></td>
       </tr>
       <tr>
         <td class="center center_width">사전교육 유/무</td>
-        <td><%= @b.pre_edu %></td>
+        <% if @b.is_edu %>
+        <td>유</td>
+        <% else %>
+        <td>무</td>
+        <% end %>
       </tr>
       <tr>
         <td class="center center_width">모집현황</td>
@@ -112,10 +118,7 @@
             font-size: 15px;}
 </style>
 
-        <div class="content body"><p style="text-align: center; margin-top: 50px; background-color:white;"><img alt="" src="http://s3-ap-northeast-1.amazonaws.com/jasoseol.image/home/ec2-user/jasoseol/public/ckeditor_assets/pictures/4937/content_2015-07-20.jpeg" style="height:1155px; width:669px"></p>
-</div>
-        
-        
+
         
         
 <!-- 건들지마삼 -->        
@@ -138,7 +141,7 @@
             <p>기관명</p>
             
       <div class="row">
-      <p><%= @b.org_name %> </p>
+      <p><%= Organization.find(@b.organization_id).name %> </p>
       </div>
       </div>
       
@@ -152,7 +155,7 @@
       <div class="col-md-2 magam">
           <p> 모집기간 </p>
           <div class="row">
-            <p><%= @b.date_mozip_start %> ~ <%= @b.date_mozip_end %></p>
+            <p><%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></p>
           </div>
       </div>
     

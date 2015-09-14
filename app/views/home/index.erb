@@ -1,8 +1,17 @@
-<%= render :partial => 'main_navbar' %>
+ <!--익스플로어 최적화-->
+      <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <!—    [if lt IE 9]—>
+      <script type='text/javascript' src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+      <!—    [endif]—> -->
+
+<%= render :partial => 'home/main_navbar' %>
 
 <%= render :partial => 'main_header' %>
 <div style="display:none" id="tmp"></div>
 <div id="main_contents" style="width:100%">
+    <%#= render :partial => 'filter2' %>
     <%= render :partial => 'main_content' %>
 </div>
 <%= render :partial => 'main_footer' %>
+

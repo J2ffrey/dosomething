@@ -1,19 +1,19 @@
 class HomeController < ApplicationController
-    respond_to :html, :js
+    #respond_to :html, :js
     
     def filter2
         #검색기능 미완성
-        respond_to do |format|
-            format.html
-            format.json
-        end
+        #respond_to do |format|
+        #    format.html
+        #    format.json
+        #end
         @bongsa = Bongsa.new
         
         @s_word = params[:s_word]
         @region = params[:region]
         @school = params[:school]
-        @time = params[:time]
-        @type = params[:type]
+        @btime = params[:btime]
+        @category = params[:category]
         
     end
     
@@ -61,7 +61,7 @@ class HomeController < ApplicationController
         #        @bongsa << sb if sb.name.include?(@s_word)
         #    end
         #end
-        
+                
         #방문자
         ip_adress_set = Array.new
         ViewCount.all.each do |x|
@@ -76,7 +76,7 @@ class HomeController < ApplicationController
     end
        
     def calender
-       render layout: false
+       # render layout: false
     end
     
     def private_info
@@ -270,6 +270,7 @@ class HomeController < ApplicationController
             # b.how_many  = params[:how_many] # 모집인원
             # b.clerk_call = params[:clerk_call] # 담당자 연락처
             # b.act_time = params[:act_time] # 해당 봉사후 활동시간 직접등록
-            #b.save
+            # b.save
     end
+    
 end

@@ -1,0 +1,28 @@
+<div class="well well-out">
+    <div class="well well-in">
+        Organization
+    </div>
+    <div class="well well-in">
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>이름</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% Organization.all.reverse.each do |post| %>
+                    <tr class="tr-content">
+                        <td><%= post.id %></td>
+                        <td><a href="/admin/index?admin=m_org&id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                    </tr>
+                <% end %>
+        </table>
+    </div>
+
+    <div class="row" align="right">
+        <a class="btn btn-orange" href="/admin/index?admin=m_org">등록</a>
+    </div>
+
+
+</div>

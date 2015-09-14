@@ -1,10 +1,25 @@
 <header role="banner" class="header header--home">
 
-  <div class="row">
-    <center><p class="header__title"> Visit <%= @total_view_count %> members.</p></center>
+<div class="row header__top">
+
+  <div calss="col-md-12">
+    <form class="navbar-form navbar-right" role="search" action="#">
+          <!--<button id="search" class="navbar__search__first">검색</button>-->
+          <div class="form-group">
+            <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
+          </div>
+      </form>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 header__title"> <strong>봉사꾼</strong></div>
+</div>
 
 
+  <div class="row">
+    <center><p style="font-size:30px; margin-bottom: 1%;">Visited &nbsp <font size="80px;"><%= @total_view_count %></font>&nbsp Members.</p></center>
+  </div>
 
   <!--<script>  // Jquery 메뉴스크립트 
       $(function() {
@@ -20,111 +35,50 @@
 
   <div class="demo">
     <form action="#">
-     
       <fieldset class="fieldset_list">
         <ul>
           <li class="wantlist">
-        <label for="region">Region(지역)</label><br>
-        <select name="region" id="region_select">
-          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
-          <option id="region_option1" value="서울">&nbsp 서울</option>
-          <option id="region_option2" value="경기">&nbsp 경기</option>
-          <option id="region_option3" value="인천">&nbsp 인천</option>
-          <option id="region_option4" value="강원">&nbsp 강원</option>
-          <option id="region_option5" value="대전">&nbsp 대전</option>
-          <option id="region_option5" value="대전">&nbsp 세종</option>
-          <option id="region_option5" value="대전">&nbsp 충남</option>
-          <option id="region_option5" value="대전">&nbsp 충북</option>
-          <option id="region_option5" value="대전">&nbsp 부산</option>
-          <option id="region_option5" value="대전">&nbsp 울산</option>
-          <option id="region_option5" value="대전">&nbsp 경남</option>
-          <option id="region_option5" value="대전">&nbsp 경북</option>
-          <option id="region_option5" value="대전">&nbsp 대구</option>
-          <option id="region_option5" value="대전">&nbsp 광주</option>
-          <option id="region_option5" value="대전">&nbsp 전남</option>
-          <option id="region_option5" value="대전">&nbsp 전북</option>
-          <option id="region_option5" value="대전">&nbsp 제주</option>
-        </select>
-          </li>
-     
-          <li class="wantlist">
-        <label for="school">School(학교)</label><br>
-        <select name="school" id="school_select">
-          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
-          <option value="KC대학교">&nbsp KC대학교</option>
-          <option value="가톨릭대학교">&nbsp 가톨릭대학교</option>
-          <option value="감리교신학대학교">&nbsp 감리교신학대학교</option>
-          <option value="건국대학교">&nbsp 건국대학교</option>
-          <option value="경기관대학교">&nbsp 경기대대학교</option>
-          <option value="고려대학교">&nbsp 고려대학교</option>
-          <option value="광운대학교">&nbsp 광운대학교</option>
-          <option value="국민대학교">&nbsp 국민대학교</option>
-          <option value="덕성대학교">&nbsp 덕성대학교</option>
-          <option value="동국대학교">&nbsp 동국대학교</option>
-          <option value="동덕대학교">&nbsp 동덕대학교</option>
-          <option value="명지대학교">&nbsp 명지대학교</option>
-          <option value="삼육대학교">&nbsp 삼육대학교</option>        
-          <option value="상명대학교">&nbsp 상명대학교</option>
-          <option value="서강대학교">&nbsp 서강대학교</option>
-          <option value="서울과학기술대학교">&nbsp 서울과학기술대학교</option>
-          <option value="서율교육대학교">&nbsp 서울교육대학교</option>
-          <option value="서울기독대학교">&nbsp 서울기독대학교</option>
-          <option value="서울대학교">&nbsp 서울대학교</option>
-          <option value="서울시립대학교">&nbsp 서울시립대학교</option>
-          <option value="서울여대학교">&nbsp 서울여대학교</option>
-          <option value="성공회대학교">&nbsp 성공회대학교</option>
-          <option value="성균관대학교">&nbsp 성균관대학교</option>
-          <option value="성신여대학교">&nbsp 성신여대학교</option>
-          <option value="세종대학교">&nbsp 세종학교</option>
-          <option value="숙명대학교">&nbsp 숙명대학교</option>        
-          <option value="숭실대학교">&nbsp 숭실대학교</option>
-          <option value="연세대학교">&nbsp 연세대학교</option>
-          <option value="육군사관학교">&nbsp 육군사관학교</option>         
-          <option value="이화여대학교">&nbsp 이화여대학교</option>
-          <option value="인제대학교">&nbsp 인제대학교</option>
-          <option value="장로회신학대학교">&nbsp 장로회신학대학교</option>
-          <option value="중앙대학교">&nbsp 중앙대학교</option>
-          <option value="총신대학교">&nbsp 총신대학교</option>
-          <option value="추계대학교">&nbsp 추계대학교</option>
-          <option value="한국과학기술원">&nbsp 한국과학기술원</option>        
-          <option value="방송통신대학교대학교">&nbsp 한국방송통신대학교</option>
-          <option value="한국성서대학교">&nbsp 한국성서대학교</option>
-          <option value="한국예술종합대학교">&nbsp 한국예술종합대학교</option>
-          <option value="한국외국어대학교">&nbsp 한국외국어대학교</option>
-          <option value="한국체육대학교">&nbsp 한국체육대학교</option>
-          <option value="한성대학교">&nbsp 한성대학교</option>        
-          <option value="한양대학교">&nbsp 한양대학교</option>
-          <option value="한영신학대학교">&nbsp 한영신학대학교</option>
-          <option value="홍익대학교">&nbsp 홍익대학교</option>
-          
-
-        </select>
+            <label for="region">지역</label><br>
+            <select name="region" id="region_select">
+              <option selected="selected" value="empty">&nbsp 모두보기</option>
+              <% i=1 %>a
+              <% Region.all.each do |x| %>
+                <option id="region_option<%= i %>" value="<%= x.id %>">&nbsp <%= x.name %></option>
+              <% end %>
+            </select>
           </li>
           
           <li class="wantlist">
-        <label for="time">Time(하루기준)</label><br>
-        <select name="time" id="time_select">
-          <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
-          <option value="1">&nbsp 1~3시간</option>
-          <option value="2">&nbsp 4~7시간</option>
-          <option value="3">&nbsp 8시간 이상</option>
-        </select>
+            <label for="school">학교</label><br>
+            <select name="school" id="school_select">
+              <option selected="selected" value="empty">&nbsp 모두보기</option>
+              <% School.all.each do |x| %>
+                <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+              <% end %>
+  
+            </select>
           </li>
-          
-        <li class="wantlist">
-          <label for="type">Type(종류)</label><br>
-          <select name="ctgory" id="ctgory_select">
-            <option selected="selected" value="empty">&nbsp ----- 없음 -----</option>
-            <option value="1">&nbsp 교육봉사</option>
-            <option value="2">&nbsp 재능봉사</option>
-            <option value="3">&nbsp 노력봉사</option>
-            <option value="4">&nbsp 해외봉사</option>
-            <option value="5">&nbsp 기타봉사</option>
-          </select>
-        </li>
-        
-    </ul>
-    
+            
+          <li class="wantlist">
+            <label for="btime">시간</label><br>
+            <select name="btime" id="btime_select">
+              <option selected="selected" value="empty">&nbsp 모두보기</option>
+              <% Btime.all.each do |x| %>
+                <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+              <% end %>
+            </select>
+          </li>
+            
+          <li class="wantlist">
+            <label for="category">종류</label><br>
+            <select name="category" id="category_select">
+              <option selected="selected" value="empty">&nbsp 모두보기</option>
+              <% Category.all.each do |x| %>
+                <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+              <% end %>
+            </select>
+          </li>
+        </ul>
       </fieldset>
     </form>
   </div>
@@ -150,6 +104,9 @@
   .fieldset_list {margin: auto;
                   width: 1080px;
                   }
+  .row_main_content {padding:10px;}
+  .row {margin-right: auto;
+        margin-left: auto;}
 </style>
 
 
@@ -159,41 +116,42 @@
 <script type="text/javascript">
 	
 $(function(){
-  $("#region_select, #school_select, #time_select, #ctgory_select").on("change", function(){
+  
+  $("#search").on("click", function(){
 		$.ajax({
 			type:"get",
 			url:"/home/filter2?" + 'region=' + $('#region_select').val() 
 			+ '&school=' + $('#school_select').val() 
-			+ '&time=' + $('#time_select').val() 
-			+ '&ctgory=' + $('#ctgory_select').val(),
+			+ '&btime=' + $('#btime_select').val() 
+			+ '&category=' + $('#category_select').val()
+			+ '&s_word=' + $('#s_word').val(),
 			datatype:"html",
 			success:function(r){
 				$("#main_contents").empty();
-				$("#main_contents").append(r);
+				$("#main_contents").append("<style>"+r+"</style>");
 			},
 			error:function(){
 				alert("데이터를 가져오지 못하였습니다.");
 			},
 		});
-		
-    /*$.ajax({
-      url:"/home/filter",
-      type: "POST",
-      dataType:"JSON",
-      data:{
-        region: $("#region_select").val(),
-        school: $("#school_select").val(),
-        time: $("#time_select").val(),
-        type: $("#type_select").val()
-      },
-      url="/home/filter?region="resion
-      success: function(data){    //<-성공하면 data를 찍겠다.
-        var bongsa = data
-        for(var i=0;i<bongsa.length;i++){
-          $("#ajax_target").append(bongsa[i].region)
-        }
-      }
-    })*/
+  })
+  
+  $("#region_select, #school_select, #btime_select, #category_select").on("change", function(){
+		$.ajax({
+			type:"get",
+			url:"/home/filter2?" + 'region=' + $('#region_select').val() 
+			+ '&school=' + $('#school_select').val() 
+			+ '&btime=' + $('#btime_select').val() 
+			+ '&category=' + $('#category_select').val(),
+			datatype:"html",
+			success:function(r){
+				$("#main_contents").empty();
+				$("#main_contents").append("<style>"+r+"</style>");
+			},
+			error:function(){
+				alert("데이터를 가져오지 못하였습니다.");
+			},
+		});
   })
   
 })

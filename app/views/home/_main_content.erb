@@ -4,12 +4,10 @@
     </div>
 </div>
 
-
-<!--봉사정보-->
+<!--메인 이미지 연습-->
 <br>
-<div class="row">
-    <div class="col-md-1"></div>
-    <%  k = 6 
+
+      <%  k = 6 
         
         unless @s_word.nil?
             unless @bongsa.nil?
@@ -18,35 +16,99 @@
                 k = 6
             end
         end %>
-        
-    <% @bongsa.sample(k).each do |b| %>
-        <div class="col-md-3">
-            <div>
-                <div class="panel panel-default">
-                    <div class="panel-heading"><%= b.name %></div>
-                    <div class="panel-body">
-                       <%= b.region %><br>
-                     <img src="<%= b.bongsa_img %>" style="width:100%; height:270px;">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="row">
+      <% @bongsa.sample(k).each do |b| %>
+        <a href="/home/bongsa_information/<%= b.id %>">
+            <div class="col-md-4 row_main_content">
+                <div class="row">
+                    <!--<div class="col-md-12" style="padding:12px 0px 12px 0px; font-size:21px; background-color:skyblue; border-top-left-radius: 10px; border-top-right-radius: 10px;">-->
+                    <!--    <%# if b.name.nil? %>-->
+                    <!--      <center>봉사명이 없습니다.</center>-->
+                    <!--    <%# else %>-->
+                    <!--      <center>[<%#= b.name %>]</center>-->
+                    <!--    <%# end %>-->
+                    <!--</div>-->
+                    <div class="col-md-12" style="padding:0px;">
+                     <img src="<%#= b.img_main %>/img/teamprofile/fry.jpg" alt="이미지" style="width:100%;height: 271px; margin-top:0px; border: 1px solid #A0A0A0;">
+                       <span class="side_info__dday">
+                          <span class="side_info__dday__form">D-day</span>
+                       </span>
+                     
+                       <% if b.name.nil? %>
+                          <center>봉사명이 없습니다.</center>
+                        <% else %>
+                       <span class="side_info__title">
+                          <p class="main_content__title"><strong><%= b.name %></strong></p>
+                       </span>
+                        <% end %>
                     </div>
-                    <div class="panel-footer">
-                        <a href="/home/bongsa_information/<%= b.id %>">
-                        <button class="btn btn-default btn-block">더보기</button>
-                        </a>
+                </div>    
+                <div class="row">
+                    <div class="col-sm-12 col-md-12" style="padding:0px;">
+                        <div class="col-xs-4 col-sm-4 col-md-4 main_content__content"></br><p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">시간</p>
+                                                                              <p style="color:#000000; font-size:25px;"><%= b.time_expect_total %></p></div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 main_content__content"></br><p style="font-size:16px; color:#A8A8A8; margin-bottom:7px;">지역 </p>
+                                                                              <p style="color:#000000; font-size:17px;"><%= Region.find(b.region_id).name %></p></div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 main_content__content"></br><p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">활동기간</p>
+                                                                              <p style="color:#000000; font-size:18px; margin-bottom:0px;"><%= b.date_real_start %></p>
+                                                                              <p style="color:#000000; font-size:18px;"> ~ <%= b.date_real_end %></p></div>  
                     </div>
                 </div>
             </div>
-        </div>
-    <% end %>
+        </a>
+      <% end %>
+      </div>
+    </div>
     <div class="col-md-1"></div>
 </div>
 
 
 
-<!--봉사달력-->
 
+<!--메인 이미지 연습-->
+
+<!-- 봉사정보 더보기 -->
+
+</br>
+</br>
+  <center>
+    <div class="bongsa_more">
+      <button id="bongsa_more_btn"><strong>봉사정보 더보기</strong></button>
+    </div>
+  </center>
+</br>
+
+<script type="text/javascript" src="/jquery.jscroll.min.js"></script>
+<script type="text/javascript">
+   $(function(){
+      $("#bongsa_more_btn").on("click", function(){
+          $.ajax({
+              data :{},
+              type:"get",
+              url: "",
+              datatype:"html",
+              success: function(){
+                $("#next_content").load(r);
+              },
+              error: function(){
+                    alert("데이터를 가져오지 못하였습니다.");
+              };
+          });
+        });
+      });
+</script>
+
+<!--봉사정보 더보기-->
+
+<div id="next_content"></div>
+
+<!--봉사달력-->
 <div class="row background-img">
-    <br><br><i class="fa fa-calendar"></i>
-        <a href = 'home/calender'><p> 봉사달력 보러가기 </p></a>
+    <center><br><br><i class="fa fa-calendar"></i></center>
+    <a href = 'home/calender'><p style="font-size:30px; text-align:center; color:black;"> 봉사달력 보러가기 </p></a>
 </div>
 <!--봉사달력-->
 

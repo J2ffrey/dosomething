@@ -1,0 +1,37 @@
+            <div class="well well-out">
+                <form action="/admin/m_org/<%= @b.id %>" method="POST">
+                    <input type="hidden" name="mod" value="<%= @mod %>">
+                    <input type="hidden" name="id" value="<%= @b.id %>">
+                    <div class="well well-in">
+                        <div class="form-group2">
+                            <label>이름</label>
+                            <input type="text" name="name" class="form-control" value="<%= @b.name %>" required/>
+                        </div>
+                        <div class="form-group2">
+                            <label>전화번호</label>
+                            <input type="text" name="phone" class="form-control" value="<%= @b.phone %>" required/>
+                        </div>
+                    </div>
+                
+                    <div class="row" align="right">
+                        <% if @mod == "1" %>
+                            <a class="btn btn-orange" href="/admin/del_org?id=<%= @b.id %>">삭제</a>
+                            <input type="submit" value="수정" class="btn btn-orange" />
+                        <% else %>
+                            <input type="submit" value="등록" class="btn btn-orange" />
+                        <% end %>
+                        <a class="btn btn-orange" href="/admin/index?admin=org">취소</a>
+                    </div>
+                </form>
+                
+            
+            
+            </div>
+        </div>
+        
+    	<div class="row">
+    		<hr class="feature-divider">
+    	</div>
+    </div>
+	<div class="col-md-1"></div>
+</div>

@@ -1,0 +1,121 @@
+<div class="blank"></div>
+<div id="ajax_target">
+    <div class="bongsas">
+    </div>
+</div>
+
+<!--메인 이미지 연습-->
+<br>
+
+      <%  k = 6 
+        
+        unless @s_word.nil?
+            unless @bongsa.nil?
+                k = @bongsa.all.count
+            else
+                k = 6
+            end
+        end %>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="row">
+      <% @bongsa.sample(k).each do |b| %>
+        <a href="/home/bongsa_information/<%= b.id %>">
+          <div class="col-md-4" style="padding:10px;">
+              <div class="row">
+                <div class="col-md-12" style="padding:0px;">
+                  <img src="<%= b.img_main %>" alt="이미지" style="width:100%; height:170px; margin-top:33px;">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12" style="padding:0px;">
+                  <div class="col-sm-12 col-md-4" style="text-align:center; background-color:red; height:110px;"><%= b.time_expect_total %></div>
+                  <div class="col-sm-12 col-md-4" style="text-align:center;background-color:yellow; height:110px;"><%= Region.find(b.region_id).name %></div>
+                  <div class="col-sm-12 col-md-4" style="text-align:center;background-color:orange; height:110px;"><%= b.date_real_start %>~<%= b.date_real_end %></div>  
+                </div>
+              </div>
+          </div>
+        </a>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+
+<style>
+  .row {margin-right: auto;
+        margin-left: auto;}
+</style>
+
+<!--메인 이미지 연습-->
+
+
+<!-- 봉사정보 더보기 -->
+<br>
+  <center>
+    <div>
+      <button class="bongsa_more">봉사정보 더보기</button>
+    </div>
+  </center>
+</br>
+
+<style>
+    .bongsa_more {width:500px;}
+</style>
+
+<!-- 봉사정보 더보기 -->
+
+
+
+
+
+<!--봉사정보-->
+<br>
+<div class="row">
+    <div class="col-md-1"></div>
+    <%  k = 6 
+        
+        unless @s_word.nil?
+            unless @bongsa.nil?
+                k = @bongsa.all.count
+            else
+                k = 6
+            end
+        end %>
+        
+    <% @bongsa.sample(k).each do |b| %>
+        <div class="col-md-3">
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><%= b.name %></div>
+                    <div class="panel-body">
+                       <%= Region.find(b.region_id).name %><br>
+                     <img src="<%= b.img_main %>" style="width:100%; height:270px;">
+                    </div>
+                    <div class="panel-footer">
+                        <a href="/home/bongsa_information/<%= b.id %>">
+                        <button class="btn btn-default btn-block">더보기</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    <div class="col-md-1"></div>
+</div>
+
+<!--봉사달력-->
+
+<div class="row background-img">
+    <br><br><i class="fa fa-calendar"></i>
+        <a href = 'home/calender'><p> 봉사달력 보러가기 </p></a>
+</div>
+<!--봉사달력-->
+
+
+
+
+<%= render :partial => 'style/main_contentcss' %>
+
+

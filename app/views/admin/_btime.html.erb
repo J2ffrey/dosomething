@@ -1,0 +1,32 @@
+<div class="well well-out">
+    <div class="well well-in">
+        봉사 시간 (범위) - 필터링용
+    </div>
+    <div class="well well-in">
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>이름</td>
+                    <td>min</td>
+                    <td>max</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% Btime.all.reverse.each do |post| %>
+                    <tr class="tr-content">
+                        <td><%= post.id %></td>
+                        <td><a href="/admin/index?admin=m_btime&id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                        <td><%= post.min %></td>
+                        <td><%= post.max %></td>
+                    </tr>
+                <% end %>
+        </table>
+    </div>
+
+    <div class="row" align="right">
+        <a class="btn btn-orange" href="/admin/index?admin=m_btime">등록</a>
+    </div>
+
+
+</div>

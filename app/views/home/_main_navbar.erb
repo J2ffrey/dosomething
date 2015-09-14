@@ -9,38 +9,33 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/" style="margin-left: 10px; font-size: 30px; color: white;">봉사꾼</a>
+      <a class="navbar-brand" href="/" style="margin-left: 10px; font-size: 30px; color: white;"><strong>봉사꾼</strong></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="5e" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" name="s_word" placeholderd="ex) 벽화봉사">
-        </div>
-        <button type="submit" class="btn btn-default">검색</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
-          
-            <% if user_signed_in? %>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/home/private_info">개인정보변경</a></li>
-                      <li><a href="/baguni/timemanage">봉사시간관리</a></li>
-                      <li><a href="/home/calender">봉사달력보기</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="/home/introduce">봉사꾼소개</a></li>
-                      <li><a href="/home/data_input">봉사정보 등록</a></li>
-                    </ul>
-              </li>
-              <li class="logout">
-                <a id="link--login" class="secondary-nav-item" href="/users/sign_out">Log out</a>
-              </li>
-            <% else %>
-              <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_in" style="font-size:18px;">Log In</a></li>
-            <% end %>
-            
+        <% if user_signed_in? %>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/home/private_info">개인정보변경</a></li>
+                <li><a href="/baguni/timemanage">봉사시간관리</a></li>
+                <li><a href="/home/calender">봉사달력보기</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/home/introduce">봉사꾼소개</a></li>
+                <li><a href="/home/data_input">봉사정보 등록</a></li>
+              </ul>
+          </li>
+          <li class="logout">
+            <a id="link--login" class="secondary-nav-item" href="/users/sign_out">Log-out</a>
+          </li>
+        <% else %>
+          <li class="login"><a id="link--login" class="secondary-nav-item" href="/home/calender" style="font-size:18px;">캘린더</a></li>
+          <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_in" style="font-size:18px;">로그인</a></li>
+          <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_up" style="font-size:18px;">회원가입</a></li>
+          <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
