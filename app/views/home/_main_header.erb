@@ -35,51 +35,67 @@
 
   <div class="demo">
     <form action="#">
-      <fieldset class="fieldset_list">
-        <ul>
-          <li class="wantlist">
-            <label for="region">지역</label><br>
-            <select name="region" id="region_select">
-              <option selected="selected" value="empty">&nbsp 모두보기</option>
-              <% i=1 %>a
-              <% Region.all.each do |x| %>
-                <option id="region_option<%= i %>" value="<%= x.id %>">&nbsp <%= x.name %></option>
-              <% end %>
-            </select>
-          </li>
-          
-          <li class="wantlist">
-            <label for="school">학교</label><br>
-            <select name="school" id="school_select">
-              <option selected="selected" value="empty">&nbsp 모두보기</option>
-              <% School.all.each do |x| %>
-                <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-              <% end %>
-  
-            </select>
-          </li>
+    <div class="col-md-1" style="width:6%;"></div>
+    <div class="col-md-10 col-sm-12">
+      <div class="row">
+      <center>
+        <fieldset class="fieldset_list">
+          <ul>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+              <li class="wantlist">
+                <label for="region">지역</label><br>
+                <select name="region" id="region_select">
+                  <option selected="selected" value="empty">&nbsp 모두보기</option>
+                  <% i=1 %>a
+                  <% Region.all.each do |x| %>
+                    <option id="region_option<%= i %>" value="<%= x.id %>">&nbsp <%= x.name %></option>
+                  <% end %>
+                </select>
+              </li>
+             </div>
             
-          <li class="wantlist">
-            <label for="btime">시간</label><br>
-            <select name="btime" id="btime_select">
-              <option selected="selected" value="empty">&nbsp 모두보기</option>
-              <% Btime.all.each do |x| %>
-                <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-              <% end %>
-            </select>
-          </li>
-            
-          <li class="wantlist">
-            <label for="category">종류</label><br>
-            <select name="category" id="category_select">
-              <option selected="selected" value="empty">&nbsp 모두보기</option>
-              <% Category.all.each do |x| %>
-                <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-              <% end %>
-            </select>
-          </li>
-        </ul>
-      </fieldset>
+             <div class="col-md-3 col-sm-12 col-xs-12">
+              <li class="wantlist">
+                <label for="school">학교</label><br>
+                <select name="school" id="school_select">
+                  <option selected="selected" value="empty">&nbsp 모두보기</option>
+                  <% School.all.each do |x| %>
+                    <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+                  <% end %>
+      
+                </select>
+              </li>
+             </div>
+              
+             <div class="col-md-3 col-sm-12 col-xs-12">
+              <li class="wantlist">
+                <label for="btime">시간</label><br>
+                <select name="btime" id="btime_select">
+                  <option selected="selected" value="empty">&nbsp 모두보기</option>
+                  <% Btime.all.each do |x| %>
+                    <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+                  <% end %>
+                </select>
+              </li>
+              </div>
+              
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <li class="wantlist">
+                  <label for="category">종류</label><br>
+                  <select name="category" id="category_select">
+                    <option selected="selected" value="empty">&nbsp 모두보기</option>
+                    <% Category.all.each do |x| %>
+                      <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+                    <% end %>
+                  </select>
+                </li>
+               </div>
+          </ul>
+        </fieldset>
+        </center>
+      </div>
+     </div>
+     <div class="col-md-1"></div>
     </form>
   </div>
 </header>
@@ -95,24 +111,7 @@
 <%= render :partial => 'style/main_headercss' %>
 
 
-<style>
-  .wantlist {list-style-type :none;
-             float :left;
-             margin-right: 60px;
-             margin-bottom: 30px;
-            }
-  .fieldset_list {margin: auto;
-                  width: 1080px;
-                  }
-  .row_main_content {padding:10px;}
-  .row {margin-right: auto;
-        margin-left: auto;}
-</style>
-
-
-
-
-
+ 
 <script type="text/javascript">
 	
 $(function(){

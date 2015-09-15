@@ -7,7 +7,7 @@
 <!--메인 이미지 연습-->
 <br>
 
-      <%  k = 6 
+      <%  k = Admin.first.value
         
         unless @s_word.nil?
             unless @bongsa.nil?
@@ -20,9 +20,9 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <div class="row">
-      <% @bongsa.sample(k).each do |b| %>
+      <% @bongsa.last(k).each do |b| %>
         <a href="/home/bongsa_information/<%= b.id %>">
-            <div class="col-md-4 row_main_content">
+            <div class="col-md-4 col-sm-6 col-lg-3 row_main_content">
                 <div class="row">
                     <!--<div class="col-md-12" style="padding:12px 0px 12px 0px; font-size:21px; background-color:skyblue; border-top-left-radius: 10px; border-top-right-radius: 10px;">-->
                     <!--    <%# if b.name.nil? %>-->

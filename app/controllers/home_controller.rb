@@ -1,6 +1,68 @@
 class HomeController < ApplicationController
     #respond_to :html, :js
     
+    def filter4
+        render json: Bongsa.all
+    end
+    
+    def check
+        if @@first == 0
+            @@first = 1
+        else
+            @@tmp += " AND "
+        end
+        @@tmp += "#{@@str}"
+    end
+
+    def filter5
+        #a = Bongsa.where(region_id: @region, school_id: @school, btime_id: @btime, category_id: @category)
+        
+        @@first = 0
+        @@tmp = ""
+        
+        #@s_word = params[:s_word].nil? ? '*' : "%#{params[:s_word]}%"
+        #@region = params[:region].nil? ? '*' : params[:region]
+        #@school = params[:school].nil? ? '*' : params[:school]
+        #@btime = params[:btime].nil? ? '*' : params[:btime]
+        #@category = params[:category].nil? ? '*' : params[:category]
+        
+        @@str = "name LIKE \"%#{params[:s_word]}%\""
+        self.check unless params[:s_word].nil?
+        @@str = "region_id LIKE \"#{params[:region]}\""
+        self.check unless params[:region].nil?
+        @@str = "school_id LIKE \"#{params[:school]}\""
+        self.check unless params[:school].nil?
+        @@str = "btime_id LIKE \"#{params[:btime]}\""
+        self.check unless params[:btime].nil?
+        @@str = "category_id LIKE \"#{params[:category]}\""
+        self.check unless params[:category].nil?
+        
+        #a = Bongsa.where("name LIKE ? AND region_id = ? AND school_id = ? AND btime_id = ? AND category_id = ?", "#{@s_word}", "#{@region}", "#{@school}", "#{@btime}", "#{@category}")
+        #a = Bongsa.where("region_id = #{@region}")
+        a = Bongsa.where("#{@@tmp}")
+        #a = Bongsa.where("name LIKE ?", "#{@s_word}")
+            
+        render json: a
+        
+    end
+    
+    def filter3
+        #a = Bongsa.where(region_id: @region, school_id: @school, btime_id: @btime, category_id: @category)
+        
+        if params[:region].nil?
+            a = Bongsa.all
+        else
+            a = Bongsa.where(region_id: params[:region])
+        end
+        a = a.where(school_id: params[:school]) unless params[:school].nil?
+        a = a.where(btime_id: params[:btime]) unless params[:btime].nil?
+        a = a.where(category_id: params[:category]) unless params[:category].nil?
+        a = a.where("name LIKE ?", "%#{params[:s_word]}%") unless params[:s_word].nil?
+        
+        render json: a
+        
+    end
+    
     def filter2
         #검색기능 미완성
         #respond_to do |format|
@@ -14,6 +76,19 @@ class HomeController < ApplicationController
         @school = params[:school]
         @btime = params[:btime]
         @category = params[:category]
+        
+        @a = Bongsa.first
+        notices = []
+        notices << {
+            name: @a.name,
+            region_id: @a.region_id
+        }
+        
+        @list = {
+            notice: notices
+        }
+        
+        #render json: @list
         
     end
     
