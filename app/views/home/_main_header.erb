@@ -1,6 +1,7 @@
 
   
 <header role="banner" class="header header--home">
+  <div class="wrapper">
 
     <div class="row header__top">
       <div calss="col-md-12">
@@ -17,124 +18,70 @@
 
 
 
-  <div class="wrapper">
         <div class="col-md-12 header__title"> <strong>봉사꾼</strong> </div>
           <center>
-            <p style="font-size:30px; margin-bottom: 1%;">Visited &nbsp 
+            <p style="font-size:30px; margin-bottom: 1%;">Visited &nbsp
               <font size="80px;">
                 <%= @total_view_count %>
               </font>
                 &nbsp Members.
             </p>
           </center>
-    
-   <center>        
-    <div class="dropdown">
-      <button> &nbsp지역 </button>
-        <ul id="dropdown-list">
-              <li class="wantlist">
-                  <a href=""><option selected="selected" value="empty">&nbsp 모두보기</option></a>
-                  <% Region.all.each do |x| %>
-                  <a href=""><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
-                  <% end %>
-              </li>
-        </ul> 
-    </div>
-
-    <div class="dropdown">
-      <button> &nbsp학교 </button>
-        <ul id="dropdown-list">
-          <li class="wantlist">
-            <a href><option selected="selected" value="empty">&nbsp 모두보기</option></a>
-              <% School.all.each do |x| %>
+    <div class="row" id="gh">
+     <center> 
+      <div class="dropdown">
+        <button> &nbsp지역 </button>
+          <ul id="dropdown-list">
+                <li class="wantlist">
+                    <a href=""><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                    <% Region.all.each do |x| %>
+                    <a href=""><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                    <% end %>
+                </li>
+          </ul> 
+      </div>
+      
+      &nbsp
+  
+  
+      <div class="dropdown">
+        <button> &nbsp학교 </button>
+          <ul id="dropdown-list">
+            <li class="wantlist">
+              <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                <% School.all.each do |x| %>
+              <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                <% end %>
+            </li>
+          </ul> 
+      </div>
+  
+      <div class="dropdown">
+        <button> &nbsp시간 </button>
+          <ul id="dropdown-list">
+            <li class="wantlist">
+             <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+              <% Btime.all.each do |x| %>
             <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
               <% end %>
-          </li>
-        </ul> 
+            </li>        
+          </ul> 
+      </div>
+  
+      <div class="dropdown" >
+        <button> &nbsp종류 </button>
+          <ul id="dropdown-list">
+            <li class="wantlist">
+             <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                <% Category.all.each do |x| %>
+             <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                <% end %>
+            </li>
+          </ul> 
+      </div>
+     </center>
     </div>
-
-    <div class="dropdown">
-      <button> &nbsp시간 </button>
-        <ul id="dropdown-list">
-          <li class="wantlist">
-           <a href><option selected="selected" value="empty">&nbsp 모두보기</option></a>
-            <% Btime.all.each do |x| %>
-          <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
-            <% end %>
-          </li>        
-        </ul> 
-    </div>
-
-    <div class="dropdown">
-      <button> &nbsp종류 </button>
-        <ul id="dropdown-list">
-          <li class="wantlist">
-           <a href><option selected="selected" value="empty">&nbsp 모두보기</option></a>
-              <% Category.all.each do |x| %>
-           <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
-              <% end %>
-          </li>
-        </ul> 
-    </div>
-   </center>
-
-
-    <form action="#">
-        <fieldset class="fieldset_list">
-          <ul>
-            
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <li class="wantlist">
-               <label for="region">지역</label><br>
-                <select name="region" id="region_select">
-                  <option selected="selected" value="empty">&nbsp 모두보기</option>
-                  <% Region.all.each do |x| %>
-                    <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-                  <% end %>
-                </select>
-              </li>
-             </div>
-            
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <li class="wantlist">
-                <label for="school">학교</label><br>
-                <select name="school" id="school_select">
-                  <option selected="selected" value="empty">&nbsp 모두보기</option>
-                  <% School.all.each do |x| %>
-                    <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-                  <% end %>
-                </select>
-              </li>
-            </div>
-              
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <li class="wantlist">
-                <label for="btime">시간</label><br>
-                <select name="btime" id="btime_select">
-                  <option selected="selected" value="empty">&nbsp 모두보기</option>
-                  <% Btime.all.each do |x| %>
-                    <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-                  <% end %>
-                </select>
-              </li>
-            </div>
-              
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <li class="wantlist">
-                <label for="category">종류</label><br>
-                <select name="category" id="category_select">
-                  <option selected="selected" value="empty">&nbsp 모두보기</option>
-                  <% Category.all.each do |x| %>
-                    <option value="<%= x.id %>">&nbsp <%= x.name %></option>
-                  <% end %>
-                </select>
-              </li>
-            </div>
-              
-          </ul>
-        </fieldset>
-      </div>  
-    </form>
+  </div>  
 </header>
 
 <!-- 이재철코드 -->
@@ -153,7 +100,8 @@
       $trigger = $dropdown.find('button'),
       $list = $dropdown.find('ul'),
       $firstLink = $list.find('li:first a'),
-      $lastLink = $list.find('li:last a');
+      $lastLink = $list.find('li:last a'),
+      $gh = $body.find('#gh');
 
     var init = function() {
       ariaSetup();
@@ -171,6 +119,11 @@
       $list.attr({
         'aria-hidden': true
       });
+      
+      /*$gh.attr({
+        'style': ''
+        });
+        */
     }
 
     var bindEvents = function() {
@@ -193,9 +146,10 @@
     var toggleDropdown = function() {
       var hidden = $list.attr('aria-hidden') === 'true' ? false : true,
         expanded = !hidden;
-
+      
       $trigger.attr('aria-expanded', expanded);
       $list.attr('aria-hidden', hidden);
+      /*$gh.attr('style', 'height:250px;');*/
     }
 
     return {
@@ -271,183 +225,5 @@ $(function(){
   })
   
 })
-
-
-/*
-//(function() {
-  $(document).ready(function() {
-    
-    
-    var searchOptions = {
-      filter1: 1,
-      // filter2: 2,
-      // filter3: 3,
-      // filter4: 4
-    };
-    
-    $('#region_select').on('change', function() {
-    var selected_value = $(this).val();
-    searchOptions.filter1 = selected_value;
-    triggerSearch();
-    });
-  
-    // $('#school_select').on('change', function() {
-    // var selected_value = $(this).val();
-    // searchOptions.filter2 = selected_value;
-    // triggerSearch();
-    // });
-  
-    // $('#time_select').on('change', function() {
-    //   var selected_value = $(this).val();
-    //   searchOptions.filter3 = selected_value;
-    //   triggerSearch();
-    // });
-    
-    // $('#type_select').on('change', function() {
-    //   var selected_value = $(this).val();
-    //   searchOptions.filter4 = selected_value;
-    //   triggerSearch();
-    // });
-    
-    
-    function triggerSearch() {
-      $.ajax({
-        url: '//json_test' + '?' + $.param(searchOptions),
-        method: 'GET',
-        beforeSend: function() {
-          $('#ajax_target .bongsas').html('');
-        },
-        success: function(data, textStatus, jqXHR) {
-          for(var i in data) {
-            $('#ajax_target .bongsas').append('' +
-            '<div class="bongsas__item">' +
-            '<div class="bongsas__item__name">' + data[i].name + '</div>' +
-            '</div>' + 
-            '</div>');
-          };
-        },
-        error: function(data, textStatus, jqXHR) {
-          alert('error massege');
-        }
-      });
-    }
-    
-  });
-//})()
-*/
 </script>
 
-
-<style>
-  
-  .dropdown {
-  position: relative;
-  display: inline-block;
-  text-align: left;
-}
-
-.dropdown > button {
-  position: relative;
-  border: 0;
-  padding: 15px 50px 15px 30px;
-  overflow: hidden;
-  background: #1e929f; /*눌렀을때 박스색깔*/
-  color: white;
-  width: 200px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: .03em;
-  line-height: normal;
-  text-transform: uppercase;
-  z-index: 2;
-}
-
-.dropdown > button[aria-expanded="true"] { color: black; }
-
-.dropdown > button[aria-expanded="true"]:before {
-  -webkit-transform: translateY(calc(100% - 3px));
-  -ms-transform: translateY(calc(100% - 3px));
-  transform: translateY(calc(100% - 3px));
-}
-
-.dropdown > button[aria-expanded="true"]:after {
-  border-width: 0 5px 5px 5px;
-  border-color: transparent transparent #00bcd4 transparent;
-}
-
-.dropdown > button:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #00bcd4;
-  z-index: -1;
-  -webkit-transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9);
-  transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9);
-  -webkit-transform: translateZ(0) translateY(0);
-  transform: translateZ(0) translateY(0);
-}
-
-.dropdown > button:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 30px;
-  display: block;
-  margin-top: -3px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 5px 0 5px;
-  border-color: white transparent transparent transparent;
-  opacity: 1;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.dropdown > button:focus:before { background: #02a7bc; }
-
-.dropdown button + ul {
-  position: absolute;
-  overflow: hidden;
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  background: #f1f1f1;
-  list-style: none;
-  -webkit-transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9) 0.2s;
-  transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9) 0.2s;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  max-height: 200px;
-  visibility: visible;
-  z-index: 1;
-}
-
-.dropdown button + ul[aria-hidden='true'] {
-  max-height: 0;
-  visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-.dropdown button + ul li a {
-  display: block;
-  color: #1e1e1e;
-  padding: 10px 30px;
-  font-weight: 400;
-  text-decoration: none;
-  font-size: 14px;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.dropdown button + ul li a:hover, .dropdown button + ul li a:focus { background: #dedede; }
-
-
-</style>      

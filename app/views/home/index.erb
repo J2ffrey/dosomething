@@ -5,13 +5,26 @@
       <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
       <!—    [endif]—> -->
 
+<div class="section" id="section01">
 <%= render :partial => 'home/main_navbar' %>
+</div>
 
+
+<div class="section" id="section02">
 <%= render :partial => 'main_header' %>
+</div>
+
+
 <div style="display:none" id="tmp"></div>
-<div id="main_contents" style="width:100%">
+<div id="main_contents" style="width:100%" class="section3">
     <%#= render :partial => 'filter2' %>
     <%= render :partial => 'main_content' %>
 </div>
+
+
+<div class="section" id="section04">
 <%= render :partial => 'main_footer' %>
+</div>
+
+
 

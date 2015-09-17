@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
     #respond_to :html, :js
-    
+    def temp
+        # render :rayout, false
+    end
     def filter5
         first = 0
         tmp = ""
@@ -18,10 +20,10 @@ class HomeController < ApplicationController
         check.call "school_id LIKE \"#{params[:school]}\"" unless params[:school].nil?
         check.call "btime_id LIKE \"#{params[:btime]}\"" unless params[:btime].nil?
         check.call "category_id LIKE \"#{params[:category]}\"" unless params[:category].nil?
+        
         @a = Bongsa.where("#{tmp}")
         
         render json: @a
-        
     end
     
     def filter
@@ -49,8 +51,8 @@ class HomeController < ApplicationController
     end
     
     def bongsa_calendar
+        
     end
-    
     
     def index
         mark = ViewCount.new
@@ -68,7 +70,6 @@ class HomeController < ApplicationController
         #        @bongsa << sb if sb.name.include?(@s_word)
         #    end
         #end
-                
         #방문자
         ip_adress_set = Array.new
         ViewCount.all.each do |x|
@@ -80,6 +81,7 @@ class HomeController < ApplicationController
     end
    
     def mypage
+        
     end
        
     def calendar
@@ -89,7 +91,6 @@ class HomeController < ApplicationController
     def private_info
       @u_password = params[:u_password]
       @con_password = params[:con_password]
-         
   
       
     end
@@ -245,6 +246,43 @@ class HomeController < ApplicationController
     
 
     def bongsa_information
+    
+         @b = Bongsa.find(params[:id])
+            # b.name      = params[:name] # <== value로 입력받아놓는 부분?
+            # b.bongsa_img = params[:bongsa_img]
+            # b.region    = params[:region]
+            # b.time      = params[:time]
+            # b.ctgory    = params[:ctgory]
+            # b.content   = params[:content] # <== value로 입력받아놓는 부분?
+        
+            # b.foster_img = params[:foster_img]
+        
+            # b.t_mozip_start   = params[:date_mozip_start] # <== value로 입력받아놓는 부분?
+            # b.t_mozip_end     = params[:date_mozip_end]
+        
+            # b.t_real_start = params[:date_real_start]
+            # b.t_real_end = params[:date_real_end]
+            # b.t_daily_start = params[:time_daily_start]
+            # b.t_daily_end = params[:time_daily_end]
+            # b.t_expect_total = params[:time_expect_total]
+            # b.org_name  = params[:org_name] # <== value로 입력받아놓는 부분?
+            # b.clerk     = params[:clerk] # 담당자
+            # b.school    = params[:school] #주관 대학 또는 인근 대학(메인페이지 Selection 을 위한 메뉴)
+        
+            # b.pre_edu   = params[:pre_edu] #사전교육 유/무
+            # b.status    = params[:status] # 모집현황
+    
+            # b.vltr_age  = params[:vltr_age] # 지원가능연령
+            # b.vltr_sex  = params[:vltr_sex] # 지원가능 성별
+            # b.vltr_req  = params[:vltr_req] # 지원가능 상세조건<== 직접 입력을 받아야 하는 사항
+            # b.how_many  = params[:how_many] # 모집인원
+            # b.clerk_call = params[:clerk_call] # 담당자 연락처
+            # b.act_time = params[:act_time] # 해당 봉사후 활동시간 직접등록
+            # b.save
+    end
+    
+    
+     def bongsa_info
     
          @b = Bongsa.find(params[:id])
             # b.name      = params[:name] # <== value로 입력받아놓는 부분?

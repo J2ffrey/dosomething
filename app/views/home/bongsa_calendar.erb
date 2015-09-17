@@ -1,276 +1,371 @@
-<center>
-  <table>
-    <thead></thead>
-    <tbody class="col-md-12">
-      <tr>
-        <div class="dayname_container col-md-12">
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">일</div>
-          </div>
-          </td>
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">월</div>
-            </div>
-          </td>
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">화</div>
-            </div>
-          </td>
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">수</div>
-            </div>
-          </td>
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">목</div>
-            </div>
-          </td>
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">금</div>
-            </div>
-          </td>
-          <td>
-            <div class="dayname-calendar-cell col-md-12">
-              <div class="day-label name-of-days">토</div>
-            </div>
-          </td>
-        </div>
-      </tr>
+<%= render :partial => 'home/main_navbar' %>
+<div class="col-md-2" style="border:solid black">
+	
+	<h1>달력달력</h1>
+
+<!--봉사유형 선택	-->
+	<center><p style="font-size:16px"><b>봉사활동 유형</b></p></center>
+	
+	<input type="checkbox" class="select_type" class="checking">
+	<div class="circle number1"></div>
+	<p class="select_type_name">전체보기</p>
+	
+	<input type="checkbox" class="select_type" class="checking">
+	<div class="circle number2"></div>
+	<p class="select_type_name">교육봉사</p>
+	
+	<input type="checkbox" class="select_type" class="checking">
+	<div class="circle number3"></div>
+	<p class="select_type_name">재능봉사</p>
+	
+	<input type="checkbox" class="select_type" class="checking">
+	<div class="circle number4"></div>
+	<p class="select_type_name">노력봉사</p>
+	
+	<input type="checkbox" class="select_type" class="checking">
+	<div class="circle number5"></div>
+	<p class="select_type_name">해외봉사</p></p>
+	
+	<input type="checkbox" class="select_type" class="checking">
+	<div class="circle number6"></div>
+	<p class="select_type_name">기타봉사</p>
+</div>	
+<!--봉사유형 선택	-->
+
+<!--봉사세부달력-->
+
+<div class="col-md-10" style="padding-left: 0px; padding-right: 0px;">
+  <div class="col-md-12" style="background: #502da5; color: white">
+    <center><h3 style="margin-bottom: 2%;">2015.10</h3></center>
+  </div>
+
+  <div style="width:14.28%; background: #b29cda;">&nbsp</div>
+  <div style="width:14.28%; background: #b29cda; color: white;">
+    
+    <center><p class="calendar_date">13</p></center>
+    <center><p class="calendar_day">MON</p></center>
+    <div style="width:14.28%; background: #b29cda;">&nbsp</div>
+  </div>
+  
+  
+
+
+</div>
+
+
+<!--봉사세부달력_일/요일-->
+
+<!--봉사세부달력-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<center>-->
+<!--  <table>-->
+<!--    <thead></thead>-->
+<!--    <tbody class="col-md-12">-->
+<!--      <tr>-->
+<!--        <div class="dayname_container col-md-12">-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">일</div>-->
+<!--          </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">월</div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">화</div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">수</div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">목</div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">금</div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="dayname-calendar-cell col-md-12">-->
+<!--              <div class="day-label name-of-days">토</div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </div>-->
+<!--      </tr>-->
    
-      <tr>
-        <div class="top-calendar-week col-md-12">
-          <td>
-           <div class="day-calendar-cell col-md-12">
-             <div class="day-label">30</div>
-           </div>
-           </td>
-           <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">31</div>
-             </div>
-           </td>
-           <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">2</div>
-             </div>
-           </td>
-           <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">3</div>
-             </div>
-            </td>
-            <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">4</div>
-             </div>
-            </td>
-            <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">5</div>
-             </div>
-            </td>
-            <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">6</div>
-             </div>
-            </td>
-        </div>
-      </tr>
+<!--      <tr>-->
+<!--        <div class="top-calendar-week col-md-12">-->
+<!--          <td>-->
+<!--           <div class="day-calendar-cell col-md-12">-->
+<!--             <div class="day-label">30</div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">31</div>-->
+<!--             </div>-->
+<!--           </td>-->
+<!--           <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">2</div>-->
+<!--             </div>-->
+<!--           </td>-->
+<!--           <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">3</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">4</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">5</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">6</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--        </div>-->
+<!--      </tr>-->
       
       
-      <tr>
-        <div class="day-content col-md-12">
-          <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-        </div>
-      </tr>
+<!--      <tr>-->
+<!--        <div class="day-content col-md-12">-->
+<!--          <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--        </div>-->
+<!--      </tr>-->
       
-            <tr>
-        <div class="top-calendar-week col-md-12">
-          <td>
-           <div class="day-calendar-cell col-md-12">
-             <div class="day-label">30</div>
-           </div>
-           </td>
-           <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">31</div>
-             </div>
-           </td>
-           <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">2</div>
-             </div>
-           </td>
-           <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">3</div>
-             </div>
-            </td>
-            <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">4</div>
-             </div>
-            </td>
-            <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">5</div>
-             </div>
-            </td>
-            <td>
-             <div class="day-calendar-cell col-md-12">
-               <div class="day-label">6</div>
-             </div>
-            </td>
-        </div>
-      </tr>
-      <tr>
-        <div class="day-content col-md-12">
-          <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-           <td class="bongsa-calendar-cell">
-           <div class="col-md-12">
-             <div class="bongsa_name_cell">
-               <p>MDS테크놀로지</p>
-               <p>MDS테크놀로지</p>
-             </div>
-           </div>
-           </td>
-        </div>
-      </tr>
+<!--            <tr>-->
+<!--        <div class="top-calendar-week col-md-12">-->
+<!--          <td>-->
+<!--           <div class="day-calendar-cell col-md-12">-->
+<!--             <div class="day-label">30</div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">31</div>-->
+<!--             </div>-->
+<!--           </td>-->
+<!--           <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">2</div>-->
+<!--             </div>-->
+<!--           </td>-->
+<!--           <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">3</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">4</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">5</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--             <div class="day-calendar-cell col-md-12">-->
+<!--               <div class="day-label">6</div>-->
+<!--             </div>-->
+<!--            </td>-->
+<!--        </div>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <div class="day-content col-md-12">-->
+<!--          <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--           <td class="bongsa-calendar-cell">-->
+<!--           <div class="col-md-12">-->
+<!--             <div class="bongsa_name_cell">-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--               <p>MDS테크놀로지</p>-->
+<!--             </div>-->
+<!--           </div>-->
+<!--           </td>-->
+<!--        </div>-->
+<!--      </tr>-->
       
       <!--<div class="day-content col-md-12">-->
       <!--  <div class="calendar-cell col-md-1">-->
@@ -320,36 +415,41 @@
       <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
       <!--  </div>-->
       <!--</div>-->
-    </tbody>
-  </table>
-</center>
-<style>
-  .calendar-container .head .dayname-container {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    }
-    .calendar-container .head .dayname-container .name-of-days {
-    background: #999;
-    font-size: 13px;
-    color: #fff;
-    }
-    .calendar-container .calendar-cell .day-label {
-    height: 20px;
-    border-bottom: 1px solid #d8d8d8;
-    }
-    .calendar-container .calendar-cell {
-    border: 1px solid #d8d8d8;
-    width: 14.28571%;
-    text-align: center;
-    }
-    .calendar-cell {width: 101%;
-                    text-align: center;}
-    .dayname_container {margin-top: 7%;}
-    .dayname-calendar-cell {border: 1px solid #999;
-                            text-align: center;}
-    .day-calendar-cell {border: 1px solid #999;
-                        text-align: center;
-                        }
-  .bongsa-calendar-cell {border:1px solid #999;}
-</style>
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</center>-->
+<!--<style>-->
+<!--  .calendar-container .head .dayname-container {-->
+<!--    position: absolute;-->
+<!--    bottom: 20px;-->
+<!--    width: 100%;-->
+<!--    }-->
+<!--    .calendar-container .head .dayname-container .name-of-days {-->
+<!--    background: #999;-->
+<!--    font-size: 13px;-->
+<!--    color: #fff;-->
+<!--    }-->
+<!--    .calendar-container .calendar-cell .day-label {-->
+<!--    height: 20px;-->
+<!--    border-bottom: 1px solid #d8d8d8;-->
+<!--    }-->
+<!--    .calendar-container .calendar-cell {-->
+<!--    border: 1px solid #d8d8d8;-->
+<!--    width: 14.28571%;-->
+<!--    text-align: center;-->
+<!--    }-->
+<!--    .calendar-cell {width: 101%;-->
+<!--                    text-align: center;}-->
+<!--    .dayname_container {margin-top: 7%;}-->
+<!--    .dayname-calendar-cell {border: 1px solid #999;-->
+<!--                            text-align: center;}-->
+<!--    .day-calendar-cell {border: 1px solid #999;-->
+<!--                        text-align: center;-->
+<!--                        }-->
+<!--  .bongsa-calendar-cell {border:1px solid #999;}-->
+<!--</style>-->
+
+
+
+<%= render :partial => 'style/bongsa_calendarcss' %>
+<%= render :partial => 'home/main_footer' %>

@@ -1,10 +1,10 @@
   <script type="text/javascript" src="https://www.dosomething.org/profiles/dosomething/themes/dosomething/paraneue_dosomething/dist/lib.js?nt1e5u"></script>
-<script type="text/javascript" src="https://www.dosomething.org/misc/drupal.js?nt1e5u"></script>
-<script type="text/javascript">
-<!--//--><![CDATA[//><!--
-jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"paraneue_dosomething","theme_token":"Mf8mHX2Voyb7734YXsXwg3gfU7r-aoc6LrL5PbRUnVE","js":[]},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"dosomethingSearch":{"solrURL":"\/\/search.dosomething.org\/solr\/","collection":"collection1"},"dosomethingUser":{"schoolFinderAPIEndpoint":"https:\/\/lofischools.herokuapp.com\/search"}});
-//--><!]]>
-</script>
+  <script type="text/javascript" src="https://www.dosomething.org/misc/drupal.js?nt1e5u"></script>
+  <script type="text/javascript">
+  <!--//--><![CDATA[//><!--
+  jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"paraneue_dosomething","theme_token":"Mf8mHX2Voyb7734YXsXwg3gfU7r-aoc6LrL5PbRUnVE","js":[]},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"dosomethingSearch":{"solrURL":"\/\/search.dosomething.org\/solr\/","collection":"collection1"},"dosomethingUser":{"schoolFinderAPIEndpoint":"https:\/\/lofischools.herokuapp.com\/search"}});
+  //--><!]]>
+  </script>
 
   <script type="text/javascript">
     <!--//--><![CDATA[//><!--
@@ -13,11 +13,14 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
     //--><!]]>
   </script>
 
-<script type="text/javascript" src="https://www.dosomething.org/profiles/dosomething/themes/dosomething/paraneue_dosomething/dist/app.js?nt1e5u"></script>
+  <script type="text/javascript" src="https://www.dosomething.org/profiles/dosomething/themes/dosomething/paraneue_dosomething/dist/app.js?nt1e5u"></script>
   <script type="text/javascript">
     window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ee99636967","applicationID":"3268309","transactionName":"NAYHNxRTCEEABUxcWg1MJAASWwlcTghXUVA8EwQEA20QWwQR","queueTime":0,"applicationTime":248,"atts":"GEEEQVxJG08=",
     "errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-686.min.js"}
   </script>
+  
+  
+  
   
   <style>
   
@@ -25,6 +28,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
                 background-repeat: no-repeat;
                 text-indent: 44px;}
     body {background-color: #E8F4E8;}
+    
     .header__title{ text-align:center;
                    font-size :60px;
                    margin-top:30px;
@@ -50,7 +54,7 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
         background-color: #5FC0C7;
         border:none;
         color: white;
-        height:435px;
+        height:100%;
         width:100%;
         overflow:hidden;
         position:relative;
@@ -110,6 +114,121 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
   .row_main_content {padding:10px;}
   .row {margin-right: auto;
         margin-left: auto;}
+
+
+
+/* 드랍다운용 CSS */
+
+  
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.dropdown > button {
+  position: relative;
+  border: 0;
+  padding: 15px 50px 15px 30px;
+  overflow: hidden;
+  background: #1e929f; /*눌렀을때 박스색깔*/
+  color: white;
+  width: 200px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  line-height: normal;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.dropdown > button[aria-expanded="true"] { color: black; }
+
+.dropdown > button[aria-expanded="true"]:before {
+  -webkit-transform: translateY(calc(100% - 3px));
+  -ms-transform: translateY(calc(100% - 3px));
+  transform: translateY(calc(100% - 3px));
+}
+
+.dropdown > button[aria-expanded="true"]:after {
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #00bcd4 transparent;
+}
+
+.dropdown > button:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #00bcd4;
+  z-index: -1;
+  -webkit-transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9);
+  transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9);
+  -webkit-transform: translateZ(0) translateY(0);
+  transform: translateZ(0) translateY(0);
+}
+
+.dropdown > button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  display: block;
+  margin-top: -3px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: white transparent transparent transparent;
+  opacity: 1;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.dropdown > button:focus:before { background: #02a7bc; }
+
+.dropdown button + ul {
+  position: absolute;
+  overflow: overlay;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  background: #f1f1f1;
+  list-style: none;
+  -webkit-transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9) 0.2s;
+  transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9) 0.2s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  max-height: 200px;
+  visibility: visible;
+  z-index: 1;
+}
+
+.dropdown button + ul[aria-hidden='true'] {
+  max-height: 0;
+  visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.dropdown button + ul li a {
+  display: block;
+  color: #1e1e1e;
+  padding: 10px 30px;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 14px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.dropdown button + ul li a:hover, .dropdown button + ul li a:focus { background: #dedede; }
+
 
   </style>
 

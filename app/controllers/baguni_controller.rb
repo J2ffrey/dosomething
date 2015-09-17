@@ -3,8 +3,11 @@ class BaguniController < ApplicationController
     def timemanage
         
         #---봉사 한개 선택해서 입력창에 띄우기---#
-        @bongsa = Bongsa.all
-        @bongsa2 = Bucket.where(:user_id => current_user.id)
+        #@bongsa = Bongsa.all
+        #@bongsa2 = Bucket.where(:user_id => current_user.id)
+        
+        @buckets = current_user.buckets
+        
         
         zz = Array.new
             @bongsa2.all.each do |x|

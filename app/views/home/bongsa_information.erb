@@ -53,7 +53,7 @@
   .slided_img{
     margin:none;
     width: 100%;
-    height: 700px;
+    height: 600px;
     border:none;
     /* These three lines are for transparency in all browsers. */
     /*   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";*/
@@ -85,12 +85,12 @@
 <!-- Tables
 ================================================== -->
 <div class="continue slided_img">
-  <div style="padding-top: 30%;padding-left: 5%; bottom:0px;">
+  <div style="padding-top: 25%;padding-left: 5%; bottom:0px;">
     <!--봉사명-->
     <p class="m_title"><b>재난취약기구 전화모니터링<%#= @b.name %></b></p>
     <div class="col-md-12">
         <div class="col-md-8">
-            <div class="col-md-5 m_term">
+            <div class="col-md-6 m_term">
                 <!--모집시작일~모집종료일-->
                 <p>모집 : <%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></p>
             </div>
@@ -100,11 +100,13 @@
                     <b>신청하기</b>
                 </button>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <!--신청하기-->
-                <button class="btn btn-block m_btn" style="background-color:#c75050;">
-                    <b>찜하기</b>
-                </button>
+                <a href="/baguni/bucket_save/<%= @b.id %>">
+                    <button class="btn btn-block m_btn" style="background-color:#c75050;">
+                        <b>찜하기</b>
+                    </button>
+                </a>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -121,7 +123,7 @@
                                           }
                                           .m_term{
                                               color:#fff; 
-                                              font-size:33px;
+                                              font-size:2em;
                                               line-height: 57px;
                                           }
                                           .m_btn{
@@ -139,21 +141,23 @@
 <div class="slide continue slided_circles">
   <div class="row" style="padding:100px 11% 10px 11%;">
       <center>
-          <!--동그라미 봉사시간-->
-          <div class="circle circle-bongsa_time hvr-border-fade">
-            <p>20h</p>
-          </div>
-          <!--동그라미 디-데이-->
-          <div class="circle circle-d_day hvr-border-fade">
-            <p>D-12</p>
-          </div>
-          <!--동그라미 활동지역-->
-          <div class="circle circle-activ_region hvr-border-fade">
-            <p>서울</p>
-          </div>
-          <!--동그라미 인증서발급여부-->
-          <div class="circle circle-printable_doc hvr-border-fade">
-            <p>V</p>
+          <div class="col-md-12" style="padding:0px;">
+              <!--동그라미 봉사시간-->
+              <div class="circle circle-bongsa_time hvr-border-fade">
+                <p>20h</p>
+              </div>
+              <!--동그라미 디-데이-->
+              <div class="circle circle-d_day hvr-border-fade">
+                <p>D-12</p>
+              </div>
+              <!--동그라미 활동지역-->
+              <div class="circle circle-activ_region hvr-border-fade">
+                <p>서울</p>
+              </div>
+              <!--동그라미 인증서발급여부-->
+              <div class="circle circle-printable_doc hvr-border-fade">
+                <p>V</p>
+              </div>
           </div>
       </center>
   </div>
@@ -176,11 +180,15 @@
 </div>
 <!--------------------------------------------------------------------------------------------------------------------------------------->
                                         <style>
+                                          .slided_circles{
+                                            width:100%;
+                                            height:100%;
+                                          }
                                           .circle{
-                                            float:center;
                                             position: relative;
                                           	display: inline-block;
-                                          	height: 164px;
+                                          	/*height: 164px;*/
+                                          	padding: 2.9% 0% 2.9% 0%;
                                           	width: 13.5%;
                                           	border-radius: 100%;
                                           	border: 2px solid black;
@@ -194,12 +202,13 @@
                                           	text-align: center;
                                           	vertical-align: middle;
                                           	font-size:50px;
-                                          	line-height: 3;
+                                          	margin:0px;
+                                          	/*line-height: 3;*/
                                           }
                                             /* BORDER TRANSITIONS */
                                             /* Border Fade */
                                             .hvr-border-fade {
-                                                border:none;
+                                              border:none;
                                               display: inline-block;
                                               vertical-align: middle;
                                               -webkit-transform: translateZ(0);
@@ -267,48 +276,45 @@
           <b>세 부  내 용</b>
       </h1>
   </center>
-  <div class="col-md-12">
-      <!--한 줄 시작할 때 여백-->
-      <div class="col-md-1"></div>
-      
-      <!--지역-->
-      <div class="col-md-2 icon">
-        <p>icon</p>
+  <div class="col-md-12 col-sm-12">
+      <div class="col-md-6 col-sm-6">
+          <!--지역-->
+          <div class="col-md-2 col-sm-2"></div>
+          <div class="col-md-3 col-sm-3 icon">
+            <p>icon</p>
+          </div>
+          <div class="col-md-7 col-sm-7 icon__content">
+            <b>지역</b><br>
+            <span>서울특별시 송파구 잠실동 34-1</span>
+          </div>
       </div>
-      <div class="col-md-4 icon__content">
-        <b>지역</b><br>
-        <span>서울특별시 송파구 잠실동 34-1</span>
-      </div>
-      
-      <!--내용-->
-      <div class="col-md-2 icon">
-        <p>icon</p>
-      </div>
-      <div class="col-md-4 icon__content">
-          <b>내용</b><br>
-          <span>재난취약기구 전화모니터링 전화로 모니터링 해준다.</span>
-      </div>
-      
-      <!--한 줄 시작할 때 여백-->
-      <div class="col-md-1"></div>
-      
-      <!--봉사기관 홈페이지-->
-      <div class="col-md-2 icon">
-        <p>icon</p>
-      </div>
-      <div class="col-md-4 icon__content">
-          <b>봉사기관 홈페이지</b><br>
-          <a style="color:#000;" href="https://volunteer.songpa.org"><span>https://volunteer.songpa.org</span></a>
+      <div class="col-md-6 col-sm-6">
+          <!--내용-->
+          
+          <div class="col-md-3 col-sm-3 icon">
+            <p>icon</p>
+          </div>
+          <div class="col-md-7 col-sm-7 icon__content">
+              <b>내용</b><br>
+              <span>재난취약기구 전화모니터링 전화로 모니터링 해준다.</span>
+          </div>
+          <div class="col-md-2 col-sm-2"></div>
       </div>
   </div>
-  <div class="col-md-12">
-      <div class="carting_btn">
-        <button class="btn btn-block n_btn">
-            <a href="/baguni/bucket_save/<%= @b.id %>">
-                <b>내 계정으로 스크랩</b>
-            </a>
-        </button>
+  <div class="col-md-12 col-sm-12">
+      <!--한 줄 시작할 때 여백-->
+      <div class="col-md-6 col-sm-6">
+          <!--봉사기관 홈페이지-->
+          <div class="col-md-2 col-sm-2"></div>
+          <div class="col-md-3 col-sm-3 icon">
+            <p>icon</p>
+          </div>
+          <div class="col-md-7 col-sm-7 icon__content">
+              <b>봉사기관 홈페이지</b><br>
+              <a style="color:#000;" href="https://volunteer.songpa.org"><span>https://volunteer.songpa.org</span></a>
+          </div>
       </div>
+      <div class="col-md-6 col-sm-6"></div>
   </div>
 </div>
 
@@ -319,13 +325,14 @@
                                               padding-bottom: 100px;
                                           }
                                           .icon{
-                                              float:center;
+                                              float:left;
                                               position: relative;
                                               display: inline-block;
                                               margin-top:20px;
                                               margin-bottom:50px;
-                                        	  height: 150px;
-                                              width: 10%;
+                                              padding: 8% 0% 7% 0%;
+                                        	  /*height: 150px;*/
+                                              /*width: 100%;*/
                                         	  border-radius: 100%;
                                         	  border: 2px solid #1e929f;
                                         	  text-align: center;
@@ -335,10 +342,10 @@
                                         	  color:#fff;
                                           }
                                           .icon p{
-                                              line-height:4;
+                                              /*line-height:4;*/
                                           }
                                           .icon__content{
-                                              width:35%; 
+                                              /*width:35%; */
                                               height:150px;
                                               margin-top:20px;
                                               margin-bottom:50px; 
