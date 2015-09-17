@@ -52,6 +52,8 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
         color: white;
         height:435px;
         width:100%;
+        overflow:hidden;
+        position:relative;
     }
     
     fieldset {
@@ -68,9 +70,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
     }
    
     select {
-          width: 275px;
-          color: white;
-          font-size: 16px;
+          width: 247px;;
+          color: black;
+          font-size: 8px;
           background-color: #5FC0C7;
           border: 1px solid white;
           height: 40px;
@@ -91,22 +93,28 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
     ::-webkit-input-placeholder {
        color: white;
        font-size:15px;}
-  .wantlist {list-style-type :none;
+       
+  .wantlist {
+             list-style-type :none;
              float :left;
              margin-right: auto;
              margin-bottom: 30px;
              margin-top: 11%;
-             
+             color:black;
             }
   .fieldset_list {margin: auto;
                   width: 100%;
                   position: absolute;
+                 margin-left: -2%;
                   }
   .row_main_content {padding:10px;}
   .row {margin-right: auto;
         margin-left: auto;}
 
   </style>
+
+
+
 
 <script type="text/javascript">
   function hideIcon(self) {

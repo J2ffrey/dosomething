@@ -1,12 +1,128 @@
 <%= render :partial => 'home/main_navbar' %>
 
+<br>
+<br>
+<br>
 
+<!--찜한봉사-->
+<div class="cart_title">
+  <p style=>찜한봉사</p>
+</div>
+
+<hr color="white" width="5%">
+
+<div class="cart_content_background">
+  <div class="col-md-1">&nbsp</div>
+  <div class="col-md-10 cart_content hvr-border-fade">
+    <div class="row">
+      <div class="col-md-2 cart_content_photo_block">
+        <img src="/img/teamprofile/cw.jpg" class="cart_content_photo">
+      </div>
+      
+      <div class="col-md-10 " style="">
+        <div class="row" style="margin:0px;">
+          <div class="col-md-9">
+            <p class="cart_content_title"><strong>창우오빠 괴롭히기</strong></p>
+            <span style="color:gray">
+                기간 : 
+            <br>장소 : 
+            <br>봉사시간 :
+            </span>
+          </div>
+          <div class="col-md-3">
+            <p class="cart_content_region"><strong>서울특별시 중구</strong></p>
+          </div>
+        </div>
+        <div class="row no-padding" style="margin:0px;padding-right:0px;">
+          <div class="col-md-8">
+            <p style="margin-top:2%">창우오빠를 못살게 구는 프로그램입니다.</p>
+          </div>
+          <div class="col-md-4 no-padding">
+            <button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button>
+            <button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button>
+            <button class="cart_content_btn cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <br>
+  <div class="col-md-1">&nbsp</div>
+</div>
+<!--찜한봉사-->
+
+
+<br>&nbsp
+<br>&nbsp
+<br>&nbsp
+
+<!--실제 봉사 리스트-->
+<div class="col-md-12 col-sm-12 col-xs-12 cart_title">
+  <p style=>실제 봉사 리스트</p>
+</div>
+
+<hr color="white" width="5%">
+
+<div class="col-md-12 cart_content_background">
+  <div class="col-md-1">&nbsp</div>
+  
+    <div class="col-md-10 cart_content">
+      <div class="col-md-2">
+        <img src="/img/teamprofile/cw.jpg" class="cart_content_photo">
+      </div>
+      <div class="col-md-6" style="margin-left:3%">
+        <p class="cart_content_title"><strong>창우오빠 괴롭히기</strong></p>
+          <span style="color:gray">
+                기간 : 
+            <br>장소 : 
+            <br>봉사시간 :
+          </span>
+          <p style="margin-top:2%">창우오빠를 못살게 구는 프로그램입니다.</p>
+      </div>
+      <div class="col-md-4" style="margin-left:-3%">
+        <p class="cart_content_region"><strong>서울특별시 중구</strong></p>
+        <button class="cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button>
+        <button class="cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button>
+        <button class="cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button>
+      </div>  
+    </div>
+  <br>
+  <div class="col-md-1">&nbsp</div>
+</div>
+
+<!--실제 봉사 리스트-->
+
+
+<br>&nbsp
+<br>&nbsp
+<br>&nbsp
+
+
+<!--총 봉사시간-->
+<div class="col-md-12 col-sm-12 col-xs-12 cart_title">
+  <p style=>총 봉사시간</p>
+</div>
+
+<hr color="white" width="5%">
+
+<div class="col-md-12 cart_content_background">
+<h1 style="text-align:center; margin-bottom:2%; color:#5fc0c7;"><strong>20시간</strong></h1>
+
+</div>
+
+
+<!--총 봉사시간-->
+
+
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
 
 <!--봉사시간 입력 테두리-->
-<div class="container">
+<br><br><br><br><br><br><div class="container">
   <div class="row">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -152,24 +268,6 @@
       
       <% @my_bongsa_in_bucket.each do |b| %>
       <% matched_bucket = @bongsa2.where(:target_bongsa_id => b.id).first %>
-      <%# bv = Array.new
-         matched_buckets.each do |v|
-           next if v.user_id != current_user.id
-           if v.user_id == current_user.id 
-             bv << v
-           end
-         end 
-         matched_bucket_only_mine = bv.first %>
-      <%#if b.ctgory == 1
-          bb << "벽화봉사"
-         elsif b.ctgory == 2
-          bb << "재능봉사"
-         elsif b.ctgory == 3
-          bb << "헌혈"
-         else
-          bb << "카테고리가 없습니다"
-         end %>
-      
           <tr>
             <th><%= b.name %></th>
             <th><%= b.org_name %></th>

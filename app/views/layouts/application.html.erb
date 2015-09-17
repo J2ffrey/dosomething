@@ -3,12 +3,12 @@
 <head>
 <!-- 한글패치 -->
   <meta charset="utf-8">
-  <title>Do Sth!</title>
+  <title>봉사꾼!</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   
-  
+  <%= render :partial => 'style/index' %>
 
   
   <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -19,24 +19,30 @@
 
   <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <!-- 드롭바용 제이커리 -->
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script> 
   <!-- 아이콘용 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-
   <!--글씨체 한나체로 변경-->
-<link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
       <style>
         body {
           font-family: 'Noto Sans', sans-serif;
         }
       </style>
-  
 </head>
-<body>
 
-<%= yield %>
 
+<body class="gray">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div style="padding:0px;" class="col-md-10 color"><%= yield %></div></div>
+    <div class="col-md-1"></div>
+  </div>
 <!-- Jquery cd
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
+
 </body>
 </html>
