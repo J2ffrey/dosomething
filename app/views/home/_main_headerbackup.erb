@@ -1,0 +1,227 @@
+
+  
+<header role="banner" class="header header--home">
+  <div class="wrapper">
+
+    <div class="row header__top">
+      <div calss="col-md-12">
+          <form class="navbar-form navbar-right" id="form_s" role="search">
+              <!--<button id="search" class="navbar__search__first">검색</button>-->
+              <div class="form-group">
+                <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
+              </div>
+          </form>
+      </div>
+    </div>
+
+<!-- 검색 창 밑부분 부터 -->
+
+
+
+        <div class="col-md-12 header__title"> <strong>봉사꾼</strong> </div>
+          <center>
+            <p style="font-size:30px; margin-bottom: 1%;">Visited &nbsp
+              <font size="80px;">
+                <%= @total_view_count %>
+              </font>
+                &nbsp Members.
+            </p>
+          </center>
+    <div class="row" id="gh">
+     <center> 
+      <div class="dropdown">
+        <button> &nbsp지역 </button>
+          <ul id="dropdown-list">
+                <li class="wantlist">
+                    <a href=""><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                    <% Region.all.each do |x| %>
+                    <a href=""><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                    <% end %>
+                </li>
+          </ul> 
+      </div>
+      
+      &nbsp
+  
+  
+      <div class="dropdown">
+        <button> &nbsp학교 </button>
+          <ul id="dropdown-list">
+            <li class="wantlist">
+              <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                <% School.all.each do |x| %>
+              <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                <% end %>
+            </li>
+          </ul> 
+      </div>
+  
+      <div class="dropdown">
+        <button> &nbsp시간 </button>
+          <ul id="dropdown-list">
+            <li class="wantlist">
+             <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+              <% Btime.all.each do |x| %>
+            <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+              <% end %>
+            </li>        
+          </ul> 
+      </div>
+  
+      <div class="dropdown" >
+        <button> &nbsp종류 </button>
+          <ul id="dropdown-list">
+            <li class="wantlist">
+             <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                <% Category.all.each do |x| %>
+             <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                <% end %>
+            </li>
+          </ul> 
+      </div>
+     </center>
+    </div>
+  </div>  
+</header>
+
+
+
+<script>
+  var Dropdown = (function($) {
+
+    var $body = $('body'),
+      $dropdown = $body.find('.dropdown'),
+      $trigger = $dropdown.find('button'),
+      $list = $dropdown.find('ul'),
+      $firstLink = $list.find('li:first a'),
+      $lastLink = $list.find('li:last a'),
+      $gh = $body.find('#gh');
+
+    var init = function() {
+      ariaSetup();
+      bindEvents();
+    }
+
+    var ariaSetup = function() {
+      var listId = $list.attr('id');
+
+      $trigger.attr({
+        'aria-expanded': 'false',
+        'aria-controls': listId
+      });
+
+      $list.attr({
+        'aria-hidden': true
+      });
+      
+      /*$gh.attr({
+        'style': ''
+        });
+        */
+    }
+
+    var bindEvents = function() {
+      $trigger.on('click', toggleDropdown);
+
+      $firstLink.on('keydown', function() {
+        if (event.which === 9 && event.shiftKey === false) {
+          return;
+        } else if (event.which === 9 && event.shiftKey === true) {
+          toggleDropdown();
+        }
+      });
+
+      $lastLink.on('keydown', function() {
+        if (event.shiftKey) return;
+        toggleDropdown();
+      });
+    }
+
+    var toggleDropdown = function() {
+      var hidden = $list.attr('aria-hidden') === 'true' ? false : true,
+        expanded = !hidden;
+      
+      $trigger.attr('aria-expanded', expanded);
+      $list.attr('aria-hidden', hidden);
+      /*$gh.attr('style', 'height:250px;');*/
+    }
+
+    return {
+      init: init
+    }
+
+  })(jQuery);
+  
+    Dropdown.init();
+
+</script>          
+
+<script type="text/javascript">
+	
+$(function(){
+   //onKeypress="javascript:if(event.keyCode==13) {dongCheck();}"
+  $("#form_s").submit(function(){
+    $.ajax({
+  			type:"get",
+  			url:"/home/filter?" + 'region=' + $('#region_select').val() 
+  			+ '&school=' + $('#school_select').val() 
+  			+ '&btime=' + $('#btime_select').val() 
+  			+ '&category=' + $('#category_select').val()
+  			+ '&s_word=' + $('#s_word').val(),
+  			datatype:"html",
+  			success:function(r){
+  				$("#main_contents").empty();
+  				$("#main_contents").append("<style>"+r+"</style>");
+  			},
+  			error:function(){
+  				alert("데이터를 가져오지 못하였습니다.");
+  			},
+  		});
+  		return false;
+  });
+
+  $("#search").on("click", function(){
+		$.ajax({
+			type:"get",
+			url:"/home/filter?" + 'region=' + $('#region_select').val() 
+			+ '&school=' + $('#school_select').val() 
+			+ '&btime=' + $('#btime_select').val() 
+			+ '&category=' + $('#category_select').val()
+			+ '&s_word=' + $('#s_word').val(),
+			datatype:"html",
+			success:function(r){
+				$("#main_contents").empty();
+				$("#main_contents").append("<style>"+r+"</style>");
+			},
+			error:function(){
+				alert("데이터를 가져오지 못하였습니다.");
+			},
+		});
+  })
+  
+  $("#region_select, #school_select, #btime_select, #category_select").on("change", function(){
+		$.ajax({
+			type:"get",
+			url:"/home/filter?" + 'region=' + $('#region_select').val() 
+			+ '&school=' + $('#school_select').val() 
+			+ '&btime=' + $('#btime_select').val() 
+			+ '&category=' + $('#category_select').val()
+			+ '&s_word=' + $('#s_word').val(),
+			datatype:"html",
+			success:function(r){
+				$("#main_contents").empty();
+				$("#main_contents").append("<style>"+r+"</style>");
+			},
+			error:function(){
+				alert("데이터를 가져오지 못하였습니다.");
+			},
+		});
+  })
+  
+})
+</script>
+
+
+
+<%= render :partial => 'style/main_headercss' %>
+<%= render :partial => 'style/dropcss' %>

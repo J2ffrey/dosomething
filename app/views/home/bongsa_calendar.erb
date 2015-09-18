@@ -1,455 +1,281 @@
 <%= render :partial => 'home/main_navbar' %>
-<div class="col-md-2" style="border:solid black">
-	
-	<h1>달력달력</h1>
 
+<div class="row header__top">
+      <div calss="col-md-12">
+          <form class="navbar-form navbar-right" id="form_s" role="search">
+              <!--<button id="search" class="navbar__search__first">검색</button>-->
+              <div class="form-group">
+                <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
+              </div>
+          </form>
+      </div>
+    </div>
+</br>
+
+<div class="col-md-2">
+  <div class="small-calendar-title">
+    <span class="prev" ng-click="addMonth(-1)"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></span>
+    <span class="current ng-binding" ng-bind="date | date:'yyyy.MM'">2015.09</span>
+    <span class="next" ng-click="addMonth(1)"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></span>
+  </div>
+
+  <div class="small-calendar">
+    <div class="small-calendar-body">
+      <div class="dayname-container">
+        <div class="row">
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">일</div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">월</div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">화</div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">수</div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">목</div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">금</div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">토</div>
+        </div>
+        <div class="row">
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">30</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">31</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">1</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">2</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">3</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">4</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">5</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">6</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">7</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">8</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">9</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">10</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">11</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">12</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">13</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">14</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">15</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">16</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">17</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">18</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">19</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">20</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">21</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">22</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">23</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">24</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">25</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">29</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">29</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">29</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+
+.color {background-color: #5fc0c7;}
+.small-calendar-title {text-align:center;
+                      font-weight: 800;
+                      color: white;
+                      margin-bottom:4%;
+                      font-size: 18px;
+                      }
+.dayname-container {float: left;
+                    color:white;
+                    }
+.calendar-container{
+    float: left;
+    height: 20px;
+    width: calc(100% / 7);
+}
+.day-label {
+    float: left;
+    height: 20px;
+    width: calc(100% / 7);
+}
+.small-calendar {
+    padding: 16px 10px;
+    height: calc(7 * 20px + 2 * 15px + 2px);
+    background-color: rgba(249, 246, 246, 0.16);
+}
+.bongsa_checkbox {margin-top:5%;}
+input#s_word {
+    background-image: url(/img/teamprofile/search.png);
+    background-repeat: no-repeat;
+    text-indent: 44px;
+}
+.navbar__search {
+    height: 35px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid white;
+    background-color: #5FC0C7;
+    width: 340px;
+    }
+
+::-webkit-input-placeholder {
+   color: white;
+   font-size:15px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: white; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: white; 
+}
+
+:-ms-input-placeholder {  
+    color: white;  
+}
+</style>
+
+  
+  <!--봉사유형 선택	-->
+  <div class="row">
+	  <center style="margin-top: 23%;"><p style="font-size:18px; color:white;"><b>봉사활동 유형</b></p></center>
+  </div>
+	
+	<div class="bongsa_checkbox">
+  	<input type="checkbox" class="select_type" class="checking">
+  	<div class="circle number1"></div>
+  	<p class="select_type_name">전체보기</p>
+	
+    <input type="checkbox" class="select_type" class="checking">
+    <div class="circle number2"></div>
+    <p class="select_type_name">교육봉사</p>
+    
+    <input type="checkbox" class="select_type" class="checking">
+    <div class="circle number3"></div>
+    <p class="select_type_name">재능봉사</p>
+    
+    <input type="checkbox" class="select_type" class="checking">
+    <div class="circle number4"></div>
+    <p class="select_type_name">노력봉사</p>
+    
+    <input type="checkbox" class="select_type" class="checking">
+    <div class="circle number5"></div>
+    <p class="select_type_name">해외봉사</p></p>
+    
+    <input type="checkbox" class="select_type" class="checking">
+    <div class="circle number6"></div>
+    <p class="select_type_name">기타봉사</p>
+  </div>
+</div>
 <!--봉사유형 선택	-->
-	<center><p style="font-size:16px"><b>봉사활동 유형</b></p></center>
-	
-	<input type="checkbox" class="select_type" class="checking">
-	<div class="circle number1"></div>
-	<p class="select_type_name">전체보기</p>
-	
-	<input type="checkbox" class="select_type" class="checking">
-	<div class="circle number2"></div>
-	<p class="select_type_name">교육봉사</p>
-	
-	<input type="checkbox" class="select_type" class="checking">
-	<div class="circle number3"></div>
-	<p class="select_type_name">재능봉사</p>
-	
-	<input type="checkbox" class="select_type" class="checking">
-	<div class="circle number4"></div>
-	<p class="select_type_name">노력봉사</p>
-	
-	<input type="checkbox" class="select_type" class="checking">
-	<div class="circle number5"></div>
-	<p class="select_type_name">해외봉사</p></p>
-	
-	<input type="checkbox" class="select_type" class="checking">
-	<div class="circle number6"></div>
-	<p class="select_type_name">기타봉사</p>
-</div>	
-<!--봉사유형 선택	-->
+
+
+
 
 <!--봉사세부달력-->
 
 <div class="col-md-10" style="padding-left: 0px; padding-right: 0px;">
-  <div class="col-md-12" style="background: #502da5; color: white">
-    <center><h3 style="margin-bottom: 2%;">2015.10</h3></center>
+  <div class="row">
+    <div class="col-md-12" style="background: #502da5; color: white">
+      <center><h3 style="margin-bottom: 2%;">2015.10</h3></center>
+    </div>
   </div>
-
-  <div style="width:14.28%; background: #b29cda;">&nbsp</div>
-  <div style="width:14.28%; background: #b29cda; color: white;">
+  
+  <!--하루섹션(날짜&요일)-->
+  <div class="row">
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">13</p></center>
+      <center><p class="calendar_day">MON</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  
+  <!--하루섹션(날짜&요일)-->
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">14</p></center>
+      <center><p class="calendar_day">TUE</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  
+  <!--하루섹션(날짜&요일)-->
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">15</p></center>
+      <center><p class="calendar_day">WED</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  
+  <!--하루섹션(날짜&요일)-->
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">16</p></center>
+      <center><p class="calendar_day">THU</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  
+  <!--하루섹션(날짜&요일)-->
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">17</p></center>
+      <center><p class="calendar_day">FRI</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  
+  <!--하루섹션(날짜&요일)-->
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">18</p></center>
+      <center><p class="calendar_day">SAT</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  
+  <!--하루섹션(날짜&요일)-->
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_date">19</p></center>
+      <center><p class="calendar_day">SUN</p></center>
+    </div>
+  <!--하루섹션(날짜&요일) 끝-->
+  </div>
+  
+  <!--캘린더 안 봉사 내용-->
+  
+  <div>
+    <div class="col-7 calendar_content_background" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
     
-    <center><p class="calendar_date">13</p></center>
-    <center><p class="calendar_day">MON</p></center>
-    <div style="width:14.28%; background: #b29cda;">&nbsp</div>
+   <div class="col-7 calendar_content_background" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
+    
+    <div class="col-7 calendar_content_background" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
+    
+    <div class="col-7 calendar_content_background" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
+    
+    <div class="col-7 calendar_content_background" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
+    
+    <div class="col-7 calendar_content_background" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
+    
+    <div class="col-7 calendar_content_last" >
+      <br>
+      <center><p class="calendar_day">내용내용</p></center>
+    </div>
   </div>
-  
-  
-
-
 </div>
-
-
-<!--봉사세부달력_일/요일-->
-
-<!--봉사세부달력-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<center>-->
-<!--  <table>-->
-<!--    <thead></thead>-->
-<!--    <tbody class="col-md-12">-->
-<!--      <tr>-->
-<!--        <div class="dayname_container col-md-12">-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">일</div>-->
-<!--          </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">월</div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">화</div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">수</div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">목</div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">금</div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="dayname-calendar-cell col-md-12">-->
-<!--              <div class="day-label name-of-days">토</div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--        </div>-->
-<!--      </tr>-->
-   
-<!--      <tr>-->
-<!--        <div class="top-calendar-week col-md-12">-->
-<!--          <td>-->
-<!--           <div class="day-calendar-cell col-md-12">-->
-<!--             <div class="day-label">30</div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">31</div>-->
-<!--             </div>-->
-<!--           </td>-->
-<!--           <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">2</div>-->
-<!--             </div>-->
-<!--           </td>-->
-<!--           <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">3</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">4</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">5</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">6</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--        </div>-->
-<!--      </tr>-->
-      
-      
-<!--      <tr>-->
-<!--        <div class="day-content col-md-12">-->
-<!--          <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--        </div>-->
-<!--      </tr>-->
-      
-<!--            <tr>-->
-<!--        <div class="top-calendar-week col-md-12">-->
-<!--          <td>-->
-<!--           <div class="day-calendar-cell col-md-12">-->
-<!--             <div class="day-label">30</div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">31</div>-->
-<!--             </div>-->
-<!--           </td>-->
-<!--           <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">2</div>-->
-<!--             </div>-->
-<!--           </td>-->
-<!--           <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">3</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">4</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">5</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--             <div class="day-calendar-cell col-md-12">-->
-<!--               <div class="day-label">6</div>-->
-<!--             </div>-->
-<!--            </td>-->
-<!--        </div>-->
-<!--      </tr>-->
-<!--      <tr>-->
-<!--        <div class="day-content col-md-12">-->
-<!--          <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--           <td class="bongsa-calendar-cell">-->
-<!--           <div class="col-md-12">-->
-<!--             <div class="bongsa_name_cell">-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--               <p>MDS테크놀로지</p>-->
-<!--             </div>-->
-<!--           </div>-->
-<!--           </td>-->
-<!--        </div>-->
-<!--      </tr>-->
-      
-      <!--<div class="day-content col-md-12">-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--  <div class="calendar-cell col-md-1">-->
-      <!--    <div class="bongsa_name_cell">MDS테크놀로지</div>-->
-      <!--  </div>-->
-      <!--</div>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--</center>-->
-<!--<style>-->
-<!--  .calendar-container .head .dayname-container {-->
-<!--    position: absolute;-->
-<!--    bottom: 20px;-->
-<!--    width: 100%;-->
-<!--    }-->
-<!--    .calendar-container .head .dayname-container .name-of-days {-->
-<!--    background: #999;-->
-<!--    font-size: 13px;-->
-<!--    color: #fff;-->
-<!--    }-->
-<!--    .calendar-container .calendar-cell .day-label {-->
-<!--    height: 20px;-->
-<!--    border-bottom: 1px solid #d8d8d8;-->
-<!--    }-->
-<!--    .calendar-container .calendar-cell {-->
-<!--    border: 1px solid #d8d8d8;-->
-<!--    width: 14.28571%;-->
-<!--    text-align: center;-->
-<!--    }-->
-<!--    .calendar-cell {width: 101%;-->
-<!--                    text-align: center;}-->
-<!--    .dayname_container {margin-top: 7%;}-->
-<!--    .dayname-calendar-cell {border: 1px solid #999;-->
-<!--                            text-align: center;}-->
-<!--    .day-calendar-cell {border: 1px solid #999;-->
-<!--                        text-align: center;-->
-<!--                        }-->
-<!--  .bongsa-calendar-cell {border:1px solid #999;}-->
-<!--</style>-->
-
-
 
 <%= render :partial => 'style/bongsa_calendarcss' %>
 <%= render :partial => 'home/main_footer' %>

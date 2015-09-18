@@ -24,22 +24,22 @@
           <div class="col-md-9">
             <p class="cart_content_title"><strong><%= y.name %></strong></p>
             <span style="color:gray">
-                기간 : 
-            <br>장소 : 
-            <br>봉사시간 :
+                기간 : <%= y.date_real_start %> ~ <%= y.date_real_end %>
+            <br>장소 : <%= Region.find(y.region_id).name %>
+            <br>봉사시간 : <%= y.time_expect_total %>
             </span>
           </div>
           <div class="col-md-3">
-            <p class="cart_content_region"><strong>서울특별시 중구</strong></p>
+            <p class="cart_content_region"><strong><%= Organization.find(y.organization_id).name %></strong></p>
           </div>
         </div>
-        md-8md-4<div class="row no-padding" style="margin:0px;padding-right:0px;">
+        <div class="row no-padding" style="margin:0px;padding-right:0px;">
           <div class="col-sm-6 col-md-7 col-lg-8">
-            <p style="margin-top:2%">창우오빠를 못살게 구는 프로그램입니다.</p>
+            <p style="margin-top:2%"><%= y.content.first(30) %>...</p>
           </div>
           <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-            <button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button>
-            <button class="cart_content_btn cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button>
+            <a href="/baguni/delete/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>
+            <a href="/baguni/register/<%= x.id %>"><button class="cart_content_btn cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button></a>
           </div>
         </div>
       </div>  
@@ -48,44 +48,56 @@
   <br>
   <div class="col-md-1">&nbsp</div>
 </div>
+<% end %>
 <!--찜한봉사-->
 <br>&nbsp
 <br>&nbsp
 <br>&nbsp
 <div class="cart_title">
-  <p style=>실제 봉사 리스트</p>
+  <p style=>실제봉사리스트</p>
 </div>
 
 <!--실제 봉사 리스트-->
-<div class="col-md-12 col-sm-12 col-xs-12 cart_title">
-  <p style=>실제 봉사 리스트</p>
-</div>
-
-<hr color="white" width="5%">
-
-<div class="col-md-12 cart_content_background">
+<% @real_bongsas.each do |x| %>
+<div class="cart_content_background">
   <div class="col-md-1">&nbsp</div>
-  
-    <div class="col-md-10 cart_content">
-      <div class="col-md-2">
+  <div class="col-md-10 cart_content hvr-border-fade">
+    <div class="row">
+      <div class="col-md-2 cart_content_photo_block">
         <img src="/img/teamprofile/cw.jpg" class="cart_content_photo">
       </div>
-      <div class="col-md-6" style="margin-left:3%">
-        <p class="cart_content_title"><strong>창우오빠 괴롭히기</strong></p>
-          <span style="color:gray">
-                기간 : 
-            <br>장소 : 
-            <br>봉사시간 :
-          </span>
-          <p style="margin-top:2%">창우오빠를 못살게 구는 프로그램입니다.</p>
-      </div>
-      <div class="col-md-4" style="margin-left:-3%">
-        <p class="c678654art_content_region"><strong>서울특별시 중구</strong></p>
-        <button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button>
-            <button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button>
-            <button class="cart_content_btn cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button>
-          </div>      </div>
+      
+      <div class="col-md-10">
+        <div class="row" style="margin:0px;">
+          <div class="col-md-9">
+            <p class="cart_content_title"><strong><%= x.title %></strong></p>
+            <span style="color:gray">
+                기간 : <%= x.date_start %> ~ <%= x.date_end %>
+            <br>장소 : <%= x.location %>
+            <br>봉사시간 : <%= x.time_total %>
+            </span>
+          </div>
+          <div class="col-md-3">
+            <p class="cart_content_region"><strong><%= x.region %></strong></p>
+          </div>
+        </div>
+        <div class="row no-padding" style="margin:0px;padding-right:0px;">
+          <div class="col-sm-6 col-md-7 col-lg-8">
+            <p style="margin-top:2%"><%= x.content %></p>
+          </div>
+          <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
+            <a href="/baguni/delete/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>
+            <a href="/baguni/modify/<%= x.id %>"><button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button></a>
+          </div>
+        </div>
+      </div>  
     </div>
+  </div>
+  <br>
+  <div class="col-md-1">&nbsp</div>
+</div>
+
+<% end %>
   <br>
   <div class="col-md-1">&nbsp</div>
 </div>
@@ -120,195 +132,6 @@
 <br>
 
 <!--봉사시간 입력 테두리-->
-<br><br><br><br><br><br><div class="container">
-  <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4>
-            <strong>내가 찜한 봉사</strong>  
-          </h4>
-        </div>
-        
-        <table class="table table-fixed">
-          <tbody>
-          
-            <!--신청내역버튼-->
-            
-                <tr>
-                  <div class="btn-group">
-                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                      찜+신청 리스트보기 <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <% @my_bongsa_in_bucket.each do |bb| %>
-                      <li><a href="/baguni/timemanage/<%= bb.id %>"><%= bb.name %></a></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                </tr>
-           
-            <!--신청내역버튼-->
-                  
-                  
-            <!--봉사시간 입력-->
-            <% unless params[:id] == 0 || params[:id].nil? %>
-              <% mb = @my_bongsa_in_bucket %>
-              <% c = Bucket.find(params[:id]) %>
-              <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left: 0px; margin-top:30px; margin-bottom: 30px; padding-left: 0px; padding-right: 0px; margin-left: -10px;">
-                <!-- div 내부에 nav?? --><!--세로로 떨어지는 li들을 가로로 정렬시키려고 넣었습니다-->
-                <nav id="menu">    <!-- 이게 nav안하면 이상하게 나와요 테이블이 ㅠㅠ -->
-                    <ul class="bog_list">
-                      <form action = "/baguni/a_update/<%= c.id %>" method="POST">
-            
-                        <li>
-                          <input type="text" placeholder="봉사명" class="menu_width" value="<%= mb.name %>" name="name">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="시행기관"  class="menu_width" value="<%= mb.org_name %>" name="org_name">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="활동내용" class="menu_width" value ="<%= mb.content %>" name="content">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="활동시작일" class="menu_width" value="<%= mb.date_real_start %>" name="t_start">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="활동종료일" class="menu_width" value="<%= mb.date_real_end %>" name="t_end">
-                        </li>
-            
-                        <li>
-                          <% unless c.act_time.nil? %>
-                          <input type="text" placeholder="시간" class="menu_width" value ="<%= c.act_time %>" name="act_time">
-                          <% else %>
-                          <input type="text" placeholder="시간" class="menu_width" value ="" name="act_time">
-                          <% end %>
-                        </li>
-                        <li>
-                          <input type="submit" value="등록" style="width: 50px; color: black;">
-                        </li>
-                      </form>
-                    </ul>
-                </nav>
-              </div>
-            
-            <% else %>
-              <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left: 0px; margin-top:30px; margin-bottom: 30px; padding-left: 0px; padding-right: 0px; margin-left: -10px;">
-                <!-- div 내부에 nav?? --><!--세로로 떨어지는 li들을 가로로 정렬시키려고 넣었습니다-->
-                <nav id="menu">    <!-- 이게 nav안하면 이상하게 나와요 테이블이 ㅠㅠ -->
-                    <ul class="bog_list">
-                      <form action = "/baguni/a_update?confirm=2" method="POST"><!-- 기존 값 없이 추가하는 경우 -->
-            
-                        <li>
-                          <input type="text" placeholder="봉사명" class="menu_width" value="" name="name">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="시행기관"  class="menu_width" value="" name="org_name">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="활동내용" class="menu_width" value ="" name="content">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="활동시작일" class="menu_width" value="" name="date_real_start">
-                        </li>
-                        <li>
-                          <input type="text" placeholder="활동종료일" class="menu_width" value="" name="date_real_end">
-                        </li>
-                        <li>
-                        <li>
-                          <input type="text" placeholder="시간" class="menu_width" name="act_time">
-                        </li>
-                        <li>
-                          <input type="submit" value="등록" style="width: 50px; color: black;">
-                        </li>
-                      </form>
-                    </ul>
-                </nav>
-              </div>
-            <% end %>
-            <!--봉사시간 입력-->
-          </tbody>
-       </table>
-    </div>
-  </div>
-</div>
-
-<!--봉사시간 입력 테두리-->
-
-
-
-
-<!--봉사시간표-->
-<div class="container">
-  <div class="row">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4>
-            <strong>실제 봉사 리스트</strong>  
-          </h4>
-        </div>
-        
-        
-        <table class="table table-fixed">
-          <thead>
-            <tr>
-              <th>봉사명</th>
-              <th>시행기관</th>
-              <th>활동내용</th>
-              <th>활동시작일</th>
-              <th>활동종료일</th>
-              <th>시간</th>
-              <th>기능</th>
-            </tr>
-          </thead>
-          
-          
-          <tbody>
-      
-      <% @my_bongsa_in_bucket.each do |b| %>
-      <% matched_bucket = @bongsa2.where(:target_bongsa_id => b.id).first %>
-          <tr>
-            <th><%= b.name %></th>
-            <th><%= b.org_name %></th>
-            <th><%= b.content.first(25)+"..." %></th>
-            <th><%= b.date_real_start %></th>
-            <th><%= b.date_real_end %></th>
-            <% unless b.act_time.nil? || b.act_time==0 %>
-              <th><%= b.act_time %></th>
-            <% else %>
-              <th><a href="/baguni/timemanage/<%= matched_bucket.id %>">시간 입력하기</a></th>
-            <% end %>
-            <th>
-              <%unless b.act_time.nil? || b.act_time==0%>
-              <a href="/baguni/timemanage/<%= matched_bucket.id %>">[수정]</a><br><br>
-              <%else%>
-              <%end%>
-              <a href="/baguni/bongsa_delete/<%= matched_bucket.id %>">[삭제]</a>
-            </th>
-          </tr>
-      <% end %>
-          <!--총 봉사시간-->  
-          <tr>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td>&nbsp</td>
-            <td><strong>총 봉사시간&nbsp: </strong></td>
-            <td><strong> 
-              <% unless @total_time != "0" %> 
-              <% else %>
-              <%= @total_time %>시간<span class="glyphicon glyphicon-heart"></span>
-              <% end %>
-            </strong></td>
-            <td>&nbsp</td>
-          </tr> 
-          <!--총 봉사시간-->
-        </tbody>
-       </table>
-    </div>
-  </div>
-</div>
-<!--봉사시간표-->
-
 
 <%= render :partial => 'style/timemanagecss' %>
 

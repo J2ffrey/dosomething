@@ -7,36 +7,42 @@ class BaguniController < ApplicationController
         #@bongsa2 = Bucket.where(:user_id => current_user.id)
         
         @buckets = current_user.buckets
-        
-        
-        zz = Array.new
-            @bongsa2.all.each do |x|
-                next if x.target_bongsa_id.nil?
-                y = x.target_bongsa_id
-                z = Bongsa.find(y)
-                zz << z
-            end
-        @my_bongsa_in_bucket = zz
-        
-        #----------카테고리별 보기---------------#
-        # if params[:category].nil? || params[:category] == "0"
-        #     @bongsa2 = @bongsa2
-        # else
-        #     @bongsa2 = Bongsa.where(:ctgory => params[:category])
-        # end
-        
-        #----------총 봉사시간 구현하기-----------#
-        tt=Array.new
-        
-            @bongsa2.each do |t|
-                next if t.act_time==nil
-                tt << t.act_time
-            end
-        
-        @tt = tt
-        @total_time = @tt.sum
+        @real_bongsas = current_user.real_bongsas
+    end
     
+    def register
+        #a = current_user.buckets
+        #a = Bongsa.find(Bucket.where(id: params[:id], user_id: current_user.id).target_bongsa_id)
+        a = Bongsa.find(Bucket.find(params[:id]).target_bongsa_id)
+        b = RealBongsa.new
+        b.title = a.name
+        b.content = a.content.first(30)
+        b.date_start = a.date_real_start
+        b.date_end = a.date_real_end
+        b.time_total = a.time_expect_total
+        b.location = Region.find(a.region_id).name
+        b.region = Organization.find(a.organization_id).name
+        b.img = ""
+        b.user_id = current_user.id
+        b.save
+        Bucket.find(params[:id]).delete
+        redirect_to :back
+    end
     
+    def modify
+        
+    end
+    
+    def delete2
+        a = current_user.real_bongsas.find(params[:id])
+        a.delete
+        redirect_to :back
+    end
+    
+    def delete
+        a = current_user.buckets.find(params[:id])
+        a.delete
+        redirect_to :back
     end
     
     def a_update #봉사 시간을 입력받아(사실 시간 뿐만아니라 다 고칠 수 있음) 저장하는 곳입니다.

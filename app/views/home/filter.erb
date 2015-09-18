@@ -33,8 +33,7 @@
 <%#= @category %>
 <div class="blank"></div>
 <div id="ajax_target">
-    <div class="bongsas">
-    </div>
+  <div class="bongsas"></div>
 </div>
 
 <!--메인 컨텐츠-->
@@ -44,28 +43,24 @@
   <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
       <div class="row">
-
         <% @bongsa.each do |b| %>
           <center>
             <a href="/home/bongsa_information/<%= b.id %>">
               <div class="col-md-4 col-sm-6 col-lg-4 row_main_content">
-                
                 <div class="row">
                   <div class="col-md-12" style="padding:0px;">
                      <img src="<%#= b.img_main %>/img/teamprofile/fry.jpg" alt="이미지" style="width:100%;height: 271px; margin-top:0px;">
                      
-                           <% if b.name.nil? %>
-                              <center>봉사명이 없습니다.</center>
-                           <% else %>
-                         
-                         
-                         <span class="side_info__title">
-                            <span><%= b.date_real_start %> ~ <%= b.date_real_end %></span> 
-                            <p class="main_content__title">
-                              <strong><%= b.name %></strong>
-                            </p>
-                         </span>
-                           <% end %>
+                      <% if b.name.nil? %>
+                      <center>봉사명이 없습니다.</center>
+                      <% else %>
+                      <span class="side_info__title">
+                        <span><%= b.date_real_start %> ~ <%= b.date_real_end %></span> 
+                        <p class="main_content__title">
+                          <strong><%= b.name %></strong>
+                        </p>
+                      </span>
+                      <% end %>
                   </div>
                 </div>    
                 
@@ -88,7 +83,6 @@
                     </div>  
                   </div>
                 </div>
-              
               </div>
             </a>
           </center>
@@ -103,49 +97,49 @@
 
 <!-- 봉사정보 더 보기 코드입니다 -->
 
-    </br></br>
-      <center>
-        <div class="bongsa_more">
-          <button id="bongsa_more_btn"><strong>봉사정보 더보기</strong></button>
-        </div>
-      </center>
-    </br>
+</br></br>
+  <center>
+    <div class="bongsa_more">
+      <button id="bongsa_more_btn"><strong>봉사정보 더보기</strong></button>
+    </div>
+  </center>
+</br>
 
 <!-- 무한스크롤 JSON -->
-    <script type="text/javascript" src="/jquery.jscroll.min.js"></script>
-    <script type="text/javascript">
-       $(function(){
-          $("#bongsa_more_btn").on("click", function(){
-              $.ajax({
-                  data :{},
-                  type:"get",
-                  url: "",
-                  datatype:"html",
-                  success: function(){
-                    $("#next_content").load(r);
-                  },
-                  error: function(){
-                        alert("데이터를 가져오지 못하였습니다.");
-                  };
-              });
-            });
+<script type="text/javascript" src="/jquery.jscroll.min.js"></script>
+<script type="text/javascript">
+   $(function(){
+      $("#bongsa_more_btn").on("click", function(){
+          $.ajax({
+              data :{},
+              type:"get",
+              url: "",
+              datatype:"html",
+              success: function(){
+                $("#next_content").load(r);
+              },
+              error: function(){
+                    alert("데이터를 가져오지 못하였습니다.");
+              };
           });
-    </script>
+        });
+      });
+</script>
 
 
 <!--봉사달력-->
 
-    <br><br>
-    <center>
-      <div class="row">
-          <a href = '/home/bongsa_calendar'>
-          <i class="fa fa-calendar-check-o fa-5x"></i>
-          <p></p>
-            <p style="font-size:30px; text-align:center; color:#512da7;"><b> 봉사달력 보러가기</b></p>
-          </a>
-      </div>
-    </center>
-    <br><br>
+<br><br>
+<center>
+  <div class="row">
+    <a href = '/home/bongsa_calendar'>
+      <i class="fa fa-calendar-check-o fa-5x"></i>
+      <p></p>
+      <p style="font-size:30px; text-align:center; color:#512da7;"><b> 봉사달력 보러가기</b></p>
+    </a>
+  </div>
+</center>
+<br><br>
 
 
 

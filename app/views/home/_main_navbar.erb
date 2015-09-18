@@ -17,14 +17,14 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/home/private_info">개인정보변경</a></li>
-                <li><a href="/baguni/timemanage">봉사시간관리</a></li>
-                <li><a href="/home/bongsa_calendar">봉사달력보기</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="/home/introduce">봉사꾼소개</a></li>
-                <li><a href="/home/data_input">봉사정보 등록</a></li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/home/private_info">개인정보변경</a></li>
+              <li><a href="/baguni/timemanage">봉사시간관리</a></li>
+              <li><a href="/home/bongsa_calendar">봉사달력보기</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/home/temp">봉사꾼소개</a></li>
+              <li><a href="/home/data_input">봉사정보 등록</a></li>
               </ul>
           </li>
           <li class="logout">

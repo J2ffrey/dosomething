@@ -20,18 +20,18 @@ class CreateBongsas < ActiveRecord::Migration
       t.string  :clerk_call       #담당자 연락처
       
       #기간 및 시간
-      t.boolean :is_regular         #정기 혹은 비정기
-      t.string	:date_recruit_start	#모집시작일
-      t.string	:date_recruit_end		#모집마감일
-      t.integer :date_real_start    #봉사 실 시작일
-      t.integer :date_real_end      #봉사 실 종료일
-      t.integer :time_daily_start   #하루 시작 시각
-      t.integer :time_daily_end     #하루 종료 시각
+      t.boolean :is_regular        #정기 혹은 비정기
+      t.date	:date_recruit_start	 #모집시작일
+      t.date	:date_recruit_end		 #모집마감일
+      t.date :date_real_start      #봉사 실 시작일
+      t.date :date_real_end        #봉사 실 종료일
+      t.string :time_daily_start   #하루 시작 시각
+      t.string :time_daily_end     #하루 종료 시각
       t.integer :time_expect_total  #총 획득 예상시간
       
       #지원 자격 요건
       t.integer :vltr_num         #모집인원
-      t.integer	:vltr_age_id	        #지원가능 연령(범주로 지정. select value)
+      t.integer	:vltr_age_id	    #지원가능 연령(범주로 지정. select value)
       t.integer	:vltr_sex	        #지원가능 성별
       t.text		:vltr_req	        #지원가능 상세조건
       

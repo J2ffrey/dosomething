@@ -28,20 +28,8 @@ VltrAge.create!([
   ])
 
 Bongsa.create!([
-  {img_main: nil, img_poster: nil, name: "서울봉사1", content: "", is_edu: true, status: 3, organization_id: 1, clerk_name: "현민", clerk_call: "010-1111-2222", is_regular: false, 
-  date_recruit_start: "150902", date_recruit_end: "150902", date_real_start: 150902, date_real_end: 150902, time_daily_start: 900, time_daily_end: 1600, 
-  time_expect_total: 90, vltr_num: 3, vltr_age_id: 1, vltr_sex: 3, vltr_req: "zz", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, 
-  admin_add: "jinyee0829@naver.com", admin_mod: "jinyee0829@naver.com", act_time: nil},
-  {img_main: nil, img_poster: nil, name: "서울봉사2", content: "", is_edu: true, status: 3, organization_id: 1, clerk_name: "현민", clerk_call: "010-1111-2222", is_regular: false, 
-  date_recruit_start: "150902", date_recruit_end: "150902", date_real_start: 150902, date_real_end: 150902, time_daily_start: 900, time_daily_end: 1600, 
-  time_expect_total: 90, vltr_num: 3, vltr_age_id: 1, vltr_sex: 3, vltr_req: "zz", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, 
-  admin_add: "jinyee0829@naver.com", admin_mod: "jinyee0829@naver.com", act_time: nil},
-  {img_main: nil, img_poster: nil, name: "서울봉사3", content: "", is_edu: true, status: 3, organization_id: 1, clerk_name: "현민", clerk_call: "010-1111-2222", is_regular: false, 
-  date_recruit_start: "150902", date_recruit_end: "150902", date_real_start: 150902, date_real_end: 150902, time_daily_start: 900, time_daily_end: 1600, 
-  time_expect_total: 90, vltr_num: 3, vltr_age_id: 1, vltr_sex: 3, vltr_req: "zz", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, 
-  admin_add: "jinyee0829@naver.com", admin_mod: "jinyee0829@naver.com", act_time: nil},
-  {img_main: nil, img_poster: nil, name: "서울봉사4", content: "", is_edu: true, status: 3, organization_id: 1, clerk_name: "현민", clerk_call: "010-1111-2222", is_regular: false, 
-  date_recruit_start: "150902", date_recruit_end: "150902", date_real_start: 150902, date_real_end: 150902, time_daily_start: 900, time_daily_end: 1600, 
+  {img_main: nil, img_poster: nil, name: "서울봉사1", content: "내용입력", is_edu: true, status: 3, organization_id: 1, clerk_name: "현민", clerk_call: "010-1111-2222", is_regular: false, 
+  date_recruit_start: Date.new(2015,09,02), date_recruit_end: Date.new(2015,09,02), date_real_start: Date.new(2015,09,02), date_real_end: Date.new(2015,09,02), time_daily_start: 900, time_daily_end: 1600, 
   time_expect_total: 90, vltr_num: 3, vltr_age_id: 1, vltr_sex: 3, vltr_req: "zz", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, 
   admin_add: "jinyee0829@naver.com", admin_mod: "jinyee0829@naver.com", act_time: nil}
 ])

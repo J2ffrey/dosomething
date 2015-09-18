@@ -1,87 +1,100 @@
 
+  <!--<script>  // Jquery 메뉴스크립트 
+      $(function() {
+      $( "#school" ).selectmenu();
+   
+      $( "#region" ).selectmenu();
+   
+      $( "#time" ).selectmenu();
+      
+      $( "#type" ).selectmenu();
+    });
+  </script>-->
   
 <header role="banner" class="header header--home">
-  <div class="wrapper">
 
-    <div class="row header__top">
-      <div calss="col-md-12">
-          <form class="navbar-form navbar-right" id="form_s" role="search">
-              <!--<button id="search" class="navbar__search__first">검색</button>-->
-              <div class="form-group">
-                <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
-              </div>
-          </form>
-      </div>
-    </div>
+<div class="row header__top">
+  <div calss="col-md-12">
+      <form class="navbar-form navbar-right" id="form_s" role="search">
+          <!--<button id="search" class="navbar__search__first">검색</button>-->
+          <div class="form-group">
+            <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
+          </div>
+      </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 header__title"> <strong>봉사꾼</strong></div>
+</div>
 
-<!-- 검색 창 밑부분 부터 -->
 
+  <div class="row">
+    <center><p style="font-size:30px; margin-bottom: 1%;">Visited &nbsp <font size="80px;"><%= @total_view_count %></font>&nbsp Members.</p></center>
+  </div>
 
-
-        <div class="col-md-12 header__title"> <strong>봉사꾼</strong> </div>
-          <center>
-            <p style="font-size:30px; margin-bottom: 1%;">Visited &nbsp
-              <font size="80px;">
-                <%= @total_view_count %>
-              </font>
-                &nbsp Members.
-            </p>
-          </center>
-    <div class="row" id="gh">
-     <center> 
-      <div class="dropdown">
-        <button> &nbsp지역 </button>
-          <ul id="dropdown-list">
+  <div class="row">
+    <form action="#">
+      <div class="row">
+        <center>
+          <fieldset class="fieldset_list">
+            <ul>
+              
+            <div class="dropdown">
+              <div class="col-md-3 col-sm-12 col-xs-12">
                 <li class="wantlist">
-                    <a href=""><option selected="selected" value="empty">&nbsp 선택안함</option></a>
+                  <label for="region">지역</label><br>
+                  <select name="region" id="region_select">
+                    <option selected="selected" value="empty">&nbsp 모두보기</option>
+                    <% i=1 %>
                     <% Region.all.each do |x| %>
-                    <a href=""><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
+                      <option id="region_option<%= i %>" value="<%= x.id %>">&nbsp <%= x.name %></option>
                     <% end %>
+                  </select>
                 </li>
-          </ul> 
-      </div>
-      
-      &nbsp
-  
-  
-      <div class="dropdown">
-        <button> &nbsp학교 </button>
-          <ul id="dropdown-list">
-            <li class="wantlist">
-              <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
-                <% School.all.each do |x| %>
-              <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
-                <% end %>
-            </li>
-          </ul> 
-      </div>
-  
-      <div class="dropdown">
-        <button> &nbsp시간 </button>
-          <ul id="dropdown-list">
-            <li class="wantlist">
-             <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
-              <% Btime.all.each do |x| %>
-            <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
-              <% end %>
-            </li>        
-          </ul> 
-      </div>
-  
-      <div class="dropdown" >
-        <button> &nbsp종류 </button>
-          <ul id="dropdown-list">
-            <li class="wantlist">
-             <a href><option selected="selected" value="empty">&nbsp 선택안함</option></a>
-                <% Category.all.each do |x| %>
-             <a href><option value="<%= x.id %>">&nbsp <%= x.name %></option></a>
-                <% end %>
-            </li>
-          </ul> 
-      </div>
-     </center>
-    </div>
-  </div>  
+               </div>
+             </div>
+             
+               <div class="col-md-3 col-sm-12 col-xs-12">
+                <li class="wantlist">
+                  <label for="school">학교</label><br>
+                  <select name="school" id="school_select">
+                    <option selected="selected" value="empty">&nbsp 모두보기</option>
+                    <% School.all.each do |x| %>
+                      <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+                    <% end %>
+                  </select>
+                </li>
+               </div>
+                
+               <div class="col-md-3 col-sm-12 col-xs-12">
+                <li class="wantlist">
+                  <label for="btime">시간</label><br>
+                  <select name="btime" id="btime_select">
+                    <option selected="selected" value="empty">&nbsp 모두보기</option>
+                    <% Btime.all.each do |x| %>
+                      <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+                    <% end %>
+                  </select>
+                </li>
+              </div>
+                
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                  <li class="wantlist">
+                    <label for="category">종류</label><br>
+                    <select name="category" id="category_select">
+                      <option selected="selected" value="empty">&nbsp 모두보기</option>
+                      <% Category.all.each do |x| %>
+                        <option value="<%= x.id %>">&nbsp <%= x.name %></option>
+                      <% end %>
+                    </select>
+                  </li>
+                </div>
+            </ul>
+          </fieldset>
+        </center>
+        </div>
+    </form>
+  </div>
 </header>
 
 <!-- 이재철코드 -->
@@ -90,77 +103,9 @@
 <%# end %> 
 <!-- 이재철코드 -->
 
+
+<%#= render :partial => 'popup' %>
 <%= render :partial => 'style/main_headercss' %>
-
-<script>
-  var Dropdown = (function($) {
-
-    var $body = $('body'),
-      $dropdown = $body.find('.dropdown'),
-      $trigger = $dropdown.find('button'),
-      $list = $dropdown.find('ul'),
-      $firstLink = $list.find('li:first a'),
-      $lastLink = $list.find('li:last a'),
-      $gh = $body.find('#gh');
-
-    var init = function() {
-      ariaSetup();
-      bindEvents();
-    }
-
-    var ariaSetup = function() {
-      var listId = $list.attr('id');
-
-      $trigger.attr({
-        'aria-expanded': 'false',
-        'aria-controls': listId
-      });
-
-      $list.attr({
-        'aria-hidden': true
-      });
-      
-      /*$gh.attr({
-        'style': ''
-        });
-        */
-    }
-
-    var bindEvents = function() {
-      $trigger.on('click', toggleDropdown);
-
-      $firstLink.on('keydown', function() {
-        if (event.which === 9 && event.shiftKey === false) {
-          return;
-        } else if (event.which === 9 && event.shiftKey === true) {
-          toggleDropdown();
-        }
-      });
-
-      $lastLink.on('keydown', function() {
-        if (event.shiftKey) return;
-        toggleDropdown();
-      });
-    }
-
-    var toggleDropdown = function() {
-      var hidden = $list.attr('aria-hidden') === 'true' ? false : true,
-        expanded = !hidden;
-      
-      $trigger.attr('aria-expanded', expanded);
-      $list.attr('aria-hidden', hidden);
-      /*$gh.attr('style', 'height:250px;');*/
-    }
-
-    return {
-      init: init
-    }
-
-  })(jQuery);
-  
-    Dropdown.init();
-
-</script>          
 
 <script type="text/javascript">
 	
@@ -225,5 +170,69 @@ $(function(){
   })
   
 })
+
+
+/*
+//(function() {
+  $(document).ready(function() {
+    
+    
+    var searchOptions = {
+      filter1: 1,
+      // filter2: 2,
+      // filter3: 3,
+      // filter4: 4
+    };
+    
+    $('#region_select').on('change', function() {
+    var selected_value = $(this).val();
+    searchOptions.filter1 = selected_value;
+    triggerSearch();
+    });
+  
+    // $('#school_select').on('change', function() {
+    // var selected_value = $(this).val();
+    // searchOptions.filter2 = selected_value;
+    // triggerSearch();
+    // });
+  
+    // $('#time_select').on('change', function() {
+    //   var selected_value = $(this).val();
+    //   searchOptions.filter3 = selected_value;
+    //   triggerSearch();
+    // });
+    
+    // $('#type_select').on('change', function() {
+    //   var selected_value = $(this).val();
+    //   searchOptions.filter4 = selected_value;
+    //   triggerSearch();
+    // });
+    
+    
+    function triggerSearch() {
+      $.ajax({
+        url: '//json_test' + '?' + $.param(searchOptions),
+        method: 'GET',
+        beforeSend: function() {
+          $('#ajax_target .bongsas').html('');
+        },
+        success: function(data, textStatus, jqXHR) {
+          for(var i in data) {
+            $('#ajax_target .bongsas').append('' +
+            '<div class="bongsas__item">' +
+            '<div class="bongsas__item__name">' + data[i].name + '</div>' +
+            '</div>' + 
+            '</div>');
+          };
+        },
+        error: function(data, textStatus, jqXHR) {
+          alert('error massege');
+        }
+      });
+    }
+    
+  });
+//})()
+*/
 </script>
 
