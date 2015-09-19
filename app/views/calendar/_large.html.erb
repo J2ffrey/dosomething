@@ -1,0 +1,60 @@
+<%
+  @year = 2015
+  @month = 8
+%>
+
+<% 
+@day = params[:day] if !params[:day].nil? && params[:day]!="empty"
+@month = params[:month] if !params[:month].nil? && params[:month]!="empty"
+@year = params[:year] if !params[:year].nil? && params[:year]!="empty"
+@ck = params[:ck] if !params[:ck].nil? && params[:ck]!="empty"
+@s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
+%>
+
+<%= @day %>.
+<%= @month %>.
+<%= @year %>.
+<%= @ck %>.
+<%= @s_word %>.
+
+<div class="row">
+  <div class="col-md-12" style="background: #502da5; color: white">
+    <center><h3 style="margin-bottom: 2%;"><%= @year %>.<%= @month %></h3></center>
+  </div>
+</div>
+
+<div class="row">
+  <% k = @day.nil? ? 14 : @day %>
+  <% (k..k+6).to_a.each do |x| %>
+    <% @day = x %>
+    <%= render partial: 'day' %>
+  <% end %>
+</div>
+
+<div class="row">
+
+<!--하루섹션(요일)-->
+  <% ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'].each do |x| %>
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_day"><%= x %></p></center>
+    </div>
+  <% end %>
+<!--하루섹션(요일) 끝-->
+
+</div>
+
+<!--캘린더 안 봉사 내용-->
+<div>
+  <!-- 여기부터 7번 반복 -->
+  <% (k..k+6).to_a.each do |x| %>
+    <div class="col-7 calendar_content_background" style="padding-top:5px;">
+      <% @day = x %>
+      <%#= @year %>
+      <%#= @month %>
+      <%#= @day %>
+      <%= render partial: 'day_info' %>
+    </div>
+  <% end %>
+  <!-- 777777777 -->
+  
+</div>

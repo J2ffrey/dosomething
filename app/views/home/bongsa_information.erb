@@ -1,114 +1,34 @@
-<%#= render :partial => 'home/main_navbar' %>
-<nav class="navbar navbar-default" style="background-color:#000;">
-  <div class="container-fluid transbox" style="background-color:#000;">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/" style="margin-left: 10px; font-size: 30px; color: white;"><strong>봉사꾼</strong></a>
-    </div>
+<%= render :partial => 'home/main_navbar' %>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="5e" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/home/private_info">개인정보변경</a></li>
-                <li><a href="/baguni/timemanage">봉사시간관리</a></li>
-                <li><a href="/home/calender">봉사달력보기</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="/home/introduce">봉사꾼소개</a></li>
-                <li><a href="/home/data_input">봉사정보 등록</a></li>
-              </ul>
-          </li>
-          <li class="logout">
-            <a id="link--login" class="secondary-nav-item" href="/users/sign_out">Log-out</a>
-          </li>
-        <% else %>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/home/calender" style="font-size:18px;">캘린더</a></li>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_in" style="font-size:18px;">로그인</a></li>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_up" style="font-size:18px;">회원가입</a></li>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
-        <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<style>
-  <%# @color = %>
-  .slide{
-    background-color: #e8f4e8;
-    margin:none;
-  }
-  .continue{
-    border-bottom: 2px solid #a2a3a2;
-  }
-  
-  .slided_img{
-    margin:none;
-    width: 100%;
-    height: 600px;
-    border:none;
-    /* These three lines are for transparency in all browsers. */
-    /*   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";*/
-    /*   filter: alpha(opacity=50);*/
-    /*   opacity:.5;*/
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;1+0,0+33,0+67,0+100,1+100 */
-    background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(0,0,0,0) 33%, rgba(0,0,0,0) 67%, rgba(0,0,0,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(33%,rgba(0,0,0,0)), color-stop(67%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 33%,rgba(0,0,0,0) 67%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 33%,rgba(0,0,0,0) 67%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 33%,rgba(0,0,0,0) 67%,rgba(0,0,0,1) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,0) 33%,rgba(0,0,0,0) 67%,rgba(0,0,0,1) 100%); /* W3C */
-    
-    background-image: url("http://www.dangdangnews.com/news/photo/201408/23320_46125_344.jpg");
-    background-size: cover;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-  }
-  
-  .page-header{
-    margin-top:0px;
-    padding-top:40px;
-  }
-  
-</style>
-<%= render :partial => 'style/navbarcss' %>
-
-<%# navbar render is the end %>
+<%= render :partial => 'style/bongsa_informationcss' %>
 
 <!-- Tables
 ================================================== -->
-<div class="continue slided_img">
+<div class="continue slided_img" style="background-image:url('<%= @b.img_main %>'); background-size: conver;">
   <div style="padding-top: 25%;padding-left: 5%; bottom:0px;">
     <!--봉사명-->
-    <p class="m_title"><b>재난취약기구 전화모니터링<%#= @b.name %></b></p>
+    <p class="m_title"><b><%= @b.name %></b></p>
     <div class="col-md-12">
         <div class="col-md-8">
-            <div class="col-md-6 m_term">
-                <!--모집시작일~모집종료일-->
-                <p>모집 : <%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></p>
-            </div>
-            <div class="col-md-3">
-                <!--신청하기-->
-                <button class="btn btn-block m_btn">
-                    <b>신청하기</b>
-                </button>
-            </div>
-            <div class="col-md-3">
-                <!--신청하기-->
-                <a href="/baguni/bucket_save/<%= @b.id %>">
-                    <button class="btn btn-block m_btn" style="background-color:#c75050;">
-                        <b>찜하기</b>
-                    </button>
-                </a>
-            </div>
-            <div class="col-md-2"></div>
+          <div class="col-md-6 m_term">
+              <!--모집시작일~모집종료일-->
+              <p>모집 : <%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></p>
+          </div>
+          <div class="col-md-3">
+              <!--신청하기-->
+              <button class="btn btn-block m_btn">
+                  <b>신청하기</b>
+              </button>
+          </div>
+          <div class="col-md-3">
+              <!--신청하기-->
+              <a href="/baguni/bucket_save/<%= @b.id %>">
+                  <button class="btn btn-block m_btn" style="background-color:#c75050;">
+                      <b>찜하기</b>
+                  </button>
+              </a>
+          </div>
+          <div class="col-md-2"></div>
         </div>
         <div class="col-md-4"></div>
     </div>
@@ -140,42 +60,42 @@
 <!--------------------------------------------------------------------------------------------------------------------------------------->
 <div class="slide continue slided_circles">
   <div class="row" style="padding:100px 11% 10px 11%;">
-      <center>
-          <div class="col-md-12" style="padding:0px;">
-              <!--동그라미 봉사시간-->
-              <div class="circle circle-bongsa_time hvr-border-fade">
-                <p>20h</p>
-              </div>
-              <!--동그라미 디-데이-->
-              <div class="circle circle-d_day hvr-border-fade">
-                <p>D-12</p>
-              </div>
-              <!--동그라미 활동지역-->
-              <div class="circle circle-activ_region hvr-border-fade">
-                <p>서울</p>
-              </div>
-              <!--동그라미 인증서발급여부-->
-              <div class="circle circle-printable_doc hvr-border-fade">
-                <p>V</p>
-              </div>
-          </div>
-      </center>
+    <center>
+      <div class="col-md-12" style="padding:0px;">
+        <!--동그라미 봉사시간-->
+        <div class="circle circle-bongsa_time hvr-border-fade">
+          <p><%= @b.time_expect_total %>H</p>
+        </div>
+        <!--동그라미 디-데이-->
+        <div class="circle circle-d_day hvr-border-fade">
+          <p>D-<%= (Date.parse(Time.now.to_s)  -  Date.parse("#{@b.date_recruit_end}")).to_i %></p>
+        </div>
+        <!--동그라미 활동지역-->
+        <div class="circle circle-activ_region hvr-border-fade">
+          <p><%= Region.find(@b.region_id).name %></p>
+        </div>
+        <!--동그라미 인증서발급여부-->
+        <div class="circle circle-printable_doc hvr-border-fade">
+          <p>V</p>
+        </div>
+      </div>
+    </center>
   </div>
   <div class="row" style="margin-bottom:100px;">
-      <center>
-          <div class="circle_name circle_name-bongsa_time">
-            <p>봉사 시간</p>
-          </div>
-          <div class="circle_name circle_name-d_day">
-            <p>D-day</p>
-          </div>
-          <div class="circle_name circle_name-activ_region">
-            <p>활동 지역</p>
-          </div>
-          <div class="circle_name circle_name-printable_doc">
-            <p>인증서발급여부</p>
-          </div>
-      </center>
+    <center>
+      <div class="circle_name circle_name-bongsa_time">
+        <p>봉사 시간</p>
+      </div>
+      <div class="circle_name circle_name-d_day">
+        <p>D-day</p>
+      </div>
+      <div class="circle_name circle_name-activ_region">
+        <p>활동 지역</p>
+      </div>
+      <div class="circle_name circle_name-printable_doc">
+        <p>인증서발급여부</p>
+      </div>
+    </center>
   </div>
 </div>
 <!--------------------------------------------------------------------------------------------------------------------------------------->
@@ -272,51 +192,94 @@
 <!--------------------------------------------------------------------------------------------------------------------------------------->
 <div class="col-md-12 slide continue slided_detail">
   <center>
-      <h1 style="margin-bottom:70px; font-size:40px;">
-          <b>세 부  내 용</b>
-      </h1>
+    <h1 style="margin-bottom:70px; font-size:40px;">
+        <b>세 부  내 용</b>
+    </h1>
   </center>
   <div class="col-md-12 col-sm-12">
       <div class="col-md-6 col-sm-6">
-          <!--지역-->
-          <div class="col-md-2 col-sm-2"></div>
-          <div class="col-md-3 col-sm-3 icon">
-            <p>icon</p>
-          </div>
-          <div class="col-md-7 col-sm-7 icon__content">
-            <b>지역</b><br>
-            <span>서울특별시 송파구 잠실동 34-1</span>
-          </div>
+        <!--지역-->
+        <div class="col-md-2 col-sm-2"></div>
+        <div class="col-md-3 col-sm-3 icon">
+          <p>icon</p>
+        </div>
+        <div class="col-md-7 col-sm-7 icon__content">
+          <b>지역</b><br>
+          <span><%= Region.find(@b.region_id).name %></span>
+        </div>
       </div>
       <div class="col-md-6 col-sm-6">
-          <!--내용-->
-          
-          <div class="col-md-3 col-sm-3 icon">
-            <p>icon</p>
-          </div>
-          <div class="col-md-7 col-sm-7 icon__content">
-              <b>내용</b><br>
-              <span>재난취약기구 전화모니터링 전화로 모니터링 해준다.</span>
-          </div>
-          <div class="col-md-2 col-sm-2"></div>
+        <!--내용-->
+        <div class="col-md-3 col-sm-3 icon">
+          <p>icon</p>
+        </div>
+        <div class="col-md-7 col-sm-7 icon__content">
+          <b>내용</b><br>
+          <span><%= @b.content %></span>
+        </div>
+        <div class="col-md-2 col-sm-2"></div>
       </div>
   </div>
   <div class="col-md-12 col-sm-12">
-      <!--한 줄 시작할 때 여백-->
-      <div class="col-md-6 col-sm-6">
-          <!--봉사기관 홈페이지-->
-          <div class="col-md-2 col-sm-2"></div>
-          <div class="col-md-3 col-sm-3 icon">
-            <p>icon</p>
-          </div>
-          <div class="col-md-7 col-sm-7 icon__content">
-              <b>봉사기관 홈페이지</b><br>
-              <a style="color:#000;" href="https://volunteer.songpa.org"><span>https://volunteer.songpa.org</span></a>
-          </div>
+    <!--한 줄 시작할 때 여백-->
+    <div class="col-md-6 col-sm-6">
+      <!--봉사기관 홈페이지-->
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3 icon">
+        <p>icon</p>
       </div>
+      <div class="col-md-7 col-sm-7 icon__content">
+        <b>지원가능 <br> 상세조건</b><br>
+        <span><%= @b.vltr_req %></span>
+      </div>
+    </div>
       <div class="col-md-6 col-sm-6"></div>
+      <div class="col-md-6 col-sm-6">
+        <!--내용-->
+        <div class="col-md-3 col-sm-3 icon">
+          <p>icon</p>
+        </div>
+        <div class="col-md-7 col-sm-7 icon__content">
+          <b>지원가능 성별</b><br>
+          <% if  @b.vltr_sex  == 1 %>
+            <span>남자</span>
+          <% elsif  @b.vltr_sex  == 2 %>
+              <span>여자</span>
+          <% else %>
+              <span>무관</span>
+          <% end %>
+        </div>
+        <div class="col-md-2 col-sm-2"></div>
+      </div>
+  </div>
+  <div class="col-md-12 col-sm-12">
+    <!--한 줄 시작할 때 여백-->
+    <div class="col-md-6 col-sm-6">
+      <!--봉사기관 홈페이지-->
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-3 col-sm-3 icon">
+        <p>icon</p>
+      </div>
+      <div class="col-md-7 col-sm-7 icon__content">
+        <b>실제 봉사기간</b><br>
+        <span><%= @b.date_real_start %> ~ <%= @b.date_real_end %></span>
+      </div>
+    </div>
+      <div class="col-md-6 col-sm-6"></div>
+      <div class="col-md-6 col-sm-6">
+        <!--내용-->
+        <div class="col-md-3 col-sm-3 icon">
+          <p>icon</p>
+        </div>
+        <div class="col-md-7 col-sm-7 icon__content">
+          <b>담당자 <br> 이름/연락처</b><br>
+          <span><%= @b.clerk_name %>/<%= @b.clerk_call %></span>
+        </div>
+        <div class="col-md-2 col-sm-2"></div>
+      </div>
   </div>
 </div>
+
 
 <!--------------------------------------------------------------------------------------------------------------------------------------->
                                         <style>
@@ -383,17 +346,18 @@ ___________________________________________________
 -->
 <div class="col-md-12 slide slided_poster">
   <center>
-      <h1 style="margin-bottom:70px; font-size:40px;">
-          <b>Poster is here..</b>
-      </h1>
-  </center>
+    <h1 style="margin-bottom:70px; font-size:40px;">
+        <b>Poster is here..</b>
+    </h1>
+  
   <div class="col-md-1"></div>
   <div class="col-md-10">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-          <img src="http://www.campuz.net/xe/files/attach/images/16135/028/206/4f084133b8f0454a4a56758f24310339.jpg" width="100%" height="auto">
-      </div>
-      <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <img src="<%= @b.img_poster %>"idth="100%" height="auto" width=95.5%;>
+    </div>
+    </center>
+    <div class="col-md-2"></div>
   </div>
   <div class="col-md-1"></div>
 </div>
@@ -408,115 +372,7 @@ ___________________________________________________
 ===================================================
 ___________________________________________________
 -->
+
 <div class="col-md-12">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-    <center>
-        <section id="tables">
-          <div class="page-header">
-            <h1>봉사 상세정보</h1>
-            <button><a href="/baguni/bucket_save/<%= @b.id %>">신청내역으로 스크랩</a></button>
-            <button><a href="/">홈으로</a></button>
-          </div>
-          
-          <strong>
-          <table class="table table-bordered table-striped table-hover bongsa_information_css">
-            <thead>
-              <tr>
-                <th class="center center_width table_head">구분</th>
-                <th class="center table_head">세부내용</th>
-              </tr>
-            </thead>
-            
-            <tbody>
-              <tr>
-                <td class="center center_width">봉사명</td>
-                <td><%= @b.name %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">봉사 기관명</td>
-                <td><%= Organization.find(@b.organization_id).name %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">모집인원</td>
-                <td><%= @b.vltr_num %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">지역</td>
-                <td><%= Region.find(@b.region_id).name %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">봉사시간</td>
-                <td>Time</td>
-              </tr>
-              <tr>
-                <td class="center center_width">모집시작일 ~ 마감일</td>
-                <td><%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">봉사 시작일 ~ 종료일</td>
-                <td><%= @b.date_real_start %> ~ <%= @b.date_real_end %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">봉사 시작시간 ~ 종료시간</td>
-                <td><%= @b.time_daily_start %> ~ <%= @b.time_daily_end %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">총 획득 예상시간</td>
-                <td><%= @b.time_expect_total %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">인근학교</td>
-                <td><%= School.find(@b.school_id).name %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">지원가능 상세조건</td>
-                <td><%= @b.vltr_req %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">봉사활동 상세내용</td>
-                <td><%= @b.content %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">담당자 연락처</td>
-                <td><%= @b.clerk_call %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">정기/비정기</td>
-                <td><%= "정기" if @b.is_regular %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">정기/비정기</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <td class="center center_width">봉사유형</td>
-                <td><% Category.find(@b.category_id).name %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">사전교육 유/무</td>
-                <% if @b.is_edu %>
-                <td>유</td>
-                <% else %>
-                <td>무</td>
-                <% end %>
-              </tr>
-              <tr>
-                <td class="center center_width">모집현황</td>
-                <td><%= @b.status %></td>
-              </tr>
-              <tr>
-                <td class="center center_width">지원가능 성별</td>
-                <td><%= @b.vltr_sex %></td>
-              </tr>
-            </tbody>
-          </table>
-          </strong>
-        </section>
-    </center>
-    </div>
-    <div class="col-md-2"></div>
-</div>
-<div class="col-md-12">
-    <%= render :partial => 'home/main_footer' %>
+  <%= render :partial => 'home/main_footer' %>
 </div>

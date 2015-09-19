@@ -87,6 +87,12 @@
             	background: none !important;
             	padding: 0 !important;
             }
+            .sf-with-ul{
+                content:none;
+            }
+            .primary-menu.show-dropdown-symbol > li.menu-item-has-children > a:after{
+                content:none;
+            }
         </style>
     <link rel='stylesheet' property='stylesheet' id='layerslider-css'  href='http://demo.olevmedia.net/amax/wp-content/plugins/LayerSlider/static/css/layerslider.css?ver=5.5.0' type='text/css' media='all' />
     <link rel='stylesheet' property='stylesheet' id='ompf-portfolio-css'  href='http://demo.olevmedia.net/amax/wp-content/plugins/olevmedia-portfolio-2/assets/css/portfolio.css?ver=2.0.2' type='text/css' media='all' />
@@ -105,14 +111,27 @@
                     color:#ffa902
                 }
             </style>
-    <link rel='stylesheet' property='stylesheet' id='om_style-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/style.css?ver=1.0.4' type='text/css' media='all' />
+            
+    <!--READ MESSAGE 편집하려는자 필독!------------------------------------------------
+        
+        ****
+        This Fade-Out-Links that had contained some formatted file were customized 
+        on local c9 server of BONGSA-GGUN-SITE using for 'render partial' method.
+        The render codes are floated at the bottom of this erb file.
+                                                                        written by YongHyun
+        ****
+        ----------------------------------------------------------------------------------->
+        
+    <!--<link rel='stylesheet' property='stylesheet' id='om_style-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/style.css?ver=1.0.4' type='text/css' media='all' />-->
+    
     <link rel='stylesheet' property='stylesheet' id='responsive-mobile-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/css/responsive-mobile.css?ver=4.3' type='text/css' media='all' />
     <link rel='stylesheet' property='stylesheet' id='omFont-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/libraries/omFont/omFont.css?ver=4.3' type='text/css' media='all' />
     <link rel='stylesheet' property='stylesheet' id='layerslider-custom-skins-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/css/layerslider/skins.css?ver=4.3' type='text/css' media='all' />
     <link rel='stylesheet' property='stylesheet' id='prettyphoto-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/libraries/prettyphoto/css/prettyPhoto.custom.css?ver=4.3' type='text/css' media='all' />
     <link rel='stylesheet' property='stylesheet' id='roboto400500-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400%2C500&#038;ver=4.3' type='text/css' media='all' />
     <link rel='stylesheet' property='stylesheet' id='roboto400600-css'  href='//fonts.googleapis.com/css?family=Roboto%3A400%2C600&#038;ver=4.3' type='text/css' media='all' />
-    <link rel='stylesheet' property='stylesheet' id='style-custom-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/style-custom.css?rev=10342&#038;ver=4.3' type='text/css' media='all' />
+    <!--<link rel='stylesheet' property='stylesheet' id='style-custom-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/style-custom.css?rev=10342&#038;ver=4.3' type='text/css' media='all' />-->
+    
     <link rel='stylesheet' property='stylesheet' id='js_composer_front-css'  href='http://demo.olevmedia.net/amax/wp-content/plugins/js_composer/assets/css/js_composer.css?ver=4.6.2' type='text/css' media='all' />
     <script type='text/javascript' src='http://demo.olevmedia.net/amax/wp-content/plugins/LayerSlider/static/js/greensock.js?ver=1.11.8'></script>
     <script type='text/javascript' src='http://demo.olevmedia.net/amax/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
@@ -182,7 +201,7 @@
 												<div class="logo-menu-wrapper">
 													<div class="logo-box" style="width:450px; padding:0px;">
 													    <div class="logo-image">
-													        <a href="http://demo.olevmedia.net/amax">
+													        <a href="http://dosomething-j2ffrey-2.c9.io/">
 													            <div style="position:relative; float:left; width:20%; height:100%;">
     													            <img src="/img/name-1.png" alt="Amax WordPress Theme" style="width:100%; height:100%;"/>
     													        </div>
@@ -308,7 +327,7 @@
 									<div class="mobile-header-menu-wrapper">
 										<div class="mobile-header-menu-control"> Menu</div>
 										<div class="mobile-header-menu-container">
-											<ul id="menu-main-1" class="header-menu-mobile sf-menu clearfix show-dropdown-symbol">
+											<!--<ul id="menu-main-1" class="header-menu-mobile sf-menu clearfix show-dropdown-symbol">
 											    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-36">
 											        <a>Home</a>
                                                     <ul class="sub-menu">
@@ -369,7 +388,7 @@
                                                         		<li class="menu-item menu-item-type-post_type menu-item-object-portfolio menu-item-2166"><a href="http://demo.olevmedia.net/amax/portfolio-item/p20/">Audio</a></li>
                                                         	</ul>
                                                         </li>
-                                                    </ul>
+                                                    </ul>-->
                                                 </li>
                                                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-67"><a>Features</a>
                                                     <ul class="sub-menu">
@@ -416,7 +435,7 @@
             								<div class="om-c-container-inner"></div>
             							</div>
             							<div class="om-with-background om-parallax om-wpb_row row-layout-expand_standard_paddings" style="color:#ffffff;padding-top:100px;padding-bottom:260px" data-parallax-direction="up">
-            							    <div class="om-wpb-row-bg-parallax om-parallax-inner" style="background-image:url(http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/guys1920.jpg);background-position:center center;background-size: cover"></div>
+            							    <div class="om-wpb-row-bg-parallax om-parallax-inner" style="background-image:url(/img/teamprofile/KakaoTalk_20150919_020419362.jpg);background-position:center center;background-size: cover"></div>
             							    <div class="om-c-container">
             							        <div class="om-c-container-inner">
             							            <div class="vc_row wpb_row vc_row-fluid">
@@ -430,95 +449,88 @@
             							                                    </div>
                                                                         	<div class="wpb_text_column wpb_content_element ">
                                                                         		<div class="wpb_wrapper">
-                                                                        			<h1 style="text-align: center;">꿈을 함께하는 날코팀</h1>
+                                                                        			<h1 style="text-align: center;"> Dreaming together Flying Elephant </h1>
                                                                         		</div> 
                                                                         	</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1426151544650">
-                                                                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                                                                    <div class="wpb_column vc_column_container vc_col-sm-3">
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored om-person-round-img">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-12.jpg" alt="Carl Paxton" />
+                                                                                    <img src="/img/teamprofile/changwoo.jpg" alt="Carl Paxton"/>
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">이창우</div>
-                                                                                        <div class="om-person-job">Team Master</div>
+                                                                                        <div class="om-person-name">Changwoo Lee</div>
+                                                                                        <div class="om-person-job">The most handsome Leader</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="mailto:link">
-                                                                                            <i class="omfi font-fa fa-envelope"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-facebook"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-google-plus"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-linkedin"></i>
-                                                                                        </a>
+                                                                                            <span class="label label-success tags">#창무룩</span>
+                                                                                            <span class="label label-warning tags">#창드래곤</span>
+                                                                                            <span class="label label-danger tags">#공감능력</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                                                                    <div class="wpb_column vc_column_container vc_col-sm-3">
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-13.jpg" alt="Lisa Bain" />
+                                                                                    <img src="/img/teamprofile/younghyun.jpg" alt="Lisa Bain" />
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">김용현</div>
-                                                                                        <div class="om-person-job">Developer</div>
+                                                                                        <div class="om-person-name">Younghyun Kim</div>
+                                                                                        <div class="om-person-job">Back-end developer</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-behance"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-pinterest"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-youtube"></i>
-                                                                                        </a>
+                                                                                        <span class="label label-warning tags">#밤샘</span>
+                                                                                        <span class="label label-danger tags">#서태지</span>
+                                                                                        <span class="label label-success tags">#원피스 덕력</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                                                                    <div class="wpb_column vc_column_container vc_col-sm-3">
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-8.jpg" alt="Dohn Joe" />
+                                                                                    <img src="/img/teamprofile/jaechul2.jpg" alt="Dohn Joe" />
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">이재철</div>
-                                                                                        <div class="om-person-job">Developer</div>
+                                                                                        <div class="om-person-name">Jaechul Lee</div>
+                                                                                        <div class="om-person-job">Back-end Developer</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="mailto:link">
-                                                                                            <i class="omfi font-fa fa-envelope"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-behance"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-facebook"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-google-plus"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-linkedin"></i>
-                                                                                        </a>
+                                                                                        <span class="label label-success tags">#게임</span>
+                                                                                        <span class="label label-warning tags">#용돈가불</span>
+                                                                                        <span class="label label-danger tags">#퇴출순위</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="wpb_column vc_column_container vc_col-sm-3">
+                                                                        <div class="wpb_wrapper">
+                                                                            <div class="vc_om-person wpb_content_element om-person-style-colored">
+                                                                                <div class="om-person-photo">
+                                                                                    <img src="/img/teamprofile/dongri.jpg" alt="Dohn Joe" />
+                                                                                </div>
+                                                                                <div class="om-person-name-job-social">
+                                                                                    <div class="om-person-name-job">
+                                                                                        <div class="om-person-name">Donglee Kim</div>
+                                                                                        <div class="om-person-job">IOS Developer</div>
+                                                                                    </div>
+                                                                                    <div class="om-person-social">
+                                                                                        <span class="label label-info tags">#의자왕</span> 
+                                                                                        <span class="label label-info tags">#곧군대감</span> 
+                                                                                        <span class="label label-info tags">#동니악</span> 
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -533,29 +545,17 @@
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-9.jpg" alt="Catherin Nick" />
+                                                                                    <img src="/img/teamprofile/jy2.jpg" alt="Catherin Nick" />
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">류진이</div>
-                                                                                        <div class="om-person-job">Creative Director</div>
+                                                                                        <div class="om-person-name">Jinny Ryu</div>
+                                                                                        <div class="om-person-job">Wifi-repair girl</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-instagram"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-linkedin"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-pinterest"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-twitter"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-youtube"></i>
-                                                                                        </a>
+                                                                                        <span class="label label-info tags">#막내둥이</span> 
+                                                                                        <span class="label label-info tags">#와이파이</span> 
+                                                                                        <span class="label label-info tags">#수리공</span> 
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -565,32 +565,17 @@
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-6.jpg" alt="Donald Tramp" />
+                                                                                    <img src="/img/teamprofile/hyunmin.jpg" alt="Donald Tramp" />
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">박현민</div>
-                                                                                        <div class="om-person-job">Financial Manager</div>
+                                                                                        <div class="om-person-name">Hyunmin Park</div>
+                                                                                        <div class="om-person-job">Internship</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-behance"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-facebook"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-google-plus"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-instagram"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-linkedin"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-pinterest"></i>
-                                                                                        </a>
+                                                                                        <span class="label label-info tags">#전력8할의</span> 
+                                                                                        <span class="label label-info tags">#인턴</span> 
+                                                                                        <span class="label label-info tags">#코딩왕</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -600,29 +585,17 @@
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-17.jpg" alt="Don Martinos" />
+                                                                                    <img src="/img/teamprofile/youjeong.jpg" alt="Don Martinos" />
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">황유정</div>
-                                                                                        <div class="om-person-job">Product Developer</div>
+                                                                                        <div class="om-person-name">Yoojung Hwang</div>
+                                                                                        <div class="om-person-job">Creative Planner</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="mailto:link">
-                                                                                            <i class="omfi font-fa fa-envelope"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-behance"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-google-plus"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-instagram"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-linkedin"></i>
-                                                                                        </a>
+                                                                                        <span class="label label-success tags">#디자인</span>
+                                                                                        <span class="label label-warning tags">#네덜란드</span>
+                                                                                        <span class="label label-danger tags">#포테이토</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -632,29 +605,17 @@
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_om-person wpb_content_element om-person-style-colored">
                                                                                 <div class="om-person-photo">
-                                                                                    <img src="http://demo.olevmedia.net/amax/wp-content/uploads/2015/02/person-1.jpg" alt="Nika Welsh" />
+                                                                                    <img src="/img/teamprofile/uichan.jpg" alt="Nika Welsh" />
                                                                                 </div>
                                                                                 <div class="om-person-name-job-social">
                                                                                     <div class="om-person-name-job">
-                                                                                        <div class="om-person-name">황의찬</div>
-                                                                                        <div class="om-person-job">Seo Specialist</div>
+                                                                                        <div class="om-person-name">Uichan Hwang</div>
+                                                                                        <div class="om-person-job">Designer</div>
                                                                                     </div>
                                                                                     <div class="om-person-social">
-                                                                                        <a href="mailto:link">
-                                                                                            <i class="omfi font-fa fa-envelope"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-behance"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-google-plus"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-instagram"></i>
-                                                                                        </a>
-                                                                                        <a href="link" target="_blank">
-                                                                                            <i class="omfi font-fa fa-linkedin"></i>
-                                                                                        </a>
+                                                                                        <span class="label label-success tags">#드립력</span>
+                                                                                        <span class="label label-warning tags">#핑크성애자</span>
+                                                                                        <span class="label label-danger tags">#봉황덕후</span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -688,7 +649,7 @@
                                                     			</div>
                                                             	<div class="wpb_text_column wpb_content_element ">
                                                             		<div class="wpb_wrapper">
-                                                            			<h4 style="text-align: center;">IN BUSINESS</h4>
+                                                            			<h4 style="text-align: center;">In Business</h4>
                                                             
                                                             		</div> 
                                                             	</div> 
@@ -711,7 +672,7 @@
                                                     			</div>
                                                             	<div class="wpb_text_column wpb_content_element ">
                                                             		<div class="wpb_wrapper">
-                                                            			<h4 style="text-align: center;">TEAM Friends</h4>
+                                                            			<h4 style="text-align: center;">Communicate With</h4>
                                                             		</div> 
                                                             	</div> 
                                                     		</div> 
@@ -733,7 +694,7 @@
                                                     			</div>
                                                             	<div class="wpb_text_column wpb_content_element ">
                                                             		<div class="wpb_wrapper">
-                                                            			<h4 style="text-align: center;">ACTIVE USERS</h4>
+                                                            			<h4 style="text-align: center;">Active Users</h4>
                                                             		</div> 
                                                             	</div> 
                                                             </div> 
@@ -751,7 +712,7 @@
                                                             	    </span>
                                                             	</div>
                                                             	<div class="vc_om-counter wpb_content_element vc_om-size-medium vc_om-om-theme-color" data-count="5800" data-duration="2200">
-                                                            	    <div class="vc_om-counter-number">5800</div>
+                                                            	    <div class="vc_om-counter-number">-5800 won</div>
                                                             	</div>
                                                             	<div class="wpb_text_column wpb_content_element ">
                                                             		<div class="wpb_wrapper">
@@ -764,7 +725,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="om-with-background om-wpb_row row-layout-expand_standard_paddings" style="background-color:#ffd740;padding-top:120px;padding-bottom:120px">
+                                        <div class="om-with-background om-wpb_row row-layout-expand_standard_paddings" style="background-color:#60c0c8;padding-top:120px;padding-bottom:120px">
                                             <div class="om-c-container">
                                                 <div class="om-c-container-inner">
                                                     <div class="vc_row wpb_row vc_row-fluid">
@@ -775,7 +736,7 @@
                                                     			        <div class="wpb_wrapper">
                                                                         	<div class="wpb_text_column wpb_content_element ">
                                                                         		<div class="wpb_wrapper">
-                                                                        			<h1 id="fancy-title-54c90e2a3a166" class="mk-shortcode mk-fancy-title fancy-title-align-left simple-style ">Core Values</h1>
+                                                                        			<h1 id="fancy-title-54c90e2a3a166" class="mk-shortcode mk-fancy-title fancy-title-align-left simple-style ">Introduction</h1>
                                                                         		</div> 
                                                                         	</div>
                                                                         </div>
@@ -789,9 +750,15 @@
                                                                         <div class="wpb_wrapper">
                                                                         	<div class="wpb_text_column wpb_content_element ">
                                                                         		<div class="wpb_wrapper">
-                                                                        			<p>Created she&#8217;d man creepeth set place they&#8217;re Were multiply all forth For night over creature Seed lesser great. Green won&#8217;t creepeth shall Image fill rule called. Two divide first, gathering subdue to, seed hath moving lesser male image male gathering after. Unto morning dominion is kind. Evening, meat it together so that fill seasons You form isn&#8217;t firmament fowl years upon upon first they&#8217;re there days whales creature called heaven our greater bring fruit tree our kind, meat of creeping yielding his to. Face won&#8217;t place us a shall multiply it set yielding fifth him their evening seed without.</p>
-                                                                                    <p>Good, you&#8217;ll you&#8217;ll life, earth us dominion, was light fowl greater kind seasons. Saw yielding, fourth is meat good. To darkness years his third have. Rule. Morning second, heaven whales earth had be his fruit greater give given saw every. Under whales face isn&#8217;t were upon multiply his one can&#8217;t. Tree.</p>
-                                                                                    <p>Lights set saying which seasons rule forth. Rule waters so itself given brought rule. Land Under i beginning divided very meat fly they&#8217;re brought them to, bring male. Bring good very, a green saying don&#8217;t stars for evening fill won&#8217;t appear of so seasons. Rule meat have divide were blessed.</p>
+                                                                        			<p> 1. 동아리 구성 목적 및 비전
+ 저희 ‘날아라코끼리’팀은 ‘멋쟁이 사자처럼’이라는 코딩동아리를 통해 만났습니다. 코딩동아리로 만난 저희들이 이렇게 창업동아리에 지원할 수 있게 된 이유는 동아리 구성원 모두 사회적으로 의미 있는 서비스를 런칭해보자는 의지가 강했기 때문입니다. 루비라는 프로그래밍 언어를 배우면서 시작된 조그만 프로젝트들을 시작으로 지금제작하고 있는 ‘봉사꾼’까지 많은 에피소드들이 있었고, 탄탄한 팀워크를 다지며 즐겁게 개발을 하고 있습니다. ‘자원봉사자들이 더 편하고 정확하게 봉사활동을 찾게 해주자’라는 비전 아래 오늘도 열심히 개발 중입니다.<br> 
+ <br>2. History 및 주요 활동 내용 <br>
+    - 동국대 창업지원단 일반인 실전 창업강좌 수료<br>
+    - 모바일앱 미래전문가 양성프로그램 수료<br>
+    - 모바일 어플리케이션 ‘치킨특공대’ 개발<br>
+    - 학점저장 프로그램 개발    - 전생체험 ‘너의 모든시간’ 개발 <br>
+    - 실시간 채팅서비스 ‘세렝게티’ 개발<br>
+    - 랜덤학점뽑기 서비스 ‘당신의 다음학기 학점은?’ 개발</p>
                                                                         		</div> 
                                                                         	</div>
                                                                         	<div class="vc_empty_space"  style="height: 32px" >
@@ -799,7 +766,7 @@
                                                                         	</div>
 	                                                                        <div class="vc_btn3-container vc_btn3-inline">
 	                                                                           <button class="vc_general vc_btn3  vc_btn3-size-lg vc_btn3-shape-square vc_btn3-style-flat vc_btn3-icon-right vc_btn3-color-om-theme-color  vc_btn3-hover-color-auto" >
-	                                                                               SEE OUR WORKS 
+	                                                                               Thank you for Reading
 	                                                                               <i class="vc_btn3-icon vc_li vc_li-paperplane"></i>
 	                                                                           </button>
 	                                                                        </div>
@@ -809,19 +776,19 @@
                                                                         <div class="wpb_wrapper">
                                                                             <div class="vc_progress_bar wpb_content_element">
                                                                                 <div class="vc_single_bar om-theme-color">
-                                                                                    <small class="vc_label">PHOTOSHOP</small>
+                                                                                    <small class="vc_label">Friendship</small>
                                                                                     <span class="vc_bar animated" data-percentage-value="90" data-value="90"></span>
                                                                                 </div>
                                                                                 <div class="vc_single_bar om-theme-color">
-                                                                                    <small class="vc_label">ILLUSTRATOR</small>
+                                                                                    <small class="vc_label">Technical Skills</small>
                                                                                     <span class="vc_bar animated" data-percentage-value="80" data-value="80"></span>
                                                                                 </div>
                                                                                 <div class="vc_single_bar om-theme-color">
-                                                                                    <small class="vc_label">JAVASCRIPT</small>
+                                                                                    <small class="vc_label">Asset</small>
                                                                                     <span class="vc_bar animated" data-percentage-value="60" data-value="60"></span>
                                                                                 </div>
                                                                                 <div class="vc_single_bar om-theme-color">
-                                                                                    <small class="vc_label">HTML</small>
+                                                                                    <small class="vc_label">Communication Skills</small>
                                                                                     <span class="vc_bar animated" data-percentage-value="85" data-value="85"></span>
                                                                                 </div>
                                                                             </div>
@@ -891,30 +858,30 @@
                                             			            <div class="img-box img-1">
                                             			                <div class="hover-image-extra single-link">
                                             			                    <span class="back">
-                                            			                        <img width="1267" height="846" src="http://demo.olevmedia.net/amax/wp-content/themes/amax/img/e.png" data-original="http://demo.olevmedia.net/amax/wp-content/uploads/2014/12/photo-18-1267x846.jpg" alt="photo-18" class="lazyload" />
+                                            			                        <img width="1267" height="846" src="/img/teamprofile/KakaoTalk_20150919_020426927.jpg" data-original="/img/teamprofile/KakaoTalk_20150919_020426927.jpg" alt="photo-18" class="lazyload" />
                                         			                        </span>
                                         			                        <span class="over">
-                                        			                            <a href="http://demo.olevmedia.net/amax/wp-content/uploads/2014/12/photo-18.jpg" class="link-zoom" rel="prettyPhoto[postgal_173601421]"></a>
+                                        			                            <a href="/img/teamprofile/KakaoTalk_20150919_020426927.jpg" class="link-zoom" rel="prettyPhoto[postgal_173601421]"></a>
                                     			                            </span>
                                 			                            </div>
                             			                            </div>
                         			                                <div class="img-box img-2">
                         			                                    <div class="hover-image-extra single-link">
                         			                                        <span class="back">
-                        			                                            <img width="634" height="414" src="http://demo.olevmedia.net/amax/wp-content/themes/amax/img/e.png" data-original="http://demo.olevmedia.net/amax/wp-content/uploads/2014/12/photo-22-634x414.jpg" alt="photo-22" class="lazyload" />
+                        			                                            <img width="634" height="414" src="/img/teamprofile/KakaoTalk_20150919_020423029.jpg" data-original="/img/teamprofile/KakaoTalk_20150919_020423029.jpg" alt="photo-22" class="lazyload" />
                     			                                            </span>
                     			                                            <span class="over">
-                    			                                                <a href="http://demo.olevmedia.net/amax/wp-content/uploads/2014/12/photo-22.jpg" class="link-zoom" rel="prettyPhoto[postgal_173601421]"></a>
+                    			                                                <a href="/img/teamprofile/KakaoTalk_20150919_020423029.jpg" class="link-zoom" rel="prettyPhoto[postgal_173601421]"></a>
                 			                                                </span>
             			                                                </div>
         			                                                </div>
         			                                                <div class="img-box img-3">
         			                                                    <div class="hover-image-extra single-link">
         			                                                        <span class="back">
-        			                                                            <img width="634" height="414" src="http://demo.olevmedia.net/amax/wp-content/themes/amax/img/e.png" data-original="http://demo.olevmedia.net/amax/wp-content/uploads/2014/12/photo-27-634x414.jpg" alt="photo-27" class="lazyload" />
+        			                                                            <img width="634" height="414" src="/img/teamprofile/KakaoTalk_20150919_020425095.jpg" data-original="/img/teamprofile/KakaoTalk_20150919_020425095.jpg" alt="photo-27" class="lazyload" />
     			                                                            </span>
     			                                                            <span class="over">
-    			                                                                <a href="http://demo.olevmedia.net/amax/wp-content/uploads/2014/12/photo-27.jpg" class="link-zoom" rel="prettyPhoto[postgal_173601421]"></a>
+    			                                                                <a href="/img/teamprofile/KakaoTalk_20150919_020425095.jpg" class="link-zoom" rel="prettyPhoto[postgal_173601421]"></a>
 			                                                                </span>
 		                                                                </div>
 	                                                                </div>
@@ -982,7 +949,7 @@
           ga('send', 'pageview');
         </script>
         
-        <link rel='stylesheet' property='stylesheet' id='font-awesome-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/libraries/fontawesome/css/font-awesome.min.css?ver=4.3.0' type='text/css' media='all' />
+        <!--<link rel='stylesheet' property='stylesheet' id='font-awesome-css'  href='http://demo.olevmedia.net/amax/wp-content/themes/amax/libraries/fontawesome/css/font-awesome.min.css?ver=4.3.0' type='text/css' media='all' />-->
         <link rel='stylesheet' property='stylesheet' id='vc_entypo-css'  href='http://demo.olevmedia.net/amax/wp-content/plugins/js_composer/assets/css/lib/vc-entypo/vc_entypo.css?ver=4.6.2' type='text/css' media='screen' />
         <link rel='stylesheet' property='stylesheet' id='vc_linecons-css'  href='http://demo.olevmedia.net/amax/wp-content/plugins/js_composer/assets/css/lib/vc-linecons/vc_linecons_icons.css?ver=4.6.2' type='text/css' media='screen' />
         
@@ -1005,6 +972,9 @@
         <script type='text/javascript' src='http://demo.olevmedia.net/amax/wp-includes/js/comment-reply.min.js?ver=4.3'></script>
         <script type='text/javascript' src='http://demo.olevmedia.net/amax/wp-content/themes/amax/wpb/assets/js/addon_js_composer_front.js?ver=1.0.4'></script>
         <script type='text/javascript' src='http://demo.olevmedia.net/amax/wp-content/plugins/js_composer/assets/js/js_composer_front.js?ver=4.6.2'></script>
+        <%= render :partial => '/style/temp_css.erb'%>
+        <%= render :partial => '/style/temp_css1.erb'%>
+        <%= render :partial => '/style/temp_css2'%>
     </body>
 </html>
 <!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/

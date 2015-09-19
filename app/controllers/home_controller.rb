@@ -317,6 +317,6 @@ class HomeController < ApplicationController
             # b.clerk_call = params[:clerk_call] # 담당자 연락처
             # b.act_time = params[:act_time] # 해당 봉사후 활동시간 직접등록
             # b.save
-    end
+     end
     
 end

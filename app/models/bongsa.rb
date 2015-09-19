@@ -1,7 +1,7 @@
 class Bongsa < ActiveRecord::Base
     
- #mount_uploader :bongsa_img, BongsaimgUploader
- #mount_uploader :foster_img, BongsaimgUploader
+ mount_uploader :img_main, BongsaimgUploader
+ mount_uploader :img_poster, BongsaimgUploader
  
 
 end

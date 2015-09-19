@@ -15,57 +15,48 @@
   end %>
         
 <div class="row">
-  <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+  <!--<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>-->
+  <!--<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">-->
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="row">
-      <% @bongsa.last(k).each do |b| %>
-        <center>
-          <a href="/home/bongsa_information/<%= b.id %>">
-            <div class="col-md-4 col-sm-6 col-lg-4 row_main_content">
-              <div class="row">
-                <div class="col-md-12" style="padding:0px;">
-                   <img src="<%#= b.img_main %>/img/teamprofile/fry.jpg" alt="이미지" style="width:100%;height: 271px; margin-top:0px;">
-                   
-                     <% if b.name.nil? %>
-                        <center>봉사명이 없습니다.</center>
-                     <% else %>
-                       <span class="side_info__title">
-                          <span><%= b.date_real_start %> ~ <%= b.date_real_end %></span> 
-                          <p class="main_content__title">
-                            <strong><%= b.name %></strong>
-                          </p>
-                       </span>
-                     <% end %>
-                </div>
-              </div>    
-                
-<!-- 메인 컨텐츠 카드 코드입니다 -->
-
-              <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
-                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right: 1px solid rgba(168, 168, 168, 0.4);"></br>
-                    <p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">시간</p>
-                    <p style="color:#000000; font-size:25px;"><%= b.time_expect_total %></p>
-                  </div>
-                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right: 1px solid rgba(168, 168, 168, 0.4);"></br>
-                    <p style="font-size:16px; color:#A8A8A8; margin-bottom:7px;">지역 </p>
-                    <p style="color:#000000; font-size:17px;"><%= Region.find(b.region_id).name %></p>
-                  </div>
-                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
-                    <p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">D - day</p>
-                    <p style="color:#000000; font-size:18px; margin-bottom:0px;"><%= b.date_real_start %></p>
-                    <p style="color:#000000; font-size:18px;"> ~ <%= b.date_real_end %></p>
-                  </div>  
-                </div>
+    <% @bongsa.last(k).each do |b| %>
+      <a href="/home/bongsa_information/<%= b.id %>">
+        <div class="col-md-4 col-sm-6 col-lg-4 row_main_content">
+          <div class="col-md-12" style="padding:0px;">
+            <img src="<%= b.img_main %>" alt="이미지" style="width:100%;height: 271px; margin-top:0px;">
+             
+            <% if b.name.nil? %>
+              <span class="side_info__title">
+                <center class="main_content__title">봉사명이 없습니다.</center>
+              </span>
+            <% else %>
+              <div class="side_info__title">
+                <span><%= b.date_real_start %> ~ <%= b.date_real_end %></span> 
+                <p class="main_content__title">
+                  <strong><%= b.name %></strong>
+                </p>
               </div>
-              
+            <% end %>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right: 1px solid rgba(168, 168, 168, 0.4);"></br>
+              <p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">총 봉사시간</p>
+              <p style="color:#000000; font-size:25px;"><%= b.time_expect_total %></p>
             </div>
-          </a>
-        </center>
-      <% end %>
-    </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right: 1px solid rgba(168, 168, 168, 0.4);"></br>
+              <p style="font-size:16px; color:#A8A8A8; margin-bottom:7px;">지역 </p>
+              <p style="color:#000000; font-size:17px;"><%= Region.find(b.region_id).name %></p>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
+              <p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">D - day</p>
+              <p style="color:#000000; font-size:18px; margin-bottom:0px;"><%= b.date_real_start %></p>
+              <p style="color:#000000; font-size:18px;"> ~ <%= b.date_real_end %></p>
+            </div>  
+          </div>
+        </div>
+      </a>
+    <% end %>
   </div>
-  <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1"></div>
+  <!--<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>-->
 </div>
 
 
@@ -73,7 +64,8 @@
 
 <!-- 봉사정보 더 보기 코드입니다 -->
 
-</br></br>
+</br>
+</br>
 
 <center>
   <div class="bongsa_more">
@@ -107,22 +99,24 @@
 
 <!--봉사달력-->
 
-<br><br>
+<br>
+<br>
 
 <center>
   <div class="row">
-    <a href = '/home/bongsa_calendar'>
+    <a href = '/calendar/index'>
       <i class="fa fa-calendar-check-o fa-5x"></i>
     </a>
-    <p style="font-size:30px; text-align:center; color:#512da7;">
-      <a href = '/home/bongsa_calendar' style="color:#512da7;">
+    <p style="font-size:30px; text-align:center; color:#512da7; margin-top:2%;">
+      <a href = '/calendar/index' style="color:#512da7;">
         <b> 봉사달력 보러가기</b>
       </a>
     </p>
   </div>
 </center>
 
-<br><br>
+<br>
+<br>
 
 
 

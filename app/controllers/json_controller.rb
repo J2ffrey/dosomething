@@ -1,5 +1,22 @@
 class JsonController < ApplicationController
     
+    def pick
+        a = params[:id_arr].split(',')
+        b = []
+        a.each do |x|
+            b << Bongsa.find(x)
+        end
+        render json: {Bongsa: b}
+    end
+    
+    def school
+        render json: {School: School.all}
+    end
+    
+    def region
+        render json: {Region: Region.all}
+    end
+    
     def load
         render json: {Bongsa: Bongsa.order(id: :desc).limit(params[:limit]).offset(params[:offset])}
     end
@@ -38,11 +55,17 @@ class JsonController < ApplicationController
         check.call "btime_id LIKE \"#{params[:btime]}\"" unless params[:btime].nil?
         check.call "category_id LIKE \"#{params[:category]}\"" unless params[:category].nil?
         
-        a = {
-            Bongsa: Bongsa.where("#{tmp}")
+        a = Bongsa.where("#{tmp}")
+        
+        a = a.order(id: :desc)
+        
+        a = a.limit(params[:limit]).offset(params[:offset]) unless params[:limit].nil? && params[:offset].nil?
+        
+        b = {
+            Bongsa: a
         }
         
-        render json: a
+        render json: b
     end
     
 end

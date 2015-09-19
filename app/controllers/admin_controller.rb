@@ -180,10 +180,10 @@ class AdminController < ApplicationController
         re.clerk_name = params[:clerk_name]
         re.is_regular = true if params[:is_regular] == 1
         re.is_regular = false if params[:is_regular] == 0
-        re.date_real_end = params[:date_real_end]
-        re.date_real_start = params[:date_real_start]
-        re.date_recruit_end = params[:date_recruit_start]
-        re.date_recruit_start = params[:date_recruit_start]
+        re.date_real_end = Date.parse(params[:date_real_end])
+        re.date_real_start = Date.parse(params[:date_real_start])
+        re.date_recruit_end = Date.parse(params[:date_recruit_start])
+        re.date_recruit_start = Date.parse(params[:date_recruit_start])
         re.time_expect_total = params[:time_expect_total]
         re.time_daily_end = params[:time_daily_end]
         re.time_daily_start = params[:time_daily_start]
@@ -198,11 +198,11 @@ class AdminController < ApplicationController
         re.admin_mod = params[:admin_mod]
         re.admin_add = params[:admin_add]
         re.act_time = params[:act_time]
-        re.save
+        re.save!
         redirect_to '/admin/index?admin=bongsa'
     end
     
-    def del_admin
+    def del_bongsa
         re = Bongsa.find(params[:id])
         re.delete
         redirect_to '/admin/index?admin=bongsa'

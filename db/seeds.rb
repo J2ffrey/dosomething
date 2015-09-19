@@ -1,40 +1,194 @@
-
-Admin.create!([
-  {name: "메인페이지에 띄울 봉사 개수", value: "6"}
-  ])
-
-Organization.create!([
-  {name: "봉사협회", phone:"02)933-1000"}
-  ])
-
-Btime.create!([
-  {name: "1~3시간", min: 1, max: 3},{name: "4~7시간", min: 4, max: 7},{name: "8시간 이상", min: 8, max: 9999}
-  ])
-
-Region.create!([
-  {name: "서울"},{name: "경기"},{name: "인천"}
-  ])
-
-School.create!([
-  {name: "동국대학교1"},{name: "동국대학교2"},{name: "동국대학교3"}
-  ])
-
-Category.create!([
-  {name: "교육봉사"},{name: "재능봉사"},{name: "노력봉사"},{name: "해외봉사"},{name: "기타봉사"}
-  ])
-  
-VltrAge.create!([
-  {name: "18세 이하", min:0, max:18},{name: "19세 이상", min:19, max:99},{name: "제한없음", min:0, max:99}
-  ])
-
-Bongsa.create!([
-  {img_main: nil, img_poster: nil, name: "서울봉사1", content: "내용입력", is_edu: true, status: 3, organization_id: 1, clerk_name: "현민", clerk_call: "010-1111-2222", is_regular: false, 
-  date_recruit_start: Date.new(2015,09,02), date_recruit_end: Date.new(2015,09,02), date_real_start: Date.new(2015,09,02), date_real_end: Date.new(2015,09,02), time_daily_start: 900, time_daily_end: 1600, 
-  time_expect_total: 90, vltr_num: 3, vltr_age_id: 1, vltr_sex: 3, vltr_req: "zz", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, 
-  admin_add: "jinyee0829@naver.com", admin_mod: "jinyee0829@naver.com", act_time: nil}
+User.create!([
+  {email: "j2ffrey@gmail.com", encrypted_password: "$2a$10$nvWu83q4Oq0VyKe9s0oMnexgGxOo9UjOUkxUJz9mXQLJm/ueQZvz6", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-09-18 13:41:14", last_sign_in_at: "2015-09-18 13:41:14", current_sign_in_ip: "211.118.166.131", last_sign_in_ip: "211.118.166.131"}
 ])
-
+Admin.create!([
+  {name: "메인 페이지에 보일 봉사 수", value: "6"}
+])
+Bongsa.create!([
+  {img_main: nil, img_poster: nil, name: "asdf", content: "asdf", is_edu: nil, status: 0, organization_id: nil, clerk_name: "asdf", clerk_call: "asdf", is_regular: nil, date_recruit_start: "2014-02-03", date_recruit_end: "2014-02-03", date_real_start: "2015-12-04", date_real_end: "2015-12-04", time_daily_start: "123", time_daily_end: "2313", time_expect_total: 31231, vltr_num: 123123, vltr_age_id: nil, vltr_sex: 0, vltr_req: "", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, admin_add: "j2ffrey@gmail.com", admin_mod: "", act_time: nil},
+  {img_main: nil, img_poster: nil, name: "asdf", content: "asdf", is_edu: nil, status: 0, organization_id: nil, clerk_name: "asdf", clerk_call: "asdf", is_regular: nil, date_recruit_start: "2014-02-03", date_recruit_end: "2014-02-03", date_real_start: "2015-12-04", date_real_end: "2015-12-04", time_daily_start: "123", time_daily_end: "2313", time_expect_total: 31231, vltr_num: 123123, vltr_age_id: nil, vltr_sex: 0, vltr_req: "", region_id: 1, school_id: 1, btime_id: 1, category_id: 1, admin_add: "j2ffrey@gmail.com", admin_mod: "", act_time: nil}
+])
+Btime.create!([
+  {name: "1~3시간", min: 1, max: 3},
+  {name: "4~7시간", min: 4, max: 7},
+  {name: "8시간 이상", min: 8, max: 999}
+])
+Category.create!([
+  {name: "노력봉사"},
+  {name: "교육봉사"},
+  {name: "재능봉사"},
+  {name: "해외봉사"},
+  {name: "기타봉사"}
+])
+Organization.create!([
+  {name: "에듀왕어학원", phone: ""},
+  {name: "넥슨", phone: ""},
+  {name: "글로벌투게더", phone: ""},
+  {name: "IVP", phone: ""},
+  {name: "Cambofriend", phone: ""},
+  {name: "국제한민족재단", phone: ""},
+  {name: "한글문화연대", phone: ""},
+  {name: "자연신탁", phone: ""},
+  {name: "와우책문화예술센터", phone: ""},
+  {name: "토마토학교", phone: ""},
+  {name: "우리봉사단", phone: ""},
+  {name: "옥션", phone: ""},
+  {name: "성민복지관", phone: ""},
+  {name: "프로보노국제협력재단", phone: ""},
+  {name: "아름다운가게", phone: ""},
+  {name: "초록우산어린이재단", phone: ""},
+  {name: "서울특별시", phone: ""},
+  {name: "아시아나국제단편영화제", phone: ""},
+  {name: "한국청소년리더십센터", phone: ""},
+  {name: "부산어깨동무", phone: ""},
+  {name: "굿네이버스", phone: ""},
+  {name: "청만아세", phone: ""},
+  {name: "강북청소년수련관", phone: ""}
+])
+Region.create!([
+  {name: "강동구"},
+  {name: "강남구"},
+  {name: "강북구"},
+  {name: "강서구"},
+  {name: "관악구"},
+  {name: "광진구"},
+  {name: "구로구"},
+  {name: "금천구"},
+  {name: "노원구"},
+  {name: "도봉구"},
+  {name: "동대문구"},
+  {name: "동작구"},
+  {name: "마포구"},
+  {name: "서대문구"},
+  {name: "서초구"},
+  {name: "성동구"},
+  {name: "성북구"},
+  {name: "송파구"},
+  {name: "양천구"},
+  {name: "영등포구"},
+  {name: "용산구"},
+  {name: "은평구"},
+  {name: "종로구"},
+  {name: "중구"},
+  {name: "중랑구"}
+])
+School.create!([
+  {name: "서울교육대학교"},
+  {name: "서울대학교"},
+  {name: "서울과학기술대학교"},
+  {name: "육군사관학교"},
+  {name: "한국방송통신대학교"},
+  {name: "한국예술종합학교"},
+  {name: "한국체육대학교"},
+  {name: "KAIST(경영)"},
+  {name: "서울시립대학교"},
+  {name: "가톨릭대학교"},
+  {name: "감리교신학대학교"},
+  {name: "건국대학교"},
+  {name: "경기대학교"},
+  {name: "경희대학교"},
+  {name: "고려대학교"},
+  {name: "광운대학교"},
+  {name: "국민대학교"},
+  {name: "그리스도대학교"},
+  {name: "덕성여자대학교"},
+  {name: "동국대학교"},
+  {name: "동덕여자대학교"},
+  {name: "명지대학교"},
+  {name: "삼육대학교"},
+  {name: "상명대학교"},
+  {name: "서강대학교"},
+  {name: "서경대학교"},
+  {name: "서울기독대학교"},
+  {name: "서울여자대학교"},
+  {name: "성공회대학교"},
+  {name: "성균관대학교"},
+  {name: "성신여자대학교"},
+  {name: "세종대학교"},
+  {name: "숙명여자대학교"},
+  {name: "숭실대학교"},
+  {name: "연세대학교"},
+  {name: "이화여자대학교"},
+  {name: "장로회신학대학교"},
+  {name: "중앙대학교"},
+  {name: "총신대학교"},
+  {name: "추계예술대학교"},
+  {name: "한국성서대학교"},
+  {name: "한국외국어대학교"},
+  {name: "한성대학교"},
+  {name: "한양대학교"},
+  {name: "한영신학대학교"},
+  {name: "홍익대학교"}
+])
 ViewCount.create!([
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.132"},
   {ip_adress: "219.249.227.19"},
   {ip_adress: "219.249.227.16"},
   {ip_adress: "219.249.227.18"},
@@ -184,6 +338,8 @@ ViewCount.create!([
   {ip_adress: "218.144.63.34"},
   {ip_adress: "218.144.63.34"},
   {ip_adress: "218.144.63.34"},
-  {ip_adress: "218.144.63.34"}
-
+  {ip_adress: "218.144.63.34"},
+  {ip_adress: "211.118.166.132"},
+  {ip_adress: "211.118.166.131"},
+  {ip_adress: "211.118.166.131"}
 ])

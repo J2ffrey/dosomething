@@ -1,19 +1,20 @@
 
             <div class="well well-out">
                 <%#= form_for @sb, url: {controller: 'admin', action:'add_sb'} do |f| %>
-                <form action="/admin/m_bongsa" method="POST">
+                <form action="/admin/m_bongsa" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="mod" value="<%= @mod %>">
                     <input type="hidden" name="id" value="<%= @b.id %>">
                     <div class="well well-in">
-                        
-                        <div class="form-group2">
-                            <label>메인 이미지</label>
-                            <input type="text" name="img_main" class="form-control" value="<%= @b.img_main %>" />
-                        </div>
-                        <div class="form-group2">
-                            <label>포스터 사진</label>
-                            <input type="text" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
-                        </div>
+                        <%# unless @mod=="1" %>
+                            <div class="form-group2">
+                                <label>메인 이미지</label>
+                                <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
+                            </div>
+                            <div class="form-group2">
+                                <label>포스터 사진</label>
+                                <input type="file" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
+                            </div>
+                        <%# end %>
                         <div class="form-group2">
                             <label>봉사명</label>
                             <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
@@ -66,31 +67,31 @@
                         </div>
                         <div class="form-group2">
                             <label>모집시작일</label>
-                            <input type="text" name="date_recruit_start" class="form-control" value="<%= @b.date_recruit_start %>" required />
+                            <input type="date" name="date_recruit_start" class="form-control" value="<%= @b.date_recruit_start %>" />
                         </div>
                         <div class="form-group2">
                             <label>모집마감일</label>
-                            <input type="text" name="date_recruit_end" class="form-control" value="<%= @b.date_recruit_end %>" required />
+                            <input type="date" name="date_recruit_end" class="form-control" value="<%= @b.date_recruit_end %>" />
                         </div>
                         <div class="form-group2">
                             <label>봉사 실 시작일</label>
-                            <input type="text" name="date_real_start" class="form-control" value="<%= @b.date_real_start %>" required />
+                            <input type="date" name="date_real_start" class="form-control" value="<%= @b.date_real_start %>" />
                         </div>
                         <div class="form-group2">
                             <label>봉사 실 종료일</label>
-                            <input type="text" name="date_real_end" class="form-control" value="<%= @b.date_real_end %>" required />
+                            <input type="date" name="date_real_end" class="form-control" value="<%= @b.date_real_end %>" />
                         </div>
                         <div class="form-group2">
-                            <label>하루 시작 시각</label>
-                            <input type="text" name="time_daily_start" class="form-control" value="<%= @b.time_daily_start %>" required />
+                            <label>하루 시작 시각(hhmm)</label>
+                            <input type="text" name="time_daily_start" class="form-control" value="<%= @b.time_daily_start %>" />
                         </div>
                         <div class="form-group2">
-                            <label>하루 종료 시각</label>
-                            <input type="text" name="time_daily_end" class="form-control" value="<%= @b.time_daily_end %>" required />
+                            <label>하루 종료 시각(hhmm)</label>
+                            <input type="text" name="time_daily_end" class="form-control" value="<%= @b.time_daily_end %>" />
                         </div>
                         <div class="form-group2">
                             <label>총 획득 예상시간</label>
-                            <input type="text" name="time_expect_total" class="form-control" value="<%= @b.time_expect_total %>" required />
+                            <input type="text" name="time_expect_total" class="form-control" value="<%= @b.time_expect_total %>" />
                         </div>
                         <div class="form-group2">
                             <label>모집인원</label>
@@ -113,6 +114,7 @@
                             <select name="vltr_sex">
                                 <option value="0" <% "selected" if @mod == "1" && @b.vltr_sex == 0 %>>남</option>
                                 <option value="1" <% "selected" if @mod == "1" && @b.vltr_sex == 1 %>>여</option>
+                                <option value="2" <% "selected" if @mod == "1" && @b.vltr_sex == 2 %>>무관</option>
                             </select>
                         </div>
                         <div class="form-group2">
@@ -174,11 +176,15 @@
                         <% end %>
                         <div class="form-group2">
                             <label>등록자</label>
-                            <%= @b.admin_add %>
+                            <% if @mod=="1" %>
+                                <%= @b.admin_add %>
+                            <% else %>
+                                <%= current_user.email %>
+                            <% end %>
                         </div>
                         <div class="form-group2">
                             <label>최근 수정자</label>
-                            <input type="text" value="<%#= current_user.email %>" name="admin_mod">
+                            <input type="text" value="<%= current_user.email %>" name="admin_mod">
                         </div>
                         <div class="form-group2">
                             <label>Act time</label>

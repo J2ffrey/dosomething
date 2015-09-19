@@ -79,74 +79,37 @@
     </div>
   </div>
 
-<style>
-
-.color {background-color: #5fc0c7;}
-.small-calendar-title {text-align:center;
-                      font-weight: 800;
-                      color: white;
-                      margin-bottom:4%;
-                      font-size: 18px;
-                      }
-.dayname-container {float: left;
-                    color:white;
-                    }
-.calendar-container{
-    float: left;
-    height: 20px;
-    width: calc(100% / 7);
-}
-.day-label {
-    float: left;
-    height: 20px;
-    width: calc(100% / 7);
-}
-.small-calendar {
-    padding: 16px 10px;
-    height: calc(7 * 20px + 2 * 15px + 2px);
-    background-color: rgba(249, 246, 246, 0.16);
-}
-.bongsa_checkbox {margin-top:5%;}
-input#s_word {
-    background-image: url(/img/teamprofile/search.png);
-    background-repeat: no-repeat;
-    text-indent: 44px;
-}
-.navbar__search {
-    height: 35px;
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    border-bottom: 1px solid white;
-    background-color: #5FC0C7;
-    width: 340px;
-    }
-
-::-webkit-input-placeholder {
-   color: white;
-   font-size:15px;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-    color: white; 
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-    color: white; 
-}
-
-:-ms-input-placeholder {  
-    color: white;  
-}
-</style>
-
   
   <!--봉사유형 선택	-->
-  <div class="row">
-	  <center style="margin-top: 23%;"><p style="font-size:18px; color:white;"><b>봉사활동 유형</b></p></center>
-  </div>
-	
-	<div class="bongsa_checkbox">
+  
+  <div class="bongsa_type_checkbox">
+    <div class="row">
+  	  <center style="margin-top: 23%;"><p style="font-size:18px; color:white;"><b>봉사활동 유형</b></p></center>
+    </div>
+    
+    <input type="checkbox" name="colorCheckbox" value="check_s"> 시작일
+    <input type="checkbox" name="colorCheckbox" value="check_f"> 마감일
+    
+    <div class="bongsa_checkbox">
+      <div class="bongsa_checkbox_list" style="border:1px solid black;">
+        <input type="checkbox" class="select_type" class="checking">
+      	<div class="circle number1"></div>
+      	<!--<img src="/img/teamprofile/circle.png" style="width:7%; height:7%; margin-bottom: 7px; width: 5%; height: 5%; margin-bottom: 4px;"/>-->
+      	<span class="select_type_name" style="margin-left:1%;">전체보기</span>
+      </div>
+      <div class="bongsa_checkbox_list" style="border:1px solid black;">
+        <input type="checkbox" class="select_type" class="checking">
+      	<div class="circle number2"></div>
+      	<!--<img src="/img/teamprofile/circle.png" style="width:7%; height:7%; margin-bottom: 7px; width: 5%; height: 5%; margin-bottom: 4px;"/>-->
+      	<span class="select_type_name" style="margin-left:1%;">교육봉사</span>
+      </div>
+      
+
+    </br>
+    </br>
+    </br>
+    </br>
+    
   	<input type="checkbox" class="select_type" class="checking">
   	<div class="circle number1"></div>
   	<p class="select_type_name">전체보기</p>
@@ -170,8 +133,10 @@ input#s_word {
     <input type="checkbox" class="select_type" class="checking">
     <div class="circle number6"></div>
     <p class="select_type_name">기타봉사</p>
-  </div>
+    </div>
+  </div>  
 </div>
+
 <!--봉사유형 선택	-->
 
 
