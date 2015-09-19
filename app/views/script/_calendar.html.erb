@@ -30,6 +30,27 @@ $(function(){
     });
     $.ajax({
   			type:"get",
+  			url:"/calendar/large?" + 'month=' + %('#month').val()
+  			+ '&year=' + $('#year').val(),
+  			+ '&day=' + $('#day').val(),
+  			datatype:"html",
+  			success:function(r){
+  				$("#large").empty();
+  				$("#large").append("<style>"+r+"</style>");
+  			},
+  			error:function(){
+  				alert("데이터를 가져오지 못하였습니다.");
+  			},
+  		});
+    })
+
+  $("#search").on("click", function(){
+		var checkboxValues = [];
+    $("input[name='ck']:checked").each(function(i) {
+        checkboxValues.push($(this).val());
+    });
+    $.ajax({
+  			type:"get",
   			url:"/calendar/large?" + 'ck=' + checkboxValues
   			+ '&s_word=' + $('#s_word').val(),
   			datatype:"html",

@@ -3,7 +3,8 @@
 <%
 #"name LIKE \"%#{@s_word}%\""
     
-   a = Date.parse("#{@year}-#{@month}-#{@day}")#.compact('')
+   a = Date.parse("#{@year}-#{
+     @month}-#{@day}")#.compact('')
    # a = Date.parse("#{2015}-#{9}-#{1}")#.compact('')
   
   #a = a.delete_if {|x| x == " "}

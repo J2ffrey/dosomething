@@ -8,6 +8,9 @@ class BaguniController < ApplicationController
         
         @buckets = current_user.buckets
         @real_bongsas = current_user.real_bongsas
+        
+        @real_bongsas.all.each do |i|
+        end
     end
     
     def register
@@ -30,7 +33,10 @@ class BaguniController < ApplicationController
     end
     
     def modify
-        
+        f = RealBongsa.find(params[:id])
+        f.time_total = params[:time_total]
+        f.save
+        redirect_to '/baguni/timemanage'
     end
     
     def delete2
@@ -84,5 +90,7 @@ class BaguniController < ApplicationController
         b.save
         flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
         redirect_to '/'
+        flash[:alert] = '비밀번호를 확인 후 다시 입력하세요'
+         redirect_to '/home/private_info'
     end
 end

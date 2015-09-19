@@ -203,22 +203,31 @@ ___________________________________________________
 ===================================================
   이 'slided_poster' 은 선택시 보여주는걸 추천함.
 -->
+<% if @b.img_poster ==' ' %>
+
+<% else %>
 <div class="col-md-12 slide slided_poster">
+  
   <center>
-    <h1 style="margin-bottom:70px; font-size:40px;">
+    <h1 style="margin-bottom:3%; font-size:40px;">
         <b>모집 포스터</b>
     </h1>
   </center>
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <img src="<%= @b.img_poster %>"idth="100%" height="auto" width=95.5%;>
+      <img src="<%= @b.img_poster %>" idth="100%" height="auto" width=95.5%;>
     </div>
     <div class="col-md-2"></div>
-  </div>
-  <div class="col-md-1"></div>
+    </div>
+    <div class="col-md-1"></div>
+    
 </div>
+    
+    <% end %>
+
+
 
 <div class="col-md-12">
   <%= render :partial => 'home/main_footer' %>

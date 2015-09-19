@@ -11,6 +11,8 @@
 @s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
 %>
 
+<% @day = @day.nil? ? 20 : @day %>
+
 <%= @day %>.
 <%= @month %>.
 <%= @year %>.
@@ -19,12 +21,17 @@
 
 <div class="row">
   <div class="col-md-12" style="background: #502da5; color: white">
+    <button id="before_">&lt;</button>
+    <input type="hidden" id="year1" value="">
+    <input type="hidden" id="month1" value="">
+    <input type="hidden" id="month1" value="">
     <center><h3 style="margin-bottom: 2%;"><%= @year %>.<%= @month %></h3></center>
+    <button id="next_">&gt;</button>
   </div>
 </div>
 
 <div class="row">
-  <% k = @day.nil? ? 14 : @day %>
+  <% k = @day %>
   <% (k..k+6).to_a.each do |x| %>
     <% @day = x %>
     <%= render partial: 'day' %>
