@@ -15,12 +15,13 @@
       </div>
     </div>
     
-    <div class="col-md-12 header__title"> <img src="img/name.png" style="width:10%; height:10%">
-      <font style="font-size:30px; margin-bottom: -4%;">Visited &nbsp
-        <font size="80px; ">
+    <div class="col-md-12 header__title"> <img src="img/ic_logo/logo_caligraphy_1024px_white.png" style="width:20%; height:20%">
+      <br>
+      <font style="font-size:30px;">
+        <font style="font-size=40px;">
           <%= @total_view_count %>
         </font>
-          &nbsp Members.
+          &nbsp명이 방문하였습니다.
       </font>
     </div>
     
@@ -36,7 +37,7 @@
                     <select name="region" id="region_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp지역</option>
                       <% Region.all.each do |x| %>
-                        <option value="<%= x.id %>"><%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -45,9 +46,9 @@
                 <div class="col-md-3">
                   <li class="wantlist">
                     <select name="school" id="school_select">
-                      <option selected="selected" value="empty">대학교</option>
+                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp대학교</option>
                       <% School.all.each do |x| %>
-                        <option value="<%= x.id %>"><%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -56,9 +57,9 @@
                 <div class="col-md-3">
                   <li class="wantlist">
                     <select name="btime" id="btime_select">
-                      <option selected="selected" value="empty">시간</option>
+                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp시간</option>
                       <% Btime.all.each do |x| %>
-                        <option value="<%= x.id %>"><%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -67,9 +68,9 @@
                 <div class="col-md-3">
                   <li class="wantlist">
                     <select name="category" id="category_select">
-                      <option selected="selected" value="empty" class="filternamecss">봉사종류</option>
+                      <option selected="selected" value="empty" class="filternamecss">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp봉사종류</option>
                       <% Category.all.each do |x| %>
-                        <option value="<%= x.id %>"><%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>

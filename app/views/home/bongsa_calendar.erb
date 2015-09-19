@@ -87,9 +87,27 @@
   	  <center style="margin-top: 23%;"><p style="font-size:18px; color:white;"><b>봉사활동 유형</b></p></center>
     </div>
     
-    <input type="checkbox" name="colorCheckbox" value="check_s"> 시작일
-    <input type="checkbox" name="colorCheckbox" value="check_f"> 마감일
+    <input type="checkbox" name="colorCheckbox" value="check_s" class="s_check" checked> 시작일
+    <input type="checkbox" name="colorCheckbox" value="check_f" class="e_check" checked> 마감일
     
+    <SCRIPT>
+// $(function(){
+//   $('#ck' ).on("change",function(){
+//     if($("#ck").val() == true){
+//       $(".start_date").show()  
+//     }else{
+//       $(".start_date").hide()
+//     }
+//   })
+//     $("#ck1").on("change",function(){
+//     if($("#ck1").val() == true){
+//       $(".end_date").show()  
+//     }else{
+//       $(".end_date").hide()
+//     }
+//   })
+// })
+// </SCRIPT>
     <div class="bongsa_checkbox">
       <div class="bongsa_checkbox_list" style="border:1px solid black;">
         <input type="checkbox" class="select_type" class="checking">
@@ -205,42 +223,85 @@
   <!--캘린더 안 봉사 내용-->
   
   <div>
+    <%1.upto(7) do |i|%>
     <div class="col-7 calendar_content_background" >
       <br>
-      <center><p class="calendar_day">내용내용</p></center>
+      <center>
+        <p class="calendar_day">
+          <%= render partial: "calendar/day_info", :locals => { year: 2015, month: 9, day: i } %>
+          내용내용
+        </p>
+      </center>
     </div>
+    <%end%>
     
-   <div class="col-7 calendar_content_background" >
-      <br>
-      <center><p class="calendar_day">내용내용</p></center>
-    </div>
+  <!--  <div class="col-7 calendar_content_background" >-->
+  <!--    <br>-->
+  <!--    <center><p class="calendar_day">-->
+  <!--      내용내용</p></center>-->
+  <!--  </div>-->
     
-    <div class="col-7 calendar_content_background" >
-      <br>
-      <center><p class="calendar_day">내용내용</p></center>
-    </div>
+  <!--  <div class="col-7 calendar_content_background" >-->
+  <!--    <br>-->
+  <!--    <center><p class="calendar_day">내용내용</p></center>-->
+  <!--  </div>-->
     
-    <div class="col-7 calendar_content_background" >
-      <br>
-      <center><p class="calendar_day">내용내용</p></center>
-    </div>
+  <!--  <div class="col-7 calendar_content_background" >-->
+  <!--    <br>-->
+  <!--    <center><p class="calendar_day">내용내용</p></center>-->
+  <!--  </div>-->
     
-    <div class="col-7 calendar_content_background" >
-      <br>
-      <center><p class="calendar_day">내용내용</p></center>
-    </div>
+  <!--  <div class="col-7 calendar_content_background" >-->
+  <!--    <br>-->
+  <!--    <center><p class="calendar_day">내용내용</p></center>-->
+  <!--  </div>-->
     
-    <div class="col-7 calendar_content_background" >
-      <br>
-      <center><p class="calendar_day">내용내용</p></center>
-    </div>
+  <!--  <div class="col-7 calendar_content_background" >-->
+  <!--    <br>-->
+  <!--    <center><p class="calendar_day">내용내용</p></center>-->
+  <!--  </div>-->
     
-    <div class="col-7 calendar_content_last" >
-      <br>
-      <center><p class="calendar_day">내용내용</p></center>
-    </div>
-  </div>
+  <!--  <div class="col-7 calendar_content_last" >-->
+  <!--    <br>-->
+  <!--    <center><p class="calendar_day">내용내용</p></center>-->
+  <!--  </div>-->
+  <!--</div>-->
 </div>
+<!--<script>-->
+// 시작일, 마감일 조건검색
+<!--$(function(){-->
+<!--  $('.s_check' ).on("change",function(){-->
+<!--    if($(".s_check").is(":checked") == true)-->
+<!--    {-->
+<!--      $(".start_date").show()  -->
+<!--    }-->
+<!--    else if($(".e_check").is(":checked") == true)-->
+<!--    {-->
+<!--      $(".end_date").show()-->
+<!--    }-->
+<!--    else-->
+<!--    {-->
+<!--      $(".start_date").hide()-->
+<!--      $(".end_date").hide()-->
+<!--    }-->
+<!--  })-->
+<!--    $(".e_check").on("change",function(){-->
+<!--    if($(".e_check").is(":checked") == true)-->
+<!--    {-->
+<!--      $(".end_date").show()  -->
+<!--    }-->
+<!--    else if($(".s_check").is(":checked") == true)-->
+<!--    {-->
+<!--      $(".start_date").show()-->
+<!--    }-->
+<!--    else-->
+<!--    {-->
+<!--      $(".start_date").hide()-->
+<!--      $(".end_date").hide()-->
+<!--    }-->
+<!--  })-->
+<!--})-->
 
+<!--</script>-->
 <%= render :partial => 'style/bongsa_calendarcss' %>
 <%= render :partial => 'home/main_footer' %>

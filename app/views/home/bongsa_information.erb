@@ -1,195 +1,89 @@
 <%= render :partial => 'home/main_navbar' %>
 
-<%= render :partial => 'style/bongsa_informationcss' %>
+
 
 <!-- Tables
 ================================================== -->
-<div class="continue slided_img" style="background-image:url('<%= @b.img_main %>'); background-size: conver;">
-  <div style="padding-top: 25%;padding-left: 5%; bottom:0px;">
-    <!--봉사명-->
-    <p class="m_title"><b><%= @b.name %></b></p>
-    <div class="col-md-12">
-        <div class="col-md-8">
-          <div class="col-md-6 m_term">
-              <!--모집시작일~모집종료일-->
-              <p>모집 : <%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></p>
-          </div>
-          <div class="col-md-3">
-              <!--신청하기-->
-              <button class="btn btn-block m_btn">
-                  <b>신청하기</b>
+<div class="col-md-12 continue slided_img" style="padding-right: 0px;">
+  <div class="col-md-12" style="padding-right: 0px; padding-top:1%; padding-left: 0px; background-color: rgba(0, 0, 0, 0.61);">
+  <!--봉사명-->
+  <div class="col-md-9">
+    <p class="m_title" style="margin-bottom:-8px;"><b><%= @b.name %></b></p>
+      <div class="col-md-6 m_term">
+        <!--모집시작일~모집종료일-->
+        <p style="font-size: 21px;">모집 : <%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %></p>
+      </div>
+      <div class="col-md-3">
+          <!--신청하기-->
+          <a href="#">
+            <button class="btn btn-block m_btn">
+                <b>신청하기</b>
+            </button>
+          </a>
+      </div>
+      <div class="col-md-3">
+          <!--신청하기-->
+          <a href="/baguni/bucket_save/<%= @b.id %>">
+              <button class="btn btn-block m_btn" style="background-color:#c75050; margin-left: -94%;">
+                  <b>찜하기</b>
               </button>
-          </div>
-          <div class="col-md-3">
-              <!--신청하기-->
-              <a href="/baguni/bucket_save/<%= @b.id %>">
-                  <button class="btn btn-block m_btn" style="background-color:#c75050;">
-                      <b>찜하기</b>
-                  </button>
-              </a>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
+          </a>
+      </div>
+    <div class="col-md-4"></div>
+  </div>
+  <div class="col-md-3"></div>
   </div>
 </div>
-<!--------------------------------------------------------------------------------------------------------------------------------------->
-                                        <style>
-                                          .m_title{
-                                              margin-left:2%; 
-                                              color:#fff; 
-                                              font-size:50px;
-                                          }
-                                          .m_term{
-                                              color:#fff; 
-                                              font-size:2em;
-                                              line-height: 57px;
-                                          }
-                                          .m_btn{
-                                              margin-top:7px;
-                                              width:100%;
-                                              height:44px;
-                                              font-size:25px;
-                                              color: #fff;
-                                              line-height:0px;
-                                              border-radius: 0px;
-                                              background-color: #5fc0c7;
-                                          }
-                                        </style>
-<!--------------------------------------------------------------------------------------------------------------------------------------->
-<div class="slide continue slided_circles">
-  <div class="row" style="padding:100px 11% 10px 11%;">
+
+<br>&nbsp</br>
+<br>&nbsp</br>
+<br>&nbsp</br>
+
+    
+<div class="col-md-12 slide continue slided_circles">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
     <center>
       <div class="col-md-12" style="padding:0px;">
         <!--동그라미 봉사시간-->
-        <div class="circle circle-bongsa_time hvr-border-fade">
+        <div class="circle circle-bongsa_time">
           <p><%= @b.time_expect_total %>H</p>
         </div>
         <!--동그라미 디-데이-->
-        <div class="circle circle-d_day hvr-border-fade">
+        <div class="circle circle-d_day">
           <p>D-<%= (Date.parse(Time.now.to_s)  -  Date.parse("#{@b.date_recruit_end}")).to_i %></p>
         </div>
         <!--동그라미 활동지역-->
-        <div class="circle circle-activ_region hvr-border-fade">
-          <p><%= Region.find(@b.region_id).name %></p>
+        <div class="circle circle-activ_region" style="padding:3.4% 0% 3.4% 0%;">
+          <p style="font-size:28px; margin-top:5%"><%= Region.find(@b.region_id).name %></p>
         </div>
         <!--동그라미 인증서발급여부-->
-        <div class="circle circle-printable_doc hvr-border-fade">
+        <div class="circle circle-printable_doc">
           <p>V</p>
         </div>
       </div>
     </center>
-  </div>
-  <div class="row" style="margin-bottom:100px;">
+
     <center>
-      <div class="circle_name circle_name-bongsa_time">
-        <p>봉사 시간</p>
-      </div>
-      <div class="circle_name circle_name-d_day">
-        <p>D-day</p>
-      </div>
-      <div class="circle_name circle_name-activ_region">
-        <p>활동 지역</p>
-      </div>
-      <div class="circle_name circle_name-printable_doc">
-        <p>인증서발급여부</p>
+      <div class="col-md-12" style="margin-bottom:100px;">
+        <div class="circle_name circle_name-bongsa_time">
+          <p class="key_variable_name" style="margin-left: -16%;">봉사 시간</p>
+        </div>
+        <div class="circle_name circle_name-d_day">
+          <p class="key_variable_name">D-day</p>
+        </div>
+        <div class="circle_name circle_name-activ_region">
+          <p class="key_variable_name">활동 지역</p>
+        </div>
+        <div class="circle_name circle_name-printable_doc">
+          <p class="key_variable_name" style="margin-right: -19%;">인증서</p>
+        </div>
       </div>
     </center>
   </div>
+  <div class="col-md-1"></div>
 </div>
-<!--------------------------------------------------------------------------------------------------------------------------------------->
-                                        <style>
-                                          .slided_circles{
-                                            width:100%;
-                                            height:100%;
-                                          }
-                                          .circle{
-                                            position: relative;
-                                          	display: inline-block;
-                                          	/*height: 164px;*/
-                                          	padding: 2.9% 0% 2.9% 0%;
-                                          	width: 13.5%;
-                                          	border-radius: 100%;
-                                          	border: 2px solid black;
-                                          	/*margin-left: 5px;*/
-                                          	/*margin: 5px 2% 5px 3%;*/
-                                          	text-align: center;
-                                          	vertical-align: middle;
-                                          	font-size:50px;
-                                          }
-                                          .circle p{
-                                          	text-align: center;
-                                          	vertical-align: middle;
-                                          	font-size:50px;
-                                          	margin:0px;
-                                          	/*line-height: 3;*/
-                                          }
-                                            /* BORDER TRANSITIONS */
-                                            /* Border Fade */
-                                            .hvr-border-fade {
-                                              border:none;
-                                              display: inline-block;
-                                              vertical-align: middle;
-                                              -webkit-transform: translateZ(0);
-                                              transform: translateZ(0);
-                                              box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-                                              -webkit-backface-visibility: hidden;
-                                              backface-visibility: hidden;
-                                              -moz-osx-font-smoothing: grayscale;
-                                              -webkit-transition-duration: 0.3s;
-                                              transition-duration: 0.3s;
-                                              -webkit-transition-property: box-shadow;
-                                              transition-property: box-shadow;
-                                              box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
-                                              /* Hack to improve aliasing on mobile/tablet devices */
-                                            }
-                                            .hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
-                                              box-shadow: inset 0 0 0 4px #2098d1, 0 0 1px rgba(0, 0, 0, 0);
-                                              /* Hack to improve aliasing on mobile/tablet devices */
-                                            }
-                                            
-                                          .circle-bongsa_time{
-                                            border:4px solid #502ca8;
-                                            margin: 5px 4% 5px 8%;
-                                            color:#502ca8;
-                                          }
-                                          .circle-d_day{
-                                            border:4px solid #1f93a0;
-                                            margin: 5px 4% 5px 4%;
-                                            color:#1f93a0;
-                                          }
-                                          .circle-activ_region{
-                                            border:4px solid #3b1cd9;
-                                            margin: 5px 4% 5px 4%;
-                                            color:#3b1cd9;
-                                          }
-                                          .circle-printable_doc{
-                                            border:4px solid #ffa31e;
-                                            margin: 5px 8% 5px 4%;
-                                            color:#ffa31e;
-                                          }
-                                          .circle_name{
-                                            float:left;
-                                            width: 13.5%;
-                                            position: relative;
-                                            text-align: center;
-                                            font-size:30px;
-                                          }
-                                          .circle_name-bongsa_time{
-                                            margin: 5px 2% 5px 17.5%;
-                                          }
-                                          .circle_name-d_day{
-                                            margin: 5px 2% 5px 1.5%;
-                                          }
-                                          .circle_name-activ_region{
-                                            margin: 5px 2% 5px 2%;
-                                          }
-                                          .circle_name-printable_doc{
-                                            margin: 5px 8% 5px 2%;
-                                          }
-                                        </style>
-<!--------------------------------------------------------------------------------------------------------------------------------------->
+
 <div class="col-md-12 slide continue slided_detail">
   <center>
     <h1 style="margin-bottom:70px; font-size:40px;">
@@ -197,147 +91,112 @@
     </h1>
   </center>
   <div class="col-md-12 col-sm-12">
-      <div class="col-md-6 col-sm-6">
-        <!--지역-->
-        <div class="col-md-2 col-sm-2"></div>
-        <div class="col-md-3 col-sm-3 icon">
-          <p>icon</p>
-        </div>
-        <div class="col-md-7 col-sm-7 icon__content">
-          <b>지역</b><br>
-          <span><%= Region.find(@b.region_id).name %></span>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-6">
-        <!--내용-->
-        <div class="col-md-3 col-sm-3 icon">
-          <p>icon</p>
-        </div>
-        <div class="col-md-7 col-sm-7 icon__content">
-          <b>내용</b><br>
-          <span><%= @b.content %></span>
-        </div>
-        <div class="col-md-2 col-sm-2"></div>
-      </div>
-  </div>
-  <div class="col-md-12 col-sm-12">
-    <!--한 줄 시작할 때 여백-->
-    <div class="col-md-6 col-sm-6">
-      <!--봉사기관 홈페이지-->
-      <div class="col-md-2 col-sm-2"></div>
-      <div class="col-md-3 col-sm-3 icon">
-        <p>icon</p>
-      </div>
-      <div class="col-md-7 col-sm-7 icon__content">
-        <b>지원가능 <br> 상세조건</b><br>
-        <span><%= @b.vltr_req %></span>
+    <!--지역-->
+    <div class="col-md-6">
+      <div class="col-md-4 col-sm-4"></div>
+      <div class="col-md-8 col-sm-8">
+        <img src="/img/ic/icon_location.png" class="info_icon">
+        <b class="info_title" style="line-height: 1.8;">&nbsp지역</b>
+        <br>
+        <span class="info_content">&nbsp<%= Region.find(@b.region_id).name %></span>
       </div>
     </div>
-      <div class="col-md-6 col-sm-6"></div>
-      <div class="col-md-6 col-sm-6">
-        <!--내용-->
-        <div class="col-md-3 col-sm-3 icon">
-          <p>icon</p>
-        </div>
-        <div class="col-md-7 col-sm-7 icon__content">
-          <b>지원가능 성별</b><br>
-          <% if  @b.vltr_sex  == 1 %>
-            <span>남자</span>
-          <% elsif  @b.vltr_sex  == 2 %>
-              <span>여자</span>
-          <% else %>
-              <span>무관</span>
-          <% end %>
-        </div>
-        <div class="col-md-2 col-sm-2"></div>
-      </div>
-  </div>
-  <div class="col-md-12 col-sm-12">
-    <!--한 줄 시작할 때 여백-->
-    <div class="col-md-6 col-sm-6">
-      <!--봉사기관 홈페이지-->
+    <!--지역-->
+    
+    <!--<br>&nbsp</br>-->
+
+    <!--지원가능 성별-->
+     <div class="col-md-6">
       <div class="col-md-2 col-sm-2"></div>
-      <div class="col-md-3 col-sm-3 icon">
-        <p>icon</p>
+      <div class="col-md-8 col-sm-8">
+        <img src="/img/ic/icon_gender.png" class="info_icon">
+        <b class="info_title" style="line-height: 1.8;">&nbsp지원가능성별</b>
+        <br>
+        <span class="info_content">
+        &nbsp<% if  @b.vltr_sex  == 1 %>
+          <span>남자</span>
+        <% elsif  @b.vltr_sex  == 2 %>
+            <span>여자</span>
+        <% else %>
+            <span>무관</span>
+        <% end %>
+      </span>
       </div>
-      <div class="col-md-7 col-sm-7 icon__content">
-        <b>실제 봉사기간</b><br>
-        <span><%= @b.date_real_start %> ~ <%= @b.date_real_end %></span>
+      <div class="col-md-2 col-sm-2"></div>
+    </div>
+    <!--지원가능 성별--> 
+    
+    <!--<br>&nbsp</br>-->
+    
+    <!--실제 봉사 기간-->
+     <div class="col-md-6">
+      <div class="col-md-4 col-sm-4"></div>
+      <div class="col-md-8 col-sm-8">
+        <img src="/img/ic/icon_time.png" class="info_icon">
+        <b class="info_title" style="line-height: 1.8;">&nbsp실제 봉사 기간</b>
+        <br>
+        <span class="info_content">
+        &nbsp<span><%= @b.date_real_start %> ~ <%= @b.date_real_end %></span>
+      </span>
       </div>
     </div>
-      <div class="col-md-6 col-sm-6"></div>
-      <div class="col-md-6 col-sm-6">
-        <!--내용-->
-        <div class="col-md-3 col-sm-3 icon">
-          <p>icon</p>
-        </div>
-        <div class="col-md-7 col-sm-7 icon__content">
-          <b>담당자 <br> 이름/연락처</b><br>
-          <span><%= @b.clerk_name %>/<%= @b.clerk_call %></span>
-        </div>
-        <div class="col-md-2 col-sm-2"></div>
+    <!--실제 봉사 기간-->
+    
+    <!--담당자 연락처-->
+    <div class="col-md-6">
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-8 col-sm-8">
+        <img src="/img/ic/icon_people.png" class="info_icon">
+        <b class="info_title" style="line-height: 1.8;">&nbsp담당자 연락처</b>
+        <br>
+        <span class="info_content">
+        &nbsp<span><%= @b.clerk_name %>/<%= @b.clerk_call %></span>
+      </span>
       </div>
+      <div class="col-md-2 col-sm-2"></div>
+    </div>
+    <!--담당자 연락처-->
+    
+    <br>&nbsp</br>
+    
+    <!--지원가능 상세 조건-->
+     <div class="col-md-12">
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-8 col-sm-8">
+        <img src="/img/ic/ic_requirement_100px.png" class='info_icon_big'>
+        <b class="info_title" style="line-height: 1.8;">&nbsp지원가능 상세 조건</b>
+        <br>
+        <span class="info_content">
+        &nbsp<span><%= @b.vltr_req %></span>
+      </span>
+      </div>
+      <div class="col-md-2 col-sm-2"></div>
+    </div>
+    <!--지원가능 상세 조건-->
+    
+    <br>&nbsp</br>
+    
+    <!--상세내용-->
+     <div class="col-md-12">
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-8 col-sm-8">
+        <img src="/img/ic/icon_info.png" class='info_icon_big'>
+        <b class="info_title" style="line-height: 1.8;">&nbsp상세내용</b>
+        <br>
+        <span class="info_content">
+        &nbsp<span><%= @b.content %></span>
+      </span>
+      </div>
+      <div class="col-md-2 col-sm-2"></div>
+    </div>
+    <!--상세내용-->
+    
+    <br>&nbsp</br>
+    
+
   </div>
 </div>
-
-
-<!--------------------------------------------------------------------------------------------------------------------------------------->
-                                        <style>
-                                          .slided_detail{
-                                              padding-top: 50px;
-                                              padding-bottom: 100px;
-                                          }
-                                          .icon{
-                                              float:left;
-                                              position: relative;
-                                              display: inline-block;
-                                              margin-top:20px;
-                                              margin-bottom:50px;
-                                              padding: 8% 0% 7% 0%;
-                                        	  /*height: 150px;*/
-                                              /*width: 100%;*/
-                                        	  border-radius: 100%;
-                                        	  border: 2px solid #1e929f;
-                                        	  text-align: center;
-                                        	  vertical-align: middle;
-                                        	  background-color: #1e929f;
-                                        	  font-size:35px;
-                                        	  color:#fff;
-                                          }
-                                          .icon p{
-                                              /*line-height:4;*/
-                                          }
-                                          .icon__content{
-                                              /*width:35%; */
-                                              height:150px;
-                                              margin-top:20px;
-                                              margin-bottom:50px; 
-                                              padding-top:30px; 
-                                              position: relative; 
-                                              font-size:33px;
-                                          }
-                                          .icon__content span{
-                                              font-size:25px;
-                                          }
-                                          .carting_btn{
-                                              bottom:0%;
-                                              margin-right:5%;
-                                              width:22%;
-                                              float:right;
-                                          }
-                                          .n_btn{
-                                              margin-top:0px;
-                                              margin-bottom:-45px;
-                                              width:100%;
-                                              height:60px;
-                                              font-size:28px;
-                                              color: #fff;
-                                              line-height:0px;
-                                              border-radius: 0px;
-                                              background-color: #5fc0c7;
-                                          }
-                                        </style>
-<!--------------------------------------------------------------------------------------------------------------------------------------->
+      
 <!--
 ___________________________________________________
 
@@ -347,32 +206,21 @@ ___________________________________________________
 <div class="col-md-12 slide slided_poster">
   <center>
     <h1 style="margin-bottom:70px; font-size:40px;">
-        <b>Poster is here..</b>
+        <b>모집 포스터</b>
     </h1>
-  
+  </center>
   <div class="col-md-1"></div>
   <div class="col-md-10">
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <img src="<%= @b.img_poster %>"idth="100%" height="auto" width=95.5%;>
     </div>
-    </center>
     <div class="col-md-2"></div>
   </div>
   <div class="col-md-1"></div>
 </div>
-<!------------------------------------------------------------------------------------------------------------------------------------>
-                                        <style>
-                                            .slided_poster{
-                                              padding-top: 50px;
-                                              padding-bottom: 100px;
-                                            }
-                                        </style>
-<!--
-===================================================
-___________________________________________________
--->
 
 <div class="col-md-12">
   <%= render :partial => 'home/main_footer' %>
 </div>
+<%= render :partial => 'style/bongsa_informationcss' %>

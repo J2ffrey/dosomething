@@ -6,7 +6,7 @@
 
 <!--찜한봉사-->
 <div class="cart_title">
-  <p style=>찜한봉사</p>
+  <p style=>찜한 봉사</p>
 </div>
 
 <% @buckets.each do |x| %>
@@ -16,7 +16,7 @@
   <div class="col-md-10 cart_content hvr-border-fade">
     <div class="row">
       <div class="col-md-2 cart_content_photo_block">
-        <img src="/img/teamprofile/cw.jpg" class="cart_content_photo">
+        <img src="<%= y.img_main %>" class="cart_content_photo">
       </div>
       
       <div class="col-md-10">
@@ -54,7 +54,7 @@
 <br>&nbsp
 <br>&nbsp
 <div class="cart_title">
-  <p style=>실제봉사리스트</p>
+  <p style=>실제 봉사 리스트</p>
 </div>
 
 <!--실제 봉사 리스트-->
@@ -64,7 +64,7 @@
   <div class="col-md-10 cart_content hvr-border-fade">
     <div class="row">
       <div class="col-md-2 cart_content_photo_block">
-        <img src="/img/teamprofile/cw.jpg" class="cart_content_photo">
+        <img src="<%= x.img %>" class="cart_content_photo">
       </div>
       
       <div class="col-md-10">
@@ -86,7 +86,7 @@
             <p style="margin-top:2%"><%= x.content %></p>
           </div>
           <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-            <a href="/baguni/delete/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>
+            <a href="/baguni/delete2/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>
             <a href="/baguni/modify/<%= x.id %>"><button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button></a>
           </div>
         </div>
@@ -100,25 +100,21 @@
 <% end %>
   <br>
   <div class="col-md-1">&nbsp</div>
-</div>
+
 
 <!--실제 봉사 리스트-->
 
-
-<br>&nbsp
-<br>&nbsp
-<br>&nbsp
-
-
 <!--총 봉사시간-->
-<div class="col-md-12 col-sm-12 col-xs-12 cart_title">
-  <p style=>총 봉사시간</p>
-</div>
 
-<div class="col-md-12 cart_content_background">
-<h1 style="text-align:center; margin-bottom:2%; color:#5fc0c7;"><strong>20시간</strong></h1>
 
-</div>
+  <div class="col-md-12 col-sm-12 col-xs-12 cart_title">
+    <p>총 봉사시간</p>
+  </div>
+
+
+  <div class="col-md-10 cart_content_background">
+    <h1 style="text-align:center; margin-bottom:2%; color:#5fc0c7; margin-top: 15px; margin-bottom: 15px;"><strong>20시간</strong></h1>
+  </div>
 
 
 <!--총 봉사시간-->
@@ -136,4 +132,3 @@
 <%= render :partial => 'style/timemanagecss' %>
 
 <%= render :partial => 'home/main_footer' %>
-

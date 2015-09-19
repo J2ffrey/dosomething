@@ -20,7 +20,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <% @bongsa.last(k).each do |b| %>
       <a href="/home/bongsa_information/<%= b.id %>">
-        <div class="col-md-4 col-sm-6 col-lg-4 row_main_content">
+        <div class="col-md-4 col-sm-6 col-lg-4 row_main_content hvr-border-fade">
           <div class="col-md-12" style="padding:0px;">
             <img src="<%= b.img_main %>" alt="이미지" style="width:100%;height: 271px; margin-top:0px;">
              
@@ -36,20 +36,21 @@
                 </p>
               </div>
             <% end %>
+          
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right: 1px solid rgba(168, 168, 168, 0.4);"></br>
-              <p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">총 봉사시간</p>
-              <p style="color:#000000; font-size:25px;"><%= b.time_expect_total %></p>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right: 1px solid rgba(168, 168, 168, 0.4);"></br>
-              <p style="font-size:16px; color:#A8A8A8; margin-bottom:7px;">지역 </p>
-              <p style="color:#000000; font-size:17px;"><%= Region.find(b.region_id).name %></p>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
+              <p class="ptag_up_css">총 봉사시간</p>
+              <p class="ptag_bottom_css"><%= b.time_expect_total %></p>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
-              <p style="font-size:16px; color:#A8A8A8; margin-bottom:5px;">D - day</p>
-              <p style="color:#000000; font-size:18px; margin-bottom:0px;"><%= b.date_real_start %></p>
-              <p style="color:#000000; font-size:18px;"> ~ <%= b.date_real_end %></p>
+              <p class="ptag_up_css">지역 </p>
+              <p class="ptag_bottom_css"><%= Region.find(b.region_id).name %></p>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
+              <p class="ptag_up_css">D - day</p>
+              <p class="ptag_bottom_css"><%= (Date.parse(Time.now.to_s)  -  Date.parse("#{b.date_recruit_end}")).to_i %></p>
+              <!--<p style="color:#000000; font-size:18px;"> ~ <%#= b.date_real_end %></p>-->
             </div>  
           </div>
         </div>
@@ -80,18 +81,22 @@
 <script type="text/javascript">
    $(function(){
       $("#bongsa_more_btn").on("click", function(){
-          $.ajax({
-              data :{},
-              type:"get",
-              url: "",
-              datatype:"html",
-              success: function(){
-                $("#next_content").load(r);
-              },
-              error: function(){
-                    alert("데이터를 가져오지 못하였습니다.");
-              };
-          });
+         $.ajax({
+      			type:"get",
+      			url:"/home/filter?" + 'region=' + $('#region_select').val() 
+      			+ '&school=' + $('#school_select').val() 
+      			+ '&btime=' + $('#btime_select').val() 
+      			+ '&category=' + $('#category_select').val()
+      			+ '&s_word=' + $('#s_word').val(),
+      			datatype:"html",
+      			success:function(r){
+      				$("#main_contents").empty();
+      				$("#main_contents").append("<style>"+r+"</style>");
+      			},
+      			error:function(){
+      				alert("데이터를 가져오지 못하였습니다.");
+      			},
+      		});
         });
       });
 </script>
@@ -105,20 +110,15 @@
 <center>
   <div class="row">
     <a href = '/calendar/index'>
-      <i class="fa fa-calendar-check-o fa-5x"></i>
+      <i class="fa fa-calendar-check-o fa-3x"></i>
     </a>
-    <p style="font-size:30px; text-align:center; color:#512da7; margin-top:2%;">
+    <p style="font-size:25px; text-align:center; color:#512da7; margin-top: 5px;">
       <a href = '/calendar/index' style="color:#512da7;">
         <b> 봉사달력 보러가기</b>
       </a>
     </p>
   </div>
 </center>
-
-<br>
-<br>
-
-
 
 <!-- Main Content CSS -->
 <%= render :partial => 'style/main_contentcss' %>

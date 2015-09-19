@@ -4,7 +4,7 @@
   
 <!-- 한글패치 -->
   <meta charset="utf-8">
-  <title>봉사꾼!</title>
+  <title>봉사꾼</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -55,10 +55,10 @@
 <!--====================================================================================================-->
 
 <body class="col-md-12 gray">
-  <div class="col-md-2"></div>
-  <div class="col-md-8 color" style="padding:0px;">
+  <div class="col-md-1"></div>
+    <div class="col-md-10 color" style="padding:0px;">
       <%= yield %>
-  </div>
-  <div class="col-md-2"></div>
+    </div>
+  <div class="col-md-1"></div>
 </body>
 </html>

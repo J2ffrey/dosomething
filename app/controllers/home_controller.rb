@@ -45,6 +45,8 @@ class HomeController < ApplicationController
         check.call "btime_id LIKE \"#{params[:btime]}\"" unless params[:btime].nil?
         check.call "category_id LIKE \"#{params[:category]}\"" unless params[:category].nil?
         @a = Bongsa.where("#{tmp}")
+        
+        render :layout => false
     end
     
     def calendar2

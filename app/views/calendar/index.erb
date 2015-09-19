@@ -9,8 +9,28 @@
 <!--봉사세부달력-->
 
 <div class="col-md-10" id="large" style="padding-left: 0px; padding-right: 0px;">
-  <%= render partial: 'large' %>
+  <%= render partial: "calendar/large" %>
 </div>
+<script>
+$(function(){
 
+  $('.s_check,.e_check' ).on("click",function(){
+    $('.start_date,.end_date').removeClass("hide")
+    if($(".s_check").is(":checked") == false && $(".e_check").is(":checked") == false )
+    {
+      $(".start_date").addClass("hide")
+      $(".end_date").addClass("hide")
+    }
+    else if($(".s_check").is(":checked") == true && $(".e_check").is(":checked") == false)
+    {
+      $(".end_date:not(.start_date)").addClass("hide")
+    }
+    else if($(".e_check").is(":checked") == true && $(".s_check").is(":checked") == false)
+    {
+      $(".start_date:not(.end_date)").addClass("hide")
+    }
+  })
+})
+</script>
 <%= render :partial => 'style/bongsa_calendarcss' %>
 <%= render :partial => 'home/main_footer' %>

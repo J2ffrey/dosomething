@@ -1,5 +1,202 @@
 <style>
-  .slided_img{
-    
+.continue{
+  border-bottom:2px solid #A0A0A0;
+}
+/*----------------------------------------    slided_img    ---------------------------------------------------------------------------*/
+.slided_img{
+    background-image:url('<%= @b.img_main %>');
+    background-size: cover;
+    padding-top: 30%;
+    padding-left: 0px;
+}
+.m_title{
+    margin-left:2%; 
+    color:#fff; 
+    font-size:45px;
+}
+.m_term{
+    color:#fff; 
+    font-size:2em;
+    line-height: 57px;
+    margin-bottom: 1%;
+}
+.m_btn{
+    margin-top: 11%;
+    width: 68%;
+    height: 32px;
+    font-size: 20px;
+    color: #fff;
+    line-height: 0px;
+    border-radius: 0px;
+    background-color: #5fc0c7;
+    margin-left: -50%;
+}
+                                        
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------     slided_circles     -----------------------------------------------------------------------*/
+                                        
+.slided_circles{
+    width:100%;
+    height:100%;
+}
+.circle{
+    position: relative;
+  	display: inline-block;
+  	/*height: 164px;*/
+  	padding: 2.9% 0% 2.9% 0%;
+  	width: 13.5%;
+  	border-radius: 100%;
+  	border: 2px solid black;
+  	/*margin-left: 5px;*/
+  	/*margin: 5px 2% 5px 3%;*/
+  	text-align: center;
+  	vertical-align: middle;
+  	font-size:50px;
+}
+.circle p{
+  	text-align: center;
+  	vertical-align: middle;
+  	font-size:38px;
+  	margin:0px;
+  	/*line-height: 3;*/
+}
+    /* BORDER TRANSITIONS */
+    /* Border Fade */
+.hvr-border-fade {
+    border:none;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow;
+    transition-property: box-shadow;
+    box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
+    /* Hack to improve aliasing on mobile/tablet devices */
   }
+.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
+    box-shadow: inset 0 0 0 4px #2098d1, 0 0 1px rgba(0, 0, 0, 0);
+    /* Hack to improve aliasing on mobile/tablet devices */
+  }
+  
+.circle-bongsa_time{
+    border:4px solid #502ca8;
+    margin: 5px 4% 5px 8%;
+    color:#502ca8;
+    width: 14%;
+
+}
+.circle-d_day{
+    border:4px solid #1f93a0;
+    margin: 5px 4% 5px 4%;
+    color:#1f93a0;
+}
+.circle-activ_region{
+    border:4px solid #3b1cd9;
+    margin: 5px 4% 5px 4%;
+    color:#3b1cd9;
+    width: 14%;
+    height: 113px;
+}
+.circle-printable_doc{
+    border:4px solid #ffa31e;
+    margin: 5px 8% 5px 4%;
+    color:#ffa31e;
+}
+.circle_name{
+    float:left;
+    width: 13.5%;
+    position: relative;
+    text-align: center;
+    font-size:30px;
+}
+.circle_name-bongsa_time{
+    margin: 5px 4% 5px 10%;
+}
+.circle_name-d_day{
+    margin: 5px 4% 5px 4.5%;
+}
+.circle_name-activ_region{
+    margin: 5px 4% 5px 5%;
+}
+.circle_name-printable_doc{
+    margin: 5px 8% 5px 5%;
+}
+                                        
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+/*-----------------------------------------    slided_detail    -------------------------------------------------------------------------*/
+                                        
+.slided_detail{
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.info_icon_big {
+    width: 10%;
+    margin-top: -3%;
+}
+
+.info_icon {
+  width: 20%;
+  margin-top: -3%;
+}
+
+.info_title {
+  font-size: 30px;
+}
+
+.info_content {
+  font-size: 20px;
+}
+
+
+
+.key_variable_name {
+    font-size: 20px;
+}
+.icon p{
+    /*line-height:4;*/
+}
+.icon__content{
+    /*width:35%; */
+    height:150px;
+    margin-top:20px;
+    margin-bottom:50px; 
+    padding-top:30px; 
+    position: relative; 
+    font-size:33px;
+}
+.icon__content span{
+    font-size:25px;
+}
+.carting_btn{
+    bottom:0%;
+    margin-right:5%;
+    width:22%;
+    float:right;
+}
+.n_btn{
+    margin-top:0px;
+    margin-bottom:-45px;
+    width:100%;
+    height:60px;
+    font-size:28px;
+    color: #fff;
+    line-height:0px;
+    border-radius: 0px;
+    background-color: #5fc0c7;
+}
+                                        
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------   slided_poster   -----------------------------------------------------------------------------*/
+.slided_poster{
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
 </style>

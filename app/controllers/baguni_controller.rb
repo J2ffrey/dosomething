@@ -22,7 +22,7 @@ class BaguniController < ApplicationController
         b.time_total = a.time_expect_total
         b.location = Region.find(a.region_id).name
         b.region = Organization.find(a.organization_id).name
-        b.img = ""
+        b.img = a.img_main
         b.user_id = current_user.id
         b.save
         Bucket.find(params[:id]).delete

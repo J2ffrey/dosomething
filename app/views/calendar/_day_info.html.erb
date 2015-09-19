@@ -1,21 +1,32 @@
 
+
 <%
 #"name LIKE \"%#{@s_word}%\""
-  a = Date.parse("#{@year}-#{@month}-#{@day}")#.compact('')
+    
+   a = Date.parse("#{@year}-#{@month}-#{@day}")#.compact('')
+   # a = Date.parse("#{2015}-#{9}-#{1}")#.compact('')
+  
   #a = a.delete_if {|x| x == " "}
   @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\"")
 %>
 
 <!-- 반복 -->
 <% @b.each do |x| %>
-  <center><p class="calendar_day_info">
+  <center><p class="calendar_day_info
     <% if x.date_recruit_start == a %>
-      <span class="date_start">
+      start_date
+    <%end%>
+    <% if x.date_recruit_end == a %>
+      end_date
+    <%end%>
+  ">
+    <% if x.date_recruit_start == a %>
+      <span class="date_start start_date">
         <%= "시"  %>
       </span>
     <% end %>
     <% if x.date_recruit_end == a %>
-      <span class="date_end">
+      <span class="date_end end_date">
         <%= "마" %>
       </span>
     <% end %>
