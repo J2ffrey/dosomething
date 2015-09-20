@@ -1,10 +1,9 @@
-
+ 
 
 <%
 #"name LIKE \"%#{@s_word}%\""
     
-   a = Date.parse("#{@year}-#{
-     @month}-#{@day}")#.compact('')
+   a = Date.parse("#{@year}-#{@month}-#{@day}")#.compact('')
    # a = Date.parse("#{2015}-#{9}-#{1}")#.compact('')
   
   #a = a.delete_if {|x| x == " "}
@@ -13,7 +12,7 @@
 
 <!-- 반복 -->
 <% @b.each do |x| %>
-  <center><p class="calendar_day_info
+  <center><p class="calendar_day_info hvr-back-pulse
     <% if x.date_recruit_start == a %>
       start_date
     <%end%>
@@ -23,15 +22,17 @@
   ">
     <% if x.date_recruit_start == a %>
       <span class="date_start start_date">
-        <%= "시"  %>
+        <b><%= "시"  %></b>
       </span>
     <% end %>
     <% if x.date_recruit_end == a %>
       <span class="date_end end_date">
-        <%= "마" %>
+       <b><%= "마" %></b>
       </span>
     <% end %>
-    <%= x.name %>
+    <a href="/home/bongsa_information/<%= x.id %>">
+      <%= x.name %>
+    </a>
   </p></center>
 <% end %>
 <!--여까지 -->

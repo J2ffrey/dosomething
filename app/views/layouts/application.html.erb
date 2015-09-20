@@ -55,10 +55,14 @@
 <!--====================================================================================================-->
 
 <body class="col-md-12 gray">
+<% if params[:nocol].nil? %>
   <div class="col-md-1"></div>
     <div class="col-md-10 color" style="padding:0px;">
+<% end %>
       <%= yield %>
+<% if params[:nocol].nil? %>
     </div>
   <div class="col-md-1"></div>
+<% end %>
 </body>
 </html>

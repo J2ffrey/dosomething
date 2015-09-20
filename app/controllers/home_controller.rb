@@ -320,5 +320,7 @@ class HomeController < ApplicationController
             # b.act_time = params[:act_time] # 해당 봉사후 활동시간 직접등록
             # b.save
      end
-    
+    def read_me
+        
+    end
 end

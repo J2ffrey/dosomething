@@ -48,8 +48,8 @@
               <p class="ptag_bottom_css"><%= Region.find(b.region_id).name %></p>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
-              <p class="ptag_up_css">D - day</p>
-              <p class="ptag_bottom_css"><%= (Date.parse(Time.now.to_s)  -  Date.parse("#{b.date_recruit_end}")).to_i %></p>
+              <p class="ptag_up_css">모집 마감</p>
+              <p class="ptag_bottom_css">D-<%= (Date.parse(Time.now.to_s)  -  Date.parse("#{b.date_recruit_end}")).to_i %></p>
               <!--<p style="color:#000000; font-size:18px;"> ~ <%#= b.date_real_end %></p>-->
             </div>  
           </div>

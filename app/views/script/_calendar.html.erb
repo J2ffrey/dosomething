@@ -1,88 +1,43 @@
-<script type="text/javascript">
+<script>
 
 $(function(){
-   //onKeypress="javascript:if(event.keyCode==13) {dongCheck();}"
-  // $("#form_s").submit(function(){
-  //   var checkboxValues = [];
-  //   $("input[name='ck']:checked").each(function(i) {
-  //       checkboxValues.push($(this).val());
-  //   });
-  //   $.ajax({
-  // 			type:"get",
-  // 			url:"/calendar/large?" + 'ck=' + checkboxValues
-  // 			+ '&s_word=' + $('#s_word').val(),
-  // 			datatype:"html",
-  // 			success:function(r){
-  // 				$("#large").empty();
-  // 				$("#large").append("<style>"+r+"</style>");
-  // 			},
-  // 			error:function(){
-  // 				alert("데이터를 가져오지 못하였습니다.");
-  // 			},
-  // 		});
-  // 		return false;
-  // });
-
-  $("#search").on("click", function(){
-		var checkboxValues = [];
-    $("input[name='ck']:checked").each(function(i) {
-        checkboxValues.push($(this).val());
-    });
-    $.ajax({
+  
+  $("#prev_").on("click",function(){
+		$.ajax({
   			type:"get",
-  			url:"/calendar/large?" + 'month=' + %('#month').val()
-  			+ '&year=' + $('#year').val(),
-  			+ '&day=' + $('#day').val(),
+  			url:"/calendar/large?" + 'month=' + $('#month1').val()
+  			+ '&year=' + $('#year1').val()
+  			+ '&nocol=' + $('1').val()
+  			+ '&day=' + $('#day1').val(),
   			datatype:"html",
   			success:function(r){
   				$("#large").empty();
-  				$("#large").append("<style>"+r+"</style>");
+  				$("#large").append(r);
   			},
   			error:function(){
   				alert("데이터를 가져오지 못하였습니다.");
-  			},
-  		});
-    })
-
-  $("#search").on("click", function(){
-		var checkboxValues = [];
-    $("input[name='ck']:checked").each(function(i) {
-        checkboxValues.push($(this).val());
+  			}
+  		})
+  		return false;
     });
-    $.ajax({
+  
+  $("#next_").on("click",function(){
+		$.ajax({
   			type:"get",
-  			url:"/calendar/large?" + 'ck=' + checkboxValues
-  			+ '&s_word=' + $('#s_word').val(),
+  			url:"/calendar/large?" + 'month=' + $('#month2').val()
+  			+ '&year=' + $('#year2').val()
+  			+ '&nocol=' + $('1').val()
+  			+ '&day=' + $('#day2').val(),
   			datatype:"html",
   			success:function(r){
   				$("#large").empty();
-  				$("#large").append("<style>"+r+"</style>");
+  				$("#large").append(r);
   			},
   			error:function(){
   				alert("데이터를 가져오지 못하였습니다.");
-  			},
-  		});
+  			}
+  		})
+  		return false;
     })
-
-  // $("#ck, #ck1, #ck2, #ck3, #ck4, #ck5, #ck6, #ck7").on("click", function(){
-		// var checkboxValues = [];
-  //   $("input[name='ck']:checked").each(function(i) {
-  //       checkboxValues.push($(this).val());
-  //   });
-  //   $.ajax({
-  // 			type:"get",
-  // 			url:"/calendar/large?" + 'ck=' + checkboxValues
-  // 			+ '&s_word=' + $('#s_word').val(),
-  // 			datatype:"html",
-  // 			success:function(r){
-  // 				$("#large").empty();
-  // 				$("#large").append("<style>"+r+"</style>");
-  // 			},
-  // 			error:function(){
-  // 				alert("데이터를 가져오지 못하였습니다.");
-  // 			},
-  // 		});
-  //   })
-
-})
+  })
 </script>

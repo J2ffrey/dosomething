@@ -9,8 +9,14 @@ class BaguniController < ApplicationController
         @buckets = current_user.buckets
         @real_bongsas = current_user.real_bongsas
         
-        @real_bongsas.all.each do |i|
+        #---총 봉사시간 구현하기---#(용현)
+        sum = 0
+        @real_bongsas.each do |i|
+            x = i.time_total.to_i
+            sum = sum + x
         end
+        @sum_times = sum
+        
     end
     
     def register
@@ -83,14 +89,11 @@ class BaguniController < ApplicationController
     
     def bucket_save
         pa = Bongsa.find(params[:id])
-        
         b = Bucket.new
         b.user_id   = current_user.id
         b.target_bongsa_id = pa.id
         b.save
-        flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
-        redirect_to '/'
-        flash[:alert] = '비밀번호를 확인 후 다시 입력하세요'
-         redirect_to '/home/private_info'
+        # flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
+        redirect_to :back
     end
 end

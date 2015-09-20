@@ -1,7 +1,5 @@
-<%
-  @year = 2015
-  @month = 8
-%>
+
+<%= render :partial => 'script/calendar' %>
 
 <% 
 @day = params[:day] if !params[:day].nil? && params[:day]!="empty"
@@ -13,6 +11,27 @@
 
 <% @day = @day.nil? ? 20 : @day %>
 
+
+<%
+  @year = @year.to_i
+  @month = @month.to_i
+  @day = @day.to_i
+  date=Date.new(@year,@month,@day)
+  date_p=date.prev_day(7)
+  year1=date_p.year
+  month1=date_p.month
+  day1=date_p.day
+  
+  mday=Date.new(@year,@month,-1).day
+  
+  date_n=date.next_day(7)
+  year2=date_n.year
+  month2=date_n.month
+  day2=date_n.day
+%>
+
+
+
 <%= @day %>.
 <%= @month %>.
 <%= @year %>.
@@ -21,19 +40,34 @@
 
 <div class="row">
   <div class="col-md-12" style="background: #502da5; color: white">
-    <button id="before_">&lt;</button>
-    <input type="hidden" id="year1" value="">
-    <input type="hidden" id="month1" value="">
-    <input type="hidden" id="month1" value="">
-    <center><h3 style="margin-bottom: 2%;"><%= @year %>.<%= @month %></h3></center>
-    <button id="next_">&gt;</button>
+    <form method="GET">
+    <div class="col-md-5">
+      <button id="prev_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none; float: right">&lt;</button>
+      <input type="hidden" id="year1" value="<%= year1 %>">
+      <input type="hidden" id="month1" value="<%= month1 %>">
+      <input type="hidden" id="day1" value="<%= day1 %>">
+    </div>
+    <div class="col-md-2">
+      <span style="margin-bottom: 2%; font-size: 24px;"><center><%= @year %>.<%= @month %></center></span>
+    </div>
+    <div class="col-md-5">
+      <button id="next_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none;">&gt;</button>
+      <input type="hidden" id="year2" value="<%= year2 %>">
+      <input type="hidden" id="month2" value="<%= month2 %>">
+      <input type="hidden" id="day2" value="<%= day2 %>">
+    </div>
+    </form>
   </div>
 </div>
-
 <div class="row">
-  <% k = @day %>
-  <% (k..k+6).to_a.each do |x| %>
-    <% @day = x %>
+  <% i = 0 %>
+  <% (i..i+6).to_a.each do |x| %>
+    <% tmp = date.next_day(x) %>  
+    <% 
+      @year = tmp.year
+      @month = tmp.month
+      @day = tmp.day
+    %>
     <%= render partial: 'day' %>
   <% end %>
 </div>
@@ -54,12 +88,14 @@
 <div>
   <!-- 여기부터 7번 반복 -->
   
-  <% (k..k+6).to_a.each do |x| %>
+  <% (i..i+6).to_a.each do |x| %>
     <div class="col-7 calendar_content_background" style="padding-top:5px;">
-      <% @day = x %>
-      <%#= @year %>
-      <%#= @month %>
-      <%#= @day %>
+      <% tmp = date.next_day(x) %>  
+      <% 
+        @year = tmp.year
+        @month = tmp.month
+        @day = tmp.day
+      %>
       <%= render partial: 'day_info' %>
     </div>
   <% end %>
