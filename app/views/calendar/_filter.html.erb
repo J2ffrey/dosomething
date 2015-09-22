@@ -1,3 +1,12 @@
+
+<% 
+@day = params[:day] if !params[:day].nil? && params[:day]!="empty"
+@month = params[:month] if !params[:month].nil? && params[:month]!="empty"
+@year = params[:year] if !params[:year].nil? && params[:year]!="empty"
+%>
+
+
+
 <div class="row header__top">
   <div calss="col-md-12">
     <form class="navbar-form navbar-right" id="form_s" role="search">
@@ -12,9 +21,9 @@
 </br>
 
 <div class="col-md-2">
-  
-  <%= render partial: "small" %>
-  
+  <div id="small">
+    <%= render partial: "small" %>
+  </div>
   <!--봉사유형 선택	-->
   
   <div class="bongsa_type_checkbox">

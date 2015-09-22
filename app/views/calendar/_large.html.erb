@@ -11,12 +11,21 @@
 
 <% @day = @day.nil? ? 20 : @day %>
 
-
 <%
   @year = @year.to_i
   @month = @month.to_i
   @day = @day.to_i
+  
   date=Date.new(@year,@month,@day)
+  (1..7).to_a.each do |x|
+    break if date.sunday?
+    date = date.prev_day(x)
+  end
+%>
+
+<%
+  
+  #date=Date.new(@year,@month,@day)
   date_p=date.prev_day(7)
   year1=date_p.year
   month1=date_p.month
@@ -30,13 +39,11 @@
   day2=date_n.day
 %>
 
-
-
-<%= @day %>.
-<%= @month %>.
-<%= @year %>.
-<%= @ck %>.
-<%= @s_word %>.
+<%#= @day %>
+<%#= @month %>
+<%#= @year %>
+<%#= @ck %>
+<%#= @s_word %>
 
 <div class="row">
   <div class="col-md-12" style="background: #502da5; color: white">

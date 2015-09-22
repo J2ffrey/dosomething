@@ -17,6 +17,7 @@
     <div class="menu" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><a href="/home/read_me" style="font-size:18px;">READ ME</a></li>
           <li><a href="/calendar/index" style="font-size:18px;">봉사달력</a></li>
           <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
           <li class="dropdown">
