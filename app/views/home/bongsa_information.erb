@@ -4,8 +4,7 @@
 <%# if flash[:alert].present? %>
   <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
 <%# end %>
-<!-- Tables
-================================================== -->
+<!-- Tables ================================================== -->
 <div class="col-md-12 continue slided_img" style="padding-right: 0px;">
   <div class="col-md-12" style="padding-right: 0px; padding-top:1%; padding-left: 0px; background-color: rgba(0, 0, 0, 0.61);">
   <!--봉사명-->
@@ -48,19 +47,25 @@
     <center>
       <div class="col-md-12" style="padding:0px;">
         <!--동그라미 봉사시간-->
-        <div class="circle circle-bongsa_time">
+        <div class="circle circle-bongsa_time" style="padding:3.4% 0% 3.4% 0%;">
           <p><%= @b.time_expect_total %>H</p>
         </div>
         <!--동그라미 디-데이-->
-        <div class="circle circle-d_day">
-          <p>D-<%= (Date.parse(Time.now.to_s)  -  Date.parse("#{@b.date_recruit_end}")).to_i %></p>
+        <div class="circle circle-d_day" style="padding:3.4% 0% 3.4% 0%;">
+          <p>
+            <% if Date.parse("#{@b.date_recruit_end}")<Date.today %>
+              마감
+            <% else %>
+              D<%= (Date.parse("#{@b.date_recruit_end}") - (Date.today)).to_i %>
+            <% end %>
+          </p>
         </div>
         <!--동그라미 활동지역-->
         <div class="circle circle-activ_region" style="padding:3.4% 0% 3.4% 0%;">
-          <p style="font-size:28px; margin-top:5%"><%= Region.find(@b.region_id).name %></p>
+          <p style="margin-top:5%"><%= Region.find(@b.region_id).name %></p>
         </div>
         <!--동그라미 인증서발급여부-->
-        <div class="circle circle-printable_doc">
+        <div class="circle circle-printable_doc" style="padding:3.4% 0% 3.4% 0%;">
           <p>V</p>
         </div>
       </div>
@@ -69,16 +74,16 @@
     <center>
       <div class="col-md-12" style="margin-bottom:100px;">
         <div class="circle_name circle_name-bongsa_time">
-          <p class="key_variable_name" style="margin-left: -16%;">봉사 시간</p>
+          <p class="key_variable_name" style="margin-left: 18%;">봉사 시간</p>
         </div>
         <div class="circle_name circle_name-d_day">
-          <p class="key_variable_name">D-day</p>
+          <p class="key_variable_name" style="margin-left: 8%;">D-day</p>
         </div>
         <div class="circle_name circle_name-activ_region">
-          <p class="key_variable_name">활동 지역</p>
+          <p class="key_variable_name" style="margin-left: -7%;">활동 지역</p>
         </div>
         <div class="circle_name circle_name-printable_doc">
-          <p class="key_variable_name" style="margin-right: -19%;">인증서</p>
+          <p class="key_variable_name" style="margin-right: 24%;">인증서</p>
         </div>
       </div>
     </center>
@@ -89,7 +94,7 @@
 <div class="col-md-12 slide continue slided_detail">
   <center>
     <h1 style="margin-bottom:70px; font-size:40px;">
-        <b>세 부  내 용</b>
+        <b>세  부  내 용</b>
     </h1>
   </center>
 
@@ -99,7 +104,7 @@
     <div class="col-md-4 col-sm-4"></div>
     <div class="col-md-8 col-sm-8">
       <div class="row">
-        <img src="/img/ic/icon_location.png" class="info_icon">
+        <img src="/img/ic/icon_location.png" class="info_icon" style="width:44px; margin-right: 5px;">
         <b class="info_title" style="line-height: 1.8;">&nbsp지역</b>
       </div>
       <div class="row">
@@ -113,7 +118,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 col-sm-8">
       <div class="row">
-        <img src="/img/ic/icon_gender.png" class="info_icon">
+        <img src="/img/ic/icon_gender.png" class="info_icon" style="width:44px; margin-right: 5px;">
         <b class="info_title" style="line-height: 1.8;">&nbsp지원가능성별</b>
       </div>
       <div class="row">
@@ -137,7 +142,7 @@
     <div class="col-md-4 col-sm-4"></div>
     <div class="col-md-8 col-sm-8">
       <div class="row">
-        <img src="/img/ic/icon_time.png" class="info_icon">
+        <img src="/img/ic/icon_time.png" class="info_icon" style="width:44px; margin-right: 5px;">
         <b class="info_title" style="line-height: 1.8;">&nbsp실제 봉사 기간</b>
       </div>
       <div class="row">
@@ -151,11 +156,11 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 col-sm-8">
       <div class="row">
-        <img src="/img/ic/icon_people.png" class="info_icon">
+        <img src="/img/ic/icon_people.png" class="info_icon" style="width:44px; margin-right: 5px;">
         <b class="info_title" style="line-height: 1.8;">&nbsp담당자 연락처</b>
       </div>
       <div class="row">
-        <p class="info_content" style="padding-left: 13%;">
+        <p class="info_content" style="padding-left: 13%; margin-bottom:24px;">
           <%= @b.clerk_name %>/<%= @b.clerk_call %>
         </p>
       </div>
@@ -166,14 +171,14 @@
 <div class="col-md-12 col-sm-12">
     <!--지원가능 상세 조건-->
     <div class="col-md-10">
-    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-2 col-sm-2">&nbsp</div>
     <div class="col-md-8 col-sm-8" style="margin-left: 28px;">
       <div class="row">
         <img src="/img/ic/ic_requirement_100px.png" class="info_icon" style="width: 44px; margin-right:5px;">
         <b class="info_title" style="line-height: 1.8;">&nbsp지원가능 상세 조건</b>
       </div>
       <div class="row">
-        <p class="info_content" style="padding-left: 13%;">&nbsp<%= @b.vltr_req %></p>
+        <p class="info_content" style="padding-left: 8%;">&nbsp<%= @b.vltr_req %></p>
       </div>
     </div>
     </div>
@@ -182,24 +187,29 @@
     <!--상세내용-->
 <div class="col-md-12 col-sm-12">
 
-  <div class="col-md-2"></div>
-  <div class="col-md-2 col-sm-2">
+  <div class="col-md-2 col-sm-2"></div>
+  <div class="col-md-8 col-sm-8" style="margin-bottom: 15px;">
     <div class="row">
-      <img src="/img/ic/icon_info.png" class="info_icon">
+      <img src="/img/ic/icon_info.png" class="info_icon" style="width:44px; margin-right: 5px;">
       <b class="info_title" style="line-height: 1.8;">&nbsp상세내용</b>
     </div>
-  </div>
-  
     <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-10">
-      <div class="row">
-        <p class="info_content_content" style="padding-left: 25%; margin-bottom: 10px;">
+      <p class="info_content_content" style="padding-left: 7%; margin-bottom: 10px;">
           <%= @b.content %>
         </p>
-      </div>
-    </div>
-    </div>
+    </div>  
+  </div>
+  
+    <!--<div class="row">-->
+    <!--<div class="col-md-2"></div>-->
+    <!--<div class="col-md-10">-->
+    <!--  <div class="row">-->
+    <!--    <p class="info_content_content" style="padding-left: 25%; margin-bottom: 10px;">-->
+    <!--      <%= @b.content %>-->
+    <!--    </p>-->
+    <!--  </div>-->
+    <!--</div>-->
+    <!--</div>-->
   </div>
 </div>
   <!--상세내용-->
@@ -326,11 +336,15 @@ ___________________________________________________
 </div>
 <%else%>
 
+    <h1 style="margin-bottom:3%; font-size:40px;">
+        <b>해당 포스터가 없습니다.</b>
+    </h1>
 <% end %>
 
 
 
-
-  <%= render :partial => 'home/main_footer' %>
+<!-- footer랑 이미지랑 붙이려고 약간 바꿨어요 --!>
+  <%= render :partial => 'home/main_footer_information' %>
+<!-- 여기까지 --!>
 
 <%= render :partial => 'style/bongsa_informationcss' %>

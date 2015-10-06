@@ -16,13 +16,19 @@
   <div class="col-md-10 cart_content hvr-border-fade">
     <div class="row">
       <div class="col-md-2 cart_content_photo_block">
-        <img src="<%= y.img_main %>" class="cart_content_photo">
+        <a href="/home/bongsa_information/<%= y.id %>">
+          <img src="<%= y.img_main %>" class="cart_content_photo">
+        </a>
       </div>
       
       <div class="col-md-10">
         <div class="row" style="margin:0px;">
           <div class="col-md-9">
-            <p class="cart_content_title"><strong><%= y.name %></strong></p>
+            <p class="cart_content_title">
+              <strong>
+                <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;"><%= y.name %></a>
+              </strong>
+            </p>
             <span style="color:gray">
                 기간 : <%= y.date_real_start %> ~ <%= y.date_real_end %>
             <br>장소 : <%= Region.find(y.region_id).name %>

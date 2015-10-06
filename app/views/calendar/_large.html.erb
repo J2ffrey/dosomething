@@ -1,12 +1,10 @@
 
-<%= render :partial => 'script/calendar' %>
-
 <% 
-@day = params[:day] if !params[:day].nil? && params[:day]!="empty"
-@month = params[:month] if !params[:month].nil? && params[:month]!="empty"
-@year = params[:year] if !params[:year].nil? && params[:year]!="empty"
-@ck = params[:ck] if !params[:ck].nil? && params[:ck]!="empty"
-@s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
+  @day = params[:day] if !params[:day].nil? && params[:day]!="empty"
+  @month = params[:month] if !params[:month].nil? && params[:month]!="empty"
+  @year = params[:year] if !params[:year].nil? && params[:year]!="empty"
+  @ck = params[:ck] if !params[:ck].nil? && params[:ck]!="empty"
+  @s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
 %>
 
 <% @day = @day.nil? ? 20 : @day %>
@@ -17,27 +15,24 @@
   @day = @day.to_i
   
   date=Date.new(@year,@month,@day)
-  (1..7).to_a.each do |x|
-    break if date.sunday?
-    date = date.prev_day(x)
-  end
 %>
 
 <%
-  
   #date=Date.new(@year,@month,@day)
   date_p=date.prev_day(7)
-  year1=date_p.year
-  month1=date_p.month
-  day1=date_p.day
+  @year1=date_p.year
+  @month1=date_p.month
+  @day1=date_p.day
   
   mday=Date.new(@year,@month,-1).day
   
   date_n=date.next_day(7)
-  year2=date_n.year
-  month2=date_n.month
-  day2=date_n.day
+  @year2=date_n.year
+  @month2=date_n.month
+  @day2=date_n.day
 %>
+
+<%= render :partial => 'script/calendar' %>
 
 <%#= @day %>
 <%#= @month %>
@@ -47,23 +42,15 @@
 
 <div class="row">
   <div class="col-md-12" style="background: #502da5; color: white">
-    <form method="GET">
     <div class="col-md-5">
       <button id="prev_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none; float: right">&lt;</button>
-      <input type="hidden" id="year1" value="<%= year1 %>">
-      <input type="hidden" id="month1" value="<%= month1 %>">
-      <input type="hidden" id="day1" value="<%= day1 %>">
     </div>
     <div class="col-md-2">
       <span style="margin-bottom: 2%; font-size: 24px;"><center><%= @year %>.<%= @month %></center></span>
     </div>
     <div class="col-md-5">
       <button id="next_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none;">&gt;</button>
-      <input type="hidden" id="year2" value="<%= year2 %>">
-      <input type="hidden" id="month2" value="<%= month2 %>">
-      <input type="hidden" id="day2" value="<%= day2 %>">
     </div>
-    </form>
   </div>
 </div>
 <div class="row">

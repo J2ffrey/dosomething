@@ -323,4 +323,7 @@ class HomeController < ApplicationController
     def read_me
         
     end
+    
+    def intro
+    end
 end
