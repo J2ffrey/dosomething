@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/"><img src="/img/ic_logo/ic_navbar_logo.png" alt="" style="width: 11%; float:left; margin-top:1%"> &nbsp</a>
+      <a href="/home/index"><img src="/img/ic_logo/ic_navbar_logo.png" alt="" style="width: 11%; float:left; margin-top:1%"> &nbsp</a>
 
     <!--  <a class="navbar-brand" href="/" style="font-size: 30px; color: white;"><strong>봉사꾼</strong></a> -->
     </div>
@@ -35,14 +35,32 @@
             <a id="link--login" class="secondary-nav-item" href="/users/sign_out">Log-out</a>
           </li>
         <% else %>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/calendar/index" style="font-size:18px;">봉사달력</a></li>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_in" style="font-size:18px;">로그인</a></li>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/users/sign_up" style="font-size:18px;">회원가입</a></li>
+          <li class="nav_calendar"><a id="link--login" class="secondary-nav-item" href="/calendar/index" style="font-size:18px;">봉사달력</a></li>
+          <li class="nav_login"><a>로그인</a></li>
+          <%= render :partial => 'home/login_modal' %>
+          <li class="nav_signin"><a id="link--login" class="secondary-nav-item" href="/users/sign_up" style="font-size:18px;">회원가입</a></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
+<script>
+  function openLightBox(){
+    var modal = $('.modal_login');
+    $('.nav_login').on('click', function() {
+     modal.fadeIn();
+    });
+    
+    $('.modal_close').on('click', function() {
+     modal.fadeOut();
+    });
+  }
+  openLightBox();
+</script>
+
+
 
 <%= render :partial => 'style/navbarcss' %>
 

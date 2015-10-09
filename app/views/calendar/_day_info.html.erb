@@ -12,14 +12,16 @@
 
 <!-- 반복 -->
 <% @b.each do |x| %>
-  <center><p class="calendar_day_info hvr-back-pulse
+  <center><p class="calendar_day_info hvr-back-pulse 
     <% if x.date_recruit_start == a %>
-      start_date
+      start_date 
     <%end%>
     <% if x.date_recruit_end == a %>
-      end_date
+      end_date 
     <%end%>
-  ">
+    "
+    >
+
     <% if x.date_recruit_start == a %>
       <span class="date_start start_date">
         <b><%= "시"  %></b>

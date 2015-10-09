@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,                        null: false, default: ""
       t.string :encrypted_password,           null: false, default: ""
+      t.string :organization_name,           null: false, default: "" ##회원가입할 때 기관명 있으면 기관이라고 구분지으려구요
       
       
       ## Recoverable

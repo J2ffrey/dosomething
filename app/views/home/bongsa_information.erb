@@ -98,253 +98,137 @@
     </h1>
   </center>
 
-<div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12">
     <!--지역-->
     <div class="col-md-6">
-    <div class="col-md-4 col-sm-4"></div>
-    <div class="col-md-8 col-sm-8">
-      <div class="row">
-        <img src="/img/ic/icon_location.png" class="info_icon" style="width:44px; margin-right: 5px;">
-        <b class="info_title" style="line-height: 1.8;">&nbsp지역</b>
-      </div>
-      <div class="row">
-        <p class="info_content" style="padding-left: 13%;">&nbsp<%= Region.find(@b.region_id).name %></p>
+      <div class="col-md-4 col-sm-4"></div>
+      <div class="col-md-8 col-sm-8">
+        <div class="row">
+          <img src="/img/ic/icon_location.png" class="info_icon" style="width:44px; margin-right: 5px;">
+          <b class="info_title" style="line-height: 1.8;">&nbsp지역</b>
+        </div>
+        <div class="row">
+          <p class="info_content" style="padding-left: 13%;">&nbsp<%= Region.find(@b.region_id).name %></p>
+        </div>
       </div>
     </div>
-    </div>
-    <!--지역-->
     <!--지원가능성별-->
     <div class="col-md-6">
-    <div class="col-md-2"></div>
-    <div class="col-md-8 col-sm-8">
-      <div class="row">
-        <img src="/img/ic/icon_gender.png" class="info_icon" style="width:44px; margin-right: 5px;">
-        <b class="info_title" style="line-height: 1.8;">&nbsp지원가능성별</b>
-      </div>
-      <div class="row">
-        <p class="info_content" style="padding-left: 13%;">
-          &nbsp<% if  @b.vltr_sex  == 1 %>
-            <span>남자</span>
-          <% elsif  @b.vltr_sex  == 2 %>
-              <span>여자</span>
-          <% else %>
-              <span>무관</span>
-          <% end %>
-        </p>
+      <div class="col-md-2"></div>
+      <div class="col-md-8 col-sm-8">
+        <div class="row">
+          <img src="/img/ic/icon_gender.png" class="info_icon" style="width:44px; margin-right: 5px;">
+          <b class="info_title" style="line-height: 1.8;">&nbsp지원가능성별</b>
+        </div>
+        <div class="row">
+          <p class="info_content" style="padding-left: 13%;">
+            &nbsp<% if  @b.vltr_sex  == 1 %>
+              <span>남자</span>
+            <% elsif  @b.vltr_sex  == 2 %>
+                <span>여자</span>
+            <% else %>
+                <span>무관</span>
+            <% end %>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-  <!--지원가능성별-->
-</div>
-<div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12">
     <!--실제 봉사 기간-->
     <div class="col-md-6">
-    <div class="col-md-4 col-sm-4"></div>
-    <div class="col-md-8 col-sm-8">
-      <div class="row">
-        <img src="/img/ic/icon_time.png" class="info_icon" style="width:44px; margin-right: 5px;">
-        <b class="info_title" style="line-height: 1.8;">&nbsp실제 봉사 기간</b>
+      <div class="col-md-4 col-sm-4"></div>
+      <div class="col-md-8 col-sm-8">
+        <div class="row">
+          <img src="/img/ic/icon_time.png" class="info_icon" style="width:44px; margin-right: 5px;">
+          <b class="info_title" style="line-height: 1.8;">&nbsp실제 봉사 기간</b>
+        </div>
+        <div class="row">
+          <p class="info_content" style="padding-left: 13%;">&nbsp<%= @b.date_real_start %> ~ <%= @b.date_real_end %></p>
+        </div>
       </div>
-      <div class="row">
-        <p class="info_content" style="padding-left: 13%;">&nbsp<%= @b.date_real_start %> ~ <%= @b.date_real_end %></p>
-      </div>
-    </div>
     </div>
     <!--실제 봉사 기간-->
     <!--담당자 연락처-->
     <div class="col-md-6">
-    <div class="col-md-2"></div>
-    <div class="col-md-8 col-sm-8">
-      <div class="row">
-        <img src="/img/ic/icon_people.png" class="info_icon" style="width:44px; margin-right: 5px;">
-        <b class="info_title" style="line-height: 1.8;">&nbsp담당자 연락처</b>
-      </div>
-      <div class="row">
-        <p class="info_content" style="padding-left: 13%; margin-bottom:24px;">
-          <%= @b.clerk_name %>/<%= @b.clerk_call %>
-        </p>
+      <div class="col-md-2"></div>
+      <div class="col-md-8 col-sm-8">
+        <div class="row">
+          <img src="/img/ic/icon_people.png" class="info_icon" style="width:44px; margin-right: 5px;">
+          <b class="info_title" style="line-height: 1.8;">&nbsp담당자 연락처</b>
+        </div>
+        <div class="row">
+          <p class="info_content" style="padding-left: 13%; margin-bottom:24px;">
+            <%= @b.clerk_name %>/<%= @b.clerk_call %>
+          </p>
+        </div>
       </div>
     </div>
+    <!--담당자 연락처-->
   </div>
-  <!--담당자 연락처-->
-</div>
-<div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12">
     <!--지원가능 상세 조건-->
     <div class="col-md-10">
-    <div class="col-md-2 col-sm-2">&nbsp</div>
-    <div class="col-md-8 col-sm-8" style="margin-left: 28px;">
+      <div class="col-md-2 col-sm-2">&nbsp</div>
+      <div class="col-md-8 col-sm-8" style="margin-left: 28px;">
+        <div class="row">
+          <img src="/img/ic/ic_requirement_100px.png" class="info_icon" style="width: 44px; margin-right:5px;">
+          <b class="info_title" style="line-height: 1.8;">&nbsp지원가능 상세 조건</b>
+        </div>
+        <div class="row">
+          <p class="info_content" style="padding-left: 8%;">&nbsp<%= @b.vltr_req %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!--지원가능 상세 조건-->
+    <!--상세내용-->
+  <div class="col-md-12 col-sm-12">
+    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-8 col-sm-8" style="margin-bottom: 15px;">
       <div class="row">
-        <img src="/img/ic/ic_requirement_100px.png" class="info_icon" style="width: 44px; margin-right:5px;">
-        <b class="info_title" style="line-height: 1.8;">&nbsp지원가능 상세 조건</b>
+        <img src="/img/ic/icon_info.png" class="info_icon" style="width:44px; margin-right: 5px;">
+        <b class="info_title" style="line-height: 1.8;">&nbsp상세내용</b>
       </div>
       <div class="row">
-        <p class="info_content" style="padding-left: 8%;">&nbsp<%= @b.vltr_req %></p>
+        <p class="info_content_content" style="padding-left: 7%; margin-bottom: 10px;">
+            <%= @b.content %>
+          </p>
+      </div>  
+    </div>
+  </div>
+</div>
+<% unless @b.img_poster.to_s.length <= 1  %>
+  <div class="col-md-12 slide slided_poster">
+    <center>
+      <h1 style="margin-bottom:3%; font-size:40px;">
+          <b>모집 포스터</b>
+      </h1>
+    </center>
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <img src="<%= @b.img_poster %>" width="100%" height="auto" width=95.5%;>
       </div>
-    </div>
-    </div>
-</div>
-    <!--지원가능 상세 조건-->
-    <!--상세내용-->
-<div class="col-md-12 col-sm-12">
-
-  <div class="col-md-2 col-sm-2"></div>
-  <div class="col-md-8 col-sm-8" style="margin-bottom: 15px;">
-    <div class="row">
-      <img src="/img/ic/icon_info.png" class="info_icon" style="width:44px; margin-right: 5px;">
-      <b class="info_title" style="line-height: 1.8;">&nbsp상세내용</b>
-    </div>
-    <div class="row">
-      <p class="info_content_content" style="padding-left: 7%; margin-bottom: 10px;">
-          <%= @b.content %>
-        </p>
-    </div>  
+      <div class="col-md-2"></div>
+      </div>
+      <div class="col-md-1"></div>
   </div>
-  
-    <!--<div class="row">-->
-    <!--<div class="col-md-2"></div>-->
-    <!--<div class="col-md-10">-->
-    <!--  <div class="row">-->
-    <!--    <p class="info_content_content" style="padding-left: 25%; margin-bottom: 10px;">-->
-    <!--      <%= @b.content %>-->
-    <!--    </p>-->
-    <!--  </div>-->
-    <!--</div>-->
-    <!--</div>-->
+<% else %>
+  <div class="col-md-12 slide slided_poster">
+    <center>
+      <h1 style="margin-bottom:3%; font-size:40px;">
+          <b>해당 포스터가 없습니다.</b>
+      </h1>
+    </center>
   </div>
-</div>
-  <!--상세내용-->
-
-    
-    <!--<br>&nbsp</br>-->
-
-    <!--지원가능 성별-->
-    <!-- <div class="col-md-6">-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--  <div class="col-md-8 col-sm-8">-->
-    <!--    <img src="/img/ic/icon_gender.png" class="info_icon">-->
-    <!--    <b class="info_title" style="line-height: 1.8;">&nbsp지원가능성별</b>-->
-    <!--    <br>-->
-    <!--    <span class="info_content">-->
-    <!--    &nbsp<% if  @b.vltr_sex  == 1 %>-->
-    <!--      <span>남자</span>-->
-    <!--    <% elsif  @b.vltr_sex  == 2 %>-->
-    <!--        <span>여자</span>-->
-    <!--    <% else %>-->
-    <!--        <span>무관</span>-->
-    <!--    <% end %>-->
-    <!--  </span>-->
-    <!--  </div>-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--</div>-->
-    <!--지원가능 성별--> 
-    
-    <!--<br>&nbsp</br>-->
-    
-    <!--실제 봉사 기간-->
-    <!-- <div class="col-md-6">-->
-    <!--  <div class="col-md-4 col-sm-4"></div>-->
-    <!--  <div class="col-md-8 col-sm-8">-->
-    <!--    <img src="/img/ic/icon_time.png" class="info_icon">-->
-    <!--    <b class="info_title" style="line-height: 1.8;">&nbsp실제 봉사 기간</b>-->
-    <!--    <br>-->
-    <!--    <span class="info_content">-->
-    <!--    &nbsp<span><%= @b.date_real_start %> ~ <%= @b.date_real_end %></span>-->
-    <!--  </span>-->
-    <!--  </div>-->
-    <!--</div>-->
-    <!--실제 봉사 기간-->
-    
-    <!--담당자 연락처-->
-    <!--<div class="col-md-6">-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--  <div class="col-md-8 col-sm-8">-->
-    <!--    <img src="/img/ic/icon_people.png" class="info_icon">-->
-    <!--    <b class="info_title" style="line-height: 1.8;">&nbsp담당자 연락처</b>-->
-    <!--    <br>-->
-    <!--    <span class="info_content">-->
-    <!--    &nbsp<span><%= @b.clerk_name %>/<%= @b.clerk_call %></span>-->
-    <!--  </span>-->
-    <!--  </div>-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--</div>-->
-    <!--담당자 연락처-->
-    
-    <br>&nbsp</br>
-    
-    <!--지원가능 상세 조건-->
-    <!-- <div class="col-md-12">-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--  <div class="col-md-8 col-sm-8">-->
-    <!--    <img src="/img/ic/ic_requirement_100px.png" class='info_icon_big'>-->
-    <!--    <b class="info_title" style="line-height: 1.8;">&nbsp지원가능 상세 조건</b>-->
-    <!--    <br>-->
-    <!--    <span class="info_content">-->
-    <!--    &nbsp<span><%= @b.vltr_req %></span>-->
-    <!--  </span>-->
-    <!--  </div>-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--</div>-->
-    <!--지원가능 상세 조건-->
-    
-    <!--<br>&nbsp</br>-->
-    
-    <!--상세내용-->
-    <!-- <div class="col-md-12">-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--  <div class="col-md-8 col-sm-8">-->
-    <!--    <img src="/img/ic/icon_info.png" class='info_icon_big'>-->
-    <!--    <b class="info_title" style="line-height: 1.8;">&nbsp상세내용</b>-->
-    <!--    <br>-->
-    <!--    <span class="info_content">-->
-    <!--    &nbsp<span><%= @b.content %></span>-->
-    <!--  </span>-->
-    <!--  </div>-->
-    <!--  <div class="col-md-2 col-sm-2"></div>-->
-    <!--</div>-->
-    <!--상세내용-->
-    
-    <br>&nbsp</br>
-    
-
-  
-</div>
-      
-<!--
-___________________________________________________
-
-===================================================
-  이 'slided_poster' 은 선택시 보여주는걸 추천함.
--->
-<%  if @b.img_poster == " " %>
-<div class="col-md-12 slide slided_poster">
-  
-  <center>
-    <h1 style="margin-bottom:3%; font-size:40px;">
-        <b>모집 포스터</b>
-    </h1>
-  </center>
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <img src="<%= @b.img_poster %>" width="100%" height="auto" width=95.5%;>
-    </div>
-    <div class="col-md-2"></div>
-    </div>
-    <div class="col-md-1"></div>
-    
-</div>
-<%else%>
-
-    <h1 style="margin-bottom:3%; font-size:40px;">
-        <b>해당 포스터가 없습니다.</b>
-    </h1>
 <% end %>
 
 
 
 <!-- footer랑 이미지랑 붙이려고 약간 바꿨어요 --!>
-  <%= render :partial => 'home/main_footer_information' %>
-<!-- 여기까지 --!>
+<%= render :partial => 'home/main_footer_information' %>
 
+<!-- 여기까지 --!>
 <%= render :partial => 'style/bongsa_informationcss' %>

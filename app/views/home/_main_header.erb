@@ -10,13 +10,13 @@
               <!--<button id="search" class="navbar__search__first">검색</button>-->
               <div class="form-group">
                 <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
-              <img src="/img/teamprofile/search.png"/>
+                <span id="search-icon" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/></span>
               <div>
           </form>
       </div>
     </div>
     
-    <div class="col-md-12 header__title"> <img src="img/ic_logo/logo_caligraphy_1024px_white.png" style="width:20%; height:20%; margin-bottom:-4%">
+    <div class="col-md-12 header__title"> <img src="/img/ic_logo/ic_cali_W_1024px.png" style="width:20%; height:20%; margin-bottom:-4%">
      <br>  
       <font style="font-size:30px;">
         <font style="font-size=40px;">
@@ -102,6 +102,26 @@
   $(function(){
      //onKeypress="javascript:if(event.keyCode==13) {dongCheck();}"
     $("#form_s").submit(function(){
+      $.ajax({
+    			type:"get",
+    			url:"/home/filter?" + 'region=' + $('#region_select').val() 
+    			+ '&school=' + $('#school_select').val() 
+    			+ '&btime=' + $('#btime_select').val()
+    			+ '&category=' + $('#category_select').val()
+    			+ '&s_word=' + $('#s_word').val(),
+    			datatype:"html",
+    			success:function(r){
+    				$("#main_contents").empty();
+    				$("#main_contents").append("<style>"+r+"</style>");
+    			},
+    			error:function(){
+    				alert("데이터를 가져오지 못하였습니다.");
+    			},
+    		});
+    		return false;
+    });
+    
+    $("#search-icon").on("click",function(){
       $.ajax({
     			type:"get",
     			url:"/home/filter?" + 'region=' + $('#region_select').val() 

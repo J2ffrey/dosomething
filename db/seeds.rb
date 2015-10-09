@@ -1,6 +1,6 @@
-User.create!([
-  {email: "j2ffrey@gmail.com", encrypted_password: "$2a$10$nvWu83q4Oq0VyKe9s0oMnexgGxOo9UjOUkxUJz9mXQLJm/ueQZvz6", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-09-18 13:41:14", last_sign_in_at: "2015-09-18 13:41:14", current_sign_in_ip: "211.118.166.131", last_sign_in_ip: "211.118.166.131"}
-])
+#User.create!([
+#  {email: "j2ffrey@gmail.com", encrypted_password: "$2a$10$nvWu83q4Oq0VyKe9s0oMnexgGxOo9UjOUkxUJz9mXQLJm/ueQZvz6", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-09-18 13:41:14", last_sign_in_at: "2015-09-18 13:41:14", current_sign_in_ip: "211.118.166.131", last_sign_in_ip: "211.118.166.131"}
+#])
 Admin.create!([
   {name: "메인 페이지에 보일 봉사 수", value: "6"}
 ])

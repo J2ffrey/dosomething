@@ -6,9 +6,13 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 //--><!]]>
 </script>
 
+
+
+
+
 <script type="text/javascript">
   <!--//--><![CDATA[//><!--
-  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
+  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=true;a.src=g;m.parentNode.insertBefore(a,m)})
   (window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create", "UA-493209-1", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");
   //--><!]]>
 </script>
@@ -23,7 +27,6 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
   
   
 <style>
-
 
 body {
     background-color: #E8F4E8;
@@ -70,10 +73,9 @@ body {
     overflow: hidden;
     position: relative;
     background-color: rgba(0,0,0,0.9);
-    background-image:url(img/bg/bg_index_header_02.jpg);
+    background-image:url(/img/bg/bg_index_header_02.jpg);
     background-position:center 30%;
     background-size:cover;
-    
     
 }
 
@@ -100,7 +102,7 @@ select {
     -webkit-appearance: none;  /* 네이티브 외형 감추기 */
     -moz-appearance: none;
     appearance: none;
-    background: url("img/ic_logo/icon_drop.png") no-repeat 95% 50%;  /* 화살표 모양의 이미지 
+    background: url("/img/ic_logo/icon_drop.png") no-repeat 95% 50%;  /* 화살표 모양의 이미지 
     /*background: url("img/teamprofile/select_btn.jpg") no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
 }
 
@@ -172,9 +174,8 @@ select option {
 /*.filternamecss {*/
 /*    text-align: center;*/
 /*}*/
+
 </style>
-
-
 
 
 <script type="text/javascript">

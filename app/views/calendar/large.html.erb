@@ -1,1 +1,143 @@
-<%= render partial: 'large' %>
+<%#= render partial: 'large' %>
+
+
+<% 
+  @day = params[:day] if !params[:day].nil? && params[:day]!="empty"
+  @month = params[:month] if !params[:month].nil? && params[:month]!="empty"
+  @year = params[:year] if !params[:year].nil? && params[:year]!="empty"
+  @ck = params[:ck] if !params[:ck].nil? && params[:ck]!="empty"
+  @s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
+%>
+
+<% @day = @day.nil? ? 20 : @day %>
+
+<%
+  @year = @year.to_i
+  @month = @month.to_i
+  @day = @day.to_i
+  
+  date=Date.new(@year,@month,@day)
+%>
+
+<%
+  #date=Date.new(@year,@month,@day)
+  date_p=date.prev_day(7)
+  @year1=date_p.year
+  @month1=date_p.month
+  @day1=date_p.day
+  
+  mday=Date.new(@year,@month,-1).day
+  
+  date_n=date.next_day(7)
+  @year2=date_n.year
+  @month2=date_n.month
+  @day2=date_n.day
+%>
+
+<%= render :partial => 'script/calendar' %>
+
+<%#= @day %>
+<%#= @month %>
+<%#= @year %>
+<%#= @ck %>
+<%#= @s_word %>
+
+<div class="row">
+  <div class="col-md-12" style="background: #502da5; color: white">
+    <div class="col-md-5">
+      <button id="prev_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none; float: right">&lt;</button>
+    </div>
+    <div class="col-md-2">
+      <span style="margin-bottom: 2%; font-size: 24px;"><center><%= @year %>.<%= @month %></center></span>
+    </div>
+    <div class="col-md-5">
+      <button id="next_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none;">&gt;</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <%# i = 0 %>
+  <% (0..6).to_a.each do |x| %>
+    <% tmp = date.next_day(x) %>  
+    <% 
+      @year = tmp.year
+      @month = tmp.month
+      @day = tmp.day
+    %>
+    <%= render partial: 'day' %>
+  <% end %>
+</div>
+
+<div class="row">
+
+<!--하루섹션(요일)-->
+  <% ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'].each do |x| %>
+    <div class="col-7" style="background: #b29cda; color: white;">
+      <center><p class="calendar_day"><%= x %></p></center>
+    </div>
+  <% end %>
+<!--하루섹션(요일) 끝-->
+
+</div>
+
+<!--캘린더 안 봉사 내용-->
+<div>
+  <!-- 여기부터 7번 반복 -->
+  
+  <% (0..6).to_a.each do |x| %>
+    <div class="col-7 calendar_content_background" style="padding-top:5px;">
+      <% tmp = date.next_day(x) %>  
+      <% 
+        @year = tmp.year
+        @month = tmp.month
+        @day = tmp.day
+      %>
+      <%#= render partial: 'day_info' %>
+      
+<%
+#"name LIKE \"%#{@s_word}%\""
+    
+   a = Date.parse("#{@year}-#{@month}-#{@day}")#.compact('')
+   # a = Date.parse("#{2015}-#{9}-#{1}")#.compact('')
+  
+  #a = a.delete_if {|x| x == " "}
+  @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\"")
+%>
+
+<!-- 반복 -->
+<% @b.each do |x| %>
+  <center><p class="calendar_day_info hvr-back-pulse 
+    <% if x.date_recruit_start == a %>
+      start_date 
+    <%end%>
+    <% if x.date_recruit_end == a %>
+      end_date 
+    <%end%>
+    "
+    >
+
+    <% if x.date_recruit_start == a %>
+      <span class="date_start start_date">
+        <b><%= "시"  %></b>
+      </span>
+    <% end %>
+    <% if x.date_recruit_end == a %>
+      <span class="date_end end_date">
+       <b><%= "마" %></b>
+      </span>
+    <% end %>
+    <a href="/home/bongsa_information/<%= x.id %>">
+      <%= x.name %>
+    </a>
+  </p></center>
+<% end %>
+<!--여까지 -->
+
+      
+      
+      
+    </div>
+  <% end %>
+  <!-- 777777777 -->
+  
+</div>

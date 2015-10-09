@@ -2,19 +2,117 @@
 .intro {
     background-image: url('/img/bg/bg_index_header_02.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center center;
-    width: 100%;
-    height: 643px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
-    
+
+
 .intro_logo{
     width: 22%;
     margin-top: 7%;
 }
 
-.col-md-4 col-md-offset-4{
-    border: 2px solid black;
+.enter_org{
+  background: #ec407a;
+  color: #fff;
+  border: none;
+  position: relative;
+  width: 13%;
+  height: 90px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.enter_org:hover{
+  background: #fff;
+  color: #ec407a;
+}
+.enter_org:before,.enter_org:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #ec407a;
+  transition: 400ms ease all;
+}
+.enter_org:after{
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.enter_org:hover:before,.enter_org:hover:after{
+  width: 100%;
+  transition: 800ms ease all;
 }
 
+.enter_general{
+  background: #00c852;
+  color: #fff;
+  border: none;
+  position: relative;
+  width: 13%;
+  height: 90px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.enter_general:hover{
+  background: #fff;
+  color: #00c852;
+}
+.enter_general:before,.enter_general:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #00c852;
+  transition: 400ms ease all;
+}
+.enter_general:after{
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.enter_general:hover:before,.enter_general:hover:after{
+  width: 100%;
+  transition: 800ms ease all;
+}
+
+.wau{
+  font-size: 23px;
+}
+
+.login_btn{
+      font-size: 27px;
+}
+
+.appstore{
+  width: 13%;
+  
+}
+
+.googleplay{
+  width: 13%;
+  height: 54px;
+}
+
+
+
 </style>
+
+

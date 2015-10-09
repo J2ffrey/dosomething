@@ -75,12 +75,6 @@ class JsonController < ApplicationController
             tmp += "#{x}"
         }
         
-        # abcd
-        # name like "ab__"
-        #{x} AND #{x'} AND ...
-        #"name LIKE \"박현민\""
-        #'name LIKE "박현민"'
-        #"name LIKE \"박현민\"%"
         check.call "name LIKE \"%#{params[:s_word]}%\"" unless params[:s_word].nil?
         check.call "region_id LIKE \"#{params[:region]}\"" unless params[:region].nil?
         check.call "school_id LIKE \"#{params[:school]}\"" unless params[:school].nil?

@@ -65,12 +65,15 @@
 
 <!--실제 봉사 리스트-->
 <% @real_bongsas.each do |x| %>
+<% y = Bongsa.find(x.target_bongsa_id) %>
 <div class="cart_content_background">
   <div class="col-md-1">&nbsp</div>
   <div class="col-md-10 cart_content hvr-border-fade">
     <div class="row">
       <div class="col-md-2 cart_content_photo_block">
-        <img src="<%= x.img %>" class="cart_content_photo">
+        <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;">
+          <img src="<%= x.img %>" class="cart_content_photo">
+        </a>
       </div>
       
       <% unless params[:id] == 0 || params[:id].nil? %>

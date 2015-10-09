@@ -3,20 +3,22 @@
 
 
 <div class="Total" style="margin-top: 110px; padding-bottom: 20px; border: 2px solid #10253F; margin-bottom:110px;">
-  <div class="Heading">로그인</div>
+  <div class="Heading" >로그인</div>
   <br>
   
   
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field login_box">
+  <%= form_for(resource, :html => {:class => 'form-horizontal'}, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form_group field login_box" style="margin-right: 130px" align=right>
     <%= f.label :email %> &nbsp
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email , autofocus: true ,:placeholder => "enter a valid email address" %>
   </div>
 
-  <div class="field">
+  <div class="form_group field" style="margin-right: 130px" align=right>
     <%= f.label :password %> &nbsp
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password,    autocomplete: "off",:placeholder => "enter a valid password" %>
   </div>
+
+
   
   <!-- 비밀번호가 틀렸다면?? -->
   <% if flash[:alert].present? %>
