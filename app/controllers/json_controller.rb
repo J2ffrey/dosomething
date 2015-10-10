@@ -1,5 +1,62 @@
 class JsonController < ApplicationController
     
+    #/my_bucket_del?user_id=int&id=int
+    def my_bucket_del
+        if params[:id] && params[:user_id]
+            b = Bucket.where(user_id: params[:user_id], id: params[:id])
+            b.delete
+            render json: {Bucket: b}
+        end
+    end
+    
+    
+    #/my_bucket_add?user_id=int&id=int
+    def my_bucket_add
+        if params[:id] && params[:user_id]
+            pa = Bongsa.find(params[:id])
+            b = Bucket.new
+            b.user_id   = params[:user_id]
+            b.target_bongsa_id = pa.id
+            b.save
+            render json: {Bucket: b}
+        end
+    end
+    
+    #// id
+    def my_bucket_to
+        if params[:id] && params[:user_id]
+            a = Bongsa.find(Bucket.find(params[:id]).target_bongsa_id)
+            b = RealBongsa.new
+            b.title = a.name
+            b.content = a.content.first(30)
+            b.date_start = a.date_real_start
+            b.date_end = a.date_real_end
+            b.time_total = a.time_expect_total
+            b.location = Region.find(a.region_id).name
+            b.region = Organization.find(a.organization_id).name
+            b.img = a.img_main
+            b.user_id = params[:user_id]
+            b.save
+            Bucket.find(params[:id]).delete
+        end
+    end
+    
+    #//login?email=asdf@a.a
+    def login
+        #params[:email]
+        #params[:pwd]
+        #User.where(email: params[:email], pwd: params[:pwd])
+        
+        render json: {User: User.where(email: params[:email])}
+    end
+    
+    #//찜목록 /json/my_bucket?id=integer
+    def my_bucket
+        if params[:id]
+            render json: {Bucket: User.find(params[:id]).buckets}
+        end
+    end
+    
     #json/pick?id_arr=1,2,3,4
     def pick
         a = params[:id_arr].split(',')

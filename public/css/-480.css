@@ -1,0 +1,52 @@
+.nav-logo{
+  margin-top: 1%;
+  margin-left: 1%;
+  height: 50px;
+}
+
+.navbar-toggle{
+  float:right;
+}
+
+.navbar-header{
+  width:100%;
+}
+
+.nav > li{
+  text-align: center;
+}
+
+.main-logo{
+  width:72%;
+}
+
+.header-viewcounter{
+  font-size:20px;
+}
+
+.navbar__search{
+  margin-left:10%;
+  height:35px;
+  width:65%;
+}
+
+.left_side{
+  font-size:10px;
+  width:100%;
+  padding-bottom:10px;
+}
+
+.right_side{
+  font-size:10px;
+  width:100%;
+  padding-bottom:5px;
+}
+.footer-logo{
+  width:200px;
+}
+
+.middle_side{
+  font-size:10px;
+  width:100%;
+  padding-bottom:10px;
+}

@@ -11,19 +11,16 @@
               <div class="form-group">
                 <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="ex) 벽화봉사">
                 <span id="search-icon" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/></span>
-              <div>
+              </div>
           </form>
       </div>
     </div>
     
-    <div class="col-md-12 header__title"> <img src="/img/ic_logo/ic_cali_W_1024px.png" style="width:20%; height:20%; margin-bottom:-4%">
+    <div class="col-md-12 header__title"> <img alt="" src="/img/ic_logo/ic_cali_W_1024px.png" class="main-logo">
      <br>  
-      <font style="font-size:30px;">
-        <font style="font-size=40px;">
-          <%= @total_view_count %>
-        </font>
-          &nbsp명이 방문하였습니다.
-      </font>
+      <p class="header-viewcounter">
+          <%= @total_view_count %>&nbsp명이 방문하였습니다.
+      </p>
     </div>
     
     <div class="row">

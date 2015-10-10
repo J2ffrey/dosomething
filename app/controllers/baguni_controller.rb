@@ -16,7 +16,6 @@ class BaguniController < ApplicationController
             sum = sum + x
         end
         @sum_times = sum
-        
     end
     
     def register

@@ -1,0 +1,50 @@
+.nav-logo{
+  height:40px;
+  float:left; 
+  margin-top:2%;
+}
+.navbar-header{
+  width:30%;
+}
+
+.navbar-toggle{
+  display:none;
+}
+.main-logo{
+  width:50%;
+}
+
+.header-viewcounter{
+  font-size:20px;
+}
+
+.navbar__search{
+  margin-left:10%;
+  height:35px;
+  width:80%;
+}
+.ptag_up_css{
+  font-size:15px;
+  
+}
+
+.left_side{
+  font-size:12px;
+  width:100%;
+  padding-bottom:10px;
+}
+.footer-logo{
+  width:200px;
+}
+
+.right_side{
+  font-size:13px;
+  width:100%;
+  padding-bottom:5px;
+}
+
+.middle_side{
+  font-size:20px;
+  width:100%;
+  padding-bottom:10px;
+}

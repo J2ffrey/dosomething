@@ -1,0 +1,52 @@
+.nav-logo{
+  height: 40px;
+  float:left; 
+  margin-top:2%;
+}
+
+.navbar-header{
+  width:15%;
+}
+
+.main-logo{
+  width:30%;
+  margin-bottom:-4%;
+}
+
+.header-viewcounter{
+  font-size:20px;
+}
+
+.navbar__search{
+  height: 35px;
+  width: 114%;
+  margin-left: -39%;
+}
+
+.ptag_up_css{
+  font-size:17px;
+  
+}
+
+.left_side{
+  font-size:16px;
+  width:33%;
+}
+
+.right_side{
+  font-size:17px;
+  width:33%;
+}
+
+.footer-logo{
+  width:200px;
+}
+.ptag_up_css{
+  font-size:17px;
+  
+}
+
+.middle_side{
+  font-size:20px;
+  width:33%;
+}

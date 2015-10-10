@@ -11,7 +11,10 @@ $(function(){
 					$('#large').load(site_text);
 				});
   
-  $('#next').on('click', function() {
+  
+  })
+$(function(){
+  $('#next_').on('click', function() {
 				var site_text = "/calendar/large?" + 'month=' + "<%= @month2 %>"
   			+ '&year=' + "<%= @year2 %>"
   			+ '&nocol=1'
@@ -19,5 +22,5 @@ $(function(){
 			
 				$('#large').load(site_text);
 			});
-  })
+})
 </script>

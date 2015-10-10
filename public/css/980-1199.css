@@ -1,0 +1,48 @@
+.nav-logo{
+  height: 40px;
+  float:left; 
+  margin-top:2%;
+}
+
+.navbar-header{
+  width:18%;
+}
+
+.main-logo{
+  width:33%;
+  margin-bottom:-4%;
+}
+
+.header-viewcounter{
+  font-size:20px;
+}
+
+.navbar__search{
+  height: 35px;
+  width: 114%;
+  margin-left: -39%;
+}
+
+.ptag_up_css{
+  font-size:16px;
+  
+}
+
+.footer-logo{
+  width:200px;
+}
+
+.left_side{
+  font-size:16px;
+  width:33%;
+}
+
+.right_side{
+  font-size:17px;
+  width:33%;
+}
+
+.middle_side{
+  font-size:20px;
+  width:33%;
+}
