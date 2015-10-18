@@ -1,81 +1,53 @@
-<%= render :partial => 'home/main_navbar' %>
-
-
-<div class="container container_st">
-<div class="Header signup_hearder">Sign up</div>
-
-<div class="signup_content">
+<h2>회원가입 페이지</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field login_box marginfield">
-    <%= f.label :email %> </br>
+  <div class="field">
+    <%= f.label :"사진" %><br />
+    <%= f.file_field :picture, autofocus: true %>
+    <!-- 보류 -->
+    <!-- 기본이미지와 등록이미지를 구분하기 위한 조건문 -->
+    <% if f.file_field :picture.nil? %>
+    <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRr9SOBIVHqymEnYIVOeAKZPb8Uj8XnddQhL6VfL51OYZCGqRKAnA">
+    <% else %>
+    <h1>으아아아</h1>
+    <% end %><br />
+    <!-- 여기까지 -->
+    
+  </div>
+  
+  <div class="field">
+    <%= f.label :"이름" %><br />
+    <%= f.email_field :name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"이메일" %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field marginfield">
-    <%= f.label :password %>
+  <div class="field">
+    <%= f.label :"비밀번호" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %> </br>
+    <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
-  <div class="field marginfield">
-    <%= f.label :password_confirmation %><br />
+  <div class="field">
+    <%= f.label :"비밀번호확인" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-  <!--<div class="field marginfield">-->
-  <!--  <%#= f.label :기관명 %><br />-->
-  <!--  <%#= f._field :organization_name, autocomplete: "off" %>-->
-  <!--</div>-->
+  
+  <div class="field">
+    <%= f.label :"전화번호" %><br />
+    <%= f.email_field :p_number, autofocus: true %>
+  </div> <br />
 
-
-  <div class="actions marginfield signupbtn">
-    <%= f.submit "Sign up" %>
+  <div class="actions">
+    <%= f.submit "완료" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
-</div>
-</div>
-
-
-<%= render :partial => 'home/main_footer' %>
-
-<style>
-.signupbtn input { border: none;
-                  width: 70px;
-                  height: 30px;
-                  background-color: #10253F;
-                  color: white;
-                  font-size: 16px;
-                  border-radius: 10px;
-                  margin-top: 10px;
-                  margin-bottom: 10px;
-                }
-                
-.container_st {margin-top: 110px;
-              padding-bottom: 20px;
-              border: 2px solid #10253F;
-              margin-bottom:110px;
-              width: 500px; height: 350px;
-              padding-left:0px; padding-right:0px;
-              border-radius: 3px;
-              }
-.signup_hearder {
-                background-color: #10253F;
-                color: white;
-                text-align: center;
-                font-size: 25px;
-                }
-                
-.signup_content {
-                margin: auto;
-                text-align: center;
-                margin-top:20px;
-                }
-                
-.marginfield {margin-bottom:10px;}
-</style>

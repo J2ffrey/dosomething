@@ -21,7 +21,10 @@ module Workspace
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    
     config.encording = "utf-8"
     config.active_record.raise_in_transactional_callbacks = true
+    #config.web_console.whitelisted_ips = '1.209.15.133'
+    config.web_console.whiny_requests = false
   end
 end

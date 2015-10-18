@@ -1,10 +1,17 @@
 class JsonController < ApplicationController
     
+    #http://dosomething-j2ffrey-2.c9.io/json/all_update_at
+    def all_update_at
+        #모든 봉사의 id와 update_at만 보내기
+       render json: {Bongsa: Bongsa.select("id,updated_at") } 
+    end
+    
+    
     #/my_bucket_del?user_id=int&id=int
     def my_bucket_del
         if params[:id] && params[:user_id]
-            b = Bucket.where(user_id: params[:user_id], id: params[:id])
-            b.delete
+            b = Bucket.where(user_id: params[:user_id], target_bongsa_id: params[:id])
+            Bucket.destroy(b)
             render json: {Bucket: b}
         end
     end

@@ -1,4 +1,35 @@
 <div class="modal_login">
   <a class="modal_close" href="#">X</a>
-  <div class='modal_content'>로그인 디바이스 달아주세용</div>
+  
+  
+ <%#= render :partial => 'home/main_navbar' %>
+ 
+<style>
+.loginbtn input { border: none;
+                  width: 70px;
+                  height: 30px;
+                  background-color: #10253F;
+                  color: white;
+                  font-size: 16px;
+                  border-radius: 10px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                }
+</style>
 </div>
+
+
+
+<script>
+  function openLightBox(){
+    var modal = $('.modal_login');
+    $('.nav_login').on('click', function() {
+     modal.fadeIn();
+    });
+    
+    $('.modal_close').on('click', function() {
+     modal.fadeOut();
+    });
+  }
+  openLightBox();
+</script>

@@ -1,0 +1,39 @@
+<div class="well well-out">
+    <div class="well well-in">
+        봉사목록
+    </div>
+    
+    <div class="well well-in">
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>봉사명</td>
+                    <td>IMG</td>
+                    <td>주관단체</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% BongsaTmp.all.reverse.each do |post| %>
+                    <tr class="tr-content">
+                        <td><%= post.id %></td>
+                        <td><a href="/admin/index?admin=m_bongsa_tmp&id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                        <td>
+                        <% if post.img_main %>
+                            <img src="<%= post.img_main %>" style="height:100px;width:100px">
+                        <% else %>
+                            None;
+                        <% end %>
+                        </td>
+                        <td><%= Organization.find(post.organization_id).name %></td>
+                    </tr>
+                <% end %>
+        </table>
+    </div>
+
+    <div class="row" align="right">
+        <a class="btn btn-orange" href="/admin/index?admin=m_bongsa_tmp">등록</a>
+    </div>
+
+
+</div>

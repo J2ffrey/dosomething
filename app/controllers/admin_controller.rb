@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
     #before_filter :current_user
-
+    
     def index
         @admin = params[:admin]
         
@@ -59,9 +59,15 @@ class AdminController < ApplicationController
             else
                 @b = Bongsa.new
             end
+        elsif @admin=="m_bongsa_tmp"
+            if @mod == "1"
+                @b = BongsaTmp.find(params[:id])
+            else
+                @b = BongsaTmp.new
+            end
         end
     end
-
+    
     def m_region
         re = Region.new
         re = Region.find(params[:id]) if params[:mod]=="1"
@@ -206,5 +212,48 @@ class AdminController < ApplicationController
         re = Bongsa.find(params[:id])
         re.delete
         redirect_to '/admin/index?admin=bongsa'
+    end
+    
+    def m_bongsa_tmp
+        re = BongsaTmp.new
+        re = BongsaTmp.find(params[:id]) if params[:mod]=="1"
+        re.img_poster = params[:img_poster]
+        re.img_main = params[:img_main]
+        re.name = params[:name]
+        re.content = params[:content]
+        re.is_edu = true if params[:is_edu] == 1
+        re.is_edu = false if params[:is_edu] == 0
+        re.status = params[:status]
+        re.organization_id = params[:organization_id]
+        re.clerk_call = params[:clerk_call]
+        re.clerk_name = params[:clerk_name]
+        re.is_regular = true if params[:is_regular] == 1
+        re.is_regular = false if params[:is_regular] == 0
+        re.date_real_end = Date.parse(params[:date_real_end])
+        re.date_real_start = Date.parse(params[:date_real_start])
+        re.date_recruit_end = Date.parse(params[:date_recruit_end])
+        re.date_recruit_start = Date.parse(params[:date_recruit_start])
+        re.time_expect_total = params[:time_expect_total]
+        re.time_daily_end = params[:time_daily_end]
+        re.time_daily_start = params[:time_daily_start]
+        re.vltr_req = params[:vltr_req]
+        re.vltr_sex = params[:vltr_sex]
+        re.vltr_age_id = params[:vltr_age_id]
+        re.vltr_num = params[:vltr_num]
+        re.region_id = params[:region_id]
+        re.school_id = params[:school_id]
+        re.btime_id = params[:btime_id]
+        re.category_id = params[:category_id]
+        re.admin_mod = params[:admin_mod]
+        re.admin_add = params[:admin_add]
+        re.act_time = params[:act_time]
+        re.save
+        redirect_to '/admin/index?admin=bongsa_tmp'
+    end
+    
+    def del_bongsa_tmp
+        re = BongsaTmp.find(params[:id])
+        re.delete
+        redirect_to '/admin/index?admin=bongsa_tmp'
     end
 end

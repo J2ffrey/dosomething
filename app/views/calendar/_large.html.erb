@@ -32,6 +32,7 @@
   @day2=date_n.day
 %>
 
+
 <%= render :partial => 'script/calendar' %>
 
 <%#= @day %>
@@ -58,11 +59,16 @@
   <% (0..6).to_a.each do |x| %>
     <% tmp = date.next_day(x) %>  
     <% 
-      @year = tmp.year
-      @month = tmp.month
       @day = tmp.day
     %>
-    <%= render partial: 'day' %>
+    <%#= render partial: 'day' %>
+    
+    <!--하루섹션(날짜)-->
+  <div class="col-7" style="background: #b29cda; color: white;">
+    <center><p class="calendar_date"><%= @day %></p></center>
+  </div>
+<!--하루섹션(날짜) 끝-->
+    
   <% end %>
 </div>
 

@@ -1,7 +1,7 @@
             
             <div class="well well-out">
                 <%#= form_for @sb, url: {controller: 'admin', action:'add_sb'} do |f| %>
-                <form action="/admin/m_bongsa" enctype="multipart/form-data" method="POST">
+                <form action="/admin/m_bongsa_tmp" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="mod" value="<%= @mod %>">
                     <input type="hidden" name="id" value="<%= @b.id %>">
                     <div class="well well-in">
@@ -241,12 +241,12 @@
                 
                     <div class="row" align="right">
                         <% if @mod == "1" %>
-                            <a class="btn btn-orange" href="/admin/del_bongsa?id=<%= @b.id %>">삭제</a>
+                            <a class="btn btn-orange" href="/admin/del_bongsa_tmp?id=<%= @b.id %>">삭제</a>
                             <input type="submit" value="수정" class="btn btn-orange" />
                         <% else %>
                             <input type="submit" value="등록" class="btn btn-orange" />
                         <% end %>
-                        <a class="btn btn-orange" href="/admin/index?admin=bongsa">취소</a>
+                        <a class="btn btn-orange" href="/admin/index?admin=bongsa_tmp">취소</a>
                     </div>
                 </form>
             </div>

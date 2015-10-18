@@ -3,7 +3,6 @@ class HomeController < ApplicationController
     def temp
         render :layout => false
     end
-    
 
     def filter5
         first = 0
@@ -264,4 +263,6 @@ class HomeController < ApplicationController
     def intro
         render :layout => false
     end
+    
+  
 end

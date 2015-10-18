@@ -1,43 +1,31 @@
-
 <html>
-  <head>
-      
+  <head>     
     <!-- 한글패치 -->
     <meta charset="utf-8">
     <title>봉사꾼</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
     
-    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <!-- 부트스트랩 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <!-- 드롭바용 제이커리 -->
-    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script> 
     <!-- 아이콘용 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <!--글씨체 한나체로 변경-->
+    <!--글씨체 변경-->
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
       <style>
-        body {
-          
-            font-family: 'Nanum Gothic', sans-serif;
-            font-family: 'Noto Sans', sans-serif;
-        }
+        body {font-family: 'Nanum Gothic', sans-serif;
+              font-family: 'Noto Sans', sans-serif;
+              }
       </style>
-    <%= render :partial => 'style/index' %>
   </head>
-    
-  <%= render :partial => 'style/introcss' %>
-  
   <body class="intro">
+  <%= render :partial => 'style/introcss' %>
     <div>
       <center>
         <img src="/img/ic_logo/logo_intro.png" class="intro_logo" />
@@ -50,34 +38,16 @@
       <button class="enter_org">
         <span class="wau"><b>봉사기관</b></span><br>
       </button>
-    
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      
       <a href="/home/index">
         <button class="enter_general">
           <span class="wau"><b>봉사자</b></span><br>
         </button>
       </a>
-  
-  
-  
       <br><br>
-      <img src="/img/ic/ic_app_store.png" class="appstore"/>
-      
+      <img src="/img/ic/ic_app_store.png" class="appstore"/>   
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      
       <img src="/img/ic/ic_google_play.png" class="googleplay"/>
     </center>
   </body>
-
-
-
-
-
-
 </html>
-
-
-
-
-
