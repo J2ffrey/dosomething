@@ -1,9 +1,12 @@
 class HomeController < ApplicationController
     #respond_to :html, :js
+    before_action(:only => [ :mypage, :private_info ]) {is_signin?}
+    #before_action(:only => [ :mypage, :private_info ]) {authority_check?("Bucket_c", "Bucket_d")}
+    
     def temp
         render :layout => false
     end
-
+    
     def filter5
         first = 0
         tmp = ""
@@ -58,6 +61,7 @@ class HomeController < ApplicationController
     end
     
     def index
+        #@user = User.new
         mark = ViewCount.new
         mark.ip_adress = request.remote_ip
         mark.save
@@ -264,5 +268,8 @@ class HomeController < ApplicationController
         render :layout => false
     end
     
+    def main_org
+       @bongsa = Bongsa.all
+    end
   
 end

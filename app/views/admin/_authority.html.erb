@@ -1,0 +1,50 @@
+<div class="well well-out">
+    <div class="well well-in">
+        권한-모음 -> 권한
+    </div>
+    <div class="well well-in">
+        <form method="post" action="/admin/index?admin=authority">
+            
+            <select name="id">
+                <% if @id == 0 || @id.nil? %>
+                    <option value="0" selected>전체보기</option>
+                <% else %>
+                    <option value="0">전체보기</option>
+                <% end %>
+                <% AuthorityBundle.all.each do |x| %>
+                    <% if x.id == @id %>
+                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                    <% else %>
+                        <option value="<%= x.id %>"><%= x.name %></option>
+                    <% end %>
+                <% end %>
+            </select>
+            <input type="submit" class="btn btn-orange" value="보기">
+        </form>
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>권한</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% Authority.all.reverse.each do |post| %>
+                    <% if @id == 0 || post.authority_bundle_id == @id %>
+                        <tr class="tr-content">
+                            <td><%= post.id %></td>
+                            <td><a href="/admin/index?admin=m_authority&id=<%= post.id %>&mod=1"><%= AuthorityDef.find(post.authority_def_id).name %></a></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+        </table>
+    </div>
+
+    <div class="row" align="right">
+        
+        <a class="btn btn-orange" href="/admin/index?admin=m_authority">등록</a>
+    
+    </div>
+
+
+</div>

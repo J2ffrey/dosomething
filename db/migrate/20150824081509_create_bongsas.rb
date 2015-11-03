@@ -2,6 +2,16 @@ class CreateBongsas < ActiveRecord::Migration
   def change
     create_table :bongsas do |t|
       
+      # 신청하기 링크가 없어요
+      # 담당자 이메일 주소가 없어요
+      # 인증서 발급여부가 없어요
+      # 상세 주소 없어요
+      
+      t.boolean :is_approval      #인증서 발급여부10.31추가
+      t.text :address             #주소(디테일한 지역주소)10.31추가
+      t.boolean :date_recruit_always #상시모집시 1(true)
+      
+      
       #데이터 이미지
       t.string  :img_main         #메인 이미지
       t.string  :img_poster       #포스터 사진
@@ -18,6 +28,7 @@ class CreateBongsas < ActiveRecord::Migration
       #t.integer :clerk_id         #담당자//
       t.string  :clerk_name       #담당자
       t.string  :clerk_call       #담당자 연락처
+      t.string  :clerk_email      #담당자 이메일 10.31추가
       
       #기간 및 시간
       t.boolean :is_regular        #정기 혹은 비정기
@@ -32,7 +43,7 @@ class CreateBongsas < ActiveRecord::Migration
       #지원 자격 요건
       t.integer :vltr_num         #모집인원
       t.integer	:vltr_age_id	    #지원가능 연령(범주로 지정. select value)
-      t.integer	:vltr_sex	        #지원가능 성별
+      t.integer	:vltr_sex	        #지원가능 성별 0,1,2 남,녀,무관
       t.text		:vltr_req	        #지원가능 상세조건
       
       #Selector _id

@@ -1,32 +1,36 @@
-/*main_page*/
+/*main_page_start*/
 .nav-logo{
-  height: 40px;
-  float:left; 
-  margin-top:2%;
+    width: 49%;
+    height: 30px;
+    float: left;
+    margin-top: 8%;
+    margin-left: 48%;
 }
-
+.wantlist_height {
+  height: 120px;
+}
 .navbar-header{
   width:15%;
 }
 
 .main-logo{
+  height: 215px;
   width:30%;
   margin-bottom:-4%;
 }
 
 .header-viewcounter{
+  margin-top: 35px;
   font-size:20px;
+  color: white;
 }
 
 .navbar__search{
-  height: 35px;
-  width: 114%;
-  margin-left: -39%;
-}
-
-.ptag_up_css{
-  font-size:17px;
-  
+  border: 2px solid #acaba9;
+  height: 40px;
+  width: 30%;
+  margin-left: 30%;
+  margin-top: 14px;
 }
 
 .left_side{
@@ -39,19 +43,461 @@
   width:33%;
 }
 
-.footer-logo{
-  width:150px;
-}
-.ptag_up_css{
-  font-size:17px;
-  
-}
-
 .middle_side{
   font-size:20px;
   width:33%;
 }
-/*main_page*/
+/*main_page_end*/
 
-/*intro_page*/
-/*intro_page*/
+/*main_org_page_start*/
+.content_bongsa_number {
+  border: 1px solid #1E929F;
+  background-color: #1E929F;
+  color: white;
+  padding-right: 11px;
+  padding-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 5px;
+  margin-left: 7px;
+}
+.org_name {margin-top: 13px;}
+
+.content_bongsa {margin-top: 39px;
+                 margin-left: 30px;}
+
+.content_org {
+  margin-top: 10px;
+  margin-left: 2%;
+}
+
+.bongsa_add {margin-top: 15px;}
+
+.main_content_img {width:100%;
+                   height: 230px;
+                   margin-top:0px;}
+                   
+.image {background-color: white;
+        border-right: 1px solid #1E929F;
+        border-bottom: 1px solid #1E929F;
+        height: 207px;}
+        
+.content {border-right: 1px solid #1E929F;
+          background-color: white;
+          height: 540px;}
+
+.main_content_height {
+  height: 350px; 
+}
+
+p {color: #1E929F;
+   font-size: 15px;}
+
+.main_content__content {
+  padding-right: 5px;
+  padding-left: 5px;
+  border-right:1px solid gainsboro;
+  height: 100px;
+}
+
+.side_info__title {
+        /* margin-left: 0%; */
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    color: white;
+    background: rgba(0,0,0,0.55);
+    padding: 3.5% 0% 1.5% 3%;
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.ptag_up_css {
+  margin-top: 0px;
+  font-size:13px;
+}
+
+.content_bongsa_ic {
+  margin-left: 3%;
+}
+.row_main_content  {
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid gainsboro;
+  height: 350px;
+}
+  
+.volunteer_org_img {width:115px; height:115px; margin-top: 35px;}
+.plus_icon {width: 45px;
+            height: 45px;}
+
+/*main_org_page_end*/
+
+/*----------------- bongsainform_page_start -----------------*/
+
+.slided_img{
+    background-image:url("<%= @b.img_main %>");
+    background-size: cover;
+    padding-top: 30%;
+    padding-left: 0px;
+}
+.m_title{
+    margin-left:2%; 
+    color:#fff; 
+    font-size:38px;
+}
+.m_term{
+    color:#fff; 
+    font-size:2em;
+    line-height: 57px;
+    margin-bottom: 1%;
+}
+.m_btn{
+    margin-top: 11%;
+    width: 68%;
+    height: 32px;
+    font-size: 20px;
+    color: #fff;
+    line-height: 0px;
+    border-radius: 0px;
+    background-color: #5fc0c7;
+    margin-bottom: 10%;
+
+}
+
+
+.info_line{
+  background-color: black;
+  width: 4%;
+  height: 2px;
+  margin-top: 0%;
+  
+}
+
+.about_subtitle {
+  font-size: 18px;
+  color : #2b7576;
+  text-align: right;
+  margin-top: -2%;
+}
+
+.about_content {
+  font-size: 18px;
+  text-align: left;
+  margin-top: -2%;
+  color: black;
+}
+
+.info_more {
+  width: 87%;
+  height: 43px;
+  margin-top: 80px;
+}
+.section_text {
+  color: black;
+  margin-top: 4px;
+  width: 111%;
+}
+
+.btn_side {
+  margin-left: -39%;
+}
+
+.info_icon {
+  height: 56px;
+  width: 11%;
+}
+
+.info_poster {
+  width: 100%;
+  height: auto;
+  margin-top: -6%;
+  margin-bottom: 16%;
+}
+.info_group {
+  height: 60px;
+}
+
+.info_text {
+  margin-left: 15%;
+  margin-top: -10px;
+  color: black;
+}            
+
+
+.section_icon_area{
+	width:70px;
+	height: 70px;
+	background-image: url(../images/ic_details_info.png);
+	position:relative;
+	float:left;
+	margin-right:8px;
+}
+
+.section_side{
+	width:24px;
+	position: relative;
+	float: left;
+
+}
+
+.section_round{
+  margin-left: 23%;
+	width:20px;
+	height:20px;
+	border-radius: 100%;
+	background-color: #60c0c8;
+}
+.section_contents{
+	width: 72%;
+  height: 65px;
+  border-left: solid 2px #60c0c8;
+  margin-left: -10px;
+  padding-left: 24px;
+  float: left;
+}
+
+.section_title{
+	color: #60c0c8;
+	font-size: 22px;
+}
+.icon_img{
+  width: 70px;
+  height: 70px;
+}
+/*----------------- bongsainform_page_end -----------------*/
+
+/*----------------- bongsa_calendar_start -----------------*/
+
+.row {
+    margin:0px;
+}
+	
+.col-7 {
+    width: 14.28%;
+    display:block;
+    float:left;
+    position: relative;
+    min-height: 1px;
+}
+	
+.select_type {
+    width: 16px;
+    height: 16px;
+}
+	
+.select_type_name {
+    margin-left: 27%;
+    margin-top: -9.6%;
+    font-size: 13px;
+}
+	
+.circle {
+    width: 8%;
+    height: 13px;
+    border-radius: 50px;
+    margin-top: -13.1%;
+    margin-left: 15%;
+}
+	
+.checking {
+	  margin-left: 10%;
+}
+	
+.calendar_date {
+  	font-size: 40px;
+  	margin-top: 5%;
+}
+	
+.calendar_content_background {
+    background: white; 
+    color: black;
+    height: 600px;
+    border-right: 2px solid #e7f5e8;
+}
+
+.calendar_content_last { 
+    background: white; 
+    color: black;
+    height: 600px;
+}
+					    
+.color {
+    background-color: #5fc0c7;
+}
+
+.small-calendar-title {
+    text-align:center;
+    font-weight: 800;
+    color: white;
+    margin-bottom:4%;
+    font-size: 18px;
+}
+
+.dayname-container {
+    float: left;
+    color:white;
+}
+
+.calendar-container {
+    float: left;
+    height: 20px;
+    width: calc(100% / 7);
+}
+
+.day-label {
+    float: left;
+    height: 20px;
+    width: calc(100% / 7);
+}
+
+.calendar_day_info{
+    background:rgba(255, 165, 0, 0.2);
+    border-radius:15px;
+    padding:4px;
+}
+
+.calendar_day_info > a{
+    color:black;
+}
+
+.calendar_day_info > a:hover{
+    color:black;
+    text-decoration:none;
+}
+
+.date_start{
+    background:rgba(255, 0, 0, 0.5);
+    border-radius:100px;
+    padding-bottom:3px;
+    padding-left:3px;
+}
+
+.date_end{
+    background:rgba(0, 0, 255, 0.5);
+    border-radius:100px;
+    padding-bottom:3px;
+    padding-left:3px;
+}
+
+.small-calendar {
+    padding: 16px 10px;
+    height: calc(7 * 20px + 2 * 15px + 2px);
+    background-color: rgba(249, 246, 246, 0.16);
+}
+
+.bongsa_checkbox {
+    margin-top:5%;
+}
+
+.navbar__search {
+    height: 35px;
+    background-color: rgba(255,255,255,0);
+    width: 36%;
+    margin-left: 32%;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+    font-size:15px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: white; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: white; 
+}
+
+:-ms-input-placeholder {  
+    color: white;  
+}
+/*----------------- bongsa_calendar_end -----------------*/
+
+/*----------------- login_modal_start ----------------------*/
+.modal_login {
+  color:black;
+  background-color: #dbd9d9;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 52%;
+  margin-left: -16%;
+  margin-top: -15%;
+  padding: 7%;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
+}
+
+.login_title {
+    font-size: 30px;
+    color: white;
+
+}
+
+.login_icon {
+  width: 12%;
+  height: 38px;
+}
+
+.login_cancle {
+     width: 30%;
+     margin-left: 66%;
+     margin-top: 11%;
+}
+
+.login_btn {
+     font-size: 14px;
+     background-color: #ec1c77;
+     color: white;
+     width: 45%;
+     height: 33px;
+     border: none;
+}
+
+.login_input{
+    background-color: transparent; 
+    border-style: solid; 
+    border-width: 0px 0px 1px 0px; 
+    border-color: white;
+    width: 84%;
+}
+
+.loginbtn input { 
+    border: none;
+    width: 70px;
+    height: 30px;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+                }
+                
+.modal_content{
+  color: white;
+}
+
+.modal_close {
+  color:  #000;
+  text-decoration: none;
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 20px
+}
+
+.icon_facebook {height: 37px;
+                width: 37px;}
+/*----------------- login_modal_end ----------------------*/

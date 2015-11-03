@@ -25,7 +25,7 @@
                             None;
                         <% end %>
                         </td>
-                        <td><%= Organization.find(post.organization_id).name %></td>
+                        <td><%= Organization.find(post.organization_id).name unless Organization.where(id: post.organization_id).first.nil? %></td>
                     </tr>
                 <% end %>
         </table>

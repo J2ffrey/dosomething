@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
   
-   devise_for :users, controllers: {
-        registrations: 'users/registrations'
-       }
+  # devise_for :users, controllers: {
+  #       registrations: 'users/registrations'
+  #     }
+  
+  get 'error' => 'home#error'
   
   root 'home#intro'
   match ":controller(/:action(/:id))", :via => [:post,:get]

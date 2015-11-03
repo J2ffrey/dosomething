@@ -87,6 +87,10 @@
                             <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @b.content %>" />
                         </div>
                         </br>
+                        <div class="form-group2">
+                            <label>상세주소</label><br>
+                            <input type="text" name="address" class="form-control_line" value="<%= @b.address %>" />&nbsp
+                        </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>정기 / 비정기</label>-->
                         <!--    <select name="is_regular">-->
@@ -96,8 +100,24 @@
                         <!--</div>-->
                         
                         <div class="form-group2">
-                          <input type="radio" checked/> 정기 봉사 &nbsp&nbsp
-                          <input type="radio"/> 비정기 봉사
+                            <label>정기 / 비정기 봉사</label><br>
+                            <% if @mod == "1" && @b.is_edu == 0 %>
+                                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                                <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
+                            <% else %>
+                                <input type="radio" name="is_regular" value="1" checked/> 정기 봉사 &nbsp&nbsp
+                                <input type="radio" name="is_regular" value="0"/> 비정기 봉사
+                            <% end %>
+                        </div> </br>
+                        <div class="form-group2">
+                            <label>인증서발급여부</label><br>
+                            <% if @mod == "1" && @b.is_approval == 0 %>
+                                <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
+                                <input type="radio" name="is_approval" value="0" checked/> X
+                            <% else %>
+                                <input type="radio" name="is_approval" value="1" checked/> O &nbsp&nbsp
+                                <input type="radio" name="is_approval" value="0"/> X
+                            <% end %>
                         </div> </br>
                         <div class="form-group2">
                           <div class="col-md-6">
@@ -150,14 +170,19 @@
                         </div><br>
                         <div class="form-group2">
                             <label>사전교육 유/무</label><br>
-                            <input type="radio" checked/> 있음 &nbsp&nbsp
-                            <input type="radio"/> 없음
+                            <% if @mod == "1" && @b.is_edu == 1 %>
+                                <input type="radio" name="is_edu" value="1" checked/> 있음 &nbsp&nbsp
+                                <input type="radio" name="is_edu" value="0" /> 없음
+                            <% else %>
+                                <input type="radio" name="is_edu" value="1" /> 있음 &nbsp&nbsp
+                                <input type="radio" name="is_edu" value="0" checked/> 없음
+                            <% end %>
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>사전교육 유/무</label>-->
                         <!--    <select name="is_edu">-->
-                        <!--        <option value="0" <% "selected" if @mod == "1" && @b.is_edu == 0 %>>무</option>-->
-                        <!--        <option value="1" <% "selected" if @mod == "1" && @b.is_edu == 1 %>>유</option>-->
+                        <!--        <option value="0" <%# "selected" if @mod == "1" && @b.is_edu == 0 %>>무</option>-->
+                        <!--        <option value="1" <%# "selected" if @mod == "1" && @b.is_edu == 1 %>>유</option>-->
                         <!--    </select>-->
                         <!--</div>-->
                         <div class="form-group2">
@@ -166,9 +191,9 @@
                         </div><br>
                         <div class="form-group2">
                             <label>상태</label><br>
-                            <input type="radio" checked/> 모집예정
-                            <input type="radio" /> 모집중
-                            <input type="radio" /> 모집종료
+                            <input type="radio" name="status" value="0" <%= "checked" if @mod == "1" && @b.status == 0 %>/> 모집예정
+                            <input type="radio" name="status" value="1" <%= "checked" if @mod == "1" && @b.status == 1 %>/> 모집중
+                            <input type="radio" name="status" value="2" <%= "checked" if @mod == "1" && @b.status == 2 %>/> 모집종료
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>상태</label>-->
@@ -180,9 +205,9 @@
                         <!--</div>-->
                         <div class="form-group2">
                             <label>지원가능 성별</label><br>
-                            <input type="radio" checked/> 무관
-                            <input type="radio" /> 남
-                            <input type="radio" /> 여
+                            <input type="radio" name="vltr_sex" value="0" <%= "checked" if @mod == "1" && @b.vltr_sex == 0 %>/> 남
+                            <input type="radio" name="vltr_sex" value="1" <%= "checked" if @mod == "1" && @b.vltr_sex == 1 %>/> 여
+                            <input type="radio" name="vltr_sex" value="2" <%= "checked" if @mod == "1" && @b.vltr_sex == 2 %>/> 무관
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>지원가능 성별</label>-->
@@ -212,6 +237,10 @@
                             <label>담당자연락처</label>
                             <input type="text" name="clerk_call" class="form-control" value="<%= @b.clerk_call %>" />
                         </div>
+                        <div class="form-group2">
+                            <label>담당자이메일</label>
+                            <input type="text" name="clerk_email" class="form-control" value="<%= @b.clerk_email %>" />
+                        </div>
                         
                         <div class="form-group2">
                             <label>모집연령</label>
@@ -230,15 +259,16 @@
                             <% if @mod=="1" %>
                                 <%= @b.admin_add %>
                             <% else %>
-                                <%#= current_user.email %>
+                                <%= current_user.email unless current_user.nil? %>
                             <% end %>
                         </div>
+                        
                         <div class="form-group2">
                             <label>최근 수정자</label>
-                            <input type="text" value="<%#= current_user.email %>" name="admin_mod">
+                            <input type="text" value="<%= current_user.email unless current_user.nil? %>" name="admin_mod">
                         </div>
                     </div>
-                
+                    
                     <div class="row" align="right">
                         <% if @mod == "1" %>
                             <a class="btn btn-orange" href="/admin/del_bongsa?id=<%= @b.id %>">삭제</a>

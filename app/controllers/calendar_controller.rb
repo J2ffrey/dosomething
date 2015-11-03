@@ -9,6 +9,7 @@ class CalendarController < ApplicationController
   end
   
   def large
+    render :layout => false
     @day = params[:day]
     @year = params[:year]
     @month = params[:month]

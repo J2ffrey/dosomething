@@ -1,4 +1,47 @@
-<div class="well">
-    <h3>기능 구현중..</h3>
-</div>
+<div class="well well-out">
+    <div class="well well-in">
+        User
+    </div>
+    <div class="well well-in">
+        <form method="post" action="/admin/index?admin=user">
+            <select name="id">
+                <option value="0" <%= "selected" if @id == 0 || @id.nil? %>>전체보기</option>
+                <option value="1" <%= "selected" if @id == 1 %>>일반 유저</option>
+                <option value="2" <%= "selected" if @id == 2 %>>기관 유저</option>
+                <option value="3" <%= "selected" if @id == 3 %>>승인대기중 기관 유저</option>
+                <option value="4" <%= "selected" if @id == 4 %>>관리자</option>
+            </select>
+            <input type="submit" class="btn btn-orange" value="보기">
+        </form>
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>email</td>
+                    <td>이름</td>
+                </tr>
+            </thead>
+            <tbody>
+            <% 
+                p = User.all if @id == 0 || @id.nil?
+                p = User.where(user_type_id:0) if @id == 1
+                p = User.where(user_type_id:1, available: 0) if @id == 2
+                p = User.where(user_type_id:1, available: 1) if @id == 3
+                p = User.where(user_type_id:2) if @id == 4
+            %>
+            <% p.all.reverse.each do |post| %>
+                <% if @id == 0 || post.region_id == @id %>
+                    <tr class="tr-content">
+                        <td><%= post.id %></td>
+                        <td><a href="/admin/index?admin=m_user&id=<%= post.id %>&mod=1"><%= post.email %></a></td>
+                        <td><a href="/admin/index?admin=m_user&id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
 
+    <div class="row" align="right">
+        <a class="btn btn-orange" href="/admin/index?admin=m_user">등록</a>
+    </div>
+</div>

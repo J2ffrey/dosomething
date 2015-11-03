@@ -1,5 +1,5 @@
 <html>
-  <head>     
+  <head>
     <!-- 한글패치 -->
     <meta charset="utf-8">
     <title>봉사꾼</title>
@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  
+    
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <!-- 아이콘용 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
+    
     <!--글씨체 변경-->
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
@@ -33,11 +33,16 @@
     </div>
     
     <br>
-  
+    
+    
     <center>
-      <button class="enter_org">
-        <span class="wau"><b>봉사기관</b></span><br>
-      </button>
+    
+    <%= render :partial => 'home/login_modal_org' %>
+      <a class="bongsa_org_btn" href="#">
+        <button class="enter_org">
+          <span class="wau bongsa_org_btn"><b>봉사기관</b></span><br>
+        </button>
+      </a>
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <a href="/home/index">
         <button class="enter_general">
@@ -45,9 +50,10 @@
         </button>
       </a>
       <br><br>
-      <img src="/img/ic/ic_app_store.png" class="appstore"/>   
+      <img src="/img/ic/ic_app_store.png" class="appstore"/>
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <img src="/img/ic/ic_google_play.png" class="googleplay"/>
     </center>
+    
   </body>
 </html>

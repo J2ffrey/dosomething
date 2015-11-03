@@ -1,11 +1,60 @@
 class JsonController < ApplicationController
+    #before_action( :only => :kk) {authority_check?([self.name.to_s])}
     
     #http://dosomething-j2ffrey-2.c9.io/json/all_update_at
     def all_update_at
         #모든 봉사의 id와 update_at만 보내기
-       render json: {Bongsa: Bongsa.select("id,updated_at") } 
+       render json: {Bongsa: Bongsa.select("id, updated_at") } 
     end
     
+    # ,으로구분하여 필요한 데이터만 쿼리(
+    # ex> http://dosomething-j2ffrey-2.c9.io/json/custom?query=id,updated_at,name,date_recruit_end
+    def custom
+        #ary = params[:query].split(',')
+        render json: {
+            Bongsa: Bongsa.select("#{params[:query]}")
+            }
+    end
+    
+    #/json/sign_up/
+    #email, password, name, phonenumber
+    def sign_up
+        u = User.new
+        u.email = params[:email]
+        u.password = params[:password]
+        u.name = params[:name]
+        u.phonenumber = params[:phonenumber]
+        u.authority_bundle_id = AuthorityBundle.where(name:"Primary User").first.id
+        
+        unless User.where(email: params[:email]).first.nil?
+            status = 400
+            id = nil
+        end
+        
+        unless u.save!
+            status = 200
+            id = u.id
+        else
+            status = 400
+            id = nil
+        end
+    end
+    
+    #email=char
+    #password
+    def login
+        u = User.where(email: params[:email], password: params[:password]).first
+        unless u.nil?
+            status = 200
+            id = u.id
+        else
+            status = 400
+            id = nil
+        end
+        render json: {
+            User: ['status' => status,'id' => id]
+            }
+    end
     
     #/my_bucket_del?user_id=int&id=int
     def my_bucket_del
@@ -15,7 +64,6 @@ class JsonController < ApplicationController
             render json: {Bucket: b}
         end
     end
-    
     
     #/my_bucket_add?user_id=int&id=int
     def my_bucket_add
@@ -49,13 +97,13 @@ class JsonController < ApplicationController
     end
     
     #//login?email=asdf@a.a
-    def login
+    # def login
         #params[:email]
         #params[:pwd]
         #User.where(email: params[:email], pwd: params[:pwd])
         
-        render json: {User: User.where(email: params[:email])}
-    end
+    #     render json: {User: User.where(email: params[:email])}
+    # end
     
     #//찜목록 /json/my_bucket?id=integer
     def my_bucket

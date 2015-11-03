@@ -1,6 +1,20 @@
+<%
+  date = Date.today
+  month = date.month
+  day = date.day
+  year = date.year
+  date = Date.new(year,month)
+  #date2 = Date.new
+  
+  while !date.sunday?
+    date.prev_day(1)
+  end
+  
+%>
+
 <div class="small-calendar-title">
   <span class="prev" ng-click="addMonth(-1)"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></span>
-  <span class="current ng-binding" ng-bind="date | date:'yyyy.MM'">2015.09</span>
+  <span class="current ng-binding" ng-bind="date | date:'yyyy.MM'"><%= year.to_s + "." + month.to_s %></span>
   <span class="next" ng-click="addMonth(1)"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></span>
 </div>
 
@@ -9,52 +23,24 @@
     <div class="dayname-container">
       <div class="row">
         <% ["일","월", "화", "수", "목", "금", "토"].each do |x| %>
-          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames"><%= x %></div>
+          <div class="day-label name-of-days ng-binding ng-scope" ng-bind="dayname" ng-repeat="dayname in kor_daynames">
+            <%= x %>
+          </div>
         <% end %>
       </div>
       <div class="row">
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">30</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">31</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">1</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">2</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">3</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">4</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">5</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">6</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">7</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">8</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">9</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">10</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">11</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">12</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">13</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">14</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">15</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">16</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">17</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">18</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">19</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">20</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">21</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">22</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">23</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">24</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">25</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">29</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">29</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">29</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">26</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">27</div>
-        <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">28</div>
+        <% i = 1 %>
+        <% while i != 40 %>
+          <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">
+            <% if date.month == month %>
+              <a href="" onclick="refresh(<%= date.year.to_s + "," + date.month.to_s + "," + date.day.to_s %>)">
+                <%= date.day %>
+              </a>
+            <% end %>
+            <% date = date.next_day(1) %>
+          </div>
+          <% i += 1 %>
+        <% end %>
       </div>
     </div>
   </div>

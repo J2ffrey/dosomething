@@ -1,0 +1,114 @@
+            <div class="well well-out">
+                <form action="/admin/m_user" method="POST">
+                    <input type="hidden" name="mod" value="<%= @mod %>">
+                    <input type="hidden" name="id" value="<%= @b.id %>">
+                    <div class="well well-in">
+                        <div class="form-group2">
+                            <label>User_type</label>
+                            <select name="user_type_id">
+                                <% UserType.all.each do |x| %>
+                                    <% if @mod == "1" && @b.user_type_id == x.id %>
+                                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                                    <% else %>
+                                        <option value="<%= x.id %>"><%= x.name %></option>
+                                    <% end %>
+                                <% end %>
+                            </select>
+                        </div><br>
+                        <div class="form-group2">
+                            <label>email</label>
+                            <input type="email" name="email" class="form-control" value="<%= @b.email %>" required />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>password</label>
+                            <input type="text" name="password" class="form-control" value="<%= @b.password %>" required />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>이름</label>
+                            <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>핸드폰번호</label>
+                            <input type="text" name="phonenumber" class="form-control" value="<%= @b.phonenumber %>" required />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>권한모음(bundle)</label>
+                            <select name="authority_bundle_id">
+                                <% AuthorityBundle.all.each do |x| %>
+                                    <% if @mod == "1" && @b.authority_bundle_id == x.id %>
+                                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                                    <% else %>
+                                        <option value="<%= x.id %>"><%= x.name %></option>
+                                    <% end %>
+                                <% end %>
+                            </select>
+                        </div><br>
+                        <div class="form-group2">
+                            <label>sign_in_count</label>
+                            <input type="text" name="sign_in_count" class="form-control" value="<%= @b.sign_in_count %>" />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>current_sign_in_at</label>
+                            <input type="text" name="current_sign_in_at" class="form-control" value="<%= @b.current_sign_in_at %>" />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>current_sign_in_ip</label>
+                            <input type="text" name="current_sign_in_ip" class="form-control" value="<%= @b.current_sign_in_ip %>" />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>last_sign_in_at</label>
+                            <input type="text" name="last_sign_in_at" class="form-control" value="<%= @b.last_sign_in_at %>" />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>last_sign_in_ip</label>
+                            <input type="text" name="last_sign_in_ip" class="form-control" value="<%= @b.last_sign_in_ip %>" />
+                        </div><br>
+                        <div class="form-group2">
+                            <label>소속기관</label> &nbsp
+                            <select name="organization_id">
+                                <option value="0" selected>없음</option>
+                                <% Organization.all.each do |x| %>
+                                    <% if @mod == "1" && @b.organization_id == x.id %>
+                                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                                    <% else %>
+                                        <option value="<%= x.id %>"><%= x.name %></option>
+                                    <% end %>
+                                <% end %>
+                            </select> &nbsp&nbsp&nbsp&nbsp
+                        </div><br>
+                        <div class="form-group2">
+                            <label>사용가능(승인)여부</label><br>
+                            <% if @mod == "1" && @b.available == 0 %>
+                                <input type="radio" name="available" value="1" /> 있음 &nbsp&nbsp
+                                <input type="radio" name="available" value="0" checked/> 없음
+                            <% else %>
+                                <input type="radio" name="available" value="1" checked/> 있음 &nbsp&nbsp
+                                <input type="radio" name="available" value="0" /> 없음
+                            <% end %>
+                        </div><br>
+                        
+                    </div>
+                
+                    <div class="row" align="right">
+                        <% if @mod == "1" %>
+                            <a class="btn btn-orange" href="/admin/del_user?id=<%= @b.id %>">삭제</a>
+                            <input type="submit" value="수정" class="btn btn-orange" />
+                        <% else %>
+                        <input type="submit" value="등록" class="btn btn-orange" />
+                        <% end %>
+                        <a class="btn btn-orange" href="/admin/index?admin=user">취소</a>
+                        
+                    </div>
+                </form>
+                
+            
+            
+            </div>
+        </div>
+        
+    	<div class="row">
+    		<hr class="feature-divider">
+    	</div>
+    </div>
+	<div class="col-md-1"></div>
+</div>

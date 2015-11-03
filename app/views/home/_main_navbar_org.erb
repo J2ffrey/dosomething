@@ -1,0 +1,51 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/home/index"><img src="/img/ic_logo/main_navbar_logo.png" alt="" class="nav-logo"> &nbsp</a>
+
+      <!--<a class="navbar-brand" href="/" style="font-size: 30px; color: white;"><strong>봉사꾼</strong></a> -->
+    </div>
+  
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="menu" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <%# if user_signed_in? %>
+          <li><img src="/img/teamprofile/member_01_changwoo.png" style="margin-top: 10px;"/></li>
+          <% if current_user.organization_id != 0 %>
+          <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/home/private_info">개인정보변경</a></li>
+              <li><a href="/baguni/timemanage">봉사시간관리</a></li>
+              <li><a href="/calendar/index">봉사달력보기</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="http://dosomething-j2ffrey-2.c9.io/home/temp">봉사꾼소개</a></li>
+                 <!-- 봉사기관에서 로그인 했을때만 봉사정보 등록 보이게 하기위한 소스 -->
+              <%# if current_user.organization_name.length != 0 %> 
+              <li><a href="/admin/index">봉사정보 등록</a></li>
+              <%# end %>
+            </ul>
+          </li>
+          <li><a href="/calendar/index" style="font-size:15px;">캘린더</a></li>
+          <li class="logout" style="font-size: 15px;">
+            <a id="link--login" class="secondary-nav-item" href="/user/sign_out">로그아웃</a>
+          </li>
+        <% else %>
+        <li class="login">봉사기관으로 로그인 하세용</li>
+        <% end %>
+        <%# else %>
+        <%# end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<%= render :partial => 'style/navbarcss' %>

@@ -26,9 +26,7 @@
     color: white
 }
 
-.footer-logo{
-  margin-top: 3%;
-}
+
 
 .middle_side{
   float:left;
@@ -52,4 +50,79 @@
     font-size: 17px;
     margin-bottom: 15%;
 }
+
+.fieldset_list {height: 55px;}
 /*main_page*/
+
+
+/*----------------- bongsainform_page_start -----------------*/
+.continue{
+  border-bottom:2px solid #A0A0A0;
+}
+.info_title {
+  font-size: 30px;
+}
+/*----------------- bongsainform_page_end -----------------*/
+
+/*----------------- login_modal_start ----------------------*/
+.login_title {
+    font-size: 30px;
+    color: white;
+
+}
+
+.login_icon {
+  width: 12%;
+  height: 38px;
+}
+
+.login_cancle {
+     width: 30%;
+     margin-left: 66%;
+     margin-top: 11%;
+}
+
+.login_btn {
+     font-size: 14px;
+     background-color: #ec1c77;
+     color: white;
+     width: 45%;
+     height: 33px;
+     border: none;
+}
+
+.login_input{
+    background-color: transparent; 
+    border-style: solid; 
+    border-width: 0px 0px 1px 0px; 
+    border-color: white;
+    width: 84%;
+}
+
+.loginbtn input { 
+    border: none;
+    width: 70px;
+    height: 30px;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+                }
+                
+.modal_content{
+  color: white;
+}
+
+.modal_close {
+  color:  #000;
+  text-decoration: none;
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 20px
+}
+
+.icon_facebook {height: 37px;
+                width: 37px;}
+/*----------------- login_modal_end ----------------------*/

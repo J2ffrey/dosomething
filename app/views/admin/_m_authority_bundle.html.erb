@@ -1,0 +1,58 @@
+            
+            <div class="well well-out">
+                <form action="/admin/m_authority_bundle" method="POST">
+                    <input type="hidden" name="mod" value="<%= @mod %>">
+                    <input type="hidden" name="id" value="<%= @b.id %>">
+                    <div class="well well-in">
+                            <div class="form-group2">
+                            </div>
+                            <div class="form-group2">&nbsp</div>
+                        <div class="form-group2">
+                          <div class="col-md-12">
+                            <label>이름</label>
+                            <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
+                          </div>
+                        </div>
+                        <div class="form-group2">&nbsp</div>
+                        <div class="form-group2">
+                            <label>설명</label>
+                            <input type="text" name="text" class="form-control form-control_bongsa_information" value="<%= @b.text %>" />
+                        </div>
+                    </div>
+                    <div class="row" align="right">
+                        <% if @mod == "1" %>
+                            <a class="btn btn-orange" href="/admin/index?admin=authority&id=<%= @b.id %>">소속 권한 목록</a>
+                            <a class="btn btn-orange" href="/admin/del_authority_bundle?id=<%= @b.id %>">삭제</a>
+                            <input type="submit" value="수정" class="btn btn-orange" />
+                        <% else %>
+                            <input type="submit" value="등록" class="btn btn-orange" />
+                        <% end %>
+                        <a class="btn btn-orange" href="/admin/index?admin=authority_bundle">취소</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    	<div class="row">
+    		<hr class="feature-divider">
+    	</div>
+    </div>
+	<div class="col-md-1"></div>
+</div>
+
+<style>
+    .main_img {width: 281px;
+               height: 207px;}
+    .form-control_bongsa_information {height: 150px;}
+    .form-control_date {width: 34%;
+                        height: 35px;}
+    .form-control_line {border: none;
+                        border-bottom: 1px solid black;
+                        height: 34px;}
+    .form-control_time {width: 14%;
+                        height: 34px;}
+    * {text-align:left;}
+    .col_padding {padding-left: 0px; padding-right: 0px;}
+    select {width: 15%;
+            height: 33px;}
+</style>

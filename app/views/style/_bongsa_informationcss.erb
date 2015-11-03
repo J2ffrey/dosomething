@@ -2,7 +2,6 @@
 .continue{
   border-bottom:2px solid #A0A0A0;
 }
-/*----------------------------------------    slided_img    ---------------------------------------------------------------------------*/
 .slided_img{
     background-image:url('<%= @b.img_main %>');
     background-size: cover;
@@ -29,185 +28,100 @@
     line-height: 0px;
     border-radius: 0px;
     background-color: #5fc0c7;
-    margin-left: -50%;
+    margin-bottom: 10%;
+
 }
-                                        
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*----------------------------------------     slided_circles     -----------------------------------------------------------------------*/
-                                        
-.slided_circles{
-    width:100%;
-    height:100%;
-}
-.circle{
-    position: relative;
-  	display: inline-block;
-  	/*height: 164px;*/
-  	padding: 2.9% 0% 2.9% 0%;
-  	width: 13.5%;
-  	border-radius: 100%;
-  	border: 2px solid black;
-  	/*margin-left: 5px;*/
-  	/*margin: 5px 2% 5px 3%;*/
-  	text-align: center;
-  	vertical-align: middle;
-  	font-size:50px;
-}
-.circle p{
-  	text-align: center;
-  	vertical-align: middle;
-  	font-size:28px;
-  	margin:0px;
-  	/*line-height: 3;*/
-}
-    /* BORDER TRANSITIONS */
-    /* Border Fade */
-.hvr-border-fade {
-    border:none;
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: box-shadow;
-    transition-property: box-shadow;
-    box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
-    /* Hack to improve aliasing on mobile/tablet devices */
-  }
-.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
-    box-shadow: inset 0 0 0 4px #2098d1, 0 0 1px rgba(0, 0, 0, 0);
-    /* Hack to improve aliasing on mobile/tablet devices */
-  }
+
+
+.info_line{
+  background-color: black;
+  width: 4%;
+  height: 2px;
+  margin-top: 0%;
   
-.circle-bongsa_time{
-    border:4px solid #502ca8;
-    margin: 5px 4% 5px 8%;
-    color:#502ca8;
-    width: 12%;
-    height:12%;
-
-}
-.circle-d_day{
-    width: 12%;
-    border:4px solid #1f93a0;
-    margin: 5px 4% 5px 4%;
-    color:#1f93a0;
-    height:12%;
-}
-.circle-activ_region{
-    border:4px solid #3b1cd9;
-    margin: 5px 4% 5px 4%;
-    color:#3b1cd9;
-    width: 12%;
-    height:12%;
-}
-.circle-printable_doc{
-    border:4px solid #ffa31e;
-    margin: 5px 8% 5px 4%;
-    color:#ffa31e;
-    width: 12%;
-    height:12%;
-}
-.circle_name{
-    float:left;
-    width: 13.5%;
-    position: relative;
-    text-align: center;
-    font-size:30px;
-}
-.circle_name-bongsa_time{
-    margin: 5px 4% 5px 10%;
-}
-.circle_name-d_day{
-    margin: 5px 4% 5px 4.5%;
-}
-.circle_name-activ_region{
-    margin: 5px 4% 5px 5%;
-}
-.circle_name-printable_doc{
-    margin: 5px 8% 5px 5%;
-}
-                                        
-/*---------------------------------------------------------------------------------------------------------------------------------------*/
-/*-----------------------------------------    slided_detail    -------------------------------------------------------------------------*/
-                                        
-.slided_detail{
-    padding-top: 1%;
-    padding-bottom: 1%;
 }
 
-.info_icon_big {
-    width: 10%;
-    margin-top: -3%;
-    width: 6%;
+.about_subtitle {
+  font-size: 18px;
+  color : #2b7576;
+  text-align: right;
+  margin-top: -2%;
+}
+
+.about_content {
+  font-size: 18px;
+  text-align: left;
+  margin-top: -2%;
+  color: black;
+}
+
+.info_more {
+  width: 87%;
+  height: 43px;
 }
 
 .info_icon {
+  height: 56px;
   width: 11%;
-  margin-top: -3%;
-  margin-right: 4%;
 }
 
+.info_poster {
+  width: 100%;
+  height: auto;
+  margin-top: -6%;
+  margin-bottom: 16%;
+}
+.info_group {
+  height: 60px;
+}
 .info_title {
-  font-size: 25px;
+  font-size: 30px;
 }
-
-.info_content {
-  font-size: 20px;
-  margin-bottom: 50px;
-  padding-left: 15%;
-}
-.info_content_content {font-size: 20px;
-                       padding-left: 15%;}
+.info_text {
+  margin-left: 15%;
+  margin-top: -10px;
+  color: black;
+}            
 
 
+.section_icon_area{
+	width:70px;
+	height: 70px;
+	background-image: url(../images/ic_details_info.png);
+	position:relative;
+	float:left;
+	margin-right:8px;
+}
 
-.key_variable_name {
-    font-size: 20px;
+.section_side{
+	width:24px;
+	position: relative;
+	float: left;
+
 }
-.icon p{
-    /*line-height:4;*/
+
+.section_round{
+  margin-left: 23%;
+	width:20px;
+	height:20px;
+	border-radius: 100%;
+	background-color: #60c0c8;
 }
-.icon__content{
-    /*width:35%; */
-    height:150px;
-    margin-top:20px;
-    margin-bottom:50px; 
-    padding-top:30px; 
-    position: relative; 
-    font-size:33px;
+.section_contents{
+	width: 72%;
+  height: 65px;
+  border-left: solid 2px #60c0c8;
+  margin-left: -10px;
+  padding-left: 24px;
+  float: left;
 }
-.icon__content span{
-    font-size:25px;
+.section_title{
+	color: #60c0c8;
+	font-size: 22px;
 }
-.carting_btn{
-    bottom:0%;
-    margin-right:5%;
-    width:22%;
-    float:right;
+
+.icon_img{
+  width: 70px;
+  height: 70px;
 }
-.n_btn{
-    margin-top:0px;
-    margin-bottom:-45px;
-    width:100%;
-    height:60px;
-    font-size:28px;
-    color: #fff;
-    line-height:0px;
-    border-radius: 0px;
-    background-color: #5fc0c7;
-}
-                                        
-/*-------------------------------------------------------------------------------------------------------------------------------------------*/
-/*-------------------------------------------   slided_poster   -----------------------------------------------------------------------------*/
-.slided_poster{
-    padding-top: 1%;
-    padding-bottom: 1%;
-}
-/*-------------------------------------------------------------------------------------------------------------------------------------------*/
 </style>

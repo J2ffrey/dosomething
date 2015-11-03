@@ -1,0 +1,35 @@
+<h1>회원가입페이지(기관)</h1>
+<form action="/user/sign_up_confirm" enctype="multipart/form-data" method="POST">
+  <label>소속 기관</label><br>
+  <select name="organization_id">
+      <option value="0" selected>선택</option>
+      <% Organization.all.each do |x| %>
+          <option value="<%= x.id %>" selected><%= x.name %></option>
+      <% end %>
+  </select>
+  <div style="width:100%;background:#D8EDEF;padding:10px;height: 620px;">
+  <div class="signup">
+    <span class="signup_title"><b>회원가입</b></span><br><br>
+     
+       <input type="email" class="signup_content" name="email" placeholder="이메일:"  required/>
+       <input type="password" class="signup_content" name="password" placeholder="비밀번호:"  required/>
+       <input type="password" class="signup_content" name="password_confirm" placeholder="비밀번호 확인:"  required/>
+       <input type="text" class="signup_content" name="name" placeholder="이름:"  required/>
+       <input type="text" class="signup_content" name="phonenumber" placeholder="핸드폰:"  required/>
+       <input type="submit" class="signup_submit" value="가입하기" />
+     </form>
+  </div>
+</div>
+
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
+<%= render :partial => 'home/main_navbar_general' %>
+  
+
+
+<%= render :partial => 'style/sign_upcss' %>
+<%= render :partial => 'home/main_footer' %>

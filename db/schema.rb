@@ -11,11 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016120120) do
+ActiveRecord::Schema.define(version: 20151102190119) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "value",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "authorities", force: :cascade do |t|
+    t.integer  "authority_bundle_id", limit: 4
+    t.integer  "authority_def_id",    limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "authority_bundles", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "text",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "authority_defs", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "value",      limit: 255
+    t.string   "text",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -54,16 +76,19 @@ ActiveRecord::Schema.define(version: 20151016120120) do
   end
 
   create_table "bongsas", force: :cascade do |t|
+    t.boolean  "is_approval",        limit: 1,     default: false
+    t.string   "address",            limit: 255
     t.string   "img_main",           limit: 255
     t.string   "img_poster",         limit: 255
     t.string   "name",               limit: 255
     t.text     "content",            limit: 65535
-    t.boolean  "is_edu",             limit: 1
+    t.boolean  "is_edu",             limit: 1,     default: false
     t.integer  "status",             limit: 4
     t.integer  "organization_id",    limit: 4
     t.string   "clerk_name",         limit: 255
     t.string   "clerk_call",         limit: 255
-    t.boolean  "is_regular",         limit: 1
+    t.string   "clerk_email",        limit: 255
+    t.boolean  "is_regular",         limit: 1,     default: false
     t.date     "date_recruit_start"
     t.date     "date_recruit_end"
     t.date     "date_real_start"
@@ -82,8 +107,8 @@ ActiveRecord::Schema.define(version: 20151016120120) do
     t.string   "admin_add",          limit: 255
     t.string   "admin_mod",          limit: 255
     t.integer  "act_time",           limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "btimes", force: :cascade do |t|
@@ -148,27 +173,62 @@ ActiveRecord::Schema.define(version: 20151016120120) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "tempcrawls", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tempcrls", force: :cascade do |t|
+    t.integer  "keytemp",      limit: 4
+    t.string   "nametemp",     limit: 255
+    t.integer  "is_registerd", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "tmpcrawls", force: :cascade do |t|
+    t.integer  "keytmp",     limit: 4
+    t.string   "nametmp",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "tmpcrls", force: :cascade do |t|
+    t.integer  "keytemp",    limit: 4
+    t.string   "nametemp",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "user_types", force: :cascade do |t|
+    t.string   "name",                limit: 255
+    t.string   "text",                limit: 255
+    t.integer  "authority_bundle_id", limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   limit: 255, default: "", null: false
-    t.string   "picture",                limit: 255, default: "", null: false
-    t.string   "p_number",               limit: 255, default: "", null: false
-    t.string   "organization_name",      limit: 255, default: "", null: false
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.boolean  "available",           limit: 1,   default: false
+    t.integer  "user_type_id",        limit: 4,   default: 0
+    t.string   "name",                limit: 255, default: "",    null: false
+    t.string   "picture",             limit: 255, default: ""
+    t.string   "phonenumber",         limit: 255, default: "",    null: false
+    t.integer  "organization_id",     limit: 4,   default: 0
+    t.integer  "authority_bundle_id", limit: 4,   default: 1,     null: false
+    t.string   "email",               limit: 255, default: "",    null: false
+    t.string   "password",            limit: 255, default: "",    null: false
+    t.integer  "sign_in_count",       limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip",  limit: 255
+    t.string   "last_sign_in_ip",     limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "email_UNIQUE", unique: true, using: :btree
+  add_index "users", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "view_counts", force: :cascade do |t|
     t.string   "ip_adress",  limit: 255

@@ -1,0 +1,157 @@
+<%= render :partial => 'home/main_navbar_org' %>
+
+
+<div class="col-md-2">
+  <div class="row image">
+    <div class="group">
+     <center><img class="volunteer_org_img" src="/img/teamprofile/member_01_changwoo.png"></center>
+    </div>
+    <% if current_user.organization_id != 0 %>
+    <div class="group">
+      <center><p style="margin-top: 13px;"><%= current_user.email %></p></center>
+    </div>
+    <% end %>
+  </div>
+  <div class="row content">
+    <div class="group">
+      <p style="margin-top: 39px; margin-left: 30px;"><img src="/img/ic_logo/ic_check_teal_24px.png"/><strong>&nbsp등록봉사</strong></p>
+    </div>
+    <div class="group">
+      <p style="margin-top: 10px; margin-left: 30px;"><img src="/img/ic_logo/ic_check_teal_24px.png"/><strong>&nbsp기관정보 수정</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!--<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>-->
+  <!--<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">-->
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    
+
+
+<div class="col-md-10" style="height: 745px; background-color: white;">
+  <div class="bongsa_inform">
+    <div class="row">&nbsp</div>
+      <div class="col-md-4 col-sm-6 col-lg-4 row_main_content" style="height: 350px;">
+          <div class="col-md-12" style="padding:0px; margin-top: 14px;">
+            <a href="/admin/index?admin=m_bongsa">
+              <center><p style="margin-top: 141px;"><img src="/img/ic_logo/ic_check_teal_24px.png"/></p></center>
+            <center><p style="margin-top: 18px;">추가하기</p></center>  </a>
+          </div>
+      </div>
+   이부분 부터 카드 
+  <%#if current_user.orgname == 로그인한 봉사기관 이름 %>
+   아래 처럼 div 통째를 if문 안에 넣어서 출력 
+  <div class="col-md-4 col-sm-6 col-lg-4 row_main_content">
+          <div class="col-md-12" style="padding:0px; margin-top: 14px;">
+            <img src="https://bongsa.s3.amazonaws.com/uploads/bongsa/img_main/17/____.jpg" alt="이미지" style="width:100%;height: 230px; margin-top:0px;">
+             
+              <div class="side_info__title">
+                <span>2015-08-22 ~ 2015-08-22</span> 
+                <p class="main_content__title">
+                  <strong style="color:white;">청주국제공예비엔날레 부스운영</strong>
+                </p>
+              </div>
+          
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right:1px solid gainsboro;"><br>
+              <center><p class="ptag_up_css">총 봉사시간</p></center>
+              <center><p class="ptag_bottom_css">56</p></center>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right:1px solid gainsboro;"><br>
+              <center><p class="ptag_up_css">지역</p></center>
+              <center><p class="ptag_bottom_css">청주</p></center>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"><br>
+              <center><p class="ptag_up_css">모집 마감</p></center>
+              <center><p class="ptag_bottom_css">D-74</p></center>
+              <p style="color:#000000; font-size:18px;"> ~ </p>
+            </div>  
+          </div>
+      </div>
+       여기까지 
+       나머지 추가할 때는 추가 페이지 버튼을 누르면 이 페이지로 넘어오는 식으로 하려고하는데... 
+      <div class="col-md-4 col-sm-6 col-lg-4 row_main_content">
+          <div class="col-md-12" style="padding:0px; margin-top: 14px;">
+            <img src="https://bongsa.s3.amazonaws.com/uploads/bongsa/img_main/17/____.jpg" alt="이미지" style="width:100%;height: 230px; margin-top:0px;">
+             
+              <div class="side_info__title">
+                <span>2015-08-22 ~ 2015-08-22</span> 
+                <p class="main_content__title">
+                  <strong style="color:white;">청주국제공예비엔날레 부스운영</strong>
+                </p>
+              </div>
+          
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right:1px solid gainsboro;"><br>
+              <center><p class="ptag_up_css">총 봉사시간</p></center>
+              <center><p class="ptag_bottom_css">56</p></center>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content" style="border-right:1px solid gainsboro;"><br>
+              <center><p class="ptag_up_css">지역</p></center>
+              <center><p class="ptag_bottom_css">청주</p></center>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"><br>
+              <center><p class="ptag_up_css">모집 마감</p></center>
+              <center><p class="ptag_bottom_css">D-74</p></center>
+              <p style="color:#000000; font-size:18px;"> ~ </p>
+            </div>  
+          </div>
+      </div>
+  </div>
+</div>
+
+
+ 
+
+
+<%= render :partial => 'main_footer' %>
+
+<style>
+.image {background-color: white;
+        border-right: 1px solid #1E929F;
+        border-bottom: 1px solid #1E929F;
+        height: 207px;}
+.content {border-right: 1px solid #1E929F;
+          background-color: white;
+          height: 540px;}
+p {color: #1E929F;
+   font-size: 15px;}
+img {width: 29px;
+    height: 29px;}
+    
+.main_content__content {padding-right: 5px;
+                        padding-left: 5px;}
+
+.side_info__title {
+        /* margin-left: 0%; */
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    color: white;
+    background: rgba(0,0,0,0.55);
+    padding: 3.5% 0% 1.5% 3%;
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.ptag_up_css {margin-top: 0px;}
+
+.row_main_content  {padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid gainsboro;}
+  
+.volunteer_org_img {width:115px; height:115px; margin-top: 35px;}
+
+</style>

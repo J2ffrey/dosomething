@@ -12,23 +12,46 @@
 
 <!-- 반복 -->
 <% @b.each do |x| %>
+  <!--<center><p class="calendar_day_info hvr-back-pulse -->
+  <!--  <%#= "start_date " if x.date_recruit_start == a %>-->
+  <!--  <%#= "end_date "if x.date_recruit_end == a %>-->
+  <!--  <%#= "ck1 " if x.category_id == 1 %>-->
+  <!--  <%#= "ck2 " if x.category_id == 2 %>-->
+  <!--  <%#= "ck3 " if x.category_id == 3 %>-->
+  <!--  <%#= "ck4 " if x.category_id == 4 %>-->
+  <!--  <%#= "ck5 " if x.category_id == 5 %>-->
+  <!--  ">-->
   <center><p class="calendar_day_info hvr-back-pulse 
     <% if x.date_recruit_start == a %>
-      start_date 
-    <%end%>
+    start_date 
+    <% end %>
     <% if x.date_recruit_end == a %>
-      end_date 
-    <%end%>
-    "
-    >
+    end_date 
+    <% end %>
+    <% if x.category_id == 1 %>
+    ck1 
+    <% end %>
+    <% if x.category_id == 2 %>
+    ck2 
+    <% end %>
+    <% if x.category_id == 3 %>
+    ck3 
+    <% end %>
+    <% if x.category_id == 4 %>
+    ck4 
+    <% end %>
+    <% if x.category_id == 5 %>
+    ck5 
+    <% end %>
+    ">
 
     <% if x.date_recruit_start == a %>
-      <span class="date_start start_date">
+      <span class="date_start">
         <b><%= "시"  %></b>
       </span>
     <% end %>
     <% if x.date_recruit_end == a %>
-      <span class="date_end end_date">
+      <span class="date_end">
        <b><%= "마" %></b>
       </span>
     <% end %>

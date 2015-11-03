@@ -1,0 +1,34 @@
+
+<div class="modal_login">
+  <a class="modal_close" href="#"><img src="/img/ic/icon_cancle.png" class="login_cancle" /></a>
+  <center>
+    <p class="login_title"><b>Login</b></p>
+    <br>
+    <form action="/user/sign_in" method="post">
+      <input type="hidden" name="redirect" value="/home/main_org">
+      <img src="/img/ic/icon_email.png" class="login_icon"/>
+      <input type="email" name="email" class="login_input" placeholder="이메일을 입력하세요"><br>
+      <img src="/img/ic/icon_password.png" class="login_icon"/>
+      <input type="password" name="password" class="login_input" placeholder="비밀번호를 입력하세요">
+      <br><br>
+      <input type="submit" class="login_btn" value="로그인">
+    </form>
+  </center>
+</div>
+
+<script>
+  function openLightBox(){
+    var modal = $('.modal_login');
+    $('.bongsa_org_btn').on('click', function() {
+      modal.style="display:;";
+      modal.fadeIn();
+    });
+    
+    $('.modal_close').on('click', function() {
+      modal.fadeOut();
+    });
+  }
+  openLightBox();
+</script>
+
+<%= render :partial => 'style/login_modalcss' %>

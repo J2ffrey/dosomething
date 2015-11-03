@@ -1,0 +1,31 @@
+<div class="well well-out">
+    <div class="well well-in">
+        모집연령 설정
+    </div>
+    <div class="well well-in">
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>이름</td>
+                    <td>Min</td>
+                    <td>Max</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% VltrAge.all.reverse.each do |post| %>
+                    <tr class="tr-content">
+                        <td><%= post.id %></td>
+                        <td><a href="/admin/index?admin=m_vltr_age&id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                        <td><%= post.min %></td>
+                        <td><%= post.max %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="row" align="right">
+        <a class="btn btn-orange" href="/admin/index?admin=m_vltr_age">등록</a>
+    </div>
+</div>

@@ -1,22 +1,28 @@
 /*main_page*/
 .nav-logo{
-  height:40px;
-  float:left; 
-  margin-top:2%;
+  height: 35px;
+  float: left;
+  margin-top: 4%;
+  width: 75%;
 }
 .navbar-header{
   width:30%;
 }
-
+.wantlist_height {
+  height: 120px;
+}
 .navbar-toggle{
   display:none;
 }
 .main-logo{
+  height: 215px;
   width:50%;
 }
 
 .header-viewcounter{
+  margin-top: 35px;
   font-size:20px;
+  color: white;
 }
 
 .navbar__search{
@@ -53,3 +59,253 @@
 
 /*intro_page*/
 /*intro_page*/
+
+/*main_org_page_start*/
+
+
+.content_bongsa_number {
+  border: 1px solid #1E929F;
+  background-color: #1E929F;
+  color: white;
+  padding-right: 11px;
+  padding-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 5px;
+  margin-left: 7px;
+}
+.content_bongsa_ic {
+  margin-left: 4%;
+}
+.main_content_height {
+  height: 350px;  
+}
+.org_name {margin-top: 13px;}
+
+.content_bongsa {margin-top: 39px;
+                 margin-left: 30px;}
+
+.content_org {margin-top: 10px;
+              margin-left: 7px;}
+
+.bongsa_add {margin-top: 15px;}
+
+.main_content_img {width:100%;height: 230px;
+                   margin-top:0px;}
+.image {background-color: white;
+        border-bottom: 1px solid #1E929F;
+        height: 207px;}
+.content {
+  border-bottom: 1px solid #1E929F;
+  background-color: white;
+  height: 100px;
+}
+p {color: #1E929F;
+   font-size: 15px;}
+img {width: 29px;
+    height: 29px;}
+    
+.main_content__content {padding-right: 5px;
+                        padding-left: 5px;
+                        border-right:1px solid gainsboro;}
+
+.side_info__title {
+        /* margin-left: 0%; */
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    color: white;
+    background: rgba(0,0,0,0.55);
+    padding: 3.5% 0% 1.5% 3%;
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.ptag_up_css {margin-top: 0px;}
+
+.row_main_content  {padding-bottom: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid gainsboro;
+  margin-bottom: 12px;
+  height: 349px;
+}
+  
+.volunteer_org_img {width:115px; height:115px; margin-top: 35px;}
+.plus_icon {width: 45px;
+            height: 45px;}
+
+/*main_org_page_end*/
+
+/*----------------- bongsainform_page_start -----------------*/
+
+.slided_img{
+    background-image:url('<%= @b.img_main %>');
+    background-size: cover;
+    padding-top: 30%;
+    padding-left: 0px;
+}
+.m_title{
+    margin-left:2%; 
+    color:#fff; 
+    font-size: 25px;
+}
+.m_term{
+    color:#fff; 
+    font-size:2em;
+    line-height: 57px;
+    margin-bottom: 1%;
+}
+.m_btn{
+    width: 100%;
+    height: 32px;
+    font-size: 20px;
+    color: #fff;
+    line-height: 0px;
+    border-radius: 0px;
+    background-color: #5fc0c7;
+    margin-top: 17px;
+    margin-bottom: 0px;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+
+.info_line{
+  background-color: black;
+  width: 4%;
+  height: 2px;
+  margin-top: 0%;
+  
+}
+
+.about_subtitle {
+  font-size: 12px;
+  color: #2b7576;
+  text-align: right;
+  margin-top: -1%;
+  width: 26%;
+  margin-left: 44px;
+}
+
+.about_content {
+  font-size: 12px;
+  text-align: left;
+  margin-top: -2%;
+  color: black;
+}
+
+.info_more {
+  width: 87%;
+  height: 43px;
+}
+
+.info_icon {
+  height: 56px;
+  width: 11%;
+}
+
+.info_poster {
+  width: 100%;
+  height: auto;
+  margin-top: -6%;
+  margin-bottom: 16%;
+}
+.info_group {
+  height: 60px;
+  margin-left: 5px;
+}
+.section_text {
+  color: black;
+  margin-top: 4px;
+  width: 111%;
+}
+
+.section_title_sex {
+  margin-top: 37px;  
+}
+.info_text {
+  margin-left: 15%;
+  margin-top: -10px;
+  color: black;
+}            
+
+.section_icon_area{
+	width:70px;
+	height: 70px;
+	background-image: url(../images/ic_details_info.png);
+	position:relative;
+	float:left;
+	margin-right:8px;
+}
+
+.section_side{
+	width:24px;
+	position: relative;
+	float: left;
+}
+
+.section_round{
+  margin-left: 23%;
+	width:20px;
+	height:20px;
+	border-radius: 100%;
+	background-color: #60c0c8;
+}
+.section_contents{
+	width: 72%;
+  height: 65px;
+  border-left: solid 2px #60c0c8;
+  margin-left: -10px;
+  padding-left: 24px;
+  float: left;
+}
+.section_title{
+	color: #60c0c8;
+	font-size: 22px;
+}
+.icon_img{
+  width: 70px;
+  height: 70px;
+}
+
+/*----------------- bongsainform_page_end -----------------*/
+
+/*----------------- footercss_start ---------------------*/
+.foot_title {
+  float: left;
+  background-color: #1E929F;
+  color: white;
+  width: 100%;
+  margin-left: 0%;
+  margin-top: 20px;  
+}
+/*----------------- footercss_end -----------------------*/
+
+/*----------------- login_modal_start ----------------------*/
+
+.modal_login {
+  color:black;
+  background-color: #dbd9d9;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 52%;
+  margin-left: -45%;
+  margin-top: -15%;
+  padding: 7%;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
+  height: 425px;
+}
+
+/*----------------- login_modal_end ----------------------*/

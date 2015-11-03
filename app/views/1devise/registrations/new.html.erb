@@ -19,7 +19,12 @@
   
   <div class="field">
     <%= f.label :"이름" %><br />
-    <%= f.email_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"기관명" %><br />
+    <%= f.text_field :organization_name, autofocus: true %>
   </div>
   
   <div class="field">
@@ -39,11 +44,6 @@
     <%= f.label :"비밀번호확인" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-  
-  <div class="field">
-    <%= f.label :"전화번호" %><br />
-    <%= f.email_field :p_number, autofocus: true %>
-  </div> <br />
 
   <div class="actions">
     <%= f.submit "완료" %>

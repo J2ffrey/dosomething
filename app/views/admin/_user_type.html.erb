@@ -1,0 +1,31 @@
+<div class="well well-out">
+    <div class="well well-in">
+        User_type 목록
+    </div>
+    
+    <div class="well well-in">
+        <table class="table" style="border-color: black;">
+            <thead>
+                <tr class="tr-head">
+                    <td>#</td>
+                    <td>이름</td>
+                    <td>권한모음(bundle)</td>
+                    <td>설명</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% UserType.all.reverse.each do |post| %>
+                    <tr class="tr-content">
+                        <td><%= post.id %></td>
+                        <td><a href="/admin/index?admin=m_user_type&id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                        <td><%= AuthorityBundle.find(post.authority_bundle_id).name %></td>
+                        <td><%= post.text %></td>
+                    </tr>
+                <% end %>
+        </table>
+    </div>
+
+    <div class="row" align="right">
+        <a class="btn btn-orange" href="/admin/index?admin=m_user_type">등록</a>
+    </div>
+</div>

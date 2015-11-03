@@ -1,7 +1,7 @@
-            
+            <% @b = @k %>
             <div class="well well-out">
                 <%#= form_for @sb, url: {controller: 'admin', action:'add_sb'} do |f| %>
-                <form action="/admin/m_bongsa_tmp" enctype="multipart/form-data" method="POST">
+                <form action="/admin/bongsa_post_tmp_save" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="mod" value="<%= @mod %>">
                     <input type="hidden" name="id" value="<%= @b.id %>">
                     <div class="well well-in">
@@ -12,7 +12,7 @@
                                 <label>지역</label> &nbsp
                                 <select name="region_id">
                                     <% Region.all.each do |x| %>
-                                        <% if @mod == "1" && @b.region_id == x.id %>
+                                        <% if @mod == "1" #&& @b.region_id == x.id %>
                                             <option value="<%= x.id %>" selected><%= x.name %></option>
                                         <% else %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
@@ -22,7 +22,7 @@
                                 <label>주관대학</label> &nbsp
                                 <select name="school_id">
                                     <% School.all.each do |x| %>
-                                        <% if @mod == "1" && @b.school_id == x.id %>
+                                        <% if @mod == "1" #&& @b.school_id == x.id %>
                                             <option value="<%= x.id %>" selected><%= x.name %></option>
                                         <% else %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
@@ -32,7 +32,7 @@
                                 <label>봉사시간 분류</label> &nbsp
                                 <select name="btime_id">
                                     <% Btime.all.each do |x| %>
-                                        <% if @mod == "1" && @b.btime_id == x.id %>
+                                        <% if @mod == "1" #&& @b.btime_id == x.id %>
                                             <option value="<%= x.id %>" selected><%= x.name %></option>
                                         <% else %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
@@ -42,7 +42,7 @@
                                 <label>분야</label> &nbsp
                                 <select name="category_id">
                                     <% Category.all.each do |x| %>
-                                        <% if @mod == "1" && @b.category_id == x.id %>
+                                        <% if @mod == "1" #&& @b.category_id == x.id %>
                                             <option value="<%= x.id %>" selected><%= x.name %></option>
                                         <% else %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
@@ -62,11 +62,11 @@
                               <div class="col-md-12 col_padding">
                                 <div class="col-md-6">
                                   <label>메인카드 이미지</label>
-                                  <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
+                                  <input type="file" name="img_main" class="form-control" value="<%#= @b.img_main %>" />
                                 </div>
                                 <div class="col-md-6">
                                   <label>봉사활동 포스터 이미지</label>
-                                  <input type="file" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
+                                  <input type="file" name="img_poster" class="form-control" value="<%#= @b.img_poster %>" />
                                 </div>
                               </div>
                             </div>
@@ -74,17 +74,17 @@
                         <div class="form-group2">
                           <div class="col-md-12">
                             <label>봉사활동명</label>
-                            <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
+                            <input type="text" name="name" class="form-control" value="<%= @parsed_title %>" required />
                           </div>
                         </div>
                         <!--<div class="form-group2">-->
                         <!--        <label>기관명</label>-->
-                        <!--        <input type="text" name="organization" class="form-control" value="<%= @b.organization_id %>" />-->
+                        <!--        <input type="text" name="organization" class="form-control" value="<%= @parsed_org %>" />-->
                         <!--    </div>-->
                         <div class="form-group2">&nbsp</div>
                         <div class="form-group2">
                             <label>봉사활동 상세내용</label>
-                            <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @b.content %>" />
+                            <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @parsed_content %>" />
                         </div>
                         </br>
                         <!--<div class="form-group2">-->
@@ -102,13 +102,13 @@
                         <div class="form-group2">
                           <div class="col-md-6">
                             <label>모집기간</label><br>
-                              <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start %>" /> ~
-                              <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end %>" />
+                              <input type="date" name="date_recruit_start" class="form-control_date" value="<%#= @b.date_recruit_start %>" /> ~
+                              <input type="date" name="date_recruit_end" class="form-control_date" value="<%#= @b.date_recruit_end %>" />
                           </div>
                           <div class="col-md-6">
                               <label>봉사기간(전체)</label> <br>
-                              <input type="date" name="date_real_start" class="form-control_date" value="<%= @b.date_real_start %>" /> ~
-                              <input type="date" name="date_real_end" class="form-control_date" value="<%= @b.date_real_end %>" />
+                              <input type="date" name="date_real_start" class="form-control_date" value="<%= @parsed_term_start %>" /> ~
+                              <input type="date" name="date_real_end" class="form-control_date" value="<%= @parsed_term_end %>" />
                           </div>
                         </div><br>
                         <!--<div class="form-group2">-->
@@ -129,24 +129,24 @@
                         <!--</div>-->
                         <div class="form-group2">
                             <label>봉사시간</label><br>
-                            <input type="text" name="time_daily_start" class="form-control_time" value="<%= @b.time_daily_start %>" /> ~
-                            <input type="text" name="time_daily_end" class="form-control_time" value="<%= @b.time_daily_end %>" />
+                            <input type="text" name="time_daily_start" class="form-control_time" value="<%#= @b.time_daily_start %>" /> ~
+                            <input type="text" name="time_daily_end" class="form-control_time" value="<%#= @b.time_daily_end %>" />
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>하루 시작 시각(hhmm)</label>-->
-                        <!--    <input type="text" name="time_daily_start" class="form-control" value="<%= @b.time_daily_start %>" />-->
+                        <!--    <input type="text" name="time_daily_start" class="form-control" value="<%#= @b.time_daily_start %>" />-->
                         <!--</div>-->
                         <!--<div class="form-group2">-->
                         <!--    <label>하루 종료 시각(hhmm)</label>-->
-                        <!--    <input type="text" name="time_daily_end" class="form-control" value="<%= @b.time_daily_end %>" />-->
+                        <!--    <input type="text" name="time_daily_end" class="form-control" value="<%#= @b.time_daily_end %>" />-->
                         <!--</div>-->
                         <div class="form-group2">
                             <label>총 봉사 예상시간</label><br>
-                            <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total %>" />&nbsp시간
+                            <input type="text" name="time_expect_total" class="form-control_line" value="<%#= @b.time_expect_total %>" />&nbsp시간
                         </div>
                         <div class="form-group2">
                             <label>모집인원</label><br>
-                            <input type="number" name="vltr_num" class="form-control_line" value="<%= @b.vltr_num %>" />&nbsp명
+                            <input type="number" name="vltr_num" class="form-control_line" value="<%= @parsed_howmany %>" />&nbsp명
                         </div><br>
                         <div class="form-group2">
                             <label>사전교육 유/무</label><br>
@@ -162,7 +162,7 @@
                         <!--</div>-->
                         <div class="form-group2">
                             <label>모집 특이조건</label><br>
-                            <input type="text" name="vltr_req" class="form-control form-control_bongsa_information" value="<%= @b.vltr_req %>" />
+                            <input type="text" name="vltr_req" class="form-control form-control_bongsa_information" value="<%= @parsed_sp_note %>" />
                         </div><br>
                         <div class="form-group2">
                             <label>상태</label><br>
@@ -206,11 +206,11 @@
                         </div>
                         <div class="form-group2">
                             <label>담당자이름</label>
-                            <input type="text" name="clerk_name" class="form-control" value="<%= @b.clerk_name %>" />
+                            <input type="text" name="clerk_name" class="form-control" value="<%= @parsed_clerk %>" />
                         </div>
                         <div class="form-group2">
                             <label>담당자연락처</label>
-                            <input type="text" name="clerk_call" class="form-control" value="<%= @b.clerk_call %>" />
+                            <input type="text" name="clerk_call" class="form-control" value="<%= @parsed_call %>" />
                         </div>
                         
                         <div class="form-group2">
