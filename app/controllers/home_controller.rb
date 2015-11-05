@@ -90,7 +90,7 @@ class HomeController < ApplicationController
     def mypage
         
     end
-       
+    
     def calendar
        # render layout: false
     end
@@ -98,7 +98,6 @@ class HomeController < ApplicationController
     def private_info
       @u_password = params[:u_password]
       @con_password = params[:con_password]
-  
       
     end
     

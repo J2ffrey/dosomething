@@ -4,6 +4,7 @@
                 <form action="/admin/bongsa_post_tmp_save" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="mod" value="<%= @mod %>">
                     <input type="hidden" name="id" value="<%= @b.id %>">
+                    <input type="hidden" name="drt" value="1">
                     <div class="well well-in">
                         <%# unless @mod=="1" %>
                         

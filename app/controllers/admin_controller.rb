@@ -3,29 +3,33 @@ class AdminController < ApplicationController
     # before_action {authority_check?("cAdmin")}
     
     def authority_seed
-         model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongsaTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
-         method = ['c', 'u', 'r', 'd']
-        # method_n = Hash.new
-        # method_n = ['c' => 'Create', 'u' => 'Update', 'r' => 'Read', 'd' => 'Delete']
-        # method_k = Hash.new
-        # method_k = ['c' => '생성', 'u' => '수정', 'r' => '읽기', 'd' => '삭제']
+        model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongsaTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
+        method = ['c', 'u', 'r', 'd']
+        
+        controller = ['Admin', 'Baguni', 'Calendar', 'Home', 'Json', 'User']
         
         method_e = ['Create', 'Update', 'Read', 'Delete']
         method_k = ['생성', '수정', '읽기', '삭제']
         
+        controller.each do |x|
+            check = AuthorityDef.where(value: 'c' + x).first
+            next unless check.nil?
+            tmp = AuthorityDef.new
+            tmp.name = x + ' Controller'
+            tmp.value = 'c' + x
+            tmp.text = x + ' 컨트롤러에 대한 접근 권한'
+            tmp.save
+        end
+        
         model.each do |x|
-            i = 0
             method.each do |y|
                 check = AuthorityDef.where(value: x + '_' + y).first
                 next unless check.nil?
                 tmp = AuthorityDef.new
-                #tmp.name = x + '_' + method_n["#{y}"]
                 tmp.name = x + '_' + method_e[i]
                 tmp.value = x + '_' + y
-                #tmp.text = x + ' 모델에 대한 ' + method_k["#{y}"] + '권한'
                 tmp.text = x + ' 모델에 대한 ' + method_k[i] + '권한'
                 tmp.save
-                i += 1
             end
         end
         redirect_to '/admin/index?admin=authority_def'
@@ -191,7 +195,7 @@ class AdminController < ApplicationController
     
     def del_authority
         re = Authority.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=authority&id=' + params[:authority_bundle_id]
     end
     
@@ -205,7 +209,7 @@ class AdminController < ApplicationController
     
     def del_region
         re = Region.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=region'
     end
     
@@ -221,7 +225,7 @@ class AdminController < ApplicationController
     
     def del_vltr_age
         re = VltrAge.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=vltr_age'
     end
     
@@ -236,7 +240,7 @@ class AdminController < ApplicationController
     
     def del_region2
         re = Region2.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=region2'
     end
     
@@ -250,7 +254,7 @@ class AdminController < ApplicationController
     
     def del_school
         re = School.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=school'
     end
     
@@ -264,7 +268,7 @@ class AdminController < ApplicationController
     
     def del_category
         re = Category.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=category'
     end
     
@@ -280,7 +284,7 @@ class AdminController < ApplicationController
     
     def del_btime
         re = Btime.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=btime'
     end
     
@@ -295,7 +299,7 @@ class AdminController < ApplicationController
     
     def del_org
         re = Organization.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=org'
     end
     
@@ -310,7 +314,7 @@ class AdminController < ApplicationController
     
     def del_admin
         re = Admin.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=admin'
     end
     
@@ -356,13 +360,11 @@ class AdminController < ApplicationController
     
     def del_bongsa
         re = Bongsa.find(params[:id])
-        re.delete
+        re.destory
         redirect_to '/admin/index?admin=bongsa'
     end
     
     def bongsa_tmp_save
-        #상위 몇 개 긁어올 것인지 설정하고 싶을 때, 이것을 바꾸세요.(최초=10)
-        #restrict = 10
         result = Array.new
         result_keytmp_all = Array.new
         ary = Array.new
@@ -370,29 +372,27 @@ class AdminController < ApplicationController
         uri = URI("http://www.vms.or.kr/partspace/reqList.jsp")
         html_doc = Nokogiri::HTML(Net::HTTP.get(uri))
         html_doc.xpath('//td[@class="table_list"]/a/@onclick').each do |a|
-        result_keytmp_all << a.value.last(9).first(6)
-        end  
+            result_keytmp_all << a.value.last(9).first(6)
+        end
         
         result_keytmp_first = result_keytmp_all.first
         result_keytmp = result_keytmp_first.to_i
         @stop_keytmp = result_keytmp_first.to_i
         
-          if Tempcrl.count == 0
-              @stop_keytmp = 190600
-              @result_keytmp = 190500
-          else 
-              loop do
-                  break if Tempcrl.where(:keytemp => result_keytmp).take != nil
-                  break if result_keytmp <= 190200
-                  ary << result_keytmp
-                  result_keytmp = result_keytmp - 1
-              end
-              @result_keytmp = ary.last.to_i
-          end
+        if Tempcrl.count == 0
+            @stop_keytmp = 190600
+            @result_keytmp = 190500
+        else 
+            loop do
+                break if Tempcrl.where(:keytemp => result_keytmp).take != nil
+                break if result_keytmp <= 190200
+                ary << result_keytmp
+                result_keytmp = result_keytmp - 1
+            end
+            @result_keytmp = ary.last.to_i
+        end
         
-        
-          
-          loop do 
+        loop do 
             break if @result_keytmp <= 200
             result << @result_keytmp
               
@@ -401,35 +401,32 @@ class AdminController < ApplicationController
             doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
             
             next if doc_final == nil
-              title = doc_final.css(".table_t1//tr:nth-child(3)//td:nth-child(2)").inner_text.split(" ")
-              title.delete_at(-1)
-              result_nametmp = title.join(' ')
-              
-              #Tempcrawl에 key 저장, nametmp 저장
-              tt = Tempcrl.new
-              tt.keytemp = @result_keytmp
-              tt.nametemp = result_nametmp
-              tt.is_registerd = 0
-              tt.save
-              
-              #loop의 다음 순환을 준비
-              @result_keytmp = @result_keytmp + 1
+            title = doc_final.css(".table_t1//tr:nth-child(3)//td:nth-child(2)").inner_text.split(" ")
+            title.destory_at(-1)
+            result_nametmp = title.join(' ')
+            
+            #Tempcrawl에 key 저장, nametmp 저장
+            tt = Tempcrl.new
+            tt.keytemp = @result_keytmp
+            tt.nametemp = result_nametmp
+            tt.is_registerd = 0
+            tt.save
+             
+            #loop의 다음 순환을 준비
+            @result_keytmp = @result_keytmp + 1
             break if @result_keytmp == @stop_keytmp + 1
             
-          end
-          
+            end
         redirect_to :back
     end
     
     def bongsa_tmp
         if params[:mod] == nil
             @moddd = 1
-        
         elsif params[:mod] == 2
             @moddd = params[:mod]
         elsif params[:mod] == 3
             @moddd = params[:mod]
-            
         elsif params[:mod] == 10
             @moddd = params[:mod]
         elsif params[:mod] == 20
@@ -439,22 +436,25 @@ class AdminController < ApplicationController
         end
     end
     
-    def bongsa_tmp_list_delete
+    def bongsa_tmp_list_destory
         tt = Tempcrl.find(params[:id])
-        tt.delete
+        tt.destory
         redirect_to :back
     end
+    
     def m_bongsa_tmp
+        #크롤된 목록에서 봉사 1개 선택시 vms의 해당 봉사페이지에서 파싱해오는 함수 + 수정가능한 형태로 뿌려준다.
+        
         #result_final = Array.new
         @k = Tempcrl.find(params[:id])
-        #189784 #186283 #189787
+        
         uri = URI("http://www.vms.or.kr/partspace/reqView.jsp?seq=" + @k.keytemp.to_s )
         uri_final = uri
         doc_final = Nokogiri::HTML(Net::HTTP.get(uri_final))
         
         #파싱(봉사명)
         parsed_title =  doc_final.css(".table_t1//tr:nth-child(3)//td:nth-child(2)").inner_text.split(" ")
-        parsed_title.delete_at(-1)
+        parsed_title.destory_at(-1)
         @parsed_title = parsed_title.join(' ')
         
         #파싱(봉사기관)
@@ -472,9 +472,9 @@ class AdminController < ApplicationController
         #파싱(정기여부)
         parsed_regular = doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(7)//td:nth-child(2)").inner_text
         if parsed_regular.first == "정"
-          icon = 1 # (정기)
+            icon = 1 # (정기)
         else
-          icon = 0 # (비정기)
+            icon = 0 # (비정기)
         end
         @parsed_regular = icon
         
@@ -485,7 +485,7 @@ class AdminController < ApplicationController
         
         #파싱(모집인원)
         parsed_howmany =  doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(5)//td:nth-child(2)").inner_text.split("")
-        parsed_howmany.delete_at(-1)
+        parsed_howmany.destory_at(-1)
         @parsed_howmany = parsed_howmany.join('')
         
         #파싱(사전교육)
@@ -503,13 +503,13 @@ class AdminController < ApplicationController
         
         #파싱(모집상태)
         parsed_status = doc_final.css('.table_t1//tr:nth-child(4)//td:nth-child(6)').xpath('//td/img/@alt').inner_text
-            if parsed_status.index('모집중') != nil 
-              parsed_status.replace "1" #"모집중"
-            elsif parsed_status.index('모집완료') != nil
-              parsed_status.replace "2" #"모집완료"
-            else
-              parsed_status.replace "0" #"모집예정"
-            end
+        if parsed_status.index('모집중') != nil 
+            parsed_status.replace "1" #"모집중"
+        elsif parsed_status.index('모집완료') != nil
+            parsed_status.replace "2" #"모집완료"
+        else
+            parsed_status.replace "0" #"모집예정"
+        end
         
         @parsed_status = parsed_status
         
@@ -545,10 +545,10 @@ class AdminController < ApplicationController
         re.clerk_name = params[:clerk_name]
         re.is_regular = true if params[:is_regular] == 1
         re.is_regular = false if params[:is_regular] == 0
-        re.date_real_end = Date.parse(params[:date_real_end])
-        re.date_real_start = Date.parse(params[:date_real_start])
-        re.date_recruit_end = Date.parse(params[:date_recruit_end])
-        re.date_recruit_start = Date.parse(params[:date_recruit_start])
+        re.date_real_end = Date.parse(params[:date_real_end]) unless params[:date_real_end]==nil
+        re.date_real_start = Date.parse(params[:date_real_start]) unless params[:date_real_start]==nil
+        re.date_recruit_end = Date.parse(params[:date_recruit_end]) unless params[:date_recruit_end]==nil
+        re.date_recruit_start = Date.parse(params[:date_recruit_start]) unless params[:date_recruit_start]==nil
         re.time_expect_total = params[:time_expect_total]
         re.time_daily_end = params[:time_daily_end]
         re.time_daily_start = params[:time_daily_start]
@@ -563,7 +563,9 @@ class AdminController < ApplicationController
         re.admin_mod = params[:admin_mod]
         re.admin_add = params[:admin_add]
         re.act_time = params[:act_time]
+        
         re.save
+        @iid = re.id
         
         if params[:mod]!="1"
             tt = Tempcrl.find(params[:id]) 
@@ -571,17 +573,25 @@ class AdminController < ApplicationController
             tt.save
         end
         
-        redirect_to '/admin/bongsa_tmp'
+        if params[:drt]=="1"
+            @direct_adrs = '/admin/crawled_realmodify/' + @iid.to_s
+            redirect_to @direct_adrs
+        else
+            redirect_to '/admin/bongsa_tmp'
+        end
     end
+    
     def modify_bongsa_tmp
         @re = BongsaTmp.find(params[:id])
         
     end
+    
     def del_bongsa_tmp
         re = BongsaTmp.find(params[:id])
-        re.delete
+        re.destory
         redirect_to :back
     end
+    
     def crawled_realmodify
         @re = BongsaTmp.find(params[:id])
     end
@@ -589,7 +599,7 @@ class AdminController < ApplicationController
     def crawled_realsave
         
         del = BongsaTmp.find(params[:idd])
-        del.delete
+        del.destory
         
         re = Bongsa.new
         re.img_poster = params[:img_poster]
