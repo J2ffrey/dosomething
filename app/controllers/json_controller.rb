@@ -38,6 +38,9 @@ class JsonController < ApplicationController
             status = 400
             id = nil
         end
+        render json: {
+            User: ['status' => status,'id' => id]
+            }
     end
     
     #email=char
@@ -61,7 +64,9 @@ class JsonController < ApplicationController
         if params[:id] && params[:user_id]
             b = Bucket.where(user_id: params[:user_id], target_bongsa_id: params[:id])
             Bucket.destroy(b)
+            #Bucket.delete(b)
             render json: {Bucket: b}
+            #render json: {Bucket: User.find(params[:user_id]).buckets}
         end
     end
     
@@ -73,7 +78,8 @@ class JsonController < ApplicationController
             b.user_id   = params[:user_id]
             b.target_bongsa_id = pa.id
             b.save
-            render json: {Bucket: b}
+            #render json: {Bucket: b}
+            render json: {Bucket: User.find(params[:user_id]).buckets}
         end
     end
     

@@ -1,5 +1,13 @@
 <script>
 
+function s_refresh(year,month){
+				var site_text = "/calendar/small?" + 'month=' + month
+  			+ '&year=' + year;
+  			// + '&day=' + day;
+			
+				$('#small').load(site_text);
+}
+
 function refresh(year,month,day){
 				var site_text = "/calendar/large?" + 'month=' + month
   			+ '&year=' + year
@@ -8,10 +16,42 @@ function refresh(year,month,day){
 				$('#large').load(site_text);
 }
 
+function r_refresh(){
+				//var t = document.getElementsById("s_word")
+				var site_text = "/calendar/large?" + 'month=' + "<%= @month %>"
+		 			+ '&year=' + "<%= @year %>"
+	  			+ '&day=' + "<%= @day %>"
+	  			+ '&s_word=' + form_s.s_word.value;
+			
+				$('#large').load(site_text);
+				
+				return false;
+}
+// $.ajax()({
 $(function(){
+	
+	// $('#test').on('click', function() {
+	// 			var t = document.getElementsById("s_word")
+	// 			var site_text = "/calendar/large?" + 'month=' + "<%#= @month %>"
+	// 			+ '&year=' + "<%#= @year %>"
+ // 			+ '&day=' + "<%#= @day %>"
+ // 			+ '&s_word=' + t.value;
+			
+	// 			$('#large').load(site_text);
+	// });
+  
+ // $('#search_').on('click', function() {
+	// 			var site_text = "/calendar/large?" + 'month=' + "<%#= @month1 %>"
+ // 			+ '&year=' + "<%#= @year1 %>"
+ // 			// + '&nocol=1'
+ // 			+ '&day=' + "<%#= @day1 %>";
+ // 			//+ '&s_word=' + $('').value;
+				
+	// 			$('#large').load(site_text);
+	// 			});
   
   $('#prev_').on('click', function() {
-					var site_text = "/calendar/large?" + 'month=' + "<%= @month1 %>"
+				var site_text = "/calendar/large?" + 'month=' + "<%= @month1 %>"
   			+ '&year=' + "<%= @year1 %>"
   			// + '&nocol=1'
   			+ '&day=' + "<%= @day1 %>";

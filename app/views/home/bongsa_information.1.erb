@@ -1,4 +1,4 @@
-<%#= render :partial => 'home/main_navbar' %>
+<%= render :partial => 'home/main_navbar_org' %>
 <nav class="navbar navbar-default" style="background-color:#000;">
   <div class="container-fluid transbox" style="background-color:#000;">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,7 +15,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="5e" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
+        <% if current_user_signed_in != 0 %>
           <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
               <ul class="dropdown-menu">

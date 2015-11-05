@@ -1,10 +1,10 @@
 class AdminController < ApplicationController
-    before_action {is_signin?}
-    before_action {authority_check?("cAdmin")}
+    # before_action {is_signin?}
+    # before_action {authority_check?("cAdmin")}
     
     def authority_seed
-        model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongsaTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
-        method = ['c', 'u', 'r', 'd']
+         model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongsaTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
+         method = ['c', 'u', 'r', 'd']
         # method_n = Hash.new
         # method_n = ['c' => 'Create', 'u' => 'Update', 'r' => 'Read', 'd' => 'Delete']
         # method_k = Hash.new
@@ -377,10 +377,10 @@ class AdminController < ApplicationController
         result_keytmp = result_keytmp_first.to_i
         @stop_keytmp = result_keytmp_first.to_i
         
-        #   if Tempcrl.count == 0
-        #       stop_keytmp = 190300
-        #       result_keytmp = 190200
-        #   else 
+          if Tempcrl.count == 0
+              @stop_keytmp = 190600
+              @result_keytmp = 190500
+          else 
               loop do
                   break if Tempcrl.where(:keytemp => result_keytmp).take != nil
                   break if result_keytmp <= 190200
@@ -388,7 +388,7 @@ class AdminController < ApplicationController
                   result_keytmp = result_keytmp - 1
               end
               @result_keytmp = ary.last.to_i
-        #   end
+          end
         
         
           
@@ -422,6 +422,21 @@ class AdminController < ApplicationController
     end
     
     def bongsa_tmp
+        if params[:mod] == nil
+            @moddd = 1
+        
+        elsif params[:mod] == 2
+            @moddd = params[:mod]
+        elsif params[:mod] == 3
+            @moddd = params[:mod]
+            
+        elsif params[:mod] == 10
+            @moddd = params[:mod]
+        elsif params[:mod] == 20
+            @moddd = params[:mod]
+        elsif params[:mod] == 30
+            @moddd = params[:mod]
+        end
     end
     
     def bongsa_tmp_list_delete
@@ -550,16 +565,67 @@ class AdminController < ApplicationController
         re.act_time = params[:act_time]
         re.save
         
-        tt = Tempcrl.find(params[:id])
-        tt.is_registerd = 1
-        tt.save
+        if params[:mod]!="1"
+            tt = Tempcrl.find(params[:id]) 
+            tt.is_registerd = 1
+            tt.save
+        end
         
-        redirect_to '/admin/index?admin=bongsa_tmp'
+        redirect_to '/admin/bongsa_tmp'
     end
-    
+    def modify_bongsa_tmp
+        @re = BongsaTmp.find(params[:id])
+        
+    end
     def del_bongsa_tmp
         re = BongsaTmp.find(params[:id])
         re.delete
-        redirect_to '/admin/index?admin=bongsa_tmp'
+        redirect_to :back
+    end
+    def crawled_realmodify
+        @re = BongsaTmp.find(params[:id])
+    end
+    
+    def crawled_realsave
+        
+        del = BongsaTmp.find(params[:idd])
+        del.delete
+        
+        re = Bongsa.new
+        re.img_poster = params[:img_poster]
+        re.img_main = params[:img_main]
+        re.name = params[:name]
+        re.is_approval = params[:is_approval]
+        re.address = params[:address]
+        re.clerk_email = params[:clerk_email]
+        re.content = params[:content]
+        re.is_edu = true if params[:is_edu] == 1
+        re.is_edu = false if params[:is_edu] == 0
+        re.status = params[:status]
+        re.organization_id = params[:organization_id]
+        re.clerk_call = params[:clerk_call]
+        re.clerk_name = params[:clerk_name]
+        re.is_regular = true if params[:is_regular] == 1
+        re.is_regular = false if params[:is_regular] == 0
+        re.date_real_end = Date.parse(params[:date_real_end])
+        re.date_real_start = Date.parse(params[:date_real_start])
+        re.date_recruit_end = Date.parse(params[:date_recruit_end])
+        re.date_recruit_start = Date.parse(params[:date_recruit_start])
+        re.time_expect_total = params[:time_expect_total]
+        re.time_daily_end = params[:time_daily_end]
+        re.time_daily_start = params[:time_daily_start]
+        re.vltr_req = params[:vltr_req]
+        re.vltr_sex = params[:vltr_sex]
+        re.vltr_age_id = params[:vltr_age_id]
+        re.vltr_num = params[:vltr_num]
+        re.region_id = params[:region_id]
+        re.school_id = params[:school_id]
+        re.btime_id = params[:btime_id]
+        re.category_id = params[:category_id]
+        re.admin_mod = params[:admin_mod]
+        re.admin_add = params[:admin_add]
+        re.act_time = params[:act_time]
+        re.save
+        redirect_to '/admin/index?admin=bongsa'
     end
 end

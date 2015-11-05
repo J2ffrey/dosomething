@@ -18,8 +18,8 @@
       <ul class="nav navbar-nav navbar-right">
         <%# if user_signed_in? %>
           <li><img src="/img/teamprofile/member_01_changwoo.png" style="margin-top: 10px;"/></li>
-          <% if current_user.organization_id != 0 %>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
+          
+          <!--<li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>-->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -38,7 +38,7 @@
           <li class="logout" style="font-size: 15px;">
             <a id="link--login" class="secondary-nav-item" href="/user/sign_out">로그아웃</a>
           </li>
-        <% else %>
+        
         <li class="login">봉사기관으로 로그인 하세용</li>
         <% end %>
         <%# else %>

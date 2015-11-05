@@ -76,39 +76,40 @@ ActiveRecord::Schema.define(version: 20151102190119) do
   end
 
   create_table "bongsas", force: :cascade do |t|
-    t.boolean  "is_approval",        limit: 1,     default: false
-    t.string   "address",            limit: 255
-    t.string   "img_main",           limit: 255
-    t.string   "img_poster",         limit: 255
-    t.string   "name",               limit: 255
-    t.text     "content",            limit: 65535
-    t.boolean  "is_edu",             limit: 1,     default: false
-    t.integer  "status",             limit: 4
-    t.integer  "organization_id",    limit: 4
-    t.string   "clerk_name",         limit: 255
-    t.string   "clerk_call",         limit: 255
-    t.string   "clerk_email",        limit: 255
-    t.boolean  "is_regular",         limit: 1,     default: false
+    t.boolean  "is_approval",         limit: 1
+    t.text     "address",             limit: 65535
+    t.boolean  "date_recruit_always", limit: 1
+    t.string   "img_main",            limit: 255
+    t.string   "img_poster",          limit: 255
+    t.string   "name",                limit: 255
+    t.text     "content",             limit: 65535
+    t.boolean  "is_edu",              limit: 1
+    t.integer  "status",              limit: 4
+    t.integer  "organization_id",     limit: 4
+    t.string   "clerk_name",          limit: 255
+    t.string   "clerk_call",          limit: 255
+    t.string   "clerk_email",         limit: 255
+    t.boolean  "is_regular",          limit: 1
     t.date     "date_recruit_start"
     t.date     "date_recruit_end"
     t.date     "date_real_start"
     t.date     "date_real_end"
-    t.string   "time_daily_start",   limit: 255
-    t.string   "time_daily_end",     limit: 255
-    t.integer  "time_expect_total",  limit: 4
-    t.integer  "vltr_num",           limit: 4
-    t.integer  "vltr_age_id",        limit: 4
-    t.integer  "vltr_sex",           limit: 4
-    t.text     "vltr_req",           limit: 65535
-    t.integer  "region_id",          limit: 4
-    t.integer  "school_id",          limit: 4
-    t.integer  "btime_id",           limit: 4
-    t.integer  "category_id",        limit: 4
-    t.string   "admin_add",          limit: 255
-    t.string   "admin_mod",          limit: 255
-    t.integer  "act_time",           limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.string   "time_daily_start",    limit: 255
+    t.string   "time_daily_end",      limit: 255
+    t.integer  "time_expect_total",   limit: 4
+    t.integer  "vltr_num",            limit: 4
+    t.integer  "vltr_age_id",         limit: 4
+    t.integer  "vltr_sex",            limit: 4
+    t.text     "vltr_req",            limit: 65535
+    t.integer  "region_id",           limit: 4
+    t.integer  "school_id",           limit: 4
+    t.integer  "btime_id",            limit: 4
+    t.integer  "category_id",         limit: 4
+    t.string   "admin_add",           limit: 255
+    t.string   "admin_mod",           limit: 255
+    t.integer  "act_time",            limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "btimes", force: :cascade do |t|
@@ -174,8 +175,10 @@ ActiveRecord::Schema.define(version: 20151102190119) do
   end
 
   create_table "tempcrawls", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "keytemp",    limit: 4
+    t.string   "nametemp",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "tempcrls", force: :cascade do |t|
@@ -226,9 +229,6 @@ ActiveRecord::Schema.define(version: 20151102190119) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
   end
-
-  add_index "users", ["email"], name: "email_UNIQUE", unique: true, using: :btree
-  add_index "users", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "view_counts", force: :cascade do |t|
     t.string   "ip_adress",  limit: 255

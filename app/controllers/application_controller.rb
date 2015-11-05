@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   
+  #로그인 되었는지 확인하는 function
   def is_signin?
     u = User.new
     if session[:user_id]
@@ -22,6 +23,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  #권한 확인하는 function
   def authority_check?(*authorities)
     flag=0
     if session[:user_id].nil?
