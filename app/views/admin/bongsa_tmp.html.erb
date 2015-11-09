@@ -1,13 +1,13 @@
 <%# if @moddd == 1 %>
 <div class="well well-out">
     <div class="well well-in">
-        <a href="/admin/bongsa_tmp"><b><%= @moddd %>목록업뎃(크롤링,파싱 단계)</b></a> --> <a href="/admin/bongsa_tmp?mod=10">준비된 목록</a>
+        <a href="/admin/bongsa_tmp" style="color:blue;"><b><%= @moddd %>목록업뎃(크롤링,파싱 단계)</b></a> --> <a href="/admin/bongsa_tmp?mod=10" style="color:blue;">준비된 목록</a>
         
         <div class="row" align="right">
-            <a class="btn btn-orange" href="/admin/index">Admin Page로</a>
+            <a class="btn btn-orange" href="/admin/index" style="color:blue;">Admin Page로</a>
         </div>
         <div class="row" align="right">
-            <a class="btn btn-orange" href="/admin/bongsa_tmp_save">목록 Crawlling!</a>
+            <a class="btn btn-orange" href="/admin/bongsa_tmp_save" style="color:blue;">목록 Crawlling!</a>
         </div>
     </div>
     
@@ -26,7 +26,7 @@
                 <% Tempcrl.all.reverse.each do |post| %>
                     <tr class="tr-content">
                         <td><%= post.id %></td>
-                        <td><a href="/admin/m_bongsa_tmp?id=<%= post.id %>&mod=1"><%= post.nametemp %></a></td>
+                        <td><a href="/admin/m_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;"><%= post.nametemp %></a></td>
                         <td>
                         <% if post.keytemp %>
                             <%= post.keytemp %>
@@ -42,7 +42,7 @@
                         <% end %>
                         </td>
                         <td>
-                            <a href="/admin/bongsa_tmp_list_delete/<%= post.id %>">[X]</a>
+                            <a href="/admin/bongsa_tmp_list_delete/<%= post.id %>" style="color:blue;">[X]</a>
                         </td>
                     </tr>
                 <% end %>
@@ -54,10 +54,10 @@
 <%# elsif @moddd == 10 %>
 <div class="well well-out">
     <div class="well well-in">
-        <a href="/admin/bongsa_tmp"><%= @moddd %>목록업뎃(크롤링,파싱 단계)</a> --> <a href="/admin/bongsa_tmp?mod=10"><b>준비된 목록</b></a>
+        <a href="/admin/bongsa_tmp" style="color:blue;"><%= @moddd %>목록업뎃(크롤링,파싱 단계)</a> --> <a href="/admin/bongsa_tmp?mod=10" style="color:blue;"><b>준비된 목록</b></a>
         
         <div class="row" align="right">
-            <a class="btn btn-orange" href="#">목록 was already Crawlled</a>
+            <a class="btn btn-orange" href="#" style="color:blue;">목록 was already Crawlled</a>
         </div>
     </div>
     
@@ -76,15 +76,15 @@
                 <% BongsaTmp.all.reverse.each do |post| %>
                     <tr class="tr-content">
                         <td><%= post.id %></td>
-                        <td><a href="/admin/modify_bongsa_tmp?id=<%= post.id %>&mod=1"><%= post.name %></a></td>
+                        <td><a href="/admin/modify_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;"><%= post.name %></a></td>
                         <td>
-                            대기중 // <a href="/admin/crawled_realmodify/<%= post.id %>">ㄹㅇ업뎃ㄱ</a>
+                            대기중 // <a href="/admin/crawled_realmodify/<%= post.id %>" style="color:blue;">ㄹㅇ업뎃ㄱ</a>
                         </td>
                         <td>
-                            <a href="/admin/modify_bongsa_tmp?id=<%= post.id %>&mod=1">[M]</a>
+                            <a href="/admin/modify_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;">[M]</a>
                         </td>
                         <td>
-                            <a href="/admin/del_bongsa_tmp/<%= post.id %>">[X]</a>
+                            <a href="/admin/del_bongsa_tmp/<%= post.id %>" style="color:blue;">[X]</a>
                         </td>
                     </tr>
                 <% end %>

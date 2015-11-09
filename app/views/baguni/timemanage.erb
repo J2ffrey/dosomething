@@ -1,4 +1,4 @@
-<%= render :partial => 'home/main_navbar' %>
+<%= render :partial => 'home/main_navbar_general' %>
 
 <br>
 <br>
@@ -65,70 +65,82 @@
 
 <!--실제 봉사 리스트-->
 <% @real_bongsas.each do |x| %>
-<% y = Bongsa.find(x.target_bongsa_id) %>
+<%# y = Bongsa.find(x.target_bongsa_id) %>
 <div class="cart_content_background">
   <div class="col-md-1">&nbsp</div>
   <div class="col-md-10 cart_content hvr-border-fade">
     <div class="row">
       <div class="col-md-2 cart_content_photo_block">
-        <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;">
+        <!--<a href="/home/bongsa_information/<%#= x.id %>" style="color:#000;">-->
           <img src="<%= x.img %>" class="cart_content_photo">
-        </a>
+        <!--</a>-->
       </div>
       
       <% unless params[:id] == 0 || params[:id].nil? %>
-      <% c = RealBongsa.find(params[:id]) %>
-      <form action = "/baguni/modify/<%= c.id %>" method="POST">
-      <div class="col-md-10">
-        <div class="row" style="margin:0px;">
-          <div class="col-md-9">
-            <p class="cart_content_title"><strong><%= x.title %></strong></p>
-            <span style="color:gray">
-                기간 : <%= x.date_start %> ~ <%= x.date_end %>
-            <br>장소 : <%= x.location %>
-            <br>봉사시간 : <input type="text" class="" value="<%= c.time_total %>" name="time_total">
-            </span>
+        <% c = RealBongsa.find(params[:id]) %>
+        <form action = "/baguni/modify/<%= c.id %>" method="POST">
+          <div class="col-md-10">
+            <div class="row" style="margin:0px;">
+              <div class="col-md-9">
+                <p class="cart_content_title"><strong><%= x.title %></strong></p>
+                <span style="color:gray">
+                    기간 : <%= x.date_start %> ~ <%= x.date_end %>
+                <br>장소 : <%= x.location %>
+                <br>봉사시간 : <input type="text" class="" value="<%= c.time_total %>" name="time_total">
+                </span>
+              </div>
+              <div class="col-md-3">
+                <p class="cart_content_region"><strong><%= x.region %></strong></p>
+              </div>
+            </div>
+            <div class="row no-padding" style="margin:0px;padding-right:0px;">
+              <div class="col-sm-6 col-md-7 col-lg-8">
+                <p style="margin-top:2%"><%= x.content %></p>
+              </div>
+              <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
+                <a href="/baguni/timemanage">
+                  <button class="cart_content_btn cart_content_button_cancel">
+                    &nbsp<span class="glyphicon glyphicon-remove"></span>
+                    &nbsp&nbsp취소&nbsp
+                  </button>
+                </a>
+                <button class="cart_content_btn cart_content_button_modify" id="fake_btn">
+                  <span class="glyphicon glyphicon-pencil" id="fake_span"></span>
+                  <input type="submit" value="확인" id="fake_submit">
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="col-md-3">
-            <p class="cart_content_region"><strong><%= x.region %></strong></p>
-          </div>
-        </div>
-        <div class="row no-padding" style="margin:0px;padding-right:0px;">
-          <div class="col-sm-6 col-md-7 col-lg-8">
-            <p style="margin-top:2%"><%= x.content %></p>
-          </div>
-          <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-            <a href="/baguni/timemanage"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>
-            <button class="cart_content_btn cart_content_button_modify" id="fake_btn"><span class="glyphicon glyphicon-pencil" id="fake_span"></span><input type="submit" value="확인" id="fake_submit"></button>
-          </div>
-        </div>
-      </div>
-      </form>
+        </form>
       <% else %>
-      <div class="col-md-10">
-        <div class="row" style="margin:0px;">
-          <div class="col-md-9">
-            <p class="cart_content_title"><strong><%= x.title %></strong></p>
-            <span style="color:gray">
-                기간 : <%= x.date_start %> ~ <%= x.date_end %>
-            <br>장소 : <%= x.location %>
-            <br>봉사시간 : <%= x.time_total %>
-            </span>
+        <div class="col-md-10">
+          <div class="row" style="margin:0px;">
+            <div class="col-md-9">
+              <p class="cart_content_title"><strong><%= x.title %></strong></p>
+              <span style="color:gray">
+                  기간 : <%= x.date_start %> ~ <%= x.date_end %>
+              <br>장소 : <%= x.location %>
+              <br>봉사시간 : <%= x.time_total %>
+              </span>
+            </div>
+            <div class="col-md-3">
+              <p class="cart_content_region"><strong><%= x.region %></strong></p>
+            </div>
           </div>
-          <div class="col-md-3">
-            <p class="cart_content_region"><strong><%= x.region %></strong></p>
+          <div class="row no-padding" style="margin:0px;padding-right:0px;">
+            <div class="col-sm-6 col-md-7 col-lg-8">
+              <p style="margin-top:2%"><%= x.content %></p>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
+                <a href="/baguni/delete2/<%= x.id %>">
+                  <button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp삭제&nbsp</button>
+                </a>
+                <a href="/baguni/timemanage/<%= x.id %>">
+                  <button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button>
+                </a>
+            </div>
           </div>
         </div>
-        <div class="row no-padding" style="margin:0px;padding-right:0px;">
-          <div class="col-sm-6 col-md-7 col-lg-8">
-            <p style="margin-top:2%"><%= x.content %></p>
-          </div>
-          <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-              <a href="/baguni/delete2/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp삭제&nbsp</button></a>
-              <a href="/baguni/timemanage/<%= x.id %>"><button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button></a>
-          </div>
-        </div>
-      </div>
       <% end %>
     </div>
   </div>

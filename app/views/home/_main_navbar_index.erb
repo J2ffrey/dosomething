@@ -2,12 +2,12 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+      <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">-->
+      <!--  <span class="sr-only">Toggle navigation</span>-->
+      <!--  <span class="icon-bar"></span>-->
+      <!--  <span class="icon-bar"></span>-->
+      <!--  <span class="icon-bar"></span>-->
+      <!--</button>-->
       <a href="/"><img src="/img/ic_logo/main_navbar_logo.png" alt="" class="nav-logo"> &nbsp</a>
 
       <!--<a class="navbar-brand" href="/" style="font-size: 30px; color: white;"><strong>봉사꾼</strong></a> -->
@@ -17,7 +17,7 @@
     <div class="menu" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><%= flash[:error] %></li>
-        <li><a href="/calendar/index" style="font-size:18px;">봉사달력</a></li>
+        <li><a href="/calendar/index"class="nav_calendar">봉사달력</a></li>
         <% unless current_user.nil? %>
           <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
           <li class="dropdown">
@@ -36,19 +36,15 @@
           </li>
           <li class="logout">
             <!--<a id="link--login" class="secondary-nav-item" href="/user/sign_out?redirect=/home/index">로그아웃</a>-->
-            <a id="link--login" class="secondary-nav-item" href="/user/sign_out">로그아웃</a>
+            <a id="link--login" class="secondary-nav-item" style="display:inline-block; width: 100%;" href="/user/sign_out">로그아웃</a>
           </li>
         <% else %>
           <!--<li class="nav_calendar"><a id="link--login" class="secondary-nav-item" href="/calendar/index" style="font-size:18px;">캘린더</a></li>-->
           <li class="nav_login"><a>로그인</a></li>
           <%= render :partial => 'home/login_modal_volunteer' %>
-          <li class="nav_signin"><a id="link--login" class="secondary-nav-item" href="/user/sign_up" style="font-size:18px;">회원가입</a></li>
+          <li class="nav_signin"><a id="link--login" style="display:inline-block; width: 100%; font-size:18px;" class="secondary-nav-item" href="/user/sign_up">회원가입</a></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-<%= render :partial => 'style/navbarcss' %>
-
-

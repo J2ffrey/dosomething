@@ -63,10 +63,14 @@ class JsonController < ApplicationController
     def my_bucket_del
         if params[:id] && params[:user_id]
             b = Bucket.where(user_id: params[:user_id], target_bongsa_id: params[:id])
-            Bucket.destroy(b)
+            #Bucket.destroy(b)
+            #u = User.find(params[:user_id])
+            #b = u.buckets.find(params[:id])
+            b.first.delete
+            
             #Bucket.delete(b)
-            render json: {Bucket: b}
-            #render json: {Bucket: User.find(params[:user_id]).buckets}
+            #render json: {Bucket: b.first}
+            render json: {Bucket: User.find(params[:user_id]).buckets}
         end
     end
     

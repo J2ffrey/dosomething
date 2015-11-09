@@ -85,12 +85,13 @@
                         <div class="form-group2">
                             <label>봉사활동 상세내용</label>
                             <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @b.content %>" />
-                        </div>
-                        </br>
+                        </div></br>
+                        
                         <div class="form-group2">
                             <label>상세주소</label><br>
                             <input type="text" name="address" class="form-control_line" value="<%= @b.address %>" />&nbsp
                         </div><br>
+                        
                         <!--<div class="form-group2">-->
                         <!--    <label>정기 / 비정기</label>-->
                         <!--    <select name="is_regular">-->
@@ -109,6 +110,7 @@
                                 <input type="radio" name="is_regular" value="0"/> 비정기 봉사
                             <% end %>
                         </div> </br>
+                        
                         <div class="form-group2">
                             <label>인증서발급여부</label><br>
                             <% if @mod == "1" && @b.is_approval == 0 %>
@@ -119,6 +121,7 @@
                                 <input type="radio" name="is_approval" value="0"/> X
                             <% end %>
                         </div> </br>
+                        
                         <div class="form-group2">
                           <div class="col-md-6">
                             <label>모집기간</label><br>
@@ -131,6 +134,7 @@
                               <input type="date" name="date_real_end" class="form-control_date" value="<%= @b.date_real_end %>" />
                           </div>
                         </div><br>
+                        
                         <!--<div class="form-group2">-->
                         <!--    <label>모집시작일</label>-->
                         <!--    <input type="date" name="date_recruit_start" class="form-control" value="<%#= @b.date_recruit_start %>" />-->
@@ -147,11 +151,88 @@
                         <!--    <label>봉사 실 종료일</label>-->
                         <!--    <input type="date" name="date_real_end" class="form-control" value="<%#= @b.date_real_end %>" />-->
                         <!--</div>-->
+                        <!--<div class="form-group2">-->
+                        <!--    <label>봉사시간</label><br>-->
+                        <!--    요일무관: <input type="text" name="time_daily_start" class="form-control_time"  value="<%#= @b.time_daily_start %>" /> ~-->
+                        <!--    <input type="text" name="time_daily_end" class="form-control_time" value="<%#= @b.time_daily_end %>" /><br>-->
+                        <!--    월: <input type="text" name="mon_time_daily_start" class="form-control_time" id="1" value="<%#= @b.time_daily_start1 %>"/> ~-->
+                        <!--    <input type="text" name="mon_time_daily_end" class="form-control_time" id="8" value="<%#= @b.time_daily_end8 %>"/><br>-->
+                        <!--    화: <input type="text" name="tue_time_daily_start" class="form-control_time" id="2" value="<%#= @b.time_daily_start2 %>"/> ~-->
+                        <!--    <input type="text" name="tue_time_daily_end" class="form-control_time" id="9" value="<%#= @b.time_daily_end9 %>"/><br>-->
+                        <!--    수: <input type="text" name="wed_time_daily_start" class="form-control_time" id="3" value="<%#= @b.time_daily_start3 %>"/> ~-->
+                        <!--    <input type="text" name="wed_time_daily_end" class="form-control_time" id="10" value="<%#= @b.time_daily_end10 %>"/><br>-->
+                        <!--    목: <input type="text" name="tur_time_daily_start" class="form-control_time" id="4" value="<%#= @b.time_daily_start4 %>"/> ~-->
+                        <!--    <input type="text" name="tur_time_daily_end" class="form-control_time" id="11" value="<%#= @b.time_daily_end11 %>"/><br>-->
+                        <!--    금: <input type="text" name="fri_time_daily_start" class="form-control_time" id="5" value="<%#= @b.time_daily_start5 %>"/> ~-->
+                        <!--    <input type="text" name="fri_time_daily_end" class="form-control_time" id="12" value="<%#= @b.time_daily_end12 %>"/><br>-->
+                        <!--    토: <input type="text" name="sat_time_daily_start" class="form-control_time" id="6" value="<%#= @b.time_daily_start6 %>"/> ~-->
+                        <!--    <input type="text" name="sat_time_daily_end" class="form-control_time" id="13" value="<%#= @b.time_daily_end13 %>"/><br>-->
+                        <!--    일: <input type="text" name="sun_time_daily_start" class="form-control_time" id="7" value="<%#= @b.time_daily_start7 %>"/> ~-->
+                        <!--    <input type="text" name="sun_time_daily_end" class="form-control_time" id="14" value="<%#= @b.time_daily_end14 %>"/><br>-->
+                        <!--</div><br>-->
+                        
                         <div class="form-group2">
                             <label>봉사시간</label><br>
-                            <input type="text" name="time_daily_start" class="form-control_time" value="<%= @b.time_daily_start %>" /> ~
-                            <input type="text" name="time_daily_end" class="form-control_time" value="<%= @b.time_daily_end %>" />
+                            <table>
+                                <tr>
+                                    <td class="day_head">요일무관: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start" class="form-control_time"  value="<%= @b.time_daily_start %>" /> ~
+                                        <input type="text" name="time_daily_end" class="form-control_time" value="<%= @b.time_daily_end %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">월: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_1" class="form-control_time"  value="<%= @b.time_daily_start_1 %>" /> ~
+                                        <input type="text" name="time_daily_end_1" class="form-control_time" value="<%= @b.time_daily_end_1 %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">화: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_2" class="form-control_time"  value="<%= @b.time_daily_start_2 %>" /> ~
+                                        <input type="text" name="time_daily_end_2" class="form-control_time" value="<%= @b.time_daily_end_2 %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">수: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_3" class="form-control_time"  value="<%= @b.time_daily_start_3 %>" /> ~
+                                        <input type="text" name="time_daily_end_3" class="form-control_time" value="<%= @b.time_daily_end_3 %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">목: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_4" class="form-control_time"  value="<%= @b.time_daily_start_4 %>" /> ~
+                                        <input type="text" name="time_daily_end_4" class="form-control_time" value="<%= @b.time_daily_end_4 %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">금: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_5" class="form-control_time"  value="<%= @b.time_daily_start_5 %>" /> ~
+                                        <input type="text" name="time_daily_end_5" class="form-control_time" value="<%= @b.time_daily_end_5 %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">토: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_6" class="form-control_time"  value="<%= @b.time_daily_start_6 %>" /> ~
+                                        <input type="text" name="time_daily_end_6" class="form-control_time" value="<%= @b.time_daily_end_6 %>" />
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td class="day_head">일: </td>
+                                    <td class="day_time">
+                                        <input type="text" name="time_daily_start_7" class="form-control_time"  value="<%= @b.time_daily_start_7 %>" /> ~
+                                        <input type="text" name="time_daily_end_7" class="form-control_time" value="<%= @b.time_daily_end_7 %>" />
+                                    <td>
+                                </tr>
+                            </table>
                         </div><br>
+                        
                         <!--<div class="form-group2">-->
                         <!--    <label>하루 시작 시각(hhmm)</label>-->
                         <!--    <input type="text" name="time_daily_start" class="form-control" value="<%= @b.time_daily_start %>" />-->
@@ -160,6 +241,7 @@
                         <!--    <label>하루 종료 시각(hhmm)</label>-->
                         <!--    <input type="text" name="time_daily_end" class="form-control" value="<%= @b.time_daily_end %>" />-->
                         <!--</div>-->
+                        
                         <div class="form-group2">
                             <label>총 봉사 예상시간</label><br>
                             <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total %>" />&nbsp시간
@@ -260,6 +342,7 @@
                                 <%= @b.admin_add %>
                             <% else %>
                                 <%= current_user.email unless current_user.nil? %>
+                                <input type="hidden" value="<%= current_user.email unless current_user.nil? %>" name="admin_add">
                             <% end %>
                         </div>
                         
@@ -298,10 +381,16 @@
 .form-control_line {border: none;
                     border-bottom: 1px solid black;
                     height: 34px;}
-.form-control_time {width: 14%;
+.form-control_time {width: 42%;
                     height: 34px;}
 * {text-align:left;}
 .col_padding {padding-left: 0px; padding-right: 0px;}
 select {width: 15%;
         height: 33px;}
+.day_time{
+    width:300px;
+}
+.day_head{
+    width:100px;
+}
 </style>

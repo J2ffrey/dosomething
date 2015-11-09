@@ -15,15 +15,15 @@
     <div class="row col-md-12 wantlist_height" style="background: rgba(0,0,0,0.55);">
     <div class="col-md-1"></div>
       <div class="col-md-10">
-        <form action="#">
+        <form name="form_s" onsubmit="return filter()">
           <div class="row" style="height: 30px;">
-            <form class="navbar-form navbar-right" id="form_s" role="search">
+            <!--<form class="navbar-form navbar-right" id="form_s" role="search">-->
               <!--<button id="search" class="navbar__search__first">검색</button>-->
-              <div class="form-group">
-                <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" style="background-color: rgba(245, 245, 245, 0.52);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
-                <span id="search-icon" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/></span>
-              </div>
-            </form>
+            <div class="form-group">
+              <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" style="background-color: rgba(245, 245, 245, 0.52);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
+              <span id="search-icon" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/></span>
+            </div>
+            <!--</form>-->
           </div>
           
           <div class="row">
@@ -32,7 +32,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
                     <select name="region" id="region_select">
-                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp지역</option>
+                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp지역</option>
                       <% Region.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
@@ -43,7 +43,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
                     <select name="school" id="school_select">
-                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp대학교</option>
+                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp대학교</option>
                       <% School.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
@@ -54,7 +54,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
                     <select name="btime" id="btime_select">
-                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp시간</option>
+                      <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp시간</option>
                       <% Btime.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
@@ -65,7 +65,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
                     <select name="category" id="category_select">
-                      <option selected="selected" value="empty" class="filternamecss">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp봉사종류</option>
+                      <option selected="selected" value="empty" class="filternamecss">&nbsp&nbsp&nbsp&nbsp봉사종류</option>
                       <% Category.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
@@ -92,88 +92,5 @@
 
 <%#= render :partial => 'popup' %>
 <%= render :partial => 'style/main_headercss' %>
+<%= render :partial => 'script/main_filter' %>
 
-<script type="text/javascript">
-	
-  $(function(){
-     //onKeypress="javascript:if(event.keyCode==13) {dongCheck();}"
-    $("#form_s").submit(function(){
-      $.ajax({
-    			type:"get",
-    			url:"/home/filter?" + 'region=' + $('#region_select').val() 
-    			+ '&school=' + $('#school_select').val() 
-    			+ '&btime=' + $('#btime_select').val()
-    			+ '&category=' + $('#category_select').val()
-    			+ '&s_word=' + $('#s_word').val(),
-    			datatype:"html",
-    			success:function(r){
-    				$("#main_contents").empty();
-    				$("#main_contents").append("<style>"+r+"</style>");
-    			},
-    			error:function(){
-    				alert("데이터를 가져오지 못하였습니다.");
-    			},
-    		});
-    		return false;
-    });
-    
-    $("#search-icon").on("click",function(){
-      $.ajax({
-    			type:"get",
-    			url:"/home/filter?" + 'region=' + $('#region_select').val() 
-    			+ '&school=' + $('#school_select').val() 
-    			+ '&btime=' + $('#btime_select').val()
-    			+ '&category=' + $('#category_select').val()
-    			+ '&s_word=' + $('#s_word').val(),
-    			datatype:"html",
-    			success:function(r){
-    				$("#main_contents").empty();
-    				$("#main_contents").append("<style>"+r+"</style>");
-    			},
-    			error:function(){
-    				alert("데이터를 가져오지 못하였습니다.");
-    			},
-    		});
-    		return false;
-    });
-  
-    $("#search").on("click", function(){
-  		$.ajax({
-  			type:"get",
-  			url:"/home/filter?" + 'region=' + $('#region_select').val() 
-  			+ '&school=' + $('#school_select').val() 
-  			+ '&btime=' + $('#btime_select').val() 
-  			+ '&category=' + $('#category_select').val()
-  			+ '&s_word=' + $('#s_word').val(),
-  			datatype:"html",
-  			success:function(r){
-  				$("#main_contents").empty();
-  				$("#main_contents").append("<style>"+r+"</style>");
-  			},
-  			error:function(){
-  				alert("데이터를 가져오지 못하였습니다.");
-  			},
-  		});
-    })
-    
-    $("#region_select, #school_select, #btime_select, #category_select").on("change", function(){
-  		$.ajax({
-  			type:"get",
-  			url:"/home/filter?" + 'region=' + $('#region_select').val() 
-  			+ '&school=' + $('#school_select').val() 
-  			+ '&btime=' + $('#btime_select').val() 
-  			+ '&category=' + $('#category_select').val()
-  			+ '&s_word=' + $('#s_word').val(),
-  			datatype:"html",
-  			success:function(r){
-  				$("#main_contents").empty();
-  				$("#main_contents").append("<style>"+r+"</style>");
-  			},
-  			error:function(){
-  				alert("데이터를 가져오지 못하였습니다.");
-  			},
-  		});
-    })
-    
-  })
-</script>

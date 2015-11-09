@@ -2,15 +2,9 @@ class CreateBongsas < ActiveRecord::Migration
   def change
     create_table :bongsas do |t|
       
-      # 신청하기 링크가 없어요
-      # 담당자 이메일 주소가 없어요
-      # 인증서 발급여부가 없어요
-      # 상세 주소 없어요
-      
       t.boolean :is_approval      #인증서 발급여부10.31추가
       t.text :address             #주소(디테일한 지역주소)10.31추가
-      t.boolean :date_recruit_always #상시모집시 1(true)
-      
+      t.boolean :is_recruit_always #상시모집시 1(true)
       
       #데이터 이미지
       t.string  :img_main         #메인 이미지
@@ -36,8 +30,25 @@ class CreateBongsas < ActiveRecord::Migration
       t.date	:date_recruit_end		 #모집마감일
       t.date :date_real_start      #봉사 실 시작일
       t.date :date_real_end        #봉사 실 종료일
+      
+      #봉사시간 월,화,수,목,금,토,일 구분짓기
       t.string :time_daily_start   #하루 시작 시각
+      t.string :time_daily_start_1  #월
+      t.string :time_daily_start_2  #화
+      t.string :time_daily_start_3  #수
+      t.string :time_daily_start_4  #목
+      t.string :time_daily_start_5  #금
+      t.string :time_daily_start_6  #토
+      t.string :time_daily_start_7  #일
       t.string :time_daily_end     #하루 종료 시각
+      t.string :time_daily_end_1    #월
+      t.string :time_daily_end_2   #화
+      t.string :time_daily_end_3   #수
+      t.string :time_daily_end_4   #목
+      t.string :time_daily_end_5   #금
+      t.string :time_daily_end_6   #토
+      t.string :time_daily_end_7   #일
+    
       t.integer :time_expect_total  #총 획득 예상시간
       
       #지원 자격 요건
@@ -56,10 +67,9 @@ class CreateBongsas < ActiveRecord::Migration
       t.string  :admin_add      #최초 등록한 관리자 이메일
       t.string  :admin_mod      #최근 수정한 관리자 이메일
       
-      
       #사용자가 사후 입력(시간관리에서)???????
       t.integer	:act_time	        #해당 봉사 후 활동시간 직접등록
-
+      
       t.timestamps null: false
     end
   end

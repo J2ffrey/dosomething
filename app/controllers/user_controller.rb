@@ -1,7 +1,5 @@
 class UserController < ApplicationController
   
-  
-  
   def sign_up_confirm
     u = User.new
     

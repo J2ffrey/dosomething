@@ -7,14 +7,18 @@
    # a = Date.parse("#{2015}-#{9}-#{1}")#.compact('')
   
   #a = a.delete_if {|x| x == " "}
-  @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\"")
+  unless @s_word.nil?
+    @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\" AND name LIKE \"%#{@s_word}%\"")
+  else
+    @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\"")
+  end
   #@b = @b.where("")
 %>
 
 <!-- 반복 -->
 <% @b.each do |x| %>
-  <%= @s_word unless @s_word.nil? %>
-  <% next if !(@s_word.nil?) && !(@b.name.include?(@s_word)) %>
+  <%#= @s_word unless @s_word.nil? %>
+  <%# next if !(@s_word.nil?) && !(@b.name.include?(@s_word)) %>
   <!--<center><p class="calendar_day_info hvr-back-pulse -->
   <!--  <%#= "start_date " if x.date_recruit_start == a %>-->
   <!--  <%#= "end_date "if x.date_recruit_end == a %>-->

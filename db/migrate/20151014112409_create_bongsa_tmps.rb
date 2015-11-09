@@ -25,7 +25,7 @@ class CreateBongsaTmps < ActiveRecord::Migration
       t.date	:date_recruit_end		 #모집마감일
       t.date :date_real_start      #봉사 실 시작일
       t.date :date_real_end        #봉사 실 종료일
-      t.string :time_daily_start   #하루 시작 시각
+      t.string :m_time_daily_start   #하루 시작 시각
       t.string :time_daily_end     #하루 종료 시각
       t.integer :time_expect_total  #총 획득 예상시간
       

@@ -1,5 +1,6 @@
 class BaguniController < ApplicationController
-
+    before_action {is_signin?}
+    
     def timemanage
         
         #---봉사 한개 선택해서 입력창에 띄우기---#
@@ -92,7 +93,7 @@ class BaguniController < ApplicationController
         b.user_id   = current_user.id
         b.target_bongsa_id = pa.id
         b.save
-        # flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
+        flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
         redirect_to :back
     end
 end

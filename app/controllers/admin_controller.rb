@@ -123,6 +123,12 @@ class AdminController < ApplicationController
             else
                 @b = User.new
             end
+        elsif @admin=="m_user_type"
+            if @mod == "1"
+                @b = UserType.find(params[:id])
+            else
+                @b = UserType.new
+            end
         elsif @admin=="m_authority_bundle"
             if @mod == "1"
                 @b = AuthorityBundle.find(params[:id])
@@ -145,6 +151,22 @@ class AdminController < ApplicationController
         re = AuthorityBundle.find(params[:id])
         re.destroy
         redirect_to '/admin/index?admin=authority_bundle'
+    end
+    
+    def m_user_type
+        re = UserType.new
+        re = UserType.find(params[:id]) if params[:mod]=="1"
+        re.name = params[:name]
+        re.authority_bundle_id = params[:authority_bundle_id]
+        re.text = params[:text]
+        re.save
+        redirect_to '/admin/index?admin=user_type'
+    end
+    
+    def del_user_type
+        re = UserType.find(params[:id])
+        re.destroy
+        redirect_to '/admin/index?admin=user_type'
     end
     
     def m_user
@@ -354,6 +376,29 @@ class AdminController < ApplicationController
         re.admin_mod = params[:admin_mod]
         re.admin_add = params[:admin_add]
         re.act_time = params[:act_time]
+        
+        re.is_approval = true if params[:is_approval] == 1
+        re.is_approval = false if params[:is_approval] == 0
+        
+        re.is_recruit_always = true if params[:is_recruit_always] == 1
+        re.is_recruit_always = false if params[:is_recruit_always] == 0
+        
+        re.time_daily_start_1 = params[:time_daily_start_1]
+        re.time_daily_start_2 = params[:time_daily_start_2]
+        re.time_daily_start_3 = params[:time_daily_start_3]
+        re.time_daily_start_4 = params[:time_daily_start_4]
+        re.time_daily_start_5 = params[:time_daily_start_5]
+        re.time_daily_start_6 = params[:time_daily_start_6]
+        re.time_daily_start_7 = params[:time_daily_start_7]
+        
+        re.time_daily_end_1 = params[:time_daily_end_1]
+        re.time_daily_end_2 = params[:time_daily_end_2]
+        re.time_daily_end_3 = params[:time_daily_end_3]
+        re.time_daily_end_4 = params[:time_daily_end_4]
+        re.time_daily_end_5 = params[:time_daily_end_5]
+        re.time_daily_end_6 = params[:time_daily_end_6]
+        re.time_daily_end_7 = params[:time_daily_end_7]
+        
         re.save
         redirect_to '/admin/index?admin=bongsa'
     end
@@ -393,16 +438,16 @@ class AdminController < ApplicationController
         end
         
         loop do 
-            break if @result_keytmp <= 200
+          break if @result_keytmp <= 200
             result << @result_keytmp
               
             #nametmp 추출
             uri = URI("http://www.vms.or.kr/partspace/reqView.jsp?seq=" + @result_keytmp.to_s )
             doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
             
-            next if doc_final == nil
+          next if doc_final == nil
             title = doc_final.css(".table_t1//tr:nth-child(3)//td:nth-child(2)").inner_text.split(" ")
-            title.destory_at(-1)
+            title.delete_at(-1)
             result_nametmp = title.join(' ')
             
             #Tempcrawl에 key 저장, nametmp 저장
@@ -414,9 +459,9 @@ class AdminController < ApplicationController
              
             #loop의 다음 순환을 준비
             @result_keytmp = @result_keytmp + 1
-            break if @result_keytmp == @stop_keytmp + 1
+          break if @result_keytmp == @stop_keytmp + 1
             
-            end
+        end
         redirect_to :back
     end
     
@@ -438,7 +483,7 @@ class AdminController < ApplicationController
     
     def bongsa_tmp_list_destory
         tt = Tempcrl.find(params[:id])
-        tt.destory
+        tt.destroy
         redirect_to :back
     end
     
@@ -454,7 +499,7 @@ class AdminController < ApplicationController
         
         #파싱(봉사명)
         parsed_title =  doc_final.css(".table_t1//tr:nth-child(3)//td:nth-child(2)").inner_text.split(" ")
-        parsed_title.destory_at(-1)
+        parsed_title.delete_at(-1)
         @parsed_title = parsed_title.join(' ')
         
         #파싱(봉사기관)
@@ -485,7 +530,7 @@ class AdminController < ApplicationController
         
         #파싱(모집인원)
         parsed_howmany =  doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(5)//td:nth-child(2)").inner_text.split("")
-        parsed_howmany.destory_at(-1)
+        parsed_howmany.delete_at(-1)
         @parsed_howmany = parsed_howmany.join('')
         
         #파싱(사전교육)
@@ -530,6 +575,13 @@ class AdminController < ApplicationController
     end
     
     def bongsa_post_tmp_save
+        
+        if params[:organization_id]=="1"
+        org = Organization.new
+        org.name = params[:org_name]
+        org.save
+        @org_id = org.id
+        end
         re = BongsaTmp.new
         re = BongsaTmp.find(params[:id]) if params[:mod]=="1"
         
@@ -540,7 +592,11 @@ class AdminController < ApplicationController
         re.is_edu = true if params[:is_edu] == 1
         re.is_edu = false if params[:is_edu] == 0
         re.status = params[:status]
-        re.organization_id = params[:organization_id]
+        if params[:organization_id]=="1"
+            re.organization_id = @org_id
+        else
+            re.organization_id = params[:organization_id]
+        end
         re.clerk_call = params[:clerk_call]
         re.clerk_name = params[:clerk_name]
         re.is_regular = true if params[:is_regular] == 1
@@ -588,7 +644,7 @@ class AdminController < ApplicationController
     
     def del_bongsa_tmp
         re = BongsaTmp.find(params[:id])
-        re.destory
+        re.destroy
         redirect_to :back
     end
     
@@ -599,7 +655,7 @@ class AdminController < ApplicationController
     def crawled_realsave
         
         del = BongsaTmp.find(params[:idd])
-        del.destory
+        del.destroy
         
         re = Bongsa.new
         re.img_poster = params[:img_poster]

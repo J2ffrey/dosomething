@@ -22,7 +22,7 @@
       <a href="/home/bongsa_information/<%= b.id %>">
         <div class="col-md-4 col-sm-6 col-lg-4 row_main_content hvr-border-fade">
           <div class="col-md-12" style="padding:0px;">
-            <img src="<%= b.img_main %>" alt="이미지" style="width:100%;height: 258px; margin-top:0px;">
+            <img src="<%= b.img_main %>" alt="이미지" style="width:100%;height: 230px; margin-top:0px;">
              
             <% if b.name.nil? %>
               <span class="side_info__title">
@@ -40,16 +40,16 @@
           </div>
           <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
-              <p class="ptag_up_css">총 봉사시간</p>
-              <p class="ptag_bottom_css"><%= b.time_expect_total %></p>
+              <center><p class="ptag_up_css">총 봉사시간</p></center>
+              <center><p class="ptag_bottom_css"><strong><%= b.time_expect_total %></strong></p></center>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
-              <p class="ptag_up_css">지역 </p>
-              <p class="ptag_bottom_css"><%= Region.find(b.region_id).name %></p>
+              <center><p class="ptag_up_css">지역</p></center>
+              <center><p class="ptag_bottom_css"><strong><%= Region.find(b.region_id).name %></strong></p></center>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
-              <p class="ptag_up_css">모집 마감</p>
-              <p class="ptag_bottom_css">D-<%= (Date.parse(Time.now.to_s)  -  Date.parse("#{b.date_recruit_end}")).to_i %></p>
+              <center><p class="ptag_up_css">모집 마감</p></center>
+              <center><p class="ptag_bottom_css"><strong>D-<%= (Date.parse(Time.now.to_s)  -  Date.parse("#{b.date_recruit_end}")).to_i %></strong></p></center>
               <!--<p style="color:#000000; font-size:18px;"> ~ <%#= b.date_real_end %></p>-->
             </div>  
           </div>
@@ -119,6 +119,3 @@
     </p>
   </div>
 </center>
-
-<!-- Main Content CSS -->
-<%= render :partial => 'style/main_contentcss' %>
