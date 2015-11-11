@@ -25,29 +25,75 @@
       <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
     <%# end %>
     <!-- Tables ================================================== -->
-    <div class="col-md-12 col-sm-12 continue slided_img" style="padding-right: 0px; background-image: url('<%= @b.img_main %>'); background-size: cover; padding-top: 30%; padding-left: 0px;">
+    <div class="col-md-12 col-sm-12 continue slided_img" style="padding-right: 0px; background-size: cover; padding-top: 30%; padding-left: 0px;" background="<%=@b.img_main %>">
       <div class="col-md-12 col-sm-12" style="padding-bottom: 20px; padding-right: 0px; padding-top:1%; padding-left: 0px; background-color: rgba(0, 0, 0, 0.61);">
-      <!--봉사명-->
-      <div class="col-md-9 col-sm-9">
-        <p class="m_title" style="margin-bottom:-8px;"><b><%= @b.name %></b></p>
-        <div class="col-md-3 col-sm-3">
-            <!--신청하기-->
-            <a href="#">
-              <button class="btn btn-block m_btn">
-                  <b>신청하기</b>
-              </button>
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <a href="/baguni/bucket_save/<%= @b.id %>">
-                <button class="btn btn-block m_btn btn_side" style="background-color:#c75050;">
-                    <b>찜하기</b>
+        <!--봉사명-->
+        <div class="col-md-9 col-sm-9">
+          <p class="m_title" style="margin-bottom:-8px;"><b><%= @b.name %></b></p>
+          <input type="text" name="name" class="form-control" value="<%= @b.name %>" required style="width:50%; float:right; margin-top: 22px;"/>
+          <div class="col-md-3 col-sm-3">
+              <!--신청하기-->
+              <a href="#">
+                <button class="btn btn-block m_btn">
+                    <b>신청하기</b>
                 </button>
-            </a>
+              </a>
+          </div>
+          <div class="col-md-3 col-sm-3">
+              <a href="/baguni/bucket_save/<%= @b.id %>">
+                  <button class="btn btn-block m_btn btn_side" style="background-color:#c75050;">
+                      <b>찜하기</b>
+                  </button>
+              </a>
+          </div>
+          <div class="col-md-4"></div>
         </div>
-        <div class="col-md-4"></div>
-      </div>
-      <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="form-group2">
+            <div class="col-md-12" style="margin-top: -100px; height: 160px;">
+              <label style="text-align: left; padding-left: 2%;">**참고 : 아래의 필터는 실제로 보이는 부분이 아닙니다.</label>
+                <div class="col-md-3" style="margin-top: -1%;">
+                    <label>지역</label> &nbsp
+                    <select name="region_id" style="color:black; width:90%;">
+                        <% y = Region.find(@b.region_id) %>
+                            <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
+                        <% Region.all.each do |x| %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    </select> &nbsp&nbsp&nbsp&nbsp
+                </div>
+                <div class="col-md-3" style="margin-top: -1%;">
+                    <label>주관대학</label> &nbsp
+                    <select name="school_id" style="color:black; width:90%;">
+                        <% y = School.find(@b.school_id) %>
+                            <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
+                        <% School.all.each do |x| %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    </select> &nbsp&nbsp&nbsp&nbsp
+                </div>
+                <div class="col-md-3" style="margin-top: -1%;">
+                    <label>봉사시간 분류</label> &nbsp
+                    <select name="btime_id" style="color:black; width:90%;">
+                        <% y = Btime.find(@b.btime_id) %>
+                            <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
+                        <% Btime.all.each do |x| %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    </select> &nbsp&nbsp&nbsp&nbsp
+                </div>
+                <div class="col-md-3" style="margin-top: -1%;">
+                    <label>분야</label> &nbsp
+                    <select name="category_id" style="color:black; width:90%;">
+                        <% y = Category.find(@b.category_id) %>
+                            <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
+                        <% Category.all.each do |x| %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    </select>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
 
@@ -260,99 +306,85 @@
         <input type="hidden" name="mod" value="<%= @mod %>">
         <input type="hidden" name="idd" value="<%= @b.id %>">
         <div class="well well-in">
-            <%# unless @mod=="1" %>
-            
-                <div class="form-group2">
-                    <div class="col-md-12">
+            <div class="form-group2">
+                <div class="col-md-12">
+                    <div class="col-md-3">
                         <label>지역</label> &nbsp
-                        <select name="region_id">
+                        <select name="region_id" style="color:black; width:90%;">
+                            <% y = Region.find(@b.region_id) %>
+                                <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
                             <% Region.all.each do |x| %>
-                                <% if @mod == "1" && @b.region_id == x.id %>
-                                    <option value="<%= x.id %>" selected><%= x.name %></option>
-                                <% else %>
-                                    <option value="<%= x.id %>"><%= x.name %></option>
-                                <% end %>
+                                <option value="<%= x.id %>"><%= x.name %></option>
                             <% end %>
                         </select> &nbsp&nbsp&nbsp&nbsp
+                    </div>
+                    <div class="col-md-3">
                         <label>주관대학</label> &nbsp
-                        <select name="school_id">
+                        <select name="school_id" style="color:black; width:90%;">
+                            <% y = School.find(@b.school_id) %>
+                                <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
                             <% School.all.each do |x| %>
-                                <% if @mod == "1" && @b.school_id == x.id %>
-                                    <option value="<%= x.id %>" selected><%= x.name %></option>
-                                <% else %>
-                                    <option value="<%= x.id %>"><%= x.name %></option>
-                                <% end %>
+                                <option value="<%= x.id %>"><%= x.name %></option>
                             <% end %>
                         </select> &nbsp&nbsp&nbsp&nbsp
+                    </div>
+                    <div class="col-md-3">
                         <label>봉사시간 분류</label> &nbsp
-                        <select name="btime_id">
+                        <select name="btime_id" style="color:black; width:90%;">
+                            <% y = Btime.find(@b.btime_id) %>
+                                <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
                             <% Btime.all.each do |x| %>
-                                <% if @mod == "1" && @b.btime_id == x.id %>
-                                    <option value="<%= x.id %>" selected><%= x.name %></option>
-                                <% else %>
-                                    <option value="<%= x.id %>"><%= x.name %></option>
-                                <% end %>
+                                <option value="<%= x.id %>"><%= x.name %></option>
                             <% end %>
                         </select> &nbsp&nbsp&nbsp&nbsp
+                    </div>
+                    <div class="col-md-3">
                         <label>분야</label> &nbsp
-                        <select name="category_id">
+                        <select name="category_id" style="color:black; width:90%;">
+                            <% y = Category.find(@b.category_id) %>
+                                <option value="<%= y.id %>" selected="selected" ><%= y.name %></option>
                             <% Category.all.each do |x| %>
-                                <% if @mod == "1" && @b.category_id == x.id %>
-                                    <option value="<%= x.id %>" selected><%= x.name %></option>
-                                <% else %>
-                                    <option value="<%= x.id %>"><%= x.name %></option>
-                                <% end %>
+                                <option value="<%= x.id %>"><%= x.name %></option>
                             <% end %>
                         </select>
                     </div>
                 </div>
-                <% if @mod=="1" %>
-                    <input type="hidden" value="<%= @b.admin_add %>" name="admin_add">
-                <% else %>
-                    <input type="hidden" value="<%= current_user.email %>" name="admin_add">
-                <% end %>
-                <br>
-                <div class="form-group2">&nbsp</div>
-                <div class="form-group2">
-                  <div class="col-md-12 col_padding">
-                    <div class="col-md-6">
-                      <label>메인카드 이미지</label>
-                      <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
-                    </div>
-                    <div class="col-md-6">
-                      <label>봉사활동 포스터 이미지</label>
-                      <input type="file" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
-                    </div>
-                  </div>
+            </div>
+            <% if @mod=="1" %>
+                <input type="hidden" value="<%= @b.admin_add %>" name="admin_add">
+            <% else %>
+                <input type="hidden" value="<%= current_user.email %>" name="admin_add">
+            <% end %>
+            <br>
+            <div class="form-group2">&nbsp</div>
+            <div class="form-group2">
+              <div class="col-md-12 col_padding">
+                <div class="col-md-6">
+                  <label>메인카드 이미지</label>
+                  <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
                 </div>
-            <%# end %>
+                <div class="col-md-6">
+                  <label>봉사활동 포스터 이미지</label>
+                  <input type="file" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
+                </div>
+              </div>
+            </div>
             <div class="form-group2">
               <div class="col-md-12">
                 <label>봉사활동명</label>
                 <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
               </div>
             </div>
-            <!--<div class="form-group2">-->
-            <!--        <label>기관명</label>-->
-            <!--        <input type="text" name="organization" class="form-control" value="<%= @b.organization_id %>" />-->
-            <!--    </div>-->
             <div class="form-group2">&nbsp</div>
             <div class="form-group2">
                 <label>봉사활동 상세내용</label>
-                <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @b.content %>" />
+                <!--<input type="text" name="content" class="form-control form-control_bongsa_information" value="<%#= @b.content %>" />-->
+                <textarea name="content" rows="18" cols="70"><%= @b.content %></textarea>
             </div>
             </br>
-            <!--<div class="form-group2">-->
-            <!--    <label>정기 / 비정기</label>-->
-            <!--    <select name="is_regular">-->
-            <!--        <option value="0" <%# "selected" if @mod == "1" && @b.is_edu == 0 %>>비정기</option>-->
-            <!--        <option value="1" <%# "selected" if @mod == "1" && @b.is_edu == 1 %>>정기</option>-->
-            <!--    </select>-->
-            <!--</div>-->
-            
             <div class="form-group2">
-              <input type="radio"/> 정기 봉사 &nbsp&nbsp
-              <input type="radio"/> 비정기 봉사
+              <input type="radio" name="is_regular" value="1" <%= 'checked="checked"' if @b.is_regular==1 %>/> 정기 봉사 &nbsp&nbsp
+              <input type="radio" name="is_regular" value="0" <%= 'checked="checked"' if @b.is_regular==0 %>/> 비정기 봉사
             </div> </br>
             <div class="form-group2">
               <div class="col-md-6">
@@ -381,8 +413,8 @@
             </div><br>
             <div class="form-group2">
                 <label>사전교육 유/무</label><br>
-                <input type="radio" checked/> 있음 &nbsp&nbsp
-                <input type="radio"/> 없음
+                <input type="radio" name="is_edu" value="1" <%= "checked" if @b.is_edu==1 %>/> 있음 &nbsp&nbsp
+                <input type="radio" name="is_edu" value="0" <%= "checked" if @b.is_edu==0 %>/> 없음
             </div><br>
             <div class="form-group2">
                 <label>모집 특이조건</label><br>
@@ -390,21 +422,21 @@
             </div><br>
             <div class="form-group2">
                 <label>상태</label><br>
-                <input type="radio" /> 모집예정
-                <input type="radio" /> 모집중
-                <input type="radio" /> 모집종료
+                <input type="radio" name="status" value="2" <%= 'checked="checked"' if @b.status=="2" %>/> 모집예정
+                <input type="radio" name="status" value="1" <%= 'checked="checked"' if @b.status=="1" %>/> 모집중
+                <input type="radio" name="status" value="0" <%= 'checked="checked"' if @b.status=="0" %>/> 모집종료
             </div><br>
             <div class="form-group2">
                 <label>지원가능 성별</label><br>
-                <input type="radio" checked/> 무관
-                <input type="radio" /> 남
-                <input type="radio" /> 여
+                <input type="radio" name="vltr_sex" value="0" <%= 'checked="checked"' if @b.vltr_sex=="0" %>/> 무관
+                <input type="radio" name="vltr_sex" value="1" <%= 'checked="checked"' if @b.vltr_sex=="1" %>/> 남
+                <input type="radio" name="vltr_sex" value="2" <%= 'checked="checked"' if @b.vltr_sex=="2" %>/> 여
             </div><br>
             <div class="form-group2">
                 <label>봉사기관</label>
                 <select name="organization_id">
                     <% o_name = Organization.find(@b.organization_id) %>
-                    <option value="<%= @b.organization_id %>" selected><%= o_name.name %></option>
+                    <option value="<%= @b.organization_id %>" selected="selected"><%= o_name.name %></option>
                 </select>
             </div>
             <div class="form-group2">
@@ -419,13 +451,8 @@
             <div class="form-group2">
                 <label>모집연령</label>
                 <select name="vltr_age_id">
-                    <% VltrAge.all.each do |x| %>
-                        <% if @mod == "1" && @b.vltr_age_id == x.id %>
-                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                        <% else %>
-                            <option value="<%= x.id %>"><%= x.name %></option>
-                        <% end %>
-                    <% end %>
+                    <% v_age = VltrAge.find(@b.vltr_age_id) %>
+                    <option value="<%= v_age.id %>" selected="selected" ><%= v_age.name %></option>
                 </select>
             </div>
             <div class="form-group2">

@@ -112,7 +112,7 @@ class HomeController < ApplicationController
          
          flash[:alert] = '변경이 완료 되었습니다. 다시 로그인 해주세요'
          redirect_to '/home/index'
-      else
+      else  
          flash[:alert] = '비밀번호를 확인 후 다시 입력하세요'
          redirect_to '/home/private_info'
       end
@@ -252,7 +252,7 @@ class HomeController < ApplicationController
     
 
     def bongsa_information
-        @b = Bongsa.find(params[:id])
+         @b = Bongsa.find(params[:id])
     end
     
     
@@ -261,6 +261,7 @@ class HomeController < ApplicationController
     end
     
     def read_me
+        
     end
     
     def intro

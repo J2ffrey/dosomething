@@ -59,15 +59,31 @@ a {
 /*----------------- navbar_index_end ----------------------*/
 
 /*main_page*/
+.header__title{
+  text-align: center;
+  width: 100%;
+}
+.navbar__search {
+  border-radius: 16px;  
+}
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #57ce9b;
+}
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #57ce9b;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #57ce9b;
+   opacity:  1;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #57ce9b;
+   opacity:  1;
+}
+
 body {
     background-color: #E8F4E8;
 }
-
-.header__title{ text-align: center;
-                 font-size : 65px;
-                 margin-top:5%;
-                 margin-bottom:7%;
-                }
               
 .header__top {
   height: 40px;
@@ -79,7 +95,6 @@ body {
     border-top: none;
     border-right: 1%;
     border-bottom: none;
-    background-color: rgba(161,161,163,55);
 }
 
 .navbar__search__first {
@@ -100,7 +115,7 @@ body {
     overflow: hidden;
     position: relative;
     background-color: rgba(0,0,0,0.9);
-    background-image:url(/img/bg/bg_index_header_02.jpg);
+    background-color:#57ce9b;
     background-position:center 30%;
     background-size:cover;
 }
@@ -118,18 +133,17 @@ label {
 }
 
 select {
-
-    width: 90%;
-    color: white;
-    font-size: 15px;
-    background-color: rgba(255,255,255,0);
-    border: 2px solid #ffffff;
-    height: 40px;
-    -webkit-appearance: none;  /* 네이티브 외형 감추기 */
-    -moz-appearance: none;
-    appearance: none;
-    background: url("/img/ic_logo/icon_drop.png") no-repeat 95% 50%;  /* 화살표 모양의 이미지 
-    /*background: url("img/teamprofile/select_btn.jpg") no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
+  border-radius: 20px;
+  color: white;
+  font-size: 15px;
+  background-color: rgba(255,255,255,0);
+  border: 2px solid #ffffff;
+  height: 37px;
+  -webkit-appearance: none;  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: url("/img/ic_logo/ic_arrow_24px_small.png") no-repeat 95% 50%;  /* 화살표 모양의 이미지 
+  /*background: url("img/teamprofile/select_btn.jpg") no-repeat 95% 50%;  /* 화살표 모양의 이미지 */ 
 }
 
 select option {
@@ -175,13 +189,6 @@ select option {
     height: 150px;
 }
 
-.fieldset_list {
-    margin: auto;
-    width: 100%;
-    position: relative;
-    margin-left: -2%;
-    margin-top: 2%;
-}
 .main_content__title {
     font-size: 20px;
     color: white;

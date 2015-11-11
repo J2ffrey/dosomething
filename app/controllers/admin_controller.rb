@@ -2,6 +2,10 @@ class AdminController < ApplicationController
     # before_action {is_signin?}
     # before_action {authority_check?("cAdmin")}
     
+    def test
+        
+    end
+    
     def authority_seed
         model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongsaTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
         method = ['c', 'u', 'r', 'd']
@@ -405,7 +409,7 @@ class AdminController < ApplicationController
     
     def del_bongsa
         re = Bongsa.find(params[:id])
-        re.destory
+        re.destroy
         redirect_to '/admin/index?admin=bongsa'
     end
     
@@ -481,7 +485,7 @@ class AdminController < ApplicationController
         end
     end
     
-    def bongsa_tmp_list_destory
+    def bongsa_tmp_list_delete
         tt = Tempcrl.find(params[:id])
         tt.destroy
         redirect_to :back
@@ -589,8 +593,8 @@ class AdminController < ApplicationController
         re.img_main = params[:img_main]
         re.name = params[:name]
         re.content = params[:content]
-        re.is_edu = true if params[:is_edu] == 1
-        re.is_edu = false if params[:is_edu] == 0
+        re.is_edu = true if params[:is_edu] == "1"    #사전교육 있음
+        re.is_edu = false if params[:is_edu] == "0"   #없음
         re.status = params[:status]
         if params[:organization_id]=="1"
             re.organization_id = @org_id
@@ -599,8 +603,8 @@ class AdminController < ApplicationController
         end
         re.clerk_call = params[:clerk_call]
         re.clerk_name = params[:clerk_name]
-        re.is_regular = true if params[:is_regular] == 1
-        re.is_regular = false if params[:is_regular] == 0
+        re.is_regular = true if params[:is_regular] == 1    #정기
+        re.is_regular = false if params[:is_regular] == 0   #비정기
         re.date_real_end = Date.parse(params[:date_real_end]) unless params[:date_real_end]==nil
         re.date_real_start = Date.parse(params[:date_real_start]) unless params[:date_real_start]==nil
         re.date_recruit_end = Date.parse(params[:date_recruit_end]) unless params[:date_recruit_end]==nil
@@ -639,7 +643,7 @@ class AdminController < ApplicationController
     
     def modify_bongsa_tmp
         @re = BongsaTmp.find(params[:id])
-        
+        @mod = params[:mod]
     end
     
     def del_bongsa_tmp

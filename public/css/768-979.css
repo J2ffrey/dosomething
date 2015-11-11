@@ -7,6 +7,33 @@
 /*----------------- navbar_index_end ----------------------*/
 
 /*main_page*/
+select {
+  width: 109%;  
+}
+.ic_search {
+  background-color: #26a69a;
+  border: none;
+  cursor: pointer;
+  width: 13%;
+  height: 36px;
+  border-radius: 25px;  
+}
+
+.ic_calendar {
+  background-color: #4caf50;
+  border: none;
+  cursor: pointer;
+  width: 18%;
+  height: 36px;
+  border-radius: 25px;
+}
+.fieldset_list {
+    margin: auto;
+    width: 100%;
+    position: relative;
+    margin-left: -2%;
+    margin-top: 2%;
+}
 .wantlist {
     list-style-type: none;
     float: center;
@@ -33,10 +60,23 @@
 }
 
 .main-logo{
-  height: 215px;
-  width:35%;
+  margin-top: 121px;
+  margin-bottom: 98px;
+  height: 111px;
+  width: 19%;
 }
-
+.sub_logo_login {
+  margin-top: 121px;
+  margin-bottom: 98px;
+  width: 9%;
+  height: 84px;
+}
+.sub_logo_signup {
+  margin-top: 121px;
+  margin-bottom: 98px;
+  width: 9%;
+  height: 84px;
+}
 .header-viewcounter{
   margin-top: 35px;
   font-size:20px;
@@ -46,7 +86,7 @@
 .navbar__search{
   margin-top: 11px;
   height: 35px;
-  width: 46%;
+  width: 38%;
   margin-left: 26%;
   margin-right: 0px;
 }
@@ -293,7 +333,7 @@ p {
   position: fixed;
   top: 50%;
   left: 52%;
-  margin-left: -32%;
+  margin-left: -26%;
   margin-top: -15%;
   padding: 7%;
   border-radius: 5px;
@@ -315,7 +355,7 @@ p {
 }
 .foot_title {
   float: left;
-  background-color: #1E929F;
+  background-color: #57ce9b;
   color: #1E929F;
   width: 100%;
   margin-left: 0%;

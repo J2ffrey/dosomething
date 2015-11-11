@@ -1,0 +1,39 @@
+<script>
+  function r_filter(){
+    $('.start_date,.end_date').css("display","none")  //안보이게
+  
+    if($("#ck0").is(":checked") == true){
+      $('.start_date,.end_date').css("display","")  //다보이게
+    }
+    if($("#ck1").is(":checked") == true){
+      $('.ck1').css("display","")
+    }
+    if($("#ck2").is(":checked") == true){
+      $('.ck2').css("display","")
+    }
+    if($("#ck3").is(":checked") == true){
+      $('.ck3').css("display","")
+    }
+    if($("#ck4").is(":checked") == true){
+      $('.ck4').css("display","")
+    }
+    if($("#ck5").is(":checked") == true){
+      $('.ck5').css("display","")
+    }
+    
+    if($(".s_check").is(":checked") == false && $(".e_check").is(":checked") == false )
+    {
+      $(".start_date").css("display","none")
+      $(".end_date").css("display","none")
+    }
+    else if($(".s_check").is(":checked") == true && $(".e_check").is(":checked") == false)
+    {
+      $(".end_date:not(.start_date)").css("display","none")
+    }
+    else if($(".e_check").is(":checked") == true && $(".s_check").is(":checked") == false)
+    {
+      $(".start_date:not(.end_date)").css("display","none")
+    }
+  }
+
+</script>

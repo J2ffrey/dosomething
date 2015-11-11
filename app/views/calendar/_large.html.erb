@@ -14,54 +14,47 @@
   @month = @month.to_i
   @day = @day.to_i
   
-  date=Date.new(@year,@month,@day)
+  @date=Date.new(@year,@month,@day)
   
-  while !date.sunday?
-    date=date.prev_day(1)
+  while !@date.sunday?
+    @date=@date.prev_day(1)
   end
   
 %>
 
 <%
-  #date=Date.new(@year,@month,@day)
-  date_p=date.prev_day(7)
-  @year1=date_p.year
-  @month1=date_p.month
-  @day1=date_p.day
+  @date_p=@date.prev_day(7)
+  @year1=@date_p.year
+  @month1=@date_p.month
+  @day1=@date_p.day
   
   mday=Date.new(@year,@month,-1).day
   
-  date_n=date.next_day(7)
-  @year2=date_n.year
-  @month2=date_n.month
-  @day2=date_n.day
+  @date_n=@date.next_day(7)
+  @year2=@date_n.year
+  @month2=@date_n.month
+  @day2=@date_n.day
 %>
 
 <%= render :partial => 'script/calendar' %>
 
-<%#= @day %>
-<%#= @month %>
-<%#= @year %>
-<%#= @ck %>
-<%#= @s_word %>
-
 <div class="row">
   <div class="col-md-12 col-sm-12" style="background: #502da5; color: white">
     <div class="col-md-5 col-sm-5">
-      <button id="prev_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none; float: right">&lt;</button>
+      <button id="prev_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none; float: right" onclick="refresh(<%= @year1 %>,<%= @month1 %>,<%= @day1 %>);">&lt;</button>
     </div>
     <div class="col-md-2 col-sm-2">
       <span style="margin-bottom: 2%; font-size: 24px;"><center><%= @year %>.<%= @month %></center></span>
     </div>
     <div class="col-md-5 col-sm-5">
-      <button id="next_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none;">&gt;</button>
+      <button id="next_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none;" onclick="refresh(<%= @year2 %>,<%= @month2 %>,<%= @day2 %>);">&gt;</button>
     </div>
   </div>
 </div>
 <div class="row">
   <%# i = 0 %>
   <% (0..6).to_a.each do |x| %>
-    <% tmp = date.next_day(x) %>  
+    <% tmp = @date.next_day(x) %>  
     <% 
       @day = tmp.day
     %>
@@ -94,17 +87,15 @@
   
   <% (0..6).to_a.each do |x| %>
     <div class="col-7 calendar_content_background" style="padding-top:5px;">
-      <% tmp = date.next_day(x) %>  
+      <% tmp = @date.next_day(x) %>  
       <% 
         @year = tmp.year
         @month = tmp.month
         @day = tmp.day
       %>
       <%= render partial: 'day_info' %>
-      
-            
     </div>
   <% end %>
   <!-- 777777777 -->
-  
 </div>
+<!--<div style="display:none;" onload="r_filter();"></div>-->

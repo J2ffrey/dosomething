@@ -10,46 +10,42 @@
                         
                             <div class="form-group2">
                             <div class="col-md-12">
-                                <label>지역</label> &nbsp
-                                <select name="region_id">
-                                    <% Region.all.each do |x| %>
-                                        <% if @mod == "1" #&& @b.region_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
+                                <div class="col-md-3">
+                                    <label>지역</label> &nbsp
+                                    <select name="region_id" style="color:black; width:90%;">
+                                        <option value="<%= Region.last.id %>"><%= Region.last.name %></option>
+                                        <% Region.all.each do |x| %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
                                         <% end %>
-                                    <% end %>
-                                </select> &nbsp&nbsp&nbsp&nbsp
-                                <label>주관대학</label> &nbsp
-                                <select name="school_id">
-                                    <% School.all.each do |x| %>
-                                        <% if @mod == "1" #&& @b.school_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
+                                    </select> &nbsp&nbsp&nbsp&nbsp
+                                </div>
+                                <div class="col-md-3">
+                                    <label>주관대학</label> &nbsp
+                                    <select name="school_id" style="color:black; width:90%;">
+                                        <option value="<%= School.last.id %>"><%= School.last.name %></option>
+                                        <% School.all.each do |x| %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
                                         <% end %>
-                                    <% end %>
-                                </select> &nbsp&nbsp&nbsp&nbsp
-                                <label>봉사시간 분류</label> &nbsp
-                                <select name="btime_id">
-                                    <% Btime.all.each do |x| %>
-                                        <% if @mod == "1" #&& @b.btime_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
+                                    </select> &nbsp&nbsp&nbsp&nbsp
+                                </div>
+                                <div class="col-md-3">
+                                    <label>봉사시간 분류</label> &nbsp
+                                    <select name="btime_id" style="color:black; width:90%;">
+                                        <option value="<%= Btime.last.id %>"><%= Btime.last.name %></option>
+                                        <% Btime.all.each do |x| %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
                                         <% end %>
-                                    <% end %>
-                                </select> &nbsp&nbsp&nbsp&nbsp
-                                <label>분야</label> &nbsp
-                                <select name="category_id">
-                                    <% Category.all.each do |x| %>
-                                        <% if @mod == "1" #&& @b.category_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
+                                    </select> &nbsp&nbsp&nbsp&nbsp
+                                </div>
+                                <div class="col-md-3">
+                                    <label>분야</label> &nbsp
+                                    <select name="category_id" style="color:black; width:90%;">
+                                        <option value="<%= Category.last.id %>"><%= Category.last.name %></option>
+                                        <% Category.all.each do |x| %>
                                             <option value="<%= x.id %>"><%= x.name %></option>
                                         <% end %>
-                                    <% end %>
-                                </select>
+                                    </select>
+                                </div>
                             </div>
                             </div>
                             <% if @mod=="1" %>
@@ -85,7 +81,8 @@
                         <div class="form-group2">&nbsp</div>
                         <div class="form-group2">
                             <label>봉사활동 상세내용</label>
-                            <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @parsed_content %>" />
+                            <!--<input type="text" name="content" class="form-control form-control_bongsa_information" value="<%#= @parsed_content %>" />-->
+                            <textarea name="content" rows="18" cols="70"><%= @parsed_content%></textarea>
                         </div>
                         </br>
                         <!--<div class="form-group2">-->
@@ -97,8 +94,8 @@
                         <!--</div>-->
                         
                         <div class="form-group2">
-                          <input type="radio" checked/> 정기 봉사 &nbsp&nbsp
-                          <input type="radio"/> 비정기 봉사
+                          <input type="radio" name="is_regular" value="1"/> 정기 봉사 &nbsp&nbsp
+                          <input type="radio" name="is_regular" value="0"/> 비정기 봉사
                         </div> </br>
                         <div class="form-group2">
                           <div class="col-md-6">
@@ -151,8 +148,8 @@
                         </div><br>
                         <div class="form-group2">
                             <label>사전교육 유/무</label><br>
-                            <input type="radio" checked/> 있음 &nbsp&nbsp
-                            <input type="radio"/> 없음
+                            <input type="radio" name="is_edu" value="1"/> 있음 &nbsp&nbsp
+                            <input type="radio" name="is_edu" value="0"/> 없음
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>사전교육 유/무</label>-->
@@ -167,9 +164,9 @@
                         </div><br>
                         <div class="form-group2">
                             <label>상태</label><br>
-                            <input type="radio" checked/> 모집예정
-                            <input type="radio" /> 모집중
-                            <input type="radio" /> 모집종료
+                            <input type="radio" name="status" value="2" /> 모집예정
+                            <input type="radio" name="status" value="1" /> 모집중
+                            <input type="radio" name="status" value="0" /> 모집종료
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>상태</label>-->
@@ -181,9 +178,9 @@
                         <!--</div>-->
                         <div class="form-group2">
                             <label>지원가능 성별</label><br>
-                            <input type="radio" checked/> 무관
-                            <input type="radio" /> 남
-                            <input type="radio" /> 여
+                            <input type="radio" name="vltr_sex" value="0" /> 무관
+                            <input type="radio" name="vltr_sex" value="1" /> 남
+                            <input type="radio" name="vltr_sex" value="2" /> 여
                         </div><br>
                         <!--<div class="form-group2">-->
                         <!--    <label>지원가능 성별</label>-->
@@ -197,11 +194,7 @@
                             <label>봉사기관</label>
                             <select name="organization_id">
                                 <% Organization.all.each do |x| %>
-                                    <% if @mod == "1" && @b.organization_id == x.id %>
-                                        <option value="<%= x.id %>"><%= x.name %></option>
-                                    <% else %>
-                                        <option value="<%= x.id %>"><%= x.name %></option>
-                                    <% end %>
+                                    <option value="<%= x.id %>"><%= x.name %></option>
                                 <% end %>
                             </select>
                             <input type="text" name="org_name" class="form-control" value="<%= @parsed_org %>" />
@@ -219,11 +212,7 @@
                             <label>모집연령</label>
                             <select name="vltr_age_id">
                                 <% VltrAge.all.each do |x| %>
-                                    <% if @mod == "1" && @b.vltr_age_id == x.id %>
-                                        <option value="<%= x.id %>" selected><%= x.name %></option>
-                                    <% else %>
-                                        <option value="<%= x.id %>"><%= x.name %></option>
-                                    <% end %>
+                                    <option value="<%= x.id %>"><%= x.name %></option>
                                 <% end %>
                             </select>
                         </div>

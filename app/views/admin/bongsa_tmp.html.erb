@@ -1,7 +1,18 @@
 <%# if @moddd == 1 %>
-<div class="well well-out">
+<% if params[:page].nil?
+    page = 1
+   else
+    page = params[:page].to_i
+   end  
+   
+   count = Tempcrl.count
+   show = 20 #(갯수)
+                           %>
+    
+    
+<div class="well well-out" id="unreadyto">
     <div class="well well-in">
-        <a href="/admin/bongsa_tmp" style="color:blue;"><b><%= @moddd %>목록업뎃(크롤링,파싱 단계)</b></a> --> <a href="/admin/bongsa_tmp?mod=10" style="color:blue;">준비된 목록</a>
+        <a href="/admin/bongsa_tmp/#unreadyto" style="color:blue;"><b><%= @moddd %>목록업뎃(크롤링,파싱 단계)</b></a> --> <a href="/admin/bongsa_tmp/#readyto" style="color:blue;">준비된 목록</a>
         
         <div class="row" align="right">
             <a class="btn btn-orange" href="/admin/index" style="color:blue;">Admin Page로</a>
@@ -16,45 +27,156 @@
             <thead>
                 <tr class="tr-head">
                     <td>#</td>
-                    <td>봉사명</td>
+                    <td>
+                        <span class="col-md-3">봉사명</span>
+                        <span class="col-md-3"></span>
+                        <nav class="col-md-6" style="bottom: 20px;">
+                            <ul class="pagination pagination-sm">
+                                <% if page > 4 && page < count/show - 3 %>
+                                <li><a href="/admin/bongsa_tmp?page=<%= page - 1 %>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=1">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=2">2 <span class="sr-only">(current)</span></a></li>
+                                <li class="disabled"><a href="#">...</a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= page - 1 %>"><%= page - 1 %><span class="sr-only">(current)</span></a></li>
+                                <li class="active"><a href="/admin/bongsa_tmp?page=<%= page %>"><%= page %> <span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= page + 1 %>"><%= page + 1 %><span class="sr-only">(current)</span></a></li>
+                                <li class="disabled"><a href="#">... <span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= count/show +0 %>"><%= count/show +0 %><span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= count/show +1 %>"><%= count/show +1 %><span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= page + 1 %>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                                
+                                <% elsif page > count/show - 4 %>
+                                <% active = 'class=' + 'active'  %>
+                                <li><a href="/admin/bongsa_tmp?page=<%= page - 1 %>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=1">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=2">2 <span class="sr-only">(current)</span></a></li>
+                                <li class="disabled"><a href="#">...</a></li>
+                                <li <%= active if page==count/show-3 %>><a href="/admin/bongsa_tmp?page=<%= count/show -3 %>"><%= count/show -3 %><span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==count/show-2 %>><a href="/admin/bongsa_tmp?page=<%= count/show -2 %>"><%= count/show -2 %><span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==count/show-1 %>><a href="/admin/bongsa_tmp?page=<%= count/show -1 %>"><%= count/show -1 %><span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==count/show+0 %>><a href="/admin/bongsa_tmp?page=<%= count/show +0 %>"><%= count/show %><span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==count/show+1 %>><a href="/admin/bongsa_tmp?page=<%= count/show +1 %>"><%= count/show +1 %><span class="sr-only">(current)</span></a></li>
+                                <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                                
+                                <% else %>
+                                <% active = 'class=' + 'active'  %>
+                                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                                <li <%= active if page==1 %>><a href="/admin/bongsa_tmp?page=1">1<span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==2 %>><a href="/admin/bongsa_tmp?page=2">2<span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==3 %>><a href="/admin/bongsa_tmp?page=3">3<span class="sr-only">(current)</span></a></li>
+                                <li <%= active if page==4 %>><a href="/admin/bongsa_tmp?page=4">4<span class="sr-only">(current)</span></a></li>
+                                <li <%# active %>><a href="/admin/bongsa_tmp?page=5">5<span class="sr-only">(current)</span></a></li>
+                                <li class="disabled"><a href="#">... <span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= count/show +0 %>"><%= count/show +0 %><span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= count/show +1 %>"><%= count/show +1 %><span class="sr-only">(current)</span></a></li>
+                                <li><a href="/admin/bongsa_tmp?page=<%= page + 1 %>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                                <% end %>
+                            </ul>
+                        </nav>
+                    </td>
                     <td>keytmp</td>
                     <td>업데이트 여부</td>
                     <td></td>
                 </tr>
             </thead>
+            <% 
+               #일반적인 경우
+               #page가 n일 때, [count-{show*(n-1)}]::top ~ [count-{show*n}+1]::bottom 번까지 보여주고
+               n = page
+               top = Tempcrl.first(count - show*(n - 1)).last.id
+               
+               if n == count/show + 1
+                   bottom = Tempcrl.first.id
+               else
+                   bottom = Tempcrl.first(count - show*n + 1).last.id
+               end
+               
+               top.downto(bottom) do |x|
+                next if Tempcrl.where(:id => x).any? == false
+                
+               #마지막 page에 다다른 경우
+               # 즉, n == {(count/show의 몫)+1} 인 경우
+               #마지막 page {(count/show의 몫)+1}에서는,  [count-{show*(n-1)}] ~ 1 번까지 보여준다. == 처음부터 (count/show의 나머지)개 만큼 보여준다.
+               
+                %>
             <tbody>
-                <% Tempcrl.all.reverse.each do |post| %>
-                    <tr class="tr-content">
-                        <td><%= post.id %></td>
-                        <td><a href="/admin/m_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;"><%= post.nametemp %></a></td>
-                        <td>
-                        <% if post.keytemp %>
-                            <%= post.keytemp %>
-                        <% else %>
-                            None;
-                        <% end %>
-                        </td>
-                        <td>
-                        <% if post.is_registerd == 0 %>
-                            작업 안됨
-                        <% else %>
-                            임시 업데이트 완료
-                        <% end %>
-                        </td>
-                        <td>
-                            <a href="/admin/bongsa_tmp_list_delete/<%= post.id %>" style="color:blue;">[X]</a>
-                        </td>
-                    </tr>
-                <% end %>
+                <% post = Tempcrl.find(x) %>
+                <tr class="tr-content">
+                    <td><%= post.id %></td>
+                    <td><a href="/admin/m_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;"><%= post.nametemp %></a></td>
+                    <td>
+                    <% if post.keytemp %>
+                        <%= post.keytemp %>
+                    <% else %>
+                        None;
+                    <% end %>
+                    </td>
+                    <td>
+                    <% if post.is_registerd == 0 %>
+                        작업 안됨
+                    <% else %>
+                        임시 업데이트 완료
+                    <% end %>
+                    </td>
+                    <td>
+                        <a href="/admin/bongsa_tmp_list_delete/<%= post.id %>" style="color:blue;">[X]</a>
+                    </td>
+                </tr>
             </tbody>
+            <% end %>
         </table>
+        <span class="col-md-4"></span>
+        <nav class="col-md-4">
+            <ul class="pagination">
+                <% if page > 4 && page < count/show - 3 %>
+                <li><a href="/admin/bongsa_tmp?page=<%= page - 1 %>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=1">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=2">2 <span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#">...</a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= page - 1 %>"><%= page - 1 %><span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/admin/bongsa_tmp?page=<%= page %>"><%= page %> <span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= page + 1 %>"><%= page + 1 %><span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#">... <span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= count/show +0 %>"><%= count/show +0 %><span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= count/show +1 %>"><%= count/show +1 %><span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= page + 1 %>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                
+                <% elsif page > count/show - 4 %>
+                <% active = 'class=' + 'active'  %>
+                <li><a href="/admin/bongsa_tmp?page=<%= page - 1 %>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=1">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=2">2 <span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#">...</a></li>
+                <li <%= active if page==count/show-3 %>><a href="/admin/bongsa_tmp?page=<%= count/show -3 %>"><%= count/show -3 %><span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==count/show-2 %>><a href="/admin/bongsa_tmp?page=<%= count/show -2 %>"><%= count/show -2 %><span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==count/show-1 %>><a href="/admin/bongsa_tmp?page=<%= count/show -1 %>"><%= count/show -1 %><span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==count/show+0 %>><a href="/admin/bongsa_tmp?page=<%= count/show +0 %>"><%= count/show %><span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==count/show+1 %>><a href="/admin/bongsa_tmp?page=<%= count/show +1 %>"><%= count/show +1 %><span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                
+                <% else %>
+                <% active = 'class=' + 'active'  %>
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li <%= active if page==1 %>><a href="/admin/bongsa_tmp?page=1">1<span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==2 %>><a href="/admin/bongsa_tmp?page=2">2<span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==3 %>><a href="/admin/bongsa_tmp?page=3">3<span class="sr-only">(current)</span></a></li>
+                <li <%= active if page==4 %>><a href="/admin/bongsa_tmp?page=4">4<span class="sr-only">(current)</span></a></li>
+                <li <%# active %>><a href="/admin/bongsa_tmp?page=5">5<span class="sr-only">(current)</span></a></li>
+                <li class="disabled"><a href="#">... <span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= count/show +0 %>"><%= count/show +0 %><span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= count/show +1 %>"><%= count/show +1 %><span class="sr-only">(current)</span></a></li>
+                <li><a href="/admin/bongsa_tmp?page=<%= page + 1 %>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                <% end %>
+            </ul>
+        </nav>
+        <span class="col-md-4"></span>
     </div>
 </div>
 
 <%# elsif @moddd == 10 %>
-<div class="well well-out">
+<div class="well well-out" id="readyto">
     <div class="well well-in">
-        <a href="/admin/bongsa_tmp" style="color:blue;"><%= @moddd %>목록업뎃(크롤링,파싱 단계)</a> --> <a href="/admin/bongsa_tmp?mod=10" style="color:blue;"><b>준비된 목록</b></a>
+        <a href="/admin/bongsa_tmp/#unreadyto" style="color:blue;"><%= @moddd %>목록업뎃(크롤링,파싱 단계)</a> --> <a href="/admin/bongsa_tmp/#readyto" style="color:blue;"><b>준비된 목록</b></a>
         
         <div class="row" align="right">
             <a class="btn btn-orange" href="#" style="color:blue;">목록 was already Crawlled</a>
@@ -73,18 +195,18 @@
                 </tr>
             </thead>
             <tbody>
-                <% BongsaTmp.all.reverse.each do |post| %>
+                <% BongsaTmp.all.reverse.each do |pos| %>
                     <tr class="tr-content">
-                        <td><%= post.id %></td>
-                        <td><a href="/admin/modify_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;"><%= post.name %></a></td>
+                        <td><%= pos.id %></td>
+                        <td><a href="/admin/modify_bongsa_tmp?id=<%= pos.id %>&mod=1" style="color:blue;"><%= pos.name %></a></td>
                         <td>
-                            대기중 // <a href="/admin/crawled_realmodify/<%= post.id %>" style="color:blue;">ㄹㅇ업뎃ㄱ</a>
+                            대기중 // <a href="/admin/crawled_realmodify/<%= pos.id %>" style="color:blue;">ㄹㅇ업뎃ㄱ</a>
                         </td>
                         <td>
-                            <a href="/admin/modify_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;">[M]</a>
+                            <a href="/admin/modify_bongsa_tmp?id=<%= pos.id %>&mod=1" style="color:blue;">[M]</a>
                         </td>
                         <td>
-                            <a href="/admin/del_bongsa_tmp/<%= post.id %>" style="color:blue;">[X]</a>
+                            <a href="/admin/del_bongsa_tmp/<%= pos.id %>" style="color:blue;">[X]</a>
                         </td>
                     </tr>
                 <% end %>

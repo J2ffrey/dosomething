@@ -7,6 +7,33 @@
 /*----------------- navbar_index_end ----------------------*/
 
 /*main_page_start*/
+select {
+  width: 103%;  
+}
+.ic_search {
+  background-color: #26a69a;
+  border: none;
+  cursor: pointer;
+  width: 11%;
+  height: 36px;
+  border-radius: 25px;  
+}
+
+.ic_calendar {
+  background-color: #4caf50;
+  border: none;
+  cursor: pointer;
+  width: 14%;
+  height: 36px;
+  border-radius: 25px;
+}
+.fieldset_list {
+    margin: auto;
+    width: 84%;
+    position: relative;
+    margin-left: 7%;
+    margin-top: 2%;
+}
 .wantlist {
     list-style-type: none;
     float: center;
@@ -33,11 +60,25 @@
 }
 
 .main-logo{
-  height: 215px;
-  width:30%;
-  margin-bottom:-4%;
+  margin-top: 121px;
+  margin-bottom: 98px;
+  height: 115px;
+  width: 17%;
+  margin-right: 32px;
 }
-
+.sub_logo_login {
+  margin-top: 121px;
+  margin-bottom: 98px;
+  margin-right: 12px;
+  width: 100px;
+  height: 100px;
+}
+.sub_logo_signup {
+  margin-top: 120px;
+  margin-bottom: 98px;
+  width: 100px;
+  height: 98px;
+}
 .header-viewcounter{
   margin-top: 35px;
   font-size:20px;
@@ -46,10 +87,11 @@
 
 .navbar__search {
     background-color: rgba(255,255,255,0);
-    width: 36%;
-    margin-left: 32%;
-    height: 35px;
+    width: 52%;
+    margin-left: 11%;
+    height: 36px;
     margin-top: 14px;
+    border-radius: 35px;
 }
 .left_side{
   font-size:16px;
@@ -149,6 +191,88 @@ p {
 
 /*----------------- bongsainform_page_start -----------------*/
 
+/*--new_css--*/
+
+.bongsa_img_title {
+  color: black;
+  font-size: 27px;
+  margin-top: 39px;
+}
+.dday_btn {
+  border: none;
+  font-size: 14px;
+  border-radius: 15px;
+  width: 8%;
+  color: white;
+  background-color: #57ce9b;
+}
+.term_btn {
+  border: none;
+  font-size: 14px;
+  border-radius: 28px;
+  width: 10%;
+  color: white;
+  background-color: #ff5252; 
+}
+.bongsa_choice {
+  border: none;
+  width: 22%;
+  height: 28px;
+  background-color: #60c0c8;
+  color: white;
+  border-radius: 35px;
+  margin-right: 12px;
+}
+.bongsa_cancel {
+  border: 1px solid #60C0C8;
+  background-color: white;
+  border-radius: 35px;
+  width: 24%;
+  height: 28px;  
+}
+.bongsa_img {
+  width: 280px;
+  height:200px;
+}
+.bongsa_sub_inform {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: #209797;
+}
+.bongsa_sub_inform_confirm {
+  margin-top: 0px;
+  margin-bottom: 26px;
+}
+.ic_bongsa_inform {
+  width: 48px;
+  height: 48px;  
+}
+.bongsa_intro {
+  color: #808080;  
+}
+.bongsa_sub {
+  color: #808080;
+  margin-left: 85px;
+}
+.bongsa_sub_confirm {
+  color: #808080;
+  margin-left: 40px;
+}
+
+.navbar__search__general {
+  background-color: white;
+  width: 127%;
+  margin-left: 6%;
+  height: 36px;
+  margin-top: 14px;
+  border-radius: 55px;
+  border: none;
+}
+/*--new_css--*/
+
+
+
+
 .slided_img{
     background-image:url("<%= @b.img_main %>");
     background-size: cover;
@@ -203,12 +327,12 @@ p {
 }
 
 .info_more {
-  width: 87%;
+  width: 100%;
   height: 43px;
-  margin-top: 80px;
+  margin-top: 13px;
 }
 .section_text {
-  color: black;
+  color: #808080;
   margin-top: 4px;
   width: 111%;
 }
@@ -230,6 +354,7 @@ p {
 }
 .info_group {
   height: 60px;
+  margin-bottom: 14px;
 }
 
 .info_text {
@@ -265,15 +390,14 @@ p {
 .section_contents{
 	width: 72%;
   height: 65px;
-  border-left: solid 2px #60c0c8;
-  margin-left: -10px;
+  margin-left: -44px;
   padding-left: 24px;
   float: left;
 }
 
 .section_title{
-	color: #60c0c8;
-	font-size: 22px;
+	color: #239999;
+	font-size: 15px;
 }
 .icon_img{
   width: 70px;
@@ -430,7 +554,7 @@ p {
   position: fixed;
   top: 50%;
   left: 52%;
-  margin-left: -16%;
+  margin-left: -24%;
   margin-top: -15%;
   padding: 7%;
   border-radius: 5px;
@@ -522,7 +646,7 @@ p {
 }
 .foot_title {
   float: left;
-  background-color: #1E929F;
+  background-color: #57ce9b;
   color: #1E929F;
   width: 100%;
   margin-left: 0%;

@@ -45,5 +45,23 @@ class UserController < ApplicationController
     redirect_to :back if params[:redirect].nil?
   end
   
+  
+  
+  def mypage
+    
+  end
 
+  def mypage_confirm
+    u = current_user
+    @new_password = params[:password]
+    @confirm_password = params[:confirm_password]
+    
+    if @new_password == @confirm_password
+      u.password = @confirm_password
+      u.save
+      redirect_to '/home/index'
+    else
+      flash[:error] = '비밀번호가 일치하지 않습니다.'
+    end
+  end
 end

@@ -1,236 +1,411 @@
 <%= render :partial => 'home/main_navbar_general' %>
 
+<%
+  today = Date.today
+  
+  td = today - @b.date_recruit_end
+  td = td.to_i
+  
+  if td > 0
+    
+    @b.status=2
+    @b.save
+  end
+%>
+
 <!-- 이거슨 팝업창 !! -->
 <%# if flash[:alert].present? %>
   <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
 <%# end %>
 <!-- Tables ================================================== -->
-<div class="col-md-12 col-sm-12 continue slided_img" style="padding-right: 0px;">
-  <div class="col-md-12 col-sm-12" style="padding-bottom: 20px; padding-right: 0px; padding-top:1%; padding-left: 0px; background-color: rgba(0, 0, 0, 0.61);">
-  <!--봉사명-->
-  <div class="col-md-9 col-sm-9">
-    <p class="m_title" style="margin-bottom:-8px;"><b><%= @b.name %></b></p>
-    <div class="col-md-3 col-sm-3">
-        <!--신청하기-->
-        <a href="#">
-          <button class="btn btn-block m_btn">
-              <b>신청하기</b>
-          </button>
-        </a>
-    </div>
-    <div class="col-md-3 col-sm-3">
-        <!--신청하기-->
-        <a href="/baguni/bucket_save/<%= @b.id %>">
-            <button class="btn btn-block m_btn btn_side" style="background-color:#c75050;">
-                <b>찜하기</b>
-            </button>
-        </a>
-    </div>
-    <div class="col-md-4"></div>
-  </div>
-  <div class="col-md-3"></div>
-  </div>
-</div>
 
-<br>&nbsp</br>
-<br>&nbsp</br>
-
-<!--ABOUT 시작-->
-<center>
- <span class="info_title"><b>ABOUT</b></span>
- <hr class="info_line"><br>
-</center>
-
-<div class="col-md-6 col-sm-6 col-xs-6 about_subtitle">
-  <p style="margin-bottom: -6%;"><strong>모집기간</strong></p><br>
-  <p style="margin-bottom: -6%;"><strong>봉사시간</strong></p><br>
-  <p style="margin-bottom: -6%;"><strong>활동지역</strong></p></p><br>
-  <p style="margin-top: 0%;"><strong>인증서발급유무</strong></p>
-</div>
-<% 
-  #Date.new(2001,2,3)
-  td = Date.today
-  td = td - @b.date_recruit_end
-  td = td.to_i
-  
-%>
-<div class="col-md-6 col-sm-6 col-xs-6 about_content">
-  <p style="margin-bottom: -6%; color: black"><%= @b.date_recruit_start %>~<%= @b.date_recruit_end %> (<%= "D" + td.to_s if td<0%> <%= "모집완료" if td>0%>)</p><br>
-  <p style="margin-bottom: -6%; color: black"><%= @b.time_expect_total %></p><br>
-  <p style="margin-bottom: -6%; color: black"><%= Region.find(@b.region_id).name %></p></p><br>
-  <p style="margin-top: 0%; color: black">
-    <% if @b.is_approval == 1 %>
-      O
-    <% else %>
-      X
-    <% end %>
-  </p>
-</div>
-
-<br>&nbsp</br>
-<br>&nbsp</br>
-
-<!--ABOUT 끝-->
-
-<center>
-  <img src="/img/img_more_horizontal.png" class="info_more"/>
-</center>
-
-<br>&nbsp</br>
-
-
-<!--DETAILS 시작-->
-<center>
- <span class="info_title"><b>DETAILS</b></span>
- <hr class="info_line"><br>
-</center><br>
-
-
-<div class="col-md-1"></div>
-<div class="col-md-5 col-sm-12">
-  <div class="info_group">
-    <div class="section_icon_area">
-    <img class="icon_img" src="/img/ic/ic_details_location.png"/>
-  </div>
-  <div class="section_side">
-  	<div class="section_round">
-  	</div>
-  </div>
-  <div class="section_contents">
-  	<span class="section_title">지역</span>
-  	<p class="section_text">&nbsp<%= @b.address %></p><br>
-  	<!--&nbsptext<br>-->
-  </div>
-  </div><br><br>
-
-  <div class="info_group">
-    <div class="section_icon_area">
-      <img class="icon_img" src="/img/ic/ic_details_time.png"/>
-    </div>
-    <div class="section_side">
-  	  <div class="section_round"></div>
-    </div>
-    <div class="section_contents">
-    	<span class="section_title">봉사기간</span>
-    	<p class="section_text">&nbsp<%= @b.date_real_start.to_s + " ~ " + @b.date_real_end.to_s %></p><br>
-    	<!--&nbsptext<br>-->
-    </div>
-  </div><br><br>
-  
-  <div class="info_group">
-    <div class="section_icon_area">
-      <img class="icon_img" src="/img/ic/ic_details_requirement.png"/>
-    </div>
-    <div class="section_side">
-  	  <div class="section_round"></div>
-    </div>
-    <div class="section_contents">
-    	<span class="section_title">지원가능 상세조건</span>
-    	<p class="section_text">&nbsp<%= @b.vltr_req %></p>
-    	<!--&nbsptext<br>-->
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="row">
+      <p class="bongsa_img_title"><strong>해피무브 글로벌 청년봉사단 16기&nbsp <%#= @b.name %></strong>
+      <button class="dday_btn">D-Day</button>
+      <button class="term_btn">마감임박</button></p>
     </div>
     
+    <div class="col-md-12">
+      <div class="col-md-5"><img src="<%= @b.img_main %>" alt="img" class="bongsa_img"></div>
+      <div class="col-md-7">
+        <p class="bongsa_sub_inform">
+          <strong>모집기간</strong>
+          <span class="bongsa_sub">2015-11-05~2015-11-30</span>
+        </p>
+        <p class="bongsa_sub_inform">
+          <strong>활동기간</strong>
+          <span class="bongsa_sub">2015-11-05~2015-11-30</span>
+        </p>
+        <p class="bongsa_sub_inform">
+          <strong>봉사시간</strong>
+          <span class="bongsa_sub">8시간</span>
+        </p>
+        <p class="bongsa_sub_inform">
+          <strong>활동지역</strong>
+          <span class="bongsa_sub">해외</span>
+        </p>
+        <p class="bongsa_sub_inform_confirm">
+          <strong>인증서발급유무</strong>
+            <span class="bongsa_sub_confirm">X</span>
+        </p>
+        <button class="bongsa_choice">찜하기</button>
+        <button class="bongsa_cancel">찜하기 취소</button>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-8">
+        <p class="bongsa_intro">봉사정보 상세설명해주는 부분</p>
+      </div>
+      <div class="col-md-4"></div>
   </div>
-</div>
+  <div class="col-md-2"></div>
 
-<div class="col-md-5 col-sm-12">
+  <center>
+    <img src="/img/img_more_horizontal.png" class="info_more"/>
+  </center>
 
-  <div class="info_group section_title_sex">
-    <div class="section_icon_area">
-      <img class="icon_img" src="/img/ic/ic_details_sex.png"/>
-    </div>
-    <div class="section_side">
-  	  <div class="section_round"></div>
-    </div>
-    <div class="section_contents">
-    	<span class="section_title">지원가능 성별</span>
-    	<p class="section_text">&nbsp
-    	<%= "남" if @b.vltr_sex==0 %>
-    	<%= "여" if @b.vltr_sex==1 %>
-    	<%= "무관" if @b.vltr_sex==2 %>
-    	</p><br>
-    	<!--&nbsptext<br>-->
-    </div>
-  </div><br><br>
-  
+  <div class="col-md-8">
   <div class="info_group">
     <div class="section_icon_area">
-      <img class="icon_img" src="/img/ic/ic_details_manager.png"/>
-    </div>
-    <div class="section_side">
-  	  <div class="section_round"></div>
+      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>
     </div>
     <div class="section_contents">
-    	<span class="section_title">담당자 연락처</span><br>
-    	<% unless @b.clerk_call.empty? %>
-    	  <p class="section_text">&nbspcontact: <%= @b.clerk_call %>
-    	<% end %>
-    	<% unless @b.clerk_call.empty? %>
-    	  <br> &nbspemail: <%= @b.clerk_email %></p><br>
-    	<% end %>
+    	<span class="section_title"><strong>활동지역</strong></span>
+    	<p class="section_text">해외</p><br>
     </div>
-  </div><br><br>
-  
-  <div class="info_group" style="margin-bottom:60px;">
+  </div>
+  <div class="info_group">
     <div class="section_icon_area">
-      <img class="icon_img" src="/img/ic/ic_details_info.png" class="info_icon"/>
-    </div>
-    <div class="section_side">
-  	  <div class="section_round"></div>
+      <img class="ic_bongsa_inform" src="/img/ic/ic_details_sex.png"/>
     </div>
     <div class="section_contents">
-    	<span class="section_title">상세내용</span>
-    	<p class="section_text"><%= @b.content %></p>
-    	<!--&nbsptext<br>-->
-    	<!--&nbsptext<br>-->
+    	<span class="section_title"><strong>지원 가능 성별</strong></span>
+    	<p class="section_text">무관</p><br>
     </div>
   </div>
-
-
+  <div class="info_group">
+    <div class="section_icon_area">
+      <img class="ic_bongsa_inform" src="/img/ic/ic_details_info.png"/>
+    </div>
+    <div class="section_contents">
+    	<span class="section_title"><strong>담당자</strong></span>
+    	<p class="section_text">해외</p><br>
+    </div>
+  </div>
+  <div class="info_group">
+    <div class="section_icon_area">
+      <img class="ic_bongsa_inform" src="/img/ic/ic_details_requirement.png"/>
+    </div>
+    <div class="section_contents">
+    	<span class="section_title"><strong>지원가능 상세조건</strong></span>
+    	<p class="section_text">지원가능 상세조건</p><br>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-4"></div>
 </div>
-<div class="col-md-1"></div>
 
-<center>
-  <img src="/img/img_more_horizontal.png" class="info_more"/>
-</center>
-
-<br>&nbsp</br>
-
-
-<!--POSTER 시작-->
-<center>
- <span class="info_title"><b>POSTER</b></span>
- <hr class="info_line"><br>
-</center>
-<% unless @b.img_poster.to_s.length <= 1  %>
-  <div class="col-md-12 slide slided_poster">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <img src="<%= @b.img_poster %>" class="info_poster">
-      </div>
-      <div class="col-md-2"></div>
-      </div>
-      <div class="col-md-1"></div>
-  </div>
-<% else %>
-  <div class="col-md-12 slide slided_poster">
-    <center>
-      <h1 style="margin-bottom:3%; font-size:40px;">
-          <b>해당 포스터가 없습니다</b>
-      </h1>
-    </center>
-  </div>
-<% end %>
-
+  <!--POSTER 시작-->
+  <center>
+   <!--<span class="info_title"><b>POSTER</b></span>-->
+   <br class="info_line"><br>
+  </center>
+  <% unless @b.img_poster.to_s.length <= 1  %>
+    <div class="col-md-12 slide slided_poster">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <img src="<%= @b.img_poster %>" class="info_poster">
+          <button class="bongsa_choice">찜하기</button>
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+  <% else %>
+    <div class="col-md-12 slide slided_poster">
+      <center>
+        <h1 style="margin-bottom:3%; font-size:40px;">
+            <b>해당 포스터가 없습니다</b>
+        </h1>
+      </center>
+    </div>
+  <% end %>
 
 <style>
 .slided_img{
-    background-image:url('<%= @b.img_main %>');
+  background-image:url('<%= @b.img_main %>');
 }
 </style>
 <!--POSTER 끝-->
+
+
+
+
+
+
+
+
+
+<!-- 여기부터 기존에 있던 것들 -->
+
+<!--<div class="col-md-12 col-sm-12 continue slided_img" style="padding-right: 0px;">-->
+<!--  <div class="col-md-12 col-sm-12" style="padding-bottom: 20px; padding-right: 0px; padding-top:1%; padding-left: 0px; background-color: rgba(0, 0, 0, 0.61);">-->
+  <!--봉사명-->
+<!--  <div class="col-md-9 col-sm-9">-->
+<!--    <p class="m_title" style="margin-bottom:-8px;"><b><%= @b.name %></b></p>-->
+<!--    <div class="col-md-3 col-sm-3">-->
+        <!--신청하기-->
+<!--        <a href="#">-->
+<!--          <button class="btn btn-block m_btn">-->
+<!--              <b>신청하기</b>-->
+<!--          </button>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-md-3 col-sm-3">-->
+        <!--신청하기-->
+<!--        <a href="/baguni/bucket_save/<%= @b.id %>">-->
+<!--            <button class="btn btn-block m_btn btn_side" style="background-color:#c75050;">-->
+<!--                <b>찜하기</b>-->
+<!--            </button>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-md-4"></div>-->
+<!--  </div>-->
+<!--  <div class="col-md-3"></div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<br>&nbsp</br>-->
+<!--<br>&nbsp</br>-->
+
+<!--ABOUT 시작-->
+<!--<center>-->
+<!-- <span class="info_title"><b>ABOUT</b></span>-->
+<!-- <hr class="info_line"><br>-->
+<!--</center>-->
+
+<!--<div class="col-md-6 col-sm-6 col-xs-6 about_subtitle">-->
+<!--  <p style="margin-bottom: -6%;"><strong>모집기간</strong></p><br>-->
+<!--  <p style="margin-bottom: -6%;"><strong>봉사시간</strong></p><br>-->
+<!--  <p style="margin-bottom: -6%;"><strong>활동지역</strong></p></p><br>-->
+<!--  <p style="margin-top: 0%;"><strong>인증서발급유무</strong></p>-->
+<!--</div>-->
+
+<!--<div class="col-md-6 col-sm-6 col-xs-6 about_content">-->
+<!--  <p style="margin-bottom: -6%; color: black">-->
+<!--    <%= @b.date_recruit_start %>~<%= @b.date_recruit_end %>-->
+    
+<!--    (-->
+<!--    <% if @b.status==2 %>-->
+<!--      <%= "모집완료" %>-->
+<!--    <% elsif td==0 %>-->
+<!--      <%= "오늘마감" %>-->
+<!--    <% else %>-->
+<!--      <%= "D" + td.to_s%>-->
+<!--    <% end %>-->
+<!--    )-->
+<!--  </p><br>-->
+<!--  <p style="margin-bottom: -6%; color: black"><%= @b.time_expect_total %></p><br>-->
+<!--  <p style="margin-bottom: -6%; color: black"><%= Region.find(@b.region_id).name %></p></p><br>-->
+<!--  <p style="margin-top: 0%; color: black">-->
+<!--    <% if @b.is_approval == 1 %>-->
+<!--      O-->
+<!--    <% else %>-->
+<!--      X-->
+<!--    <% end %>-->
+<!--  </p>-->
+<!--</div>-->
+
+<!--<br>&nbsp</br>-->
+<!--<br>&nbsp</br>-->
+
+<!--ABOUT 끝-->
+
+<!--<center>-->
+<!--  <img src="/img/img_more_horizontal.png" class="info_more"/>-->
+<!--</center>-->
+
+<!--<br>&nbsp</br>-->
+
+
+<!--DETAILS 시작-->
+<!--<center>-->
+<!-- <span class="info_title"><b>DETAILS</b></span>-->
+<!-- <hr class="info_line"><br>-->
+<!--</center><br>-->
+
+
+<!--<div class="col-md-1"></div>-->
+<!--<div class="col-md-5 col-sm-12">-->
+<!--  <div class="info_group">-->
+<!--    <div class="section_icon_area">-->
+<!--    <img class="icon_img" src="/img/ic/ic_details_location.png"/>-->
+<!--  </div>-->
+<!--  <div class="section_side">-->
+<!--  	<div class="section_round">-->
+<!--  	</div>-->
+<!--  </div>-->
+<!--  <div class="section_contents">-->
+<!--  	<span class="section_title">지역</span>-->
+<!--  	<p class="section_text">&nbsp<%= @b.address %></p><br>-->
+  	<!--&nbsptext<br>-->
+<!--  </div>-->
+<!--  </div><br><br>-->
+
+<!--  <div class="info_group">-->
+<!--    <div class="section_icon_area">-->
+<!--      <img class="icon_img" src="/img/ic/ic_details_time.png"/>-->
+<!--    </div>-->
+<!--    <div class="section_side">-->
+<!--  	  <div class="section_round"></div>-->
+<!--    </div>-->
+<!--    <div class="section_contents">-->
+<!--    	<span class="section_title">봉사기간</span>-->
+<!--    	<p class="section_text">&nbsp<%= @b.date_real_start.to_s + " ~ " + @b.date_real_end.to_s %></p><br>-->
+    	<!--&nbsptext<br>-->
+<!--    </div>-->
+<!--  </div><br><br>-->
+  
+<!--  <div class="info_group">-->
+<!--    <div class="section_icon_area">-->
+<!--      <img class="icon_img" src="/img/ic/ic_details_time.png"/>-->
+<!--    </div>-->
+<!--    <div class="section_side">-->
+<!--  	  <div class="section_round"></div>-->
+<!--    </div>-->
+<!--    <div class="section_contents">-->
+<!--    	<span class="section_title">봉사시간</span><br>-->
+    	
+<!--      <% if @b.time_daily_start != "" %>-->
+<!--      요일무관: <%= @b.time_daily_start + "~" + @b.time_daily_end %>-->
+<!--      <br>-->
+      
+<!--      <% else %>-->
+<!--          <% if @b.time_daily_start_1 != "" %>-->
+<!--          월: <%= @b.time_daily_start_1 + "~" + @b.time_daily_end_1 %>-->
+<!--          <br>-->
+<!--          <% end %>-->
+          
+<!--          <% if @b.time_daily_start_2 != "" %>-->
+<!--          화: <%= @b.time_daily_start_2 + "~" + @b.time_daily_end_2 %>-->
+<!--          <br>-->
+<!--          <% end %>-->
+          
+<!--          <% if @b.time_daily_start_3 != "" %>-->
+<!--          수: <%= @b.time_daily_start_3 + "~" + @b.time_daily_end_3 %>-->
+<!--          <br>-->
+<!--          <% end %>-->
+          
+<!--          <% if @b.time_daily_start_4 != "" %>-->
+<!--          목: <%= @b.time_daily_start_4 + "~" + @b.time_daily_end_4 %>-->
+<!--          <br>-->
+<!--          <% end %>-->
+          
+<!--          <% if @b.time_daily_start_5 != "" %>-->
+<!--          금: <%= @b.time_daily_start_5 + "~" + @b.time_daily_end_5 %>-->
+<!--          <br>-->
+<!--          <% end %>-->
+          
+<!--          <% if @b.time_daily_start_6 !="" %>-->
+<!--          토: <%= @b.time_daily_start_6 + "~" + @b.time_daily_end_6 %>-->
+<!--          <br>-->
+<!--          <% end %>-->
+          
+<!--          <% if @b.time_daily_start_7 !="" %>-->
+<!--          일: <%= @b.time_daily_start_7 + "~" + @b.time_daily_end_7 %>-->
+<!--          <% end %>-->
+<!--      <% end %>  -->
+<!--      </p><br>-->
+<!--    </div>-->
+<!--  </div><br><br>-->
+    
+<!--  <div class="info_group">-->
+<!--    <div class="section_icon_area">-->
+<!--      <img class="icon_img" src="/img/ic/ic_details_requirement.png"/>-->
+<!--    </div>-->
+<!--    <div class="section_side">-->
+<!--  	  <div class="section_round"></div>-->
+<!--    </div>-->
+<!--    <div class="section_contents">-->
+<!--    	<span class="section_title">지원가능 상세조건</span>-->
+<!--    	<p class="section_text">&nbsp<%= @b.vltr_req %></p>-->
+    	<!--&nbsptext<br>-->
+<!--    </div><br><br>-->
+    
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="col-md-5 col-sm-12">-->
+
+<!--  <div class="info_group section_title_sex">-->
+<!--    <div class="section_icon_area">-->
+<!--      <img class="icon_img" src="/img/ic/ic_details_sex.png"/>-->
+<!--    </div>-->
+<!--    <div class="section_side">-->
+<!--  	  <div class="section_round"></div>-->
+<!--    </div>-->
+<!--    <div class="section_contents">-->
+<!--    	<span class="section_title">지원가능 성별</span>-->
+<!--    	<p class="section_text">&nbsp-->
+<!--    	<%= "남" if @b.vltr_sex==0 %>-->
+<!--    	<%= "여" if @b.vltr_sex==1 %>-->
+<!--    	<%= "무관" if @b.vltr_sex==2 %>-->
+<!--    	</p><br>-->
+    	<!--&nbsptext<br>-->
+<!--    </div>-->
+<!--  </div><br><br>-->
+  
+<!--  <div class="info_group">-->
+<!--    <div class="section_icon_area">-->
+<!--      <img class="icon_img" src="/img/ic/ic_details_manager.png"/>-->
+<!--    </div>-->
+<!--    <div class="section_side">-->
+<!--  	  <div class="section_round"></div>-->
+<!--    </div>-->
+<!--    <div class="section_contents">-->
+<!--    	<span class="section_title">담당자 연락처</span><br>-->
+<!--    	<% unless @b.clerk_call.empty? %>-->
+<!--    	  <p class="section_text">&nbspcontact: <%= @b.clerk_call %>-->
+<!--    	<% end %>-->
+<!--    	<% unless @b.clerk_call.empty? %>-->
+<!--    	  <br> &nbspemail: <%= @b.clerk_email %></p><br>-->
+<!--    	<% end %>-->
+<!--    </div>-->
+<!--  </div><br><br>-->
+  
+<!--  <div class="info_group" style="margin-bottom:60px;">-->
+<!--    <div class="section_icon_area">-->
+<!--      <img class="icon_img" src="/img/ic/ic_details_info.png" class="info_icon"/>-->
+<!--    </div>-->
+<!--    <div class="section_side">-->
+<!--  	  <div class="section_round"></div>-->
+<!--    </div>-->
+<!--    <div class="section_contents">-->
+<!--    	<span class="section_title">상세내용</span>-->
+<!--    	<p class="section_text"><%= @b.content %></p>-->
+      
+      
+    	
+    	
+    	<!--&nbsptext<br>-->
+    	<!--&nbsptext<br>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+<!--</div>-->
+<!--<div class="col-md-1"></div>-->
+
+<!--<center>-->
+<!--  <img src="/img/img_more_horizontal.png" class="info_more"/>-->
+<!--</center>-->
+
+<!--<br>&nbsp</br>-->
+
 
 <!-- footer랑 이미지랑 붙이려고 약간 바꿨어요 --!>
 <%= render :partial => 'home/main_footer' %>

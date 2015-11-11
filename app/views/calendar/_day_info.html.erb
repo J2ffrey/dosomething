@@ -8,7 +8,7 @@
   
   #a = a.delete_if {|x| x == " "}
   unless @s_word.nil?
-    @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\" AND name LIKE \"%#{@s_word}%\"")
+    @b = Bongsa.where("(date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\") AND name LIKE \"%#{@s_word}%\"")
   else
     @b = Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\"")
   end

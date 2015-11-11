@@ -16,7 +16,7 @@ class CreateUsers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,                     null: false, default: ""
       t.string :password,                  null: false, default: ""
-      
+      t.string :confirm_password           null: false, default: ""
       ## Trackable
       t.integer  :sign_in_count,           null: false, default: 0
       t.datetime :current_sign_in_at

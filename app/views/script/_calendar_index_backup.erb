@@ -1,0 +1,92 @@
+<script>
+
+  function r_filter(){
+    $('.start_date,.end_date').addClass("hide")  //안보이게
+    //$('.start_date,.end_date').removeClass("hide")  //다보이게
+    
+    if($("#ck0").is(":checked") == true){
+      $('.start_date,.end_date').removeClass("hide")  //다보이게
+    }
+    if($("#ck1").is(":checked") == true){
+      $('.ck1').removeClass("hide")
+    }
+    if($("#ck2").is(":checked") == true){
+      $('.ck2').removeClass("hide")
+    }
+    if($("#ck3").is(":checked") == true){
+      $('.ck3').removeClass("hide")
+    }
+    if($("#ck4").is(":checked") == true){
+      $('.ck4').removeClass("hide")
+    }
+    if($("#ck5").is(":checked") == true){
+      $('.ck5').removeClass("hide")
+    }
+    
+    
+    if($(".s_check").is(":checked") == false && $(".e_check").is(":checked") == false )
+    {
+      $(".start_date").addClass("hide")
+      $(".end_date").addClass("hide")
+    }
+    else if($(".s_check").is(":checked") == true && $(".e_check").is(":checked") == false)
+    {
+      $(".end_date:not(.start_date)").addClass("hide")
+      // $(".start_date:not(.end_date)").removeClass("hide")
+    }
+    else if($(".e_check").is(":checked") == true && $(".s_check").is(":checked") == false)
+    {
+      $(".start_date:not(.end_date)").addClass("hide")
+      // $(".end_date:not(.start_date)").removeClass("hide")
+    }
+  }
+
+// $(function(){
+
+//   $('.s_check,.e_check,#ck0,#ck1,#ck2,#ck3,#ck4,#ck5' ).on("click",function(){
+//     $('.start_date,.end_date').addClass("hide")  //안보이게
+//     //$('.start_date,.end_date').removeClass("hide")  //다보이게
+    
+//     if($("#ck0").is(":checked") == true){
+//       $('.start_date,.end_date').removeClass("hide")  //다보이게
+//     }
+//     if($("#ck1").is(":checked") == true){
+//       $('.ck1').removeClass("hide")
+//     }
+//     if($("#ck2").is(":checked") == true){
+//       $('.ck2').removeClass("hide")
+//     }
+//     if($("#ck3").is(":checked") == true){
+//       $('.ck3').removeClass("hide")
+//     }
+//     if($("#ck4").is(":checked") == true){
+//       $('.ck4').removeClass("hide")
+//     }
+//     if($("#ck5").is(":checked") == true){
+//       $('.ck5').removeClass("hide")
+//     }
+    
+    
+//     if($(".s_check").is(":checked") == false && $(".e_check").is(":checked") == false )
+//     {
+//       $(".start_date").addClass("hide")
+//       $(".end_date").addClass("hide")
+//     }
+//     else if($(".s_check").is(":checked") == true && $(".e_check").is(":checked") == false)
+//     {
+//       $(".end_date:not(.start_date)").addClass("hide")
+//       // $(".start_date:not(.end_date)").removeClass("hide")
+//     }
+//     else if($(".e_check").is(":checked") == true && $(".s_check").is(":checked") == false)
+//     {
+//       $(".start_date:not(.end_date)").addClass("hide")
+//       // $(".end_date:not(.start_date)").removeClass("hide")
+//     }
+//     // else{
+//     //   $(".start_date").removeClass("hide")
+//     //   $(".end_date").removeClass("hide")
+//     // }
+    
+//   })
+// })
+</script>

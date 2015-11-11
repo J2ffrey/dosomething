@@ -7,7 +7,7 @@
 
 <div class="row header__top">
   <div calss="col-md-12">
-    <form class="navbar-form navbar-right" name="form_s" id="form_s" role="search" onsubmit="return r_refresh()" method="post">
+    <form class="navbar-form navbar-right" name="form_s" id="form_s" role="search" onsubmit="return r_refresh();" method="post">
       <!--<button id="search" class="navbar__search__first">검색</button>-->
       <div class="form-group">
         <input type="text" class="navbar__search" name="s_word" id="s_word" placeholder="ex) 벽화봉사">
@@ -31,37 +31,37 @@
   	  <center style="margin-top: 23%;"><p style="font-size:18px; color:white;"><b>봉사활동 유형</b></p></center>
     </div>
       
-      <input type="checkbox" name="ck" value="start" class="s_check" checked> 시작일
-      <input type="checkbox" name="ck" value="end" class="e_check" checked> 마감일
+      <input type="checkbox" name="ck" value="start" class="s_check" onclick="r_filter();" checked> 시작일
+      <input type="checkbox" name="ck" value="end" class="e_check" onclick="r_filter();" checked> 마감일
       
       <div class="bongsa_checkbox">
         <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck0" class="select_type" class="checking" value="all" checked>
+          <input type="checkbox" name="ck" id="ck0" class="select_type" class="checking" value="all" onclick="r_filter();" checked>
         	<i class="fa fa-circle"></i>
         	<span class="select_type_name" style="margin-left:1%;">전체보기</span>
         </div>
         <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck1" class="select_type" class="checking" value="1">
+          <input type="checkbox" name="ck" id="ck1" class="select_type" class="checking" value="1" onclick="r_filter();" >
         	<i class="fa fa-circle" style="color:#8dc24c;"></i>
         	<span class="select_type_name" style="margin-left:1%;">노력봉사</span>
         </div>
         <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck2" class="select_type" class="checking" value="2">
+          <input type="checkbox" name="ck" id="ck2" class="select_type" class="checking" value="2" onclick="r_filter();" >
         	<i class="fa fa-circle" style="color:#fe5723;"></i>
         	<span class="select_type_name" style="margin-left:1%;">교육봉사</span>
         </div>
         <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck3" class="select_type" class="checking" value="3">
+          <input type="checkbox" name="ck" id="ck3" class="select_type" class="checking" value="3" onclick="r_filter();" >
         	<i class="fa fa-circle" style="color:#ffeb00;"></i>
         	<span class="select_type_name" style="margin-left:1%;">재능봉사</span>
         </div>
         <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck4" class="select_type" class="checking" value="4">
+          <input type="checkbox" name="ck" id="ck4" class="select_type" class="checking" value="4" onclick="r_filter();" >
         	<i class="fa fa-circle" style="color:#2a62fd;"></i>
         	<span class="select_type_name" style="margin-left:1%;">해외봉사</span>
         </div>
         <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck5" class="select_type" class="checking" value="5">
+          <input type="checkbox" name="ck" id="ck5" class="select_type" class="checking" value="5" onclick="r_filter();" >
         	<i class="fa fa-circle" style="color:#546f7a;"></i>
         	<span class="select_type_name" style="margin-left:1%;">기타봉사</span>
         </div>

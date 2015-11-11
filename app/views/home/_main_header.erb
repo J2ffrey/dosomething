@@ -2,17 +2,24 @@
 <header role="banner" class="header header--home">
   <div class="wrapper">
 
-    <%= render :partial => 'home/main_navbar_index' %>
+    <%#= render :partial => 'home/main_navbar_index' %>
     
-    <div class="col-md-12 header__title"> <img alt="" src="/img/ic_logo/logo_intro.png" class="main-logo">
-     <br>  
-      <p class="header-viewcounter">
-          봉사활동 정보의 모든 것! <br>
-          <%= @total_view_count %>명이 방문하였습니다
-      </p>
+    <div class="col-md-12 header__title">
+      <center>
+        
+      <img alt="" src="/img/ic_logo/logo_intro.png" class="main-logo"> &nbsp&nbsp
+      <a class="nav_login"><img class="sub_logo_login" src="/img/ic_logo/login_btn.png"/></a>
+      <%= render :partial => 'home/login_modal_volunteer' %>
+      
+      <a href="/user/sign_up/" ><img class="sub_logo_signup" src="/img/ic_logo/logo_signup_btn.png"/></a>
+      </center>
+      <!--<p class="header-viewcounter">-->
+      <!--    봉사활동 정보의 모든 것! <br>-->
+          <%#= @total_view_count %>
+     <!--</p>-->
     </div>
     
-    <div class="row col-md-12 wantlist_height" style="background: rgba(0,0,0,0.55);">
+    <div class="row col-md-12 wantlist_height">
     <div class="col-md-1"></div>
       <div class="col-md-10">
         <form name="form_s" onsubmit="return filter()">
@@ -20,8 +27,9 @@
             <!--<form class="navbar-form navbar-right" id="form_s" role="search">-->
               <!--<button id="search" class="navbar__search__first">검색</button>-->
             <div class="form-group">
-              <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" style="background-color: rgba(245, 245, 245, 0.52);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
-              <span id="search-icon" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/></span>
+              <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" style="background-color: white;" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">&nbsp&nbsp
+              <button id="search-icon" class="ic_search" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/><span style="margin-right:7px;">검색</span></button>&nbsp&nbsp
+              <a href="/calendar/index"><button class="ic_calendar" style="cursor:pointer;"><img src="/img/ic_logo/ic_calendar_24px.png"/>&nbsp&nbsp캘린더</button></a>
             </div>
             <!--</form>-->
           </div>
@@ -31,7 +39,7 @@
               <ul>
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
-                    <select name="region" id="region_select">
+                    <select style="background-color:#a88e65; border:none;" name="region" id="region_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp지역</option>
                       <% Region.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
@@ -42,7 +50,7 @@
   
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
-                    <select name="school" id="school_select">
+                    <select style="background-color:#a88e65; border:none;" name="school" id="school_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp대학교</option>
                       <% School.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
@@ -53,7 +61,7 @@
                   
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
-                    <select name="btime" id="btime_select">
+                    <select style="background-color:#a88e65; border:none;" name="btime" id="btime_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp시간</option>
                       <% Btime.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
@@ -64,7 +72,7 @@
                   
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
-                    <select name="category" id="category_select">
+                    <select style="background-color:#a88e65; border:none;" name="category" id="category_select">
                       <option selected="selected" value="empty" class="filternamecss">&nbsp&nbsp&nbsp&nbsp봉사종류</option>
                       <% Category.all.each do |x| %>
                         <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>

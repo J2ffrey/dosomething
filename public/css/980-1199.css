@@ -7,6 +7,44 @@
 /*----------------- navbar_index_end ----------------------*/
 
 /*main_page*/
+/*new_css*/
+.header__title{
+  text-align: center;
+  width: 927.5px;
+}
+
+/*new_css*/
+
+
+
+
+select {
+  width: 122%;  
+}
+.ic_search {
+  background-color: #26a69a;
+  border: none;
+  cursor: pointer;
+  width:13%;
+  height: 36px;
+  border-radius: 25px;  
+}
+
+.ic_calendar {
+  background-color: #4caf50;
+  border: none;
+  cursor: pointer;
+  width: 16%;
+  height: 36px;
+  border-radius: 25px;
+}
+.fieldset_list {
+    margin: auto;
+    width: 81%;
+    position: relative;
+    margin-left: 10%;
+    margin-top: 2%;
+}
 .wantlist {
     list-style-type: none;
     float: center;
@@ -33,11 +71,23 @@
 }
 
 .main-logo{
-  height: 215px;
-  width:33%;
-  margin-bottom:-4%;
+  margin-top: 121px;
+  margin-bottom: 98px;
+  height: 111px;
+  width: 19%;
 }
-
+.sub_logo_login {
+  margin-top: 121px;
+  margin-bottom: 98px;
+  width: 9%;
+  height: 84px;
+}
+.sub_logo_signup {
+  margin-top: 121px;
+  margin-bottom: 98px;
+  width: 9%;
+  height: 84px;
+}
 .header-viewcounter{
   margin-top: 35px;
   font-size:20px;
@@ -400,7 +450,7 @@ p {
 .navbar__search {
     background-color: rgba(255,255,255,0);
     width: 36%;
-    margin-left: 32%;
+    margin-left: 17%;
     height: 35px;
     margin-top: 14px;
 }
@@ -434,7 +484,7 @@ p {
   position: fixed;
   top: 50%;
   left: 52%;
-  margin-left: -28%;
+  margin-left: -24%;
   margin-top: -15%;
   padding: 7%;
   border-radius: 5px;
@@ -446,7 +496,7 @@ p {
 /*----------------- footer_start -----------------*/
 .foot_title {
   float: left;
-  background-color: #1E929F;
+  background-color: #57ce9b;
   color: #1E929F;
   width: 100%;
   margin-left: 0%;
