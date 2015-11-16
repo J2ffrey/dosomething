@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 #gem 'simple_token_authentication', '~> 1.0'
 #gem 'active_model_serializers'
 gem 'mysql2', '~> 0.3.18'
+
 gem 'yaml_db'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
@@ -47,7 +48,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'web-console', '~> 2.0'
-
+gem 'omniauth-facebook', '~> 1.4.1'
 
 
 group :development, :test do

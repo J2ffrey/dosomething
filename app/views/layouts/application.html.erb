@@ -28,18 +28,22 @@
   <link rel="stylesheet" href="/css/768-979.css" media="all and (min-width:768px) and (max-width:979px)">
   <link rel="stylesheet" href="/css/980-1199.css" media="all and (min-width:980px) and (max-width:1199px)">
   <link rel="stylesheet" href="/css/1200-.css" media="all and (min-width:1200px)">
+  <!--noto sans 폰트 -->
+  
+
+  
   <!--글씨체 한나체로 변경-->
+
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
       <style>
         body {
-          
+            @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
             font-family: 'Nanum Gothic', sans-serif;
-            font-family: 'Noto Sans', sans-serif;
-            
-            
-        }
+            font-family: 'Noto Sans KOR','Noto Sans CJK KR','Noto Sans KOR' sans-serif;
+            }
       </style>
+
   <%= render :partial => 'style/index' %>
 
 </head>
@@ -63,12 +67,13 @@
 <body class="col-md-12 gray">
 <% if params[:nocol].nil? %>
   <div class="col-md-1"></div>
-    <div class="col-md-10 color" style="padding:0px;">
+    <div class="col-md-10 col-sm-12 color" style="padding:0px;">
 <% end %>
       <%= yield %>
 <% if params[:nocol].nil? %>
     </div>
   <div class="col-md-1"></div>
 <% end %>
+
 </body>
 </html>

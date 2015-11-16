@@ -1,8 +1,54 @@
 /*----------------- navbar_index_start ----------------------*/
+.nav_general{
+  background-color:#57ce9b; ;
+}
+
+.nav-logo{
+  width: 158%;
+  margin-top: 17%;
+  margin-bottom: 17%;
+  
+}
+
 .nav_calendar {
   font-size:18px;
   display:inline-block;
   width: 100%;  
+}
+
+.navbar-right {
+  margin-top: -3.5%;
+  margin-bottom: 0.3%;
+}
+.navbar_search_input {
+    border: none;
+    width: 60%;
+    height: 35px;
+    border-radius: 100px;
+    margin-top: 1%;
+}
+
+
+.search_btn_round {
+  width: 7%;
+  height: 35px;
+  padding: 0.27% 0% 0% 0.2%;
+  background-color: #26a69a;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+}
+.navbar_calendar_btn {
+    border: none;
+    background-color: #26a69a;
+    width: 21%;
+    height: 35px;
+    border-radius: 100px;
+    color: white;
+}
+.ic_navbar_calendar {
+  width:26px;
+  height: 25px;
 }
 /*----------------- navbar_index_end ----------------------*/
 
@@ -14,18 +60,20 @@ select {
   background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 11%;
-  height: 36px;
-  border-radius: 25px;  
+  width: 90%;
+  height: 39px;
+  border-radius: 25px;
+  margin-left: -17%;
 }
 
 .ic_calendar {
-  background-color: #4caf50;
+  background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 14%;
-  height: 36px;
+  width: 97%;
+  height: 39px;
   border-radius: 25px;
+  margin-left: -46.5%;
 }
 .fieldset_list {
     margin: auto;
@@ -42,29 +90,28 @@ select {
     margin-top: 0%;
     color: black;
 }
-.col-md-3 {
-    margin-bottom: 6%;
-}
-.nav-logo{
-    width: 49%;
-    height: 30px;
-    float: left;
-    margin-top: 8%;
-    margin-left: 48%;
-}
+/*.col-md-3 {*/
+/*    margin-bottom: 6%;*/
+/*}*/
+
 .wantlist_height {
   height: 120px;
 }
-.navbar-header{
-  width:15%;
+
+.main-logo-before{
+    margin-left: -101%;
+    margin-top: 70%;
+    margin-bottom: 98px;
+    height: 149px;
+    width: 156%;
 }
 
 .main-logo{
-  margin-top: 121px;
-  margin-bottom: 98px;
-  height: 115px;
-  width: 17%;
-  margin-right: 32px;
+    margin-left: 70%;
+    margin-top: 43%;
+    margin-bottom: 98px;
+    height: 149px;
+    width: 71%;
 }
 .sub_logo_login {
   margin-top: 121px;
@@ -85,14 +132,6 @@ select {
   color: white;
 }
 
-.navbar__search {
-    background-color: rgba(255,255,255,0);
-    width: 52%;
-    margin-left: 11%;
-    height: 36px;
-    margin-top: 14px;
-    border-radius: 35px;
-}
 .left_side{
   font-size:16px;
   width:33%;
@@ -181,8 +220,14 @@ p {
   padding-right: 4px;
   border: 1px solid gainsboro;
   height: 322px;
+  margin-bottom: 1%;
 }
   
+.main_content_volunteer_img {
+  width:100%;
+  height: 230px;
+  margin-top:0px;  
+}
 .volunteer_org_img {width:115px; height:115px; margin-top: 35px;}
 .plus_icon {width: 45px;
             height: 45px;}
@@ -193,6 +238,76 @@ p {
 
 /*--new_css--*/
 
+a:hover {
+  text-decoration: none;  
+}
+.navbar__search {
+  height: 39px;
+  margin: 0;
+  padding-left: 5px;
+  width: 96%;
+  font-weight: 600;
+  margin-left: 4%;
+  border-radius: 35px;
+  color: #57ce9b;
+  margin-left: 4%;
+  /*background-color: rgba(255,255,255,0);*/
+  /*width: 52%;*/
+  /*margin-top: 14px;*/
+}
+
+.facebook_img {
+  width:22px;
+  height:22px;
+}
+.login_facebook {
+  border: none;
+  border-radius: 45px;
+  width: 36%;
+  height: 40px;
+  background-color: #3a5998;  
+}
+.login_btn {
+  color: white;
+  background-color: #26a69a;
+  border: none;
+  width: 18%;
+  height: 40px;
+  border-radius: 26px;
+  margin-top: 2%;
+  margin-left: -18%;
+}
+.login_id {
+  margin-bottom: 14px;
+  border-radius: 100px;
+  height: 40px;
+  width: 61%;
+  margin-left: -18%;
+  border: none;
+  background-color:#c8e6c9;
+}
+.login_psw {
+  border-radius: 35px;
+  height: 40px;
+  width: 61%;
+  margin-left: -18%;
+  border: none;
+  background-color:#c8e6c9;
+}
+
+.span_signup {
+  margin-left: 24%;
+  font-size: 16px;
+  color: white;
+  border-bottom: 1px solid white;
+}
+.p_login {
+  margin-top: 16%;
+  margin-left: -19%;
+  color: white;
+  font-size: 40px;
+  margin-bottom: 22px;
+}
 .bongsa_img_title {
   color: black;
   font-size: 27px;
@@ -202,7 +317,7 @@ p {
   border: none;
   font-size: 14px;
   border-radius: 15px;
-  width: 8%;
+  width:10%;
   color: white;
   background-color: #57ce9b;
 }
@@ -210,7 +325,7 @@ p {
   border: none;
   font-size: 14px;
   border-radius: 28px;
-  width: 10%;
+  width: 12%;
   color: white;
   background-color: #ff5252; 
 }
@@ -223,16 +338,20 @@ p {
   border-radius: 35px;
   margin-right: 12px;
 }
-.bongsa_cancel {
-  border: 1px solid #60C0C8;
-  background-color: white;
+
+.bongsa_apply {
+  border: none;
+  width: 25%;
+  height: 28px;
+  background-color: #60c0c8;
+  color: white;
   border-radius: 35px;
-  width: 24%;
-  height: 28px;  
+  margin-right: 12px;  
 }
 .bongsa_img {
-  width: 280px;
+  width: 250px;
   height:200px;
+  margin-left: -12%;
 }
 .bongsa_sub_inform {
   margin-top: 0px;
@@ -259,15 +378,7 @@ p {
   margin-left: 40px;
 }
 
-.navbar__search__general {
-  background-color: white;
-  width: 127%;
-  margin-left: 6%;
-  height: 36px;
-  margin-top: 14px;
-  border-radius: 55px;
-  border: none;
-}
+
 /*--new_css--*/
 
 
@@ -335,6 +446,7 @@ p {
   color: #808080;
   margin-top: 4px;
   width: 111%;
+  margin-bottom: 3%;
 }
 
 .btn_side {
@@ -349,14 +461,14 @@ p {
 .info_poster {
   width: 100%;
   height: auto;
-  margin-top: -6%;
   margin-bottom: 16%;
 }
-.info_group {
-  height: 60px;
-  margin-bottom: 14px;
-}
-
+/*#info_group {*/
+/*  overflow:auto;*/
+/*}*/
+/*#section_contents {*/
+/*  margin-bottom: 10%;  */
+/*}*/
 .info_text {
   margin-left: 15%;
   margin-top: -10px;
@@ -389,7 +501,14 @@ p {
 }
 .section_contents{
 	width: 72%;
-  height: 65px;
+  height: auto;
+  margin-left: -44px;
+  padding-left: 24px;
+  float: left;
+}
+.section_contents_8 {
+	width: 90%;
+  height: auto;
   margin-left: -44px;
   padding-left: 24px;
   float: left;
@@ -407,6 +526,54 @@ p {
 
 /*----------------- bongsa_calendar_start -----------------*/
 
+/*new*/
+.bongsa_type_title {
+  font-size: 15px;
+  padding-left: 7%;
+  color: black;
+  margin-top: 15%;
+  margin-bottom: 3%;
+}
+.period_title {
+  color: black;
+  font-size: 15px;
+  padding-left: 7%;
+  margin-bottom: 3%;
+}
+.period_check_box {
+  font-size: 14px;
+  color: black;
+}
+input.s_check {
+  margin-left: 7%;
+  width: 14px;
+  height: 14px;
+}
+input.e_check {
+  margin-left: 7%;
+  width: 14px;
+  height: 14px;
+}
+.index_calendar_title {
+  font-size: 32px;
+  color: black;
+  margin-top: 0%;
+  font-weight: 600;
+}
+.index_calendar_title_arrow {
+  width: 40px;
+  height: 40px;
+}
+.small_calendar_arrow {
+  width: 11px;
+  height: 11px;
+}
+.calendar_arrow_btn {
+  border: none;
+  background-color: white;  
+}
+/*new*/
+
 .row {
     margin:0px;
 }
@@ -419,15 +586,15 @@ p {
     min-height: 1px;
 }
 	
-.select_type {
-    width: 16px;
-    height: 16px;
+input.select_type {
+  margin-left: 7%;
+  width: 14px;
+  height: 14px;
 }
-	
+
 .select_type_name {
-    margin-left: 27%;
-    margin-top: -9.6%;
-    font-size: 13px;
+  font-size: 14px;
+  color: black;
 }
 	
 .circle {
@@ -438,20 +605,19 @@ p {
     margin-left: 15%;
 }
 	
-.checking {
-	  margin-left: 10%;
-}
-	
 .calendar_date {
-  	font-size: 40px;
-  	margin-top: 5%;
+	font-size: 22px;
+	margin-top: 5%;
+	color: #000000;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 10px 0px;
 }
 	
 .calendar_content_background {
     background: white; 
     color: black;
     height: 600px;
-    border-right: 2px solid #e7f5e8;
+    border-right: 1px solid #dadada;
 }
 
 .calendar_content_last { 
@@ -465,16 +631,16 @@ p {
 }
 
 .small-calendar-title {
-    text-align:center;
-    font-weight: 800;
-    color: white;
-    margin-bottom:4%;
-    font-size: 18px;
+  padding-left: 7%;
+  text-align:left;
+  font-weight: 800;
+  margin: 36px 0px -6px 0px;
+  font-size: 15px;
 }
 
 .dayname-container {
     float: left;
-    color:white;
+    /*color:white;*/
 }
 
 .calendar-container {
@@ -490,9 +656,10 @@ p {
 }
 
 .calendar_day_info{
-    background:rgba(255, 165, 0, 0.2);
+    /*background:rgba(255, 165, 0, 0.2);*/
     border-radius:15px;
     padding:4px;
+    font-size: 13px;
 }
 
 .calendar_day_info > a{
@@ -503,19 +670,32 @@ p {
     color:black;
     text-decoration:none;
 }
-
+.calendar_day{
+    color: #000000;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
 .date_start{
-    background:rgba(255, 0, 0, 0.5);
-    border-radius:100px;
-    padding-bottom:3px;
-    padding-left:3px;
+  margin-right: 4%;
+  background: #63dc16;
+  color: white;
+  font-size: 11px;
+  border-radius: 200px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  padding-top: 3px;
 }
 
 .date_end{
-    background:rgba(0, 0, 255, 0.5);
-    border-radius:100px;
-    padding-bottom:3px;
-    padding-left:3px;
+  margin-right: 4%;
+  background: #e43834;
+  color: white;
+  font-size: 11px;
+  border-radius: 200px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  padding-top: 3px;
 }
 
 .small-calendar {
@@ -528,25 +708,52 @@ p {
     margin-top:5%;
 }
 
-::-webkit-input-placeholder {
+
+/*----------------- bongsa_calendar_end -----------------*/
+
+/* input_tag_css */
+input.login_id::-webkit-input-placeholder {
     color: white;
     font-size:15px;
 }
-
-:-moz-placeholder { /* Firefox 18- */
+input.login_id:-moz-placeholder { /* Firefox 18- */
     color: white; 
 }
-
-::-moz-placeholder {  /* Firefox 19+ */
+input.login_id::-moz-placeholder {  /* Firefox 19+ */
     color: white; 
 }
-
-:-ms-input-placeholder {  
+input.login_id:-ms-input-placeholder {  
     color: white;  
 }
-/*----------------- bongsa_calendar_end -----------------*/
+input.login_psw::-webkit-input-placeholder {
+    color: white;
+    font-size:15px;
+}
+input.login_psw:-moz-placeholder { /* Firefox 18- */
+    color: white; 
+}
+input.login_psw::-moz-placeholder {  /* Firefox 19+ */
+    color: white; 
+}
+input.login_psw:-ms-input-placeholder {  
+    color: white;  
+}
+input.navbar_search_input::-webkit-input-placeholder {
+    color: #57ce9b;
+    font-size:13px;
+}
+input.navbar_search_input:-moz-placeholder { /* Firefox 18- */
+    color: #57ce9b; 
+}
+input.navbar_search_input::-moz-placeholder {  /* Firefox 19+ */
+    color: #57ce9b; 
+}
+input.navbar_search_input:-ms-input-placeholder {  
+    color: #57ce9b;  
+}
+/* input_tag_css */
 
-/*----------------- login_modal_start ----------------------*/
+/*----------------- login_modal_start
 .modal_login {
   color:black;
   background-color: #dbd9d9;
@@ -562,51 +769,6 @@ p {
   box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
 }
 
-.login_title {
-    font-size: 30px;
-    color: white;
-
-}
-
-.login_icon {
-  width: 12%;
-  height: 38px;
-}
-
-.login_cancle {
-     width: 30%;
-     margin-left: 66%;
-     margin-top: 11%;
-}
-
-.login_btn {
-     font-size: 14px;
-     background-color: #ec1c77;
-     color: white;
-     width: 45%;
-     height: 33px;
-     border: none;
-}
-
-.login_input{
-    background-color: transparent; 
-    border-style: solid; 
-    border-width: 0px 0px 1px 0px; 
-    border-color: white;
-    width: 84%;
-}
-
-.loginbtn input { 
-    border: none;
-    width: 70px;
-    height: 30px;
-    color: white;
-    font-size: 16px;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-                }
-                
 .modal_content{
   color: white;
 }
@@ -622,7 +784,7 @@ p {
 
 .icon_facebook {height: 37px;
                 width: 37px;}
-/*----------------- login_modal_end ----------------------*/
+login_modal_end ----------------------*/
 
 /*----------------- footer_start -----------------*/
 .flo { 
@@ -637,12 +799,11 @@ p {
 }
 
 .footer_contact_facebook{
-  width: 15%;
+  width: 36%;
 }
 
 .footer_contact_blog{
-  width: 12%;
-  margin-top: 2%;
+  width: 44%;
 }
 .foot_title {
   float: left;
@@ -653,3 +814,220 @@ p {
 }
 
 /*----------------- footer_end -----------------*/
+
+/* main_header_login_css start */
+.main_header_login_user {
+  border: 2px solid white;
+  background-color: #a3a3a3;
+  height: 88px;
+  width: 11%;
+  border-radius: 100%;
+  margin-top: 22%;
+}
+.login_username {
+  color: white;
+  font-size: 24px;
+  font-weight:500;
+}
+.login_p_user {
+  color: white;  
+}
+
+.login_mypage {
+    border: none;
+    width: 19%;
+    height: 37px;
+    border-radius: 66px;
+    background-color: #26a69a;
+    color: white;
+}
+.login_choice_volunteer {
+  border: none;
+  width: 18%;
+  height: 37px;
+  border-radius: 66px;
+  background-color: #26a69a;
+  color: white;
+}
+/* main_header_login_css end*/
+
+/* mypage_css start */
+.mypage_profile {
+    width: 52%;
+    height: 96px;
+    background-color: #a3a3a3;
+    border: 2px solid white;
+    border-radius: 100%;
+    margin-top: 20%;
+    margin-bottom: 14%;
+}
+.mypage_name {
+  color: black;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 1%;
+}
+.mypage_user_email {
+  color: black;
+  font-size: 15px;
+  margin-top: -5%;
+}
+
+.edit_icon{
+  background-color: white;
+  border: none;
+  color: #BABABC;
+  font-size: 19px;
+
+}
+
+mypage_career_plus{
+      width: 4%;
+    margin-top: -2%;
+
+}
+
+.profile_title {
+  margin-left: 3%;
+  font-size: 22px;
+  margin-top: 5%;
+  color: black;
+  font-weight: 800;
+  text-align: left;
+}
+
+.profile_sub_title {
+  font-size: 15px;
+  color: #2f9e9e;
+  text-align: left;
+}
+
+.profile_sub_title_edit{
+  font-size: 15px;
+  color: #2f9e9e;
+  text-align: left;
+  width: 31%;
+}
+.profile_box_line_pws_confirm {
+  margin-top: 21%;
+  width: 75%;
+  padding-left: 15px;  
+}
+
+.profile_sub_info {
+  color: #a3a3a3;
+  font-size: 15px;
+  text-align: left;
+}
+
+.profile_sub_info_edit {
+  color: #a3a3a3;
+  font-size: 15px;
+  text-align: left;
+}
+.profile_sub_modify {
+    border: none;
+    background-color: white;
+    height: 27px;
+    margin-left: 64%;
+    margin-top: 0%;
+    margin-bottom: 10%;
+    width: 18%;
+    font-size: 14px;
+    color: #a3a3a3;
+  /*margin-bottom: -1%;*/
+}
+.under_title {
+  margin-left: 3%;
+  border-bottom: 3px solid black;
+  width: 30px;
+  margin-top: -2%;
+}
+
+.volunteer_history_title {
+    margin-left: 3%;
+    font-size: 22px;
+    color: black;
+    font-weight: 800;
+    text-align: left;
+}
+.career_title {
+  margin-left: 3%;
+  font-size: 22px;
+  color: black;
+  font-weight: 800;
+  text-align: left;
+}
+.self_intro_title {
+  margin-left: 3%;
+  font-size: 22px;
+  color: black;
+  font-weight: 800;  
+  text-align: left;
+}
+.whole_volunteer_time {
+  font-size: 15px;
+  color: #a3a3a3;
+  margin-left: 19%;  
+}
+.check_time {
+  font-size: 19px;
+  font-weight: 600;
+  color: #008888;
+}
+.volunteer_work_name {
+  text-align: left;
+  font-size: 15px;
+  color: #514E4E;
+  margin-bottom: -1%;  
+}
+.volunteer_work_time {
+  font-size: 15px;
+  color: #514E4E;
+  margin-bottom: -1%; 
+  text-align: right;
+  width:25%;
+}
+.plus_career {
+  color: #bbbbbd;
+  font-size: 18px;
+}
+.career_plus {
+  margin-left: 41%;
+  width:20px;
+  height: 20px;
+}
+.history_plus {
+  margin-left: 36%;
+  width:20px;
+  height: 20px; 
+}
+.self_intro_info {
+  text-align: left;
+  margin-left: 3%;
+  margin-bottom: 8%;
+  color: #514E4E;
+}
+
+.self_info_modify {
+  color: #bbbbbd;
+  font-size: 18px;
+  margin-left: 46%;
+}
+
+.go_mypage_edit {
+  width: 17%;
+  color: white;
+  background-color: #26A69A;
+  height: 35px;
+  border: none;
+  margin-bottom: 2%;
+}
+/* mypage_css end */
+
+/* mypage_edit_css start */
+.self_intro_box {
+  width: 80%;
+  
+}
+/* mypage_edit_css end */

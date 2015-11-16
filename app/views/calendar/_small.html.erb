@@ -31,14 +31,14 @@
 %>
 
 <div class="small-calendar-title">
+  <span class="current ng-binding" ng-bind="date | date:'yyyy.MM'" style="padding-right: 25%;"><%= year.to_s + "년 " + month.to_s + "월"%></span>
   <% date2 = date3.prev_month(1) %>
-  <a href="javascript:s_refresh(<%= date2.year %>,<%= date2.month %>)" style="text-decoration:none;">
-    <span class="prev" ng-click="addMonth(-1)"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span></span>
+  <a href="javascript:s_refresh(<%= date2.year %>,<%= date2.month %>)" style="text-decoration:none; color:#000000;padding-right: 2%;">
+    <span class="prev" ng-click="addMonth(-1)"><span><img src="/img/ic_logo/small_arrow_left_16px.png" class="small_calendar_arrow"/></span></span>
   </a>
-  <span class="current ng-binding" ng-bind="date | date:'yyyy.MM'"><%= year.to_s + "." + month.to_s %></span>
   <% date2 = date3.next_month(1) %>
-  <a href="javascript:s_refresh(<%= date2.year %>,<%= date2.month %>)" style="text-decoration:none;">
-    <span class="next" ng-click="addMonth(1)"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></span>
+  <a href="javascript:s_refresh(<%= date2.year %>,<%= date2.month %>)" style="text-decoration:none; color:#000000;">
+    <span class="next" ng-click="addMonth(1)"><span><img src="/img/ic_logo/small_arrow_right_16px.png" class="small_calendar_arrow"/></span></span>
   </a>
 </div>
 
@@ -57,7 +57,7 @@
         <% while i != j+eday %>
           <div class="day-label days ng-binding ng-scope" ng-bind="day.date | date:'d'" ng-repeat="day in days" ng-class="{'in-range': day.in_range == true, 'start-in-range': day.start_in_range === true, 'end-in-range': day.end_in_range === true}">
             <% if date.month == month %>
-              <a href="javascript:refresh(<%= date.year.to_s + "," + date.month.to_s + "," + date.day.to_s %>)">
+              <a href="javascript:refresh(<%= date.year.to_s + "," + date.month.to_s + "," + date.day.to_s %>)" style="color:#000000;">
                 <%= date.day %>
               </a>
             <% end %>

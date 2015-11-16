@@ -1,6 +1,125 @@
-<h1>My Page</h1>
-<form action="/user/mypage_confirm/<%=current_user.id%>">
-      새 비밀번호:<input type="password" name="new_password"><br><Br>
-      비밀번호 확인:<input type = "password" name="confirm_password"><br><br>
-    <input type="submit" value="변경">
-  </form>
+<%= render :partial => 'home/main_navbar_general' %> 
+
+<div class="col-md-12">
+  <div class="col-md-3">
+    <div class="col-md-3"></div>
+    <center>
+      <div class="col-md-9 user_box">
+        <% if current_user.picture.length == 0 %>
+        <button class="mypage_profile"><img src="/img/ic_logo/ic_login_user_32px.png"></button>
+        <% else %>
+        <button class="mypage_profile"><%= current_user.picture %></button>
+        <% end %>
+        <p class="mypage_name"><%= current_user.name %></p>
+        <p class="mypage_user_email"><%= current_user.email %></p>
+      </div>
+    </center>
+  </div>
+  <div class="col-md-9" style="border-left: 1px solid black;">
+    <div class="profile_box">
+      <p class="profile_title">프로필</p>
+      <p class="under_title"></p>
+      <div class="row col-md-12">
+        <div class="row col-md-12" style="margin-bottom: 4%">
+        <div class="col-md-4">
+          <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp학교</strong></p>
+          <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_phone_24px.png"/>&nbsp&nbsp&nbsp연락처</strong></p>
+          <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_email_24px.png"/>&nbsp&nbsp&nbsp이메일</strong></p>
+          <p class="profile_sub_title"><strong><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호</strong></p>
+          <p class="profile_sub_title"><strong><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호 확인</strong></p>
+        </div>
+        <div class="col-md-8" style="margin-top: 1%;">
+          <p class="profile_sub_info"><%= current_user.school %></p>
+          <p class="profile_sub_info"><%= current_user.phonenumber %></p>
+          <p class="profile_sub_info"><%= current_user.email %></p>
+          <p class="profile_sub_info">***********</p>
+          <p class="profile_sub_info">***********</p>
+        </div>
+      </div>
+    </div>
+        <!--<div class="profile_box_line col-md-9">-->
+        <!--  <strong class="col-md-3 profile_sub_title"><img src="/img/ic_logo/user_email_24px.png"/>&nbsp&nbsp&nbsp이메일</strong>-->
+        <!--  <p class="col-md-6 profile_sub_info"><%= current_user.email %></p>-->
+          
+        <!--</div>-->
+        <!--<div class="profile_box_line col-md-9">-->
+        <!--  <strong class="col-md-3 profile_sub_title"><img src="/img/ic_logo/user_phone_24px.png"/>&nbsp&nbsp&nbsp연락처</strong>-->
+        <!--  <p class="col-md-6 profile_sub_title"><%= current_user.phonenumber %></p>-->
+          
+        <!--</div>-->
+        <!--<div class="profile_box_line col-md-9">-->
+        <!--  <strong class="col-md-3 profile_sub_title"><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp학교</strong>-->
+        <!--  <p class="col-md-6 profile_sub_title"><%= current_user.school %></p>-->
+        <!--</div>-->
+        <!--<div class="profile_box_line col-md-9">-->
+        <!--  <strong class="col-md-3 profile_sub_title"><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호</strong>-->
+        <!--  <p class="col-md-6">********</p>-->
+        <!--</div>-->
+        <!--<div class="profile_box_line_pws_confirm col-md-9/">-->
+        <!--  <strong class="col-md-3 profile_sub_title"><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호</strong>-->
+        <!--  <p class="col-md-6">********</p>-->
+        <!--  </div>-->
+      
+    </div> 
+    
+    <% time_total = 0 %>
+    <div class="volunteer_history_box">
+      <p class="volunteer_history_title">봉사활동 History</p>
+       <p class="under_title"></p>
+      <div class="row col-md-12">
+        <table class="histories">
+          <thead>
+            <tr>
+              <td>봉사명</td>
+              <td>봉사시간</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% current_user.histories.each do |x| %>
+              <tr>
+                <td><%= x.name %></td>
+                <td><%= x.time %></td>
+                <td></td>
+              </tr>
+              <% time_total += x.time %>
+            <% end %>
+          </tbody>
+            </table>
+            <br>
+      </div>
+      <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="whole_volunteer_time">총 활동시간 </span>
+          <span class="check_time"><%= time_total %>시간</span>
+      </p>
+    </div>
+    
+    <div class="career_box">
+      <p class="career_title">수상 및 표창</p>
+      <p class="under_title"></p>
+          <div class="row col-md-12">
+          <% current_user.careers.each do |x| %>
+            <p class="volunteer_work_name"><%= x.name %></p>
+          <% end %>
+        <div class="col-md-6">
+        </div>
+      </div>
+    </div>
+<!--자기소개시작-->
+    <div class="col-md-12">&nbsp</div>
+    <div class="self_intro_box">
+      <p class="self_intro_title">자기소개</p>
+      <p class="under_title"></p>
+      <p class="self_intro_info"><%= current_user.intro %></p>
+      </div>
+<!--자기소개 끝-->
+      <div class="col-md-12 col-sm-12 col-xs-12">
+      <center>
+        <a href="/user/mypage_edit/"><button class="go_mypage_edit"><b>수정하기</b></button></a>
+      </center>
+      </div>
+  </div>
+</div>
+  
+
+<%= render :partial => 'home/main_footer' %>

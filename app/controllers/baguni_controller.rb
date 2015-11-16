@@ -91,7 +91,8 @@ class BaguniController < ApplicationController
         pa = Bongsa.find(params[:id])
         b = Bucket.new
         b.user_id   = current_user.id
-        b.target_bongsa_id = pa.id
+        b.bongsa_id = pa.id
+    
         b.save
         flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
         redirect_to :back

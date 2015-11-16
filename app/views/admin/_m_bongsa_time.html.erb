@@ -1,0 +1,60 @@
+<% 
+  arr = ['매일','월','화','수','목','금','토','일']
+  @n = @nn
+  @n = 1 if @n.nil?
+  @b = Bongsa.find(params[:bid]) unless params[:bid].nil?
+%>
+<label>봉사시간</label><br>
+
+<table style="width:400px">
+  <% @b.bongsa_times.each do |x| %>
+    <tr>
+      <td style="width:200px;" class="day_head">
+        <%= x.time_type %>
+      </td>
+      <td style="width:200px;" class="day_time">
+        <%= x.time_start %> ~ <%= x.time_end %>
+      </td>
+      <td>
+        <a href="javascript:time_delete(<%= x.id %>);">삭제</a>
+      </td>
+    <tr>
+  <% end %>
+  <tr>
+    <td class="day_head">
+      <select style="width:100%" name="time_type">
+        <% arr.each do |y| %>
+          <option value="<%= y %>"><%= y %></option>
+        <% end %>
+      </select>
+    </td>
+    <td class="day_time">
+      <input type="text" name="start_time" class="form-control_time"/> ~
+      <input type="text" name="end_time" class="form-control_time"/>
+    </td>
+    <td>
+      <a href="javascript:time_add();">추가</a>
+    <td>
+  </tr>
+</table>
+
+<script>
+  function time_delete(id){
+				var site_text = "/admin/del_bongsa_time?id=" + id
+				+ "&iid=" + "<%= @b.id %>"
+				;
+			  
+				$('#f_time').load(site_text);
+  }
+  
+  function time_add(){
+				var site_text = "/admin/add_bongsa_time?" 
+				+ 'id=' + "<%= @b.id %>"
+				+ '&t=' + form_b.time_type.value
+				+ '&s=' + form_b.start_time.value
+				+ '&e=' + form_b.end_time.value
+				;
+			  
+				$('#f_time').load(site_text);
+  }
+</script>

@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102190119) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "value",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20151114072720) do
 
   create_table "authorities", force: :cascade do |t|
     t.integer  "authority_bundle_id", limit: 4
@@ -42,88 +35,109 @@ ActiveRecord::Schema.define(version: 20151102190119) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "bongsa_dates", force: :cascade do |t|
+    t.integer  "bongsa_id",  limit: 4,                null: false
+    t.string   "date_type",  limit: 255, default: ""
+    t.date     "date_start",                          null: false
+    t.date     "date_end",                            null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "bongsa_links", force: :cascade do |t|
+    t.integer  "bongsa_id",  limit: 4,   null: false
+    t.string   "name",       limit: 255, null: false
+    t.string   "url",        limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "bongsa_times", force: :cascade do |t|
+    t.integer  "bongsa_id",  limit: 4,                  null: false
+    t.string   "time_type",  limit: 255, default: "매일", null: false
+    t.string   "time_start", limit: 255,                null: false
+    t.string   "time_end",   limit: 255,                null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
   create_table "bongsa_tmps", force: :cascade do |t|
-    t.string   "img_main",           limit: 255
-    t.string   "img_poster",         limit: 255
-    t.string   "name",               limit: 255
+    t.string   "name",               limit: 255,                   null: false
     t.text     "content",            limit: 65535
-    t.boolean  "is_edu",             limit: 1
-    t.integer  "status",             limit: 4
-    t.integer  "organization_id",    limit: 4
-    t.string   "clerk_name",         limit: 255
-    t.string   "clerk_call",         limit: 255
-    t.boolean  "is_regular",         limit: 1
+    t.string   "summary",            limit: 255,   default: ""
+    t.text     "content_etc",        limit: 65535
+    t.text     "incentive",          limit: 65535
+    t.string   "status",             limit: 255,   default: ""
+    t.boolean  "is_approval",        limit: 1,     default: true
+    t.text     "address",            limit: 65535
+    t.boolean  "is_edu",             limit: 1,     default: false
+    t.boolean  "is_visible",         limit: 1,     default: true
+    t.integer  "time_expect_total",  limit: 4,     default: 0
+    t.integer  "view_count",         limit: 4,     default: 0
+    t.string   "img_main",           limit: 255,   default: ""
+    t.string   "img_poster",         limit: 255,   default: ""
+    t.integer  "organization_id",    limit: 4,                     null: false
+    t.string   "clerk_name",         limit: 255,   default: ""
+    t.string   "clerk_call",         limit: 255,   default: ""
+    t.string   "clerk_email",        limit: 255,   default: ""
+    t.string   "clerk_link",         limit: 255,   default: ""
+    t.boolean  "is_recruit_always",  limit: 1,     default: false
+    t.boolean  "is_regular",         limit: 1,     default: false
     t.date     "date_recruit_start"
     t.date     "date_recruit_end"
     t.date     "date_real_start"
     t.date     "date_real_end"
-    t.string   "time_daily_start",   limit: 255
-    t.string   "time_daily_end",     limit: 255
-    t.integer  "time_expect_total",  limit: 4
-    t.integer  "vltr_num",           limit: 4
-    t.integer  "vltr_age_id",        limit: 4
-    t.integer  "vltr_sex",           limit: 4
-    t.text     "vltr_req",           limit: 65535
-    t.integer  "region_id",          limit: 4
-    t.integer  "school_id",          limit: 4
-    t.integer  "btime_id",           limit: 4
-    t.integer  "category_id",        limit: 4
-    t.string   "admin_add",          limit: 255
-    t.string   "admin_mod",          limit: 255
-    t.integer  "act_time",           limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "vltr_num",           limit: 4,     default: 1
+    t.integer  "vltr_num2",          limit: 4,     default: 0
+    t.string   "vltr_req",           limit: 255,   default: ""
+    t.integer  "region_id",          limit: 4,                     null: false
+    t.integer  "school_id",          limit: 4,                     null: false
+    t.integer  "btime_id",           limit: 4,                     null: false
+    t.integer  "category_id",        limit: 4,                     null: false
+    t.string   "admin_add",          limit: 255,   default: ""
+    t.string   "admin_mod",          limit: 255,   default: ""
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "bongsas", force: :cascade do |t|
-    t.boolean  "is_approval",        limit: 1
-    t.text     "address",            limit: 65535
-    t.boolean  "is_recruit_always",  limit: 1
-    t.string   "img_main",           limit: 255
-    t.string   "img_poster",         limit: 255
-    t.string   "name",               limit: 255
+    t.string   "name",               limit: 255,   default: "봉사명", null: false
     t.text     "content",            limit: 65535
-    t.boolean  "is_edu",             limit: 1
-    t.integer  "status",             limit: 4
-    t.integer  "organization_id",    limit: 4
-    t.string   "clerk_name",         limit: 255
-    t.string   "clerk_call",         limit: 255
-    t.string   "clerk_email",        limit: 255
-    t.boolean  "is_regular",         limit: 1
+    t.string   "summary",            limit: 255,   default: ""
+    t.text     "content_etc",        limit: 65535
+    t.text     "incentive",          limit: 65535
+    t.string   "status",             limit: 255,   default: ""
+    t.boolean  "is_approval",        limit: 1,     default: true
+    t.text     "address",            limit: 65535
+    t.boolean  "is_edu",             limit: 1,     default: false
+    t.boolean  "is_visible",         limit: 1,     default: false
+    t.integer  "time_expect_total",  limit: 4,     default: 0
+    t.integer  "view_count",         limit: 4,     default: 0
+    t.string   "link",               limit: 255,   default: ""
+    t.string   "img_main",           limit: 255,   default: ""
+    t.string   "img_poster",         limit: 255,   default: ""
+    t.integer  "organization_id",    limit: 4,     default: 1,     null: false
+    t.string   "clerk_name",         limit: 255,   default: ""
+    t.string   "clerk_call",         limit: 255,   default: ""
+    t.string   "clerk_email",        limit: 255,   default: ""
+    t.string   "clerk_link",         limit: 255,   default: ""
+    t.boolean  "is_recruit_always",  limit: 1,     default: false
+    t.boolean  "is_regular",         limit: 1,     default: false
     t.date     "date_recruit_start"
     t.date     "date_recruit_end"
     t.date     "date_real_start"
     t.date     "date_real_end"
-    t.string   "time_daily_start",   limit: 255
-    t.string   "time_daily_end",     limit: 255
-    t.integer  "time_expect_total",  limit: 4
-    t.integer  "vltr_num",           limit: 4
-    t.integer  "vltr_age_id",        limit: 4
-    t.integer  "vltr_sex",           limit: 4
-    t.text     "vltr_req",           limit: 65535
-    t.integer  "region_id",          limit: 4
-    t.integer  "school_id",          limit: 4
-    t.integer  "btime_id",           limit: 4
-    t.integer  "category_id",        limit: 4
-    t.string   "admin_add",          limit: 255
-    t.string   "admin_mod",          limit: 255
-    t.integer  "act_time",           limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "time_daily_start_1", limit: 255
-    t.string   "time_daily_start_2", limit: 255
-    t.string   "time_daily_start_3", limit: 255
-    t.string   "time_daily_start_4", limit: 255
-    t.string   "time_daily_start_5", limit: 255
-    t.string   "time_daily_start_6", limit: 255
-    t.string   "time_daily_start_7", limit: 255
-    t.string   "time_daily_end_1",   limit: 255
-    t.string   "time_daily_end_2",   limit: 255
-    t.string   "time_daily_end_3",   limit: 255
-    t.string   "time_daily_end_4",   limit: 255
-    t.string   "time_daily_end_5",   limit: 255
-    t.string   "time_daily_end_6",   limit: 255
-    t.string   "time_daily_end_7",   limit: 255
+    t.integer  "vltr_num",           limit: 4,     default: 1
+    t.integer  "vltr_num2",          limit: 4,     default: 0
+    t.string   "vltr_req",           limit: 255,   default: ""
+    t.integer  "region_id",          limit: 4,     default: 1,     null: false
+    t.integer  "school_id",          limit: 4,     default: 1,     null: false
+    t.integer  "btime_id",           limit: 4,     default: 1,     null: false
+    t.integer  "category_id",        limit: 4,     default: 1,     null: false
+    t.string   "admin_add",          limit: 255,   default: ""
+    t.string   "admin_mod",          limit: 255,   default: ""
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "btimes", force: :cascade do |t|
@@ -135,15 +149,31 @@ ActiveRecord::Schema.define(version: 20151102190119) do
   end
 
   create_table "buckets", force: :cascade do |t|
-    t.string   "user_id",          limit: 255
-    t.string   "target_bongsa_id", limit: 255
-    t.integer  "act_time",         limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "user_id",    limit: 255
+    t.string   "bongsa_id",  limit: 255
+    t.integer  "act_time",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "careers", force: :cascade do |t|
+    t.string   "user_id",    limit: 255
+    t.string   "name",       limit: 255
+    t.string   "sort",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.string   "user_id",    limit: 255
+    t.string   "name",       limit: 255
+    t.integer  "time",       limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -156,15 +186,13 @@ ActiveRecord::Schema.define(version: 20151102190119) do
   end
 
   create_table "real_bongsas", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
     t.string   "content",    limit: 255
-    t.string   "date_start", limit: 255
-    t.string   "date_end",   limit: 255
+    t.integer  "org_name",   limit: 4
+    t.date     "date_start"
+    t.date     "date_end"
     t.string   "time_total", limit: 255
-    t.string   "location",   limit: 255
-    t.string   "region",     limit: 255
-    t.string   "img",        limit: 255
-    t.integer  "user_id",    limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -188,9 +216,10 @@ ActiveRecord::Schema.define(version: 20151102190119) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "tempcrawls", force: :cascade do |t|
-    t.integer  "keytemp",    limit: 4
-    t.string   "nametemp",   limit: 255
+  create_table "settings", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "value",      limit: 4
+    t.string   "content",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -199,22 +228,9 @@ ActiveRecord::Schema.define(version: 20151102190119) do
     t.integer  "keytemp",      limit: 4
     t.string   "nametemp",     limit: 255
     t.integer  "is_registerd", limit: 4
+    t.integer  "from",         limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-  end
-
-  create_table "tmpcrawls", force: :cascade do |t|
-    t.integer  "keytmp",     limit: 4
-    t.string   "nametmp",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "tmpcrls", force: :cascade do |t|
-    t.integer  "keytemp",    limit: 4
-    t.string   "nametemp",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -226,34 +242,29 @@ ActiveRecord::Schema.define(version: 20151102190119) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean  "available",           limit: 1,   default: false
-    t.integer  "user_type_id",        limit: 4,   default: 0
-    t.string   "name",                limit: 255, default: "",    null: false
+    t.boolean  "available",           limit: 1,   default: true
+    t.integer  "user_type_id",        limit: 4,   default: 1
+    t.string   "email",               limit: 255,                null: false
+    t.string   "password",            limit: 255,                null: false
+    t.string   "school",              limit: 255, default: ""
+    t.string   "intro",               limit: 255, default: ""
+    t.string   "career",              limit: 255, default: ""
+    t.string   "name",                limit: 255,                null: false
     t.string   "picture",             limit: 255, default: ""
-    t.string   "phonenumber",         limit: 255, default: "",    null: false
+    t.string   "phonenumber",         limit: 255, default: ""
     t.integer  "organization_id",     limit: 4,   default: 0
-    t.integer  "authority_bundle_id", limit: 4,   default: 1,     null: false
-    t.string   "email",               limit: 255, default: "",    null: false
-    t.string   "password",            limit: 255, default: "",    null: false
-    t.integer  "sign_in_count",       limit: 4,   default: 0,     null: false
+    t.integer  "authority_bundle_id", limit: 4,   default: 1,    null: false
+    t.integer  "sign_in_count",       limit: 4,   default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",  limit: 255
     t.string   "last_sign_in_ip",     limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "view_counts", force: :cascade do |t|
     t.string   "ip_adress",  limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "vltr_ages", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "min",        limit: 4
-    t.integer  "max",        limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

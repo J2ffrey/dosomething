@@ -28,7 +28,7 @@
   <!--  <%#= "ck4 " if x.category_id == 4 %>-->
   <!--  <%#= "ck5 " if x.category_id == 5 %>-->
   <!--  ">-->
-  <center><p class="calendar_day_info hvr-back-pulse 
+  <p class="calendar_day_info hvr-back-pulse 
     <% if x.date_recruit_start == a %>
     start_date 
     <% end %>
@@ -62,10 +62,9 @@
        <b><%= "마" %></b>
       </span>
     <% end %>
-    
     <a href="/home/bongsa_information/<%= x.id %>">
       <%= x.name %>
     </a>
-  </p></center>
+  </p>
 <% end %>
 <!--여까지 -->

@@ -1,0 +1,104 @@
+      <% time_total = 0 %>
+      <p class="volunteer_history_title">봉사활동 History</p>
+       <p class="under_title"></p>
+      <div class="row col-md-12">
+        <table class="histories">
+          <thead>
+            <tr>
+              <td>봉사명</td>
+              <td>봉사시간</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+              <% i=0 %>
+              <% current_user.histories.each do |x| %>
+                <% i+=1 %>
+                <tr>
+                  <td><input type="checkbox" name="chk_his" value=<%=x.id%> /><%= x.name %></td>
+                  <td><%= x.time %></td>
+                  <td>
+                    <% if current_user.histories.size == i %>
+                      <button onclick="history_delete();">삭제</button>
+                    <% end %>
+                  </td>
+                </tr>
+                <% time_total += x.time %>
+              <% end %>
+          </tbody>
+          <br>
+          <tfooter>
+              <tr>
+                <td>
+                  <input type="text" id="name" class="volunteer_work_name" placeholder="ex)벽화봉사">
+                </td>
+                <td>
+                  <input type="number" id="time" class="volunteer_work_time" placeholder="ex)3">시간
+                </td>
+                <td>
+                  <b>&nbsp&nbsp<img src="/img/ic_logo/mypage_career_plus_24px.png" class="mypage_career_plus"/>
+                  <button class="edit_icon" onclick="history_save();">등록</button></b>
+                </td>
+              </tr>
+          </tfooter>
+        </table>
+        <p> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="whole_volunteer_time">총 활동시간 </span>
+          <span class="check_time"><%= time_total %>시간</span>
+        </p>
+      </div>
+
+<script>
+  document.getElementById("name").addEventListener("keydown", function(e) {
+      if (!e) { var e = window.event; }
+      // Enter is pressed
+      if (e.keyCode == 13) { history_save(); }
+  }, false);
+  document.getElementById("time").addEventListener("keydown", function(e) {
+      if (!e) { var e = window.event; }
+      // Enter is pressed
+      if (e.keyCode == 13) { history_save(); }
+  }, false);
+
+  function history_delete(){
+    chk_=document.getElementsByName("chk_his");
+    var chk_h="";
+    
+    for(var i=0; i<chk_.length;i++){
+      if(chk_[i].checked==true){   
+        chk_h+=chk_[i].value+",";
+      }
+    }
+    
+		var site_text = "/history/delete?" 
+		+ 'chk_his=' + chk_h
+		;
+		$('.volunteer_history_box').load(site_text);
+		
+		return false;
+  }
+  
+  function history_save(){
+    a = document.getElementById("time");
+    b = document.getElementById("name");
+		var site_text = "/history/save?"
+		+ 'time=' + a.value
+		+ '&name=' + b.value
+		;
+		$('.volunteer_history_box').load(site_text);
+		return false;
+  }
+  
+</script>
+
+<style>
+  table.histories{
+    width:60%;
+    margin-left:5%;
+  }
+  table.histories>td:first-child{
+    width:20%;
+  }
+  table.histories>td:nth-child(2){
+    width:20%;
+  }
+</style>

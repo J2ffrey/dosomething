@@ -25,47 +25,62 @@
     <%= render partial: "small" %>
   </div>
   <!--봉사유형 선택	-->
+  <div class="row">
+    <p class="period_title"><strong>시작/마감</strong></p>
+    <input type="checkbox" name="ck" value="start" class="s_check" onclick="r_filter();" checked><span class="period_check_box">&nbsp시작일</span>
+    <input type="checkbox" name="ck" value="end" class="e_check" onclick="r_filter();" checked><span class="period_check_box">&nbsp마감일</span>
+  </div>
   
   <div class="bongsa_type_checkbox">
     <div class="row">
-  	  <center style="margin-top: 23%;"><p style="font-size:18px; color:white;"><b>봉사활동 유형</b></p></center>
+  	  <p class="bongsa_type_title"><b>봉사활동 유형</b></p>
+  	  <input type="checkbox" name="ck" id="ck0" class="select_type" class="checking" value="all" onclick="r_filter();" checked>
+  	  <span class="select_type_name">&nbsp전체보기</span><br>
+  	  <input type="checkbox" name="ck" id="ck1" class="select_type" class="checking" value="1" onclick="r_filter();" >
+  	  <span class="select_type_name">&nbsp노력봉사</span><br>
+  	  <input type="checkbox" name="ck" id="ck2" class="select_type" class="checking" value="2" onclick="r_filter();" >
+  	  <span class="select_type_name">&nbsp교육봉사</span><br>
+  	  <input type="checkbox" name="ck" id="ck3" class="select_type" class="checking" value="3" onclick="r_filter();" >
+  	  <span class="select_type_name">&nbsp재능봉사</span><br>
+  	  <input type="checkbox" name="ck" id="ck4" class="select_type" class="checking" value="4" onclick="r_filter();" >
+  	  <span class="select_type_name">&nbsp해외봉사</span><br>
+  	  <input type="checkbox" name="ck" id="ck5" class="select_type" class="checking" value="5" onclick="r_filter();" >
+  	  <span class="select_type_name">&nbsp기타봉사</span>
     </div>
       
-      <input type="checkbox" name="ck" value="start" class="s_check" onclick="r_filter();" checked> 시작일
-      <input type="checkbox" name="ck" value="end" class="e_check" onclick="r_filter();" checked> 마감일
       
-      <div class="bongsa_checkbox">
-        <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck0" class="select_type" class="checking" value="all" onclick="r_filter();" checked>
-        	<i class="fa fa-circle"></i>
-        	<span class="select_type_name" style="margin-left:1%;">전체보기</span>
-        </div>
-        <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck1" class="select_type" class="checking" value="1" onclick="r_filter();" >
-        	<i class="fa fa-circle" style="color:#8dc24c;"></i>
-        	<span class="select_type_name" style="margin-left:1%;">노력봉사</span>
-        </div>
-        <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck2" class="select_type" class="checking" value="2" onclick="r_filter();" >
-        	<i class="fa fa-circle" style="color:#fe5723;"></i>
-        	<span class="select_type_name" style="margin-left:1%;">교육봉사</span>
-        </div>
-        <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck3" class="select_type" class="checking" value="3" onclick="r_filter();" >
-        	<i class="fa fa-circle" style="color:#ffeb00;"></i>
-        	<span class="select_type_name" style="margin-left:1%;">재능봉사</span>
-        </div>
-        <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck4" class="select_type" class="checking" value="4" onclick="r_filter();" >
-        	<i class="fa fa-circle" style="color:#2a62fd;"></i>
-        	<span class="select_type_name" style="margin-left:1%;">해외봉사</span>
-        </div>
-        <div class="bongsa_checkbox_list">
-          <input type="checkbox" name="ck" id="ck5" class="select_type" class="checking" value="5" onclick="r_filter();" >
-        	<i class="fa fa-circle" style="color:#546f7a;"></i>
-        	<span class="select_type_name" style="margin-left:1%;">기타봉사</span>
-        </div>
-      </div>
+      <!--<div class="bongsa_checkbox">-->
+      <!--  <div class="bongsa_checkbox_list">-->
+      <!--    <input type="checkbox" name="ck" id="ck0" class="select_type" class="checking" value="all" onclick="r_filter();" checked>-->
+      <!--  	<i class="fa fa-circle"></i>-->
+      <!--  	<span class="select_type_name" style="margin-left:1%;">전체보기</span>-->
+      <!--  </div>-->
+      <!--  <div class="bongsa_checkbox_list">-->
+      <!--    <input type="checkbox" name="ck" id="ck1" class="select_type" class="checking" value="1" onclick="r_filter();" >-->
+      <!--  	<i class="fa fa-circle" style="color:#8dc24c;"></i>-->
+      <!--  	<span class="select_type_name" style="margin-left:1%;">노력봉사</span>-->
+      <!--  </div>-->
+      <!--  <div class="bongsa_checkbox_list">-->
+      <!--    <input type="checkbox" name="ck" id="ck2" class="select_type" class="checking" value="2" onclick="r_filter();" >-->
+      <!--  	<i class="fa fa-circle" style="color:#fe5723;"></i>-->
+      <!--  	<span class="select_type_name" style="margin-left:1%;">교육봉사</span>-->
+      <!--  </div>-->
+      <!--  <div class="bongsa_checkbox_list">-->
+      <!--    <input type="checkbox" name="ck" id="ck3" class="select_type" class="checking" value="3" onclick="r_filter();" >-->
+      <!--  	<i class="fa fa-circle" style="color:#ffeb00;"></i>-->
+      <!--  	<span class="select_type_name" style="margin-left:1%;">재능봉사</span>-->
+      <!--  </div>-->
+      <!--  <div class="bongsa_checkbox_list">-->
+      <!--    <input type="checkbox" name="ck" id="ck4" class="select_type" class="checking" value="4" onclick="r_filter();" >-->
+      <!--  	<i class="fa fa-circle" style="color:#2a62fd;"></i>-->
+      <!--  	<span class="select_type_name" style="margin-left:1%;">해외봉사</span>-->
+      <!--  </div>-->
+      <!--  <div class="bongsa_checkbox_list">-->
+      <!--    <input type="checkbox" name="ck" id="ck5" class="select_type" class="checking" value="5" onclick="r_filter();" >-->
+      <!--  	<i class="fa fa-circle" style="color:#546f7a;"></i>-->
+      <!--  	<span class="select_type_name" style="margin-left:1%;">기타봉사</span>-->
+      <!--  </div>-->
+      <!--</div>-->
     
   </div>  
 </div>

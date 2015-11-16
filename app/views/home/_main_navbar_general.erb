@@ -1,51 +1,65 @@
-<nav class="main_navbar_volunteer" style="background-color:#57ce9b;">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a href="/home/index"><img src="/img/ic_logo/main_navbar_logo.png" alt="" class="nav-logo"></a>
-    </div>
-    <div class="navbar-header" style="width: 15%; margin: -0.2% 0% 1% 0%;">
-      <input type="text" class="navbar__search__general" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
-    </div>
-    <div class="navbar-header" id="s_word" style="width: 2.5%; height: 35px; margin: 0.8% 0% 0% 5.5%; padding: 0.27% 0% 0% 0.2%; background-color: #26a69a; border-radius: 100%; cursor: pointer;">
-      <img src="/img/ic/ic_search_white_48dp_2x.png" style="width: 28px;">
-    </div>
-    <div class="navbar-header" id="" style="width: 9.7%; height: 36px; margin: 0.8% 0% 0% 1.6%; padding: 0.3% 0% 0% 1.2%; background-color: #26a69a; border-radius: 30px; cursor: pointer;">
-      <img src="/img/ic_logo/ic_calendar_32px.png" style="width: 26px;"><span style="color:white;margin: 0% 0% 0% 7%;vertical-align: middle;font-size: 15px;"><b>캘린더</b></span>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
+<div class="col-md-12 col-sm-12 col-xs-12  nav_general" id="nav_general">
+  <div class="col-md-1  col-sm-1 col-xs-1">&nbsp</div>
+  <div class="col-md-1  col-sm-1 col-xs-1">
+    <a href="/home/index"><img src="/img/ic_logo/main_navbar_logo.png" alt="" class="nav-logo"></a>
+  </div>
+  <div class="col-md-6  col-sm-6 col-xs-6" >
+    &nbsp&nbsp&nbsp<input type="text" class="navbar_search_input" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
+    <button class="search_btn_round"><img class="ic_navbar_search" src="/img/ic/ic_search_white_48dp_2x.png"></button>&nbsp
+  </div>
+  <div class="col-md-4  col-sm-4 col-xs-4" style="margin-top: 1%;">
     <div class="menu" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><%= flash[:error] %></li>
         <li><%= flash[:alert] %></li>
-        <li><a href="/calendar/index" class="nav_calendar">봉사달력</a></li>
-        <% unless current_user.nil? %>
-          <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
+        <% unless current_user.nil? #로그인을 했으면 %>
+          
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/home/private_info">개인정보변경</a></li>
-              <li><a href="/baguni/timemanage">봉사시간관리</a></li>
-              <li><a href="/calendar/index">봉사달력보기</a></li>
+              <li><a href="/calendar/index">봉사달력</a></li>
+              <li><a href="/baguni/timemanage">찜한봉사</a></li>
+              <li><a href="/user/mypage">마이페이지</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="http://dosomething-j2ffrey-2.c9.io/home/temp">봉사꾼소개</a></li>
-              <!-- 봉사기관에서 로그인 했을때만 봉사정보 등록 보이게 하기위한 소스 -->
               <% unless current_user.organization_id.nil? %>
                 <li><a href="/admin/index">봉사정보 등록</a></li>
               <% end %>
+              <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
             </ul>
           </li>
           <li class="logout">
-            <!--<a id="link--login" class="secondary-nav-item" href="/user/sign_out?redirect=/home/index">로그아웃</a>-->
-            <a id="link--login" class="secondary-nav-item" href="/user/sign_out">로그아웃</a>
+            <a id="link--login" class="secondary-nav-item" href="/user/sign_out?redirect=/home/index">로그아웃</a>
           </li>
         <% else %>
-          <!--<li class="nav_calendar"><a id="link--login" class="secondary-nav-item" href="/calendar/index" style="font-size:18px;">캘린더</a></li>-->
-          <li class="nav_login"><a>로그인</a></li>
-          <%= render :partial => 'home/login_modal_volunteer' %>
+          <li class="nav_login"><a href="/home/index">로그인</a></li>
           <li class="nav_signin"><a id="link--login" class="secondary-nav-item" href="/user/sign_up" style="font-size:18px;">회원가입</a></li>
         <% end %>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

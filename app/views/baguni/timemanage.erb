@@ -1,156 +1,278 @@
-<%= render :partial => 'home/main_navbar_general' %>
+<%= render :partial => 'home/main_navbar_general' %> 
 
-<br>
-<br>
-<br>
+<!--<div class="col-md-12">-->
+<!--  <div class="col-md-3">-->
+<!--    <div class="col-md-3"></div>-->
+<!--    <center>-->
+<!--    <div class="col-md-9 user_box">-->
+<!--      <button class="mypage_profile"><img src="/img/ic_logo/ic_login_user_32px.png"></button>-->
+<!--      <p class="mypage_name"><%=current_user.name %></p>-->
+<!--      <p class="mypage_user_email"><%= current_user.email %></p>-->
+<!--    </div>-->
+<!--    </center>-->
+<!--  </div>-->
+<!--  <div class="col-md-9" style="border-left: 1px solid black;">-->
+<!--    <div class="select_box">-->
+<!--      <div class="col-md-10">-->
+<!--        <p class="select_title">찜한봉사</p>-->
+<!--        <p class="under_title"></p>-->
+<!--      </div>-->
+<!--      <div class="col-md-2">-->
+<!--        <p class="select_number">2건</p>-->
+<!--      </div>-->
+<!--      <div class="col-md-12" style="border: 1px solid black; margin-bottom: 2%">-->
+<!--        <div class="col-md-2">봉사메인사진</div>-->
+<!--        <div class="col-md-10">-->
+<!--          <div class="col-md-12">-->
+<!--            <span style="font-size: 20px"><b>봉사제목</b></span>-->
+<!--          </div>-->
+<!--          <div class="col-md-2" style="color:#26a69a;">-->
+<!--            <span><b>D-day</b></span><br>-->
+<!--            <span><b>활동기간</b></span> -->
+<!--            <span><b>봉사시간</b></span>-->
+<!--            <span><b>봉사지역</b></span>-->
+<!--            <span><b>봉사내용</b></span>-->
+<!--          </div>-->
+<!--          <div class="col-md-8">-->
+<!--            <span>디데이 매칭</span><br>-->
+<!--            <span>활동기간 매칭</span><br>-->
+<!--            <span>봉사시간 매칭</span><br>-->
+<!--            <span>봉사지역 매칭</span><br>-->
+<!--            <span>봉사간략소개 매칭</span><br>-->
+<!--          </div>-->
+<!--          <div class="col-md-2">-->
+<!--            <button class="ic_timemanagement_cancle"><b>X 취소</b></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
-<!--찜한봉사-->
-<div class="cart_title">
-  <p style=>찜한 봉사</p>
-</div>
-
-<% @buckets.each do |x| %>
-<% y = Bongsa.find(x.target_bongsa_id) %>
-<div class="cart_content_background">
-  <div class="col-md-1">&nbsp</div>
-  <div class="col-md-10 cart_content hvr-border-fade">
-    <div class="row">
-      <div class="col-md-2 cart_content_photo_block">
-        <a href="/home/bongsa_information/<%= y.id %>">
-          <img src="<%= y.img_main %>" class="cart_content_photo">
-        </a>
-      </div>
-      
-      <div class="col-md-10">
-        <div class="row" style="margin:0px;">
-          <div class="col-md-9">
-            <p class="cart_content_title">
-              <strong>
-                <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;"><%= y.name %></a>
-              </strong>
-            </p>
-            <span style="color:gray">
-                기간 : <%= y.date_real_start %> ~ <%= y.date_real_end %>
-            <br>장소 : <%= Region.find(y.region_id).name %>
-            <br>봉사시간 : <%= y.time_expect_total %>
-            </span>
-          </div>
-          <div class="col-md-3">
-            <p class="cart_content_region"><strong><%= Organization.find(y.organization_id).name %></strong></p>
-          </div>
-        </div>
-        <div class="row no-padding" style="margin:0px;padding-right:0px;">
-          <div class="col-sm-6 col-md-7 col-lg-8">
-            <p style="margin-top:2%"><%= y.content.first(30) %>...</p>
-          </div>
-          <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-            <a href="/baguni/delete/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>
-            <a href="/baguni/register/<%= x.id %>"><button class="cart_content_btn cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button></a>
-          </div>
-        </div>
-      </div>  
+<div class="col-md-12">
+  <div class="col-md-3">
+    <div class="col-md-3"></div>
+    <center>
+    <div class="col-md-9 user_box">
+      <button class="mypage_profile"><img src="/img/ic_logo/ic_login_user_32px.png"></button>
+      <p class="mypage_name"><%=current_user.name %></p>
+      <p class="mypage_user_email"><%= current_user.email %></p>
     </div>
+    </center>
   </div>
-  <br>
-  <div class="col-md-1">&nbsp</div>
-</div>
-<% end %>
-<!--찜한봉사-->
-<br>&nbsp
-<br>&nbsp
-<br>&nbsp
-<div class="cart_title">
-  <p style=>실제 봉사 리스트</p>
-</div>
-
-<!--실제 봉사 리스트-->
-<% @real_bongsas.each do |x| %>
-<%# y = Bongsa.find(x.target_bongsa_id) %>
-<div class="cart_content_background">
-  <div class="col-md-1">&nbsp</div>
-  <div class="col-md-10 cart_content hvr-border-fade">
-    <div class="row">
-      <div class="col-md-2 cart_content_photo_block">
-        <!--<a href="/home/bongsa_information/<%#= x.id %>" style="color:#000;">-->
-          <img src="<%= x.img %>" class="cart_content_photo">
-        <!--</a>-->
+  <div class="col-md-9" style="border-left: 1px solid black;">
+    <div class="select_box">
+      <div class="col-md-10">
+        <p class="select_title">찜한봉사</p>
+        <p class="under_title"></p>
       </div>
-      
-      <% unless params[:id] == 0 || params[:id].nil? %>
-        <% c = RealBongsa.find(params[:id]) %>
-        <form action = "/baguni/modify/<%= c.id %>" method="POST">
-          <div class="col-md-10">
-            <div class="row" style="margin:0px;">
-              <div class="col-md-9">
-                <p class="cart_content_title"><strong><%= x.title %></strong></p>
-                <span style="color:gray">
-                    기간 : <%= x.date_start %> ~ <%= x.date_end %>
-                <br>장소 : <%= x.location %>
-                <br>봉사시간 : <input type="text" class="" value="<%= c.time_total %>" name="time_total">
-                </span>
-              </div>
-              <div class="col-md-3">
-                <p class="cart_content_region"><strong><%= x.region %></strong></p>
-              </div>
-            </div>
-            <div class="row no-padding" style="margin:0px;padding-right:0px;">
-              <div class="col-sm-6 col-md-7 col-lg-8">
-                <p style="margin-top:2%"><%= x.content %></p>
-              </div>
-              <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-                <a href="/baguni/timemanage">
-                  <button class="cart_content_btn cart_content_button_cancel">
-                    &nbsp<span class="glyphicon glyphicon-remove"></span>
-                    &nbsp&nbsp취소&nbsp
-                  </button>
-                </a>
-                <button class="cart_content_btn cart_content_button_modify" id="fake_btn">
-                  <span class="glyphicon glyphicon-pencil" id="fake_span"></span>
-                  <input type="submit" value="확인" id="fake_submit">
-                </button>
-              </div>
-            </div>
+      <div class="col-md-2">
+        <p class="select_number">
+          <%= @buckets.count %>건
+        </p>
+      </div>
+      <% @buckets.each do |x| %>
+      <% y = Bongsa.find(x.bongsa_id) %>
+      <div class="col-md-12" style="border: 1px solid black; margin-bottom: 2%; padding: 10px;">
+        <div class="col-md-2" style="width: 120px; height: 120px; padding: 0px;">
+          <img src="<%= y.img_main %>"/ style="width: 100%; height: 100%;">
+        </div>
+        <div class="col-md-8">
+          <div class="col-md-12">
+            <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;">
+            <span style="font-size: 20px"><b><%= y.name %></b></span></a>
           </div>
-        </form>
-      <% else %>
-        <div class="col-md-10">
-          <div class="row" style="margin:0px;">
-            <div class="col-md-9">
-              <p class="cart_content_title"><strong><%= x.title %></strong></p>
-              <span style="color:gray">
-                  기간 : <%= x.date_start %> ~ <%= x.date_end %>
-              <br>장소 : <%= x.location %>
-              <br>봉사시간 : <%= x.time_total %>
-              </span>
-            </div>
-            <div class="col-md-3">
-              <p class="cart_content_region"><strong><%= x.region %></strong></p>
-            </div>
+          <div class="col-md-2" style="color:#26a69a;">
+            <span><b>D-day</b></span><br>
+            <span><b>활동기간</b></span><br>
+            <span><b>봉사시간</b></span><br>
+            <span><b>봉사지역</b></span><br>
+            <span><b>봉사내용</b></span>
           </div>
-          <div class="row no-padding" style="margin:0px;padding-right:0px;">
-            <div class="col-sm-6 col-md-7 col-lg-8">
-              <p style="margin-top:2%"><%= x.content %></p>
-            </div>
-            <div class="col-sm-6 col-md-5 col-lg-4 no-padding">
-                <a href="/baguni/delete2/<%= x.id %>">
-                  <button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp삭제&nbsp</button>
-                </a>
-                <a href="/baguni/timemanage/<%= x.id %>">
-                  <button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button>
-                </a>
-            </div>
+          <div class="col-md-8">
+            <span>D-<%= ( Date.parse("#{y.date_recruit_end}") - Date.parse(Time.now.to_s)).to_i %></span><br>
+            <span><%= y.date_real_start %> ~ <%= y.date_real_end %></span><br>
+            <span><%= y.time_expect_total %></span><br>
+            <span><%= Region.find(y.region_id).name %></span><br>
+            <span><%= y.summary %></span><br>
+          </div>
+          <div class="col-md-2">
+            <!--기관명 넣을려고 UI에 있는거같은데 div 만들어둘테니 구현은 프론트에게 맡김-->
+          </div>
+          <div class="col-md-12">
+            <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;">
+            <span style=""><b><%= y.content %></b></span></a>
           </div>
         </div>
+        <div class="col-md-2" style="float: right; padding: 0px;">
+          <a href="/baguni/bongsa_delete/<%= x.id %>"><button class="ic_timemanagement_cancle"><b>X 취소</b></button></a>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>
-  <br>
-  <div class="col-md-1">&nbsp</div>
 </div>
 
-<% end %>
-  <br>
-  <div class="col-md-1">&nbsp</div>
+
+
+
+
+
+
+
+
+
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+
+<!--찜한봉사-->
+<!--<div class="cart_title">-->
+<!--  <p style=>찜한 봉사</p>-->
+<!--</div>-->
+
+<!--<% @buckets.each do |x| %>-->
+<!--<% y = Bongsa.find(x.bongsa_id) %>-->
+<!--<div class="cart_content_background">-->
+<!--  <div class="col-md-1">&nbsp</div>-->
+<!--  <div class="col-md-10 cart_content hvr-border-fade">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-2 cart_content_photo_block">-->
+<!--        <a href="/home/bongsa_information/<%= y.id %>">-->
+<!--          <img src="<%= y.img_main %>" class="cart_content_photo">-->
+<!--        </a>-->
+<!--      </div>-->
+      
+<!--      <div class="col-md-10">-->
+<!--        <div class="row" style="margin:0px;">-->
+<!--          <div class="col-md-9">-->
+<!--            <p class="cart_content_title">-->
+<!--              <strong>-->
+<!--                <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;"><%= y.name %></a>-->
+<!--              </strong>-->
+<!--            </p>-->
+<!--            <span style="color:gray">-->
+<!--                기간 : <%= y.date_real_start %> ~ <%= y.date_real_end %>-->
+<!--            <br>장소 : <%= Region.find(y.region_id).name %>-->
+<!--            <br>봉사시간 : <%= y.time_expect_total %>-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          <div class="col-md-3">-->
+<!--            <p class="cart_content_region"><strong><%= Organization.find(y.organization_id).name %></strong></p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row no-padding" style="margin:0px;padding-right:0px;">-->
+<!--          <div class="col-sm-6 col-md-7 col-lg-8">-->
+<!--            <p style="margin-top:2%"><%= y.content.first(30) %>...</p>-->
+<!--          </div>-->
+<!--          <div class="col-sm-6 col-md-5 col-lg-4 no-padding">-->
+<!--            <a href="/baguni/delete/<%= x.id %>"><button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp취소&nbsp</button></a>-->
+<!--            <a href="/baguni/register/<%= x.id %>"><button class="cart_content_btn cart_content_button_register">&nbsp<span class="glyphicon glyphicon-ok"></span>&nbsp&nbsp등록&nbsp</button></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>  -->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div class="col-md-1">&nbsp</div>-->
+<!--</div>-->
+<!--<% end %>-->
+<!--찜한봉사-->
+<!--<br>&nbsp-->
+<!--<br>&nbsp-->
+<!--<br>&nbsp-->
+<!--<div class="cart_title">-->
+<!--  <p style=>실제 봉사 리스트</p>-->
+<!--</div>-->
+
+<!--실제 봉사 리스트-->
+<!--<% @real_bongsas.each do |x| %>-->
+<%# y = Bongsa.find(x.target_bongsa_id) %>
+<!--<div class="cart_content_background">-->
+<!--  <div class="col-md-1">&nbsp</div>-->
+<!--  <div class="col-md-10 cart_content hvr-border-fade">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-2 cart_content_photo_block">-->
+        <!--<a href="/home/bongsa_information/<%#= x.id %>" style="color:#000;">-->
+<!--          <img src="<%= x.img %>" class="cart_content_photo">-->
+        <!--</a>-->
+<!--      </div>-->
+      
+<!--      <% unless params[:id] == 0 || params[:id].nil? %>-->
+<!--        <% c = RealBongsa.find(params[:id]) %>-->
+<!--        <form action = "/baguni/modify/<%= c.id %>" method="POST">-->
+<!--          <div class="col-md-10">-->
+<!--            <div class="row" style="margin:0px;">-->
+<!--              <div class="col-md-9">-->
+<!--                <p class="cart_content_title"><strong><%= x.title %></strong></p>-->
+<!--                <span style="color:gray">-->
+<!--                    기간 : <%= x.date_start %> ~ <%= x.date_end %>-->
+<!--                <br>장소 : <%= x.location %>-->
+<!--                <br>봉사시간 : <input type="text" class="" value="<%= c.time_total %>" name="time_total">-->
+<!--                </span>-->
+<!--              </div>-->
+<!--              <div class="col-md-3">-->
+<!--                <p class="cart_content_region"><strong><%= x.region %></strong></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row no-padding" style="margin:0px;padding-right:0px;">-->
+<!--              <div class="col-sm-6 col-md-7 col-lg-8">-->
+<!--                <p style="margin-top:2%"><%= x.content %></p>-->
+<!--              </div>-->
+<!--              <div class="col-sm-6 col-md-5 col-lg-4 no-padding">-->
+<!--                <a href="/baguni/timemanage">-->
+<!--                  <button class="cart_content_btn cart_content_button_cancel">-->
+<!--                    &nbsp<span class="glyphicon glyphicon-remove"></span>-->
+<!--                    &nbsp&nbsp취소&nbsp-->
+<!--                  </button>-->
+<!--                </a>-->
+<!--                <button class="cart_content_btn cart_content_button_modify" id="fake_btn">-->
+<!--                  <span class="glyphicon glyphicon-pencil" id="fake_span"></span>-->
+<!--                  <input type="submit" value="확인" id="fake_submit">-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      <% else %>-->
+<!--        <div class="col-md-10">-->
+<!--          <div class="row" style="margin:0px;">-->
+<!--            <div class="col-md-9">-->
+<!--              <p class="cart_content_title"><strong><%= x.title %></strong></p>-->
+<!--              <span style="color:gray">-->
+<!--                  기간 : <%= x.date_start %> ~ <%= x.date_end %>-->
+<!--              <br>장소 : <%= x.location %>-->
+<!--              <br>봉사시간 : <%= x.time_total %>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--            <div class="col-md-3">-->
+<!--              <p class="cart_content_region"><strong><%= x.region %></strong></p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row no-padding" style="margin:0px;padding-right:0px;">-->
+<!--            <div class="col-sm-6 col-md-7 col-lg-8">-->
+<!--              <p style="margin-top:2%"><%= x.content %></p>-->
+<!--            </div>-->
+<!--            <div class="col-sm-6 col-md-5 col-lg-4 no-padding">-->
+<!--                <a href="/baguni/delete2/<%= x.id %>">-->
+<!--                  <button class="cart_content_btn cart_content_button_cancel">&nbsp<span class="glyphicon glyphicon-remove"></span>&nbsp&nbsp삭제&nbsp</button>-->
+<!--                </a>-->
+<!--                <a href="/baguni/timemanage/<%= x.id %>">-->
+<!--                  <button class="cart_content_btn cart_content_button_modify">&nbsp<span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp수정&nbsp</button>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      <% end %>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div class="col-md-1">&nbsp</div>-->
+<!--</div>-->
+
+<!--<% end %>-->
+<!--  <br>-->
+<!--  <div class="col-md-1">&nbsp</div>-->
 
 
 <!--실제 봉사 리스트-->
@@ -158,25 +280,25 @@
 <!--총 봉사시간-->
 
 
-  <div class="col-md-12 col-sm-12 col-xs-12 cart_title">
-    <p>총 봉사시간</p>
-  </div>
+<!--  <div class="col-md-12 col-sm-12 col-xs-12 cart_title">-->
+<!--    <p>총 봉사시간</p>-->
+<!--  </div>-->
 
 
-  <div class="col-md-10 cart_content_background">
-    <h1 style="text-align:center; margin-bottom:2%; color:#5fc0c7; margin-top: 15px; margin-bottom: 15px;"><strong><%= @sum_times %>시간</strong></h1>
-  </div>
+<!--  <div class="col-md-10 cart_content_background">-->
+<!--    <h1 style="text-align:center; margin-bottom:2%; color:#5fc0c7; margin-top: 15px; margin-bottom: 15px;"><strong><%= @sum_times %>시간</strong></h1>-->
+<!--  </div>-->
 
 
 <!--총 봉사시간-->
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
 
 <!--봉사시간 입력 테두리-->
 

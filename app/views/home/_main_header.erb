@@ -1,48 +1,103 @@
-
 <header role="banner" class="header header--home">
   <div class="wrapper">
-
     <%#= render :partial => 'home/main_navbar_index' %>
-    
-    <div class="col-md-12 header__title">
+    <% if current_user.nil? %>
+    <div class="col-md-12 col-sm-12 col-xs-12 header__title">
       <center>
-        
-      <img alt="" src="/img/ic_logo/logo_intro.png" class="main-logo"> &nbsp&nbsp
-      <a class="nav_login"><img class="sub_logo_login" src="/img/ic_logo/login_btn.png"/></a>
-      <%= render :partial => 'home/login_modal_volunteer' %>
-      
-      <a href="/user/sign_up/" ><img class="sub_logo_signup" src="/img/ic_logo/logo_signup_btn.png"/></a>
+      <div class="col-md-4 col-sm-4 col-xs-4"></div>
+      <div class="col-md-2 col-sm-2 col-xs-2">
+        <a href="/home/index"><img alt="" src="/img/ic_logo/logo_intro.png" class="main-logo-before"></a> &nbsp&nbsp
+      </div>
       </center>
+      <div class="col-md-6 col-sm-6 col-xs-6" style="margin-left: -6%;">
+        <p class="p_login">Login
+        <a href="/user/sign_up"><span class="span_signup">회원가입</span></a>
+        </p>
+        <form action="/user/sign_in">
+        <input class="login_id" type="emai" name="email" placeholder="아이디를 입력하세요"><br>
+        <input class="login_psw" type="password" name="password" placeholder="비밀번호를 입력하세요"><br>
+        <input type="submit" class="login_btn" value="로그인">&nbsp&nbspOR&nbsp&nbsp
+        </form><br>
+        <% if current_user %>
+          Signed in as <strong><%= current_user.name %></strong>!
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% else %>
+          <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+        <% end %>
+    
+  
+
+        <!--<button class="login_facebook"><img class="facebook_img" src="/img/ic_logo/facebook_48.png">&nbsp&nbsp&nbsp페이스북으로 로그인</button>-->
+        
+        <p style="color:#ff0000"><%= flash[:error] %></p>
+      </div>
+      
       <!--<p class="header-viewcounter">-->
       <!--    봉사활동 정보의 모든 것! <br>-->
           <%#= @total_view_count %>
      <!--</p>-->
     </div>
+    <% else %>
     
-    <div class="row col-md-12 wantlist_height">
-    <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <form name="form_s" onsubmit="return filter()">
-          <div class="row" style="height: 30px;">
+    <div class="header__title">
+      <center>
+      <div class="col-md-4 col-sm-4 col-xs-4">
+        <a href="/home/index"><img alt="" src="/img/ic_logo/logo_intro.png" class="main-logo"></a> &nbsp&nbsp
+      </div>
+      </center>
+      <div class="col-md-8 col-sm-8 col-xs-8">
+          <!-- 사진이 있을 때 사진 보여주기 -->
+          <% if current_user.picture.length == 0 %>
+            <button class="main_header_login_user"><img src="/img/ic_logo/ic_login_user_32px.png"></button>
+          <% else %>
+            <button class="main_header_login_user"><%= current_user.picture %></button>
+          <% end %>
+        <!-- 여기까지 -->
+        
+        <p class="login_p_user"><span class="login_username"><%= current_user.name %></span>님 환영합니다!</p>
+        <p class="login_button_group">
+          <a href="/user/mypage"><button class="login_mypage"><img src="/img/ic_logo/ic_login_user.png" alt="mypage">&nbsp&nbsp마이페이지</button></a>&nbsp&nbsp
+          <a href="/baguni/timemanage"><button class="login_choice_volunteer"><img src="/img/ic_logo/ic_login_check_16px.png" alt="my_volunteer"/>&nbsp&nbsp찜한 봉사</button></a>
+        </p>
+      </div>
+      
+      <!--<p class="header-viewcounter">-->
+      <!--    봉사활동 정보의 모든 것! <br>-->
+          <%#= @total_view_count %>
+     <!--</p>-->
+    </div>
+    <% end %>
+    <div class="row col-md-12 col-sm-12 col-xs-12 wantlist_height">
+    <div class="col-md-1 col-sm-1 col-xs-1"></div>
+      <div class="col-md-10 col-sm-10 col-xs-10">
+        <form name="form_s" method="POST" onsubmit="return filter();">
             <!--<form class="navbar-form navbar-right" id="form_s" role="search">-->
               <!--<button id="search" class="navbar__search__first">검색</button>-->
-            <div class="form-group">
-              <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" style="background-color: white;" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">&nbsp&nbsp
-              <button id="search-icon" class="ic_search" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/><span style="margin-right:7px;">검색</span></button>&nbsp&nbsp
-              <a href="/calendar/index"><button class="ic_calendar" style="cursor:pointer;"><img src="/img/ic_logo/ic_calendar_24px.png"/>&nbsp&nbsp캘린더</button></a>
+            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-1 col-sm-1"></div>
+            <div class="col-md-7 col-sm-7 col-xs-12">
+              <input type="text" class="navbar__search" name="s_word" id="s_word" onchange="hideIcon(this);" style="background-color: white;" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요" value>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-6">
+              <button id="search-icon" class="ic_search" style="cursor:pointer;"><img src="/img/teamprofile/search.png"/><span style="margin-right:3px;">검색</span></button>&nbsp&nbsp
+              <a href="javascript:filter();">test</a>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-6">
+              <a href="/calendar/index"><button class="ic_calendar" style="cursor:pointer;"><img src="/img/ic_logo/ic_calendar_24px.png"/>&nbsp&nbsp봉사달력</button></a>
+            </div>
             </div>
             <!--</form>-->
-          </div>
+          
           
           <div class="row">
-            <fieldset class="fieldset_list" style="margin-top: 4%;">
+            <fieldset class="fieldset_list" style="margin-top: 6%;">
               <ul>
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
                     <select style="background-color:#a88e65; border:none;" name="region" id="region_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp지역</option>
                       <% Region.all.each do |x| %>
-                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -53,7 +108,7 @@
                     <select style="background-color:#a88e65; border:none;" name="school" id="school_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp대학교</option>
                       <% School.all.each do |x| %>
-                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -64,7 +119,7 @@
                     <select style="background-color:#a88e65; border:none;" name="btime" id="btime_select">
                       <option selected="selected" value="empty">&nbsp&nbsp&nbsp&nbsp시간</option>
                       <% Btime.all.each do |x| %>
-                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -75,7 +130,7 @@
                     <select style="background-color:#a88e65; border:none;" name="category" id="category_select">
                       <option selected="selected" value="empty" class="filternamecss">&nbsp&nbsp&nbsp&nbsp봉사종류</option>
                       <% Category.all.each do |x| %>
-                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
+                        <option value="<%= x.id %>">&nbsp&nbsp&nbsp&nbsp<%= x.name %></option>
                       <% end %>
                     </select>
                   </li>
@@ -96,7 +151,6 @@
   <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
 <%# end %> 
 <!-- 이재철코드 -->
-
 
 <%#= render :partial => 'popup' %>
 <%= render :partial => 'style/main_headercss' %>

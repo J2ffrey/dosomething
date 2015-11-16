@@ -103,7 +103,7 @@
                 <% post = Tempcrl.find(x) %>
                 <tr class="tr-content">
                     <td><%= post.id %></td>
-                    <td><a href="/admin/m_bongsa_tmp?id=<%= post.id %>&mod=1" style="color:blue;"><%= post.nametemp %></a></td>
+                    <td><a href="/admin/m_bongsa_tmp?id=<%= post.id %>" style="color:blue;"><%= post.nametemp %></a></td>
                     <td>
                     <% if post.keytemp %>
                         <%= post.keytemp %>

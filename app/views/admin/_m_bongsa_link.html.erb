@@ -1,0 +1,52 @@
+<% 
+  @b = Bongsa.find(params[:bid]) unless params[:bid].nil?
+%>
+
+<label>관련 링크</label><br>
+
+<table style="width:400px">
+  <% @b.bongsa_links.each do |x| %>
+    <tr>
+      <td style="width:200px;" class="day_head">
+        <%= x.name %>
+      </td>
+      <td style="width:200px;" class="day_link">
+        <%= x.url %>
+      </td>
+      <td>
+        <a href="javascript:link_delete(<%= x.id %>);">삭제</a>
+      </td>
+    <tr>
+  <% end %>
+  <tr>
+    <td class="day_head">
+      <input type="text" name="link_name" class="form-control_link" placeholder="링크제목"/>
+    </td>
+    <td class="day_link">
+      <input type="text" name="link_url" class="form-control_link" placeholder="주소"/>
+    </td>
+    <td>
+      <a href="javascript:link_add();">추가</a>
+    <td>
+  </tr>
+</table>
+
+<script>
+  function link_delete(id){
+				var site_text = "/admin/del_bongsa_link?id=" + id
+				+ "&iid=" + "<%= @b.id %>"
+				;
+			  
+				$('#f_link').load(site_text);
+  }
+  
+  function link_add(){
+				var site_text = "/admin/add_bongsa_link?" 
+				+ 'id=' + "<%= @b.id %>"
+				+ '&n=' + form_b.link_name.value
+				+ '&u=' + form_b.link_url.value
+				;
+			  
+				$('#f_link').load(site_text);
+  }
+</script>

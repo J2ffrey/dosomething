@@ -12,6 +12,149 @@
   text-align: center;
   width: 927.5px;
 }
+/*new*/
+a:hover {
+  text-decoration: none;  
+}
+.navbar__search {
+  height: 39px;
+  margin: 0;
+  padding-left: 5px;
+  width: 96%;
+  font-weight: 600;
+  margin-left: 4%;
+  border-radius: 35px;
+  color: #57ce9b;
+  margin-left: 4%;
+  /*background-color: rgba(255,255,255,0);*/
+  /*width: 52%;*/
+  /*margin-top: 14px;*/
+}
+
+.facebook_img {
+  width:22px;
+  height:22px;
+}
+.login_facebook {
+  border: none;
+  border-radius: 45px;
+  width: 36%;
+  height: 40px;
+  background-color: #3a5998;
+  font-size: 11px;
+}
+.login_btn {
+  color: white;
+  background-color: #26a69a;
+  border: none;
+  width: 18%;
+  height: 40px;
+  border-radius: 26px;
+  margin-top: 2%;
+  margin-left: -18%;
+}
+.login_id {
+  margin-bottom: 14px;
+  border-radius: 100px;
+  height: 40px;
+  width: 61%;
+  margin-left: -18%;
+  border: none;
+  background-color:#c8e6c9;
+}
+.login_psw {
+  border-radius: 35px;
+  height: 40px;
+  width: 61%;
+  margin-left: -18%;
+  border: none;
+  background-color:#c8e6c9;
+}
+
+.span_signup {
+  margin-left: 24%;
+  font-size: 16px;
+  color: white;
+  border-bottom: 1px solid white;
+}
+.p_login {
+  margin-top: 16%;
+  margin-left: -19%;
+  color: white;
+  font-size: 40px;
+  margin-bottom: 22px;
+}
+.bongsa_img_title {
+  color: black;
+  font-size: 27px;
+  margin-top: 39px;
+  margin-left: 6%;
+}
+.dday_btn {
+  border: none;
+  font-size: 14px;
+  border-radius: 15px;
+  width:10%;
+  color: white;
+  background-color: #57ce9b;
+}
+.term_btn {
+  border: none;
+  font-size: 14px;
+  border-radius: 28px;
+  width: 12%;
+  color: white;
+  background-color: #ff5252; 
+}
+.bongsa_choice {
+  border: none;
+  width: 22%;
+  height: 28px;
+  background-color: #60c0c8;
+  color: white;
+  border-radius: 35px;
+  margin-right: 12px;
+}
+
+.bongsa_apply {
+  border: none;
+  width: 25%;
+  height: 28px;
+  background-color: #60c0c8;
+  color: white;
+  border-radius: 35px;
+  margin-right: 12px;  
+}
+.bongsa_img {
+  width: 250px;
+  height:200px;
+  margin-left: -12%;
+}
+.bongsa_sub_inform {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: #209797;
+}
+.bongsa_sub_inform_confirm {
+  margin-top: 0px;
+  margin-bottom: 26px;
+}
+.ic_bongsa_inform {
+  width: 48px;
+  height: 48px;  
+}
+.bongsa_intro {
+  color: #808080;  
+}
+.bongsa_sub {
+  color: #808080;
+  margin-left: 85px;
+}
+.bongsa_sub_confirm {
+  color: #808080;
+  margin-left: 40px;
+}
+/*new*/
 
 /*new_css*/
 
@@ -22,21 +165,25 @@ select {
   width: 122%;  
 }
 .ic_search {
-  background-color: #26a69a;
-  border: none;
-  cursor: pointer;
-  width:13%;
-  height: 36px;
-  border-radius: 25px;  
+    background-color: #26a69a;
+    border: none;
+    cursor: pointer;
+    width: 112%;
+    height: 35px;
+    border-radius: 25px;
+    margin-left: -53%;
+    margin-top: 14px;
 }
 
 .ic_calendar {
-  background-color: #4caf50;
+  background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 16%;
-  height: 36px;
+  width: 146%;
+  height: 35px;
   border-radius: 25px;
+  margin-left: -70.5%;
+  margin-top: 14px;
 }
 .fieldset_list {
     margin: auto;
@@ -65,17 +212,59 @@ select {
   width: 59%;
   margin-top: 6%;
 }
+.navbar_search_input {
+    border: none;
+    width: 107%;
+    height: 35px;
+    border-radius: 100px;
+    margin-top: 3%;
+    margin-bottom: 4%;
+    margin-left: -37%;
+    padding-left: 6px;
+}
+.search_btn_round {
+    width: 35px;
+    height: 35px;
+    margin: 0.8% 0% 0% 5.5%;
+    padding: 0.27% 0% 0% 0.2%;
+    background-color: #26a69a;
+    border-radius: 100%;
+    cursor: pointer;
+    border: none;
+    margin-left: 0.5%;
+}
+.navbar_calendar_btn {
+    border: none;
+    background-color: #26a69a;
+    width: 85%;
+    height: 35px;
+    border-radius: 100px;
+    color: white;
+    margin-left: -62%;
+    margin-top: 5%;
+    margin-bottom: -5%;
+}
 
 .navbar-header{
   width:18%;
 }
 
-.main-logo{
-  margin-top: 121px;
-  margin-bottom: 98px;
-  height: 111px;
-  width: 19%;
+.main-logo-before{
+    margin-left: -101%;
+    margin-top: 70%;
+    margin-bottom: 98px;
+    height: 149px;
+    width: 156%;
 }
+
+.main-logo{
+  margin-left: 70%;
+  margin-top: 43%;
+  margin-bottom: 98px;
+  height: 149px;
+  width: 71%;
+}
+
 .sub_logo_login {
   margin-top: 121px;
   margin-bottom: 98px;
@@ -173,10 +362,20 @@ p {
   font-size:13px;
 }
 
-.row_main_content  {padding-bottom: 4px;
+.row_main_content  {
+  padding-bottom: 4px;
   padding-left: 4px;
   padding-right: 4px;
-  border: 1px solid gainsboro;}
+  border: 1px solid gainsboro;
+  height: 322px;
+  margin-bottom: 1%;
+}
+
+.main_content_volunteer_img {
+  width:100%;
+  height: 230px;
+  margin-top:0px;  
+}
   
 .volunteer_org_img {width:115px; height:115px; margin-top: 35px;}
 .plus_icon {width: 45px;
@@ -248,7 +447,7 @@ p {
 .info_more {
   width: 87%;
   height: 43px;
-  margin-top: 100px;
+  margin-top: 13px;
 }
 
 .info_icon {
@@ -297,10 +496,16 @@ p {
 	background-color: #60c0c8;
 }
 .section_contents{
-	width: 68%;
-  height: 65px;
-  border-left: solid 2px #60c0c8;
-  margin-left: -10px;
+	width: 72%;
+  height: auto;
+  margin-left: -44px;
+  padding-left: 24px;
+  float: left;
+}
+.section_contents_8 {
+	width: 90%;
+  height: auto;
+  margin-left: -44px;
   padding-left: 24px;
   float: left;
 }
@@ -318,7 +523,16 @@ p {
 /*----------------- bongsainform_page_end -----------------*/
 
 /*----------------- bongsa_calendar_start -----------------*/
-
+.bongsa_sub_inform {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  color: #209797;
+}
+.bongsa_img {
+    width: 100%;
+    height: 200px;
+    margin-left: 10%;
+}
 .row {
     margin:0px;
 }
@@ -448,9 +662,8 @@ p {
 }
 
 .navbar__search {
-    background-color: rgba(255,255,255,0);
-    width: 36%;
-    margin-left: 17%;
+    width: 83%;
+    margin-left: 11%;
     height: 35px;
     margin-top: 14px;
 }
@@ -516,12 +729,46 @@ p {
 
 
 .footer_contact_facebook{
-  width: 15%;
+  width: 31%;
 }
 
 .footer_contact_blog{
-  width: 12%;
-  margin-top: 2%;
+  width: 36%;
 }
 
 /*----------------- footer_end -----------------*/
+
+/* main_header_login_css start */
+.main_header_login_user {
+  border: 2px solid white;
+  background-color: #a3a3a3;
+  height: 88px;
+  width: 15%;
+  border-radius: 100%;
+  margin-top: 22%;
+}
+.login_username {
+  color: white;
+  font-size: 24px;
+  font-weight:500;
+}
+.login_p_user {
+  color: white;  
+}
+.login_mypage {
+    border: none;
+    width: 22%;
+    height: 37px;
+    border-radius: 66px;
+    background-color: #26a69a;
+    color: white;
+}
+.login_choice_volunteer {
+    border: none;
+    width: 21%;
+    height: 37px;
+    border-radius: 66px;
+    background-color: #26a69a;
+    color: white;
+}
+/* main_header_login_css end*/

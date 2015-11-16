@@ -1,369 +1,300 @@
-            
-            <div class="well well-out">
-                <%#= form_for @sb, url: {controller: 'admin', action:'add_sb'} do |f| %>
-                <form action="/admin/m_bongsa" enctype="multipart/form-data" method="POST">
-                    <input type="hidden" name="mod" value="<%= @mod %>">
-                    <input type="hidden" name="id" value="<%= @b.id %>">
-                    <div class="well well-in">
-                        <%# unless @mod=="1" %>
-                        
-                            <div class="form-group2">
-                            <div class="col-md-12">
-                                <label>지역</label> &nbsp
-                                <select name="region_id">
-                                    <% Region.all.each do |x| %>
-                                        <% if @mod == "1" && @b.region_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
-                                            <option value="<%= x.id %>"><%= x.name %></option>
-                                        <% end %>
-                                    <% end %>
-                                </select> &nbsp&nbsp&nbsp&nbsp
-                                <label>주관대학</label> &nbsp
-                                <select name="school_id">
-                                    <% School.all.each do |x| %>
-                                        <% if @mod == "1" && @b.school_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
-                                            <option value="<%= x.id %>"><%= x.name %></option>
-                                        <% end %>
-                                    <% end %>
-                                </select> &nbsp&nbsp&nbsp&nbsp
-                                <label>봉사시간 분류</label> &nbsp
-                                <select name="btime_id">
-                                    <% Btime.all.each do |x| %>
-                                        <% if @mod == "1" && @b.btime_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
-                                            <option value="<%= x.id %>"><%= x.name %></option>
-                                        <% end %>
-                                    <% end %>
-                                </select> &nbsp&nbsp&nbsp&nbsp
-                                <label>분야</label> &nbsp
-                                <select name="category_id">
-                                    <% Category.all.each do |x| %>
-                                        <% if @mod == "1" && @b.category_id == x.id %>
-                                            <option value="<%= x.id %>" selected><%= x.name %></option>
-                                        <% else %>
-                                            <option value="<%= x.id %>"><%= x.name %></option>
-                                        <% end %>
-                                    <% end %>
-                                </select>
-                            </div>
-                            </div>
-                            <% if @mod=="1" %>
-                                <input type="hidden" value="<%= @b.admin_add %>" name="admin_add">
-                            <% else %>
-                                <input type="hidden" value="<%#= current_user.email %>" name="admin_add">
-                            <% end %>
-                            <br>
-                            <div class="form-group2">&nbsp</div>
-                            <div class="form-group2">
-                              <div class="col-md-12 col_padding">
-                                <div class="col-md-6">
-                                  <label>메인카드 이미지</label>
-                                  <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
-                                </div>
-                                <div class="col-md-6">
-                                  <label>봉사활동 포스터 이미지</label>
-                                  <input type="file" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
-                                </div>
-                              </div>
-                            </div>
-                        <%# end %>
-                        <div class="form-group2">
-                          <div class="col-md-12">
-                            <label>봉사활동명</label>
-                            <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
-                          </div>
-                        </div>
-                        <!--<div class="form-group2">-->
-                        <!--        <label>기관명</label>-->
-                        <!--        <input type="text" name="organization" class="form-control" value="<%= @b.organization_id %>" />-->
-                        <!--    </div>-->
-                        <div class="form-group2">&nbsp</div>
-                        <div class="form-group2">
-                            <label>봉사활동 상세내용</label>
-                            <input type="text" name="content" class="form-control form-control_bongsa_information" value="<%= @b.content %>" />
-                        </div></br>
-                        
-                        <div class="form-group2">
-                            <label>상세주소</label><br>
-                            <input type="text" name="address" class="form-control_line" value="<%= @b.address %>" />&nbsp
-                        </div><br>
-                        
-                        <!--<div class="form-group2">-->
-                        <!--    <label>정기 / 비정기</label>-->
-                        <!--    <select name="is_regular">-->
-                        <!--        <option value="0" <%# "selected" if @mod == "1" && @b.is_edu == 0 %>>비정기</option>-->
-                        <!--        <option value="1" <%# "selected" if @mod == "1" && @b.is_edu == 1 %>>정기</option>-->
-                        <!--    </select>-->
-                        <!--</div>-->
-                        
-                        <div class="form-group2">
-                            <label>정기 / 비정기 봉사</label><br>
-                            <% if @mod == "1" && @b.is_edu == 0 %>
-                                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
-                                <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
-                            <% else %>
-                                <input type="radio" name="is_regular" value="1" checked/> 정기 봉사 &nbsp&nbsp
-                                <input type="radio" name="is_regular" value="0"/> 비정기 봉사
-                            <% end %>
-                        </div> </br>
-                        
-                        <div class="form-group2">
-                            <label>인증서발급여부</label><br>
-                            <% if @mod == "1" && @b.is_approval == 0 %>
-                                <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
-                                <input type="radio" name="is_approval" value="0" checked/> X
-                            <% else %>
-                                <input type="radio" name="is_approval" value="1" checked/> O &nbsp&nbsp
-                                <input type="radio" name="is_approval" value="0"/> X
-                            <% end %>
-                        </div> </br>
-                        
-                        <div class="form-group2">
-                          <div class="col-md-6">
-                            <label>모집기간</label><br>
-                              <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start %>" /> ~
-                              <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end %>" />
-                          </div>
-                          <div class="col-md-6">
-                              <label>봉사기간(전체)</label> <br>
-                              <input type="date" name="date_real_start" class="form-control_date" value="<%= @b.date_real_start %>" /> ~
-                              <input type="date" name="date_real_end" class="form-control_date" value="<%= @b.date_real_end %>" />
-                          </div>
-                        </div><br>
-                        
-                        <!--<div class="form-group2">-->
-                        <!--    <label>모집시작일</label>-->
-                        <!--    <input type="date" name="date_recruit_start" class="form-control" value="<%#= @b.date_recruit_start %>" />-->
-                        <!--</div>-->
-                        <!--<div class="form-group2">-->
-                        <!--    <label>모집마감일</label>-->
-                        <!--    <input type="date" name="date_recruit_end" class="form-control" value="<%#= @b.date_recruit_end %>" />-->
-                        <!--</div>-->
-                        <!--<div class="form-group2">-->
-                        <!--    <label>봉사 실 시작일</label>-->
-                        <!--    <input type="date" name="date_real_start" class="form-control" value="<%#= @b.date_real_start %>" />-->
-                        <!--</div>-->
-                        <!--<div class="form-group2">-->
-                        <!--    <label>봉사 실 종료일</label>-->
-                        <!--    <input type="date" name="date_real_end" class="form-control" value="<%#= @b.date_real_end %>" />-->
-                        <!--</div>-->
-                        <!--<div class="form-group2">-->
-                        <!--    <label>봉사시간</label><br>-->
-                        <!--    요일무관: <input type="text" name="time_daily_start" class="form-control_time"  value="<%#= @b.time_daily_start %>" /> ~-->
-                        <!--    <input type="text" name="time_daily_end" class="form-control_time" value="<%#= @b.time_daily_end %>" /><br>-->
-                        <!--    월: <input type="text" name="mon_time_daily_start" class="form-control_time" id="1" value="<%#= @b.time_daily_start1 %>"/> ~-->
-                        <!--    <input type="text" name="mon_time_daily_end" class="form-control_time" id="8" value="<%#= @b.time_daily_end8 %>"/><br>-->
-                        <!--    화: <input type="text" name="tue_time_daily_start" class="form-control_time" id="2" value="<%#= @b.time_daily_start2 %>"/> ~-->
-                        <!--    <input type="text" name="tue_time_daily_end" class="form-control_time" id="9" value="<%#= @b.time_daily_end9 %>"/><br>-->
-                        <!--    수: <input type="text" name="wed_time_daily_start" class="form-control_time" id="3" value="<%#= @b.time_daily_start3 %>"/> ~-->
-                        <!--    <input type="text" name="wed_time_daily_end" class="form-control_time" id="10" value="<%#= @b.time_daily_end10 %>"/><br>-->
-                        <!--    목: <input type="text" name="tur_time_daily_start" class="form-control_time" id="4" value="<%#= @b.time_daily_start4 %>"/> ~-->
-                        <!--    <input type="text" name="tur_time_daily_end" class="form-control_time" id="11" value="<%#= @b.time_daily_end11 %>"/><br>-->
-                        <!--    금: <input type="text" name="fri_time_daily_start" class="form-control_time" id="5" value="<%#= @b.time_daily_start5 %>"/> ~-->
-                        <!--    <input type="text" name="fri_time_daily_end" class="form-control_time" id="12" value="<%#= @b.time_daily_end12 %>"/><br>-->
-                        <!--    토: <input type="text" name="sat_time_daily_start" class="form-control_time" id="6" value="<%#= @b.time_daily_start6 %>"/> ~-->
-                        <!--    <input type="text" name="sat_time_daily_end" class="form-control_time" id="13" value="<%#= @b.time_daily_end13 %>"/><br>-->
-                        <!--    일: <input type="text" name="sun_time_daily_start" class="form-control_time" id="7" value="<%#= @b.time_daily_start7 %>"/> ~-->
-                        <!--    <input type="text" name="sun_time_daily_end" class="form-control_time" id="14" value="<%#= @b.time_daily_end14 %>"/><br>-->
-                        <!--</div><br>-->
-                        
-                        <div class="form-group2">
-                            <label>봉사시간</label><br>
-                            <table>
-                                <tr>
-                                    <td class="day_head">요일무관: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start" class="form-control_time"  value="<%= @b.time_daily_start %>" /> ~
-                                        <input type="text" name="time_daily_end" class="form-control_time" value="<%= @b.time_daily_end %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">월: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_1" class="form-control_time"  value="<%= @b.time_daily_start_1 %>" /> ~
-                                        <input type="text" name="time_daily_end_1" class="form-control_time" value="<%= @b.time_daily_end_1 %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">화: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_2" class="form-control_time"  value="<%= @b.time_daily_start_2 %>" /> ~
-                                        <input type="text" name="time_daily_end_2" class="form-control_time" value="<%= @b.time_daily_end_2 %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">수: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_3" class="form-control_time"  value="<%= @b.time_daily_start_3 %>" /> ~
-                                        <input type="text" name="time_daily_end_3" class="form-control_time" value="<%= @b.time_daily_end_3 %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">목: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_4" class="form-control_time"  value="<%= @b.time_daily_start_4 %>" /> ~
-                                        <input type="text" name="time_daily_end_4" class="form-control_time" value="<%= @b.time_daily_end_4 %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">금: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_5" class="form-control_time"  value="<%= @b.time_daily_start_5 %>" /> ~
-                                        <input type="text" name="time_daily_end_5" class="form-control_time" value="<%= @b.time_daily_end_5 %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">토: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_6" class="form-control_time"  value="<%= @b.time_daily_start_6 %>" /> ~
-                                        <input type="text" name="time_daily_end_6" class="form-control_time" value="<%= @b.time_daily_end_6 %>" />
-                                    <td>
-                                </tr>
-                                <tr>
-                                    <td class="day_head">일: </td>
-                                    <td class="day_time">
-                                        <input type="text" name="time_daily_start_7" class="form-control_time"  value="<%= @b.time_daily_start_7 %>" /> ~
-                                        <input type="text" name="time_daily_end_7" class="form-control_time" value="<%= @b.time_daily_end_7 %>" />
-                                    <td>
-                                </tr>
-                            </table>
-                        </div><br>
-                        
-                        <!--<div class="form-group2">-->
-                        <!--    <label>하루 시작 시각(hhmm)</label>-->
-                        <!--    <input type="text" name="time_daily_start" class="form-control" value="<%= @b.time_daily_start %>" />-->
-                        <!--</div>-->
-                        <!--<div class="form-group2">-->
-                        <!--    <label>하루 종료 시각(hhmm)</label>-->
-                        <!--    <input type="text" name="time_daily_end" class="form-control" value="<%= @b.time_daily_end %>" />-->
-                        <!--</div>-->
-                        
-                        <div class="form-group2">
-                            <label>총 봉사 예상시간</label><br>
-                            <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total %>" />&nbsp시간
-                        </div>
-                        <div class="form-group2">
-                            <label>모집인원</label><br>
-                            <input type="number" name="vltr_num" class="form-control_line" value="<%= @b.vltr_num %>" />&nbsp명
-                        </div><br>
-                        <div class="form-group2">
-                            <label>사전교육 유/무</label><br>
-                            <% if @mod == "1" && @b.is_edu == 1 %>
-                                <input type="radio" name="is_edu" value="1" checked/> 있음 &nbsp&nbsp
-                                <input type="radio" name="is_edu" value="0" /> 없음
-                            <% else %>
-                                <input type="radio" name="is_edu" value="1" /> 있음 &nbsp&nbsp
-                                <input type="radio" name="is_edu" value="0" checked/> 없음
-                            <% end %>
-                        </div><br>
-                        <!--<div class="form-group2">-->
-                        <!--    <label>사전교육 유/무</label>-->
-                        <!--    <select name="is_edu">-->
-                        <!--        <option value="0" <%# "selected" if @mod == "1" && @b.is_edu == 0 %>>무</option>-->
-                        <!--        <option value="1" <%# "selected" if @mod == "1" && @b.is_edu == 1 %>>유</option>-->
-                        <!--    </select>-->
-                        <!--</div>-->
-                        <div class="form-group2">
-                            <label>모집 특이조건</label><br>
-                            <input type="text" name="vltr_req" class="form-control form-control_bongsa_information" value="<%= @b.vltr_req %>" />
-                        </div><br>
-                        <div class="form-group2">
-                            <label>상태</label><br>
-                            <input type="radio" name="status" value="0" <%= "checked" if @mod == "1" && @b.status == 0 %>/> 모집예정
-                            <input type="radio" name="status" value="1" <%= "checked" if @mod == "1" && @b.status == 1 %>/> 모집중
-                            <input type="radio" name="status" value="2" <%= "checked" if @mod == "1" && @b.status == 2 %>/> 모집종료
-                        </div><br>
-                        <!--<div class="form-group2">-->
-                        <!--    <label>상태</label>-->
-                        <!--    <select name="status">-->
-                        <!--        <option value="0" <%# "selected" if @mod == "1" && @b.status == 0 %>>모집예정</option>-->
-                        <!--        <option value="1" <%# "selected" if @mod == "1" && @b.status == 1 %>>모집중</option>-->
-                        <!--        <option value="2" <%# "selected" if @mod == "1" && @b.status == 2 %>>모집종료</option>-->
-                        <!--    </select>-->
-                        <!--</div>-->
-                        <div class="form-group2">
-                            <label>지원가능 성별</label><br>
-                            <input type="radio" name="vltr_sex" value="0" <%= "checked" if @mod == "1" && @b.vltr_sex == 0 %>/> 남
-                            <input type="radio" name="vltr_sex" value="1" <%= "checked" if @mod == "1" && @b.vltr_sex == 1 %>/> 여
-                            <input type="radio" name="vltr_sex" value="2" <%= "checked" if @mod == "1" && @b.vltr_sex == 2 %>/> 무관
-                        </div><br>
-                        <!--<div class="form-group2">-->
-                        <!--    <label>지원가능 성별</label>-->
-                        <!--    <select name="vltr_sex">-->
-                        <!--        <option value="0" <%# "selected" if @mod == "1" && @b.vltr_sex == 0 %>>남</option>-->
-                        <!--        <option value="1" <%# "selected" if @mod == "1" && @b.vltr_sex == 1 %>>여</option>-->
-                        <!--        <option value="2" <%# "selected" if @mod == "1" && @b.vltr_sex == 2 %>>무관</option>-->
-                        <!--    </select>-->
-                        <!--</div>-->
-                        <div class="form-group2">
-                            <label>봉사기관</label>
-                            <select name="organization_id">
-                                <% Organization.all.each do |x| %>
-                                    <% if @mod == "1" && @b.organization_id == x.id %>
-                                        <option value="<%= x.id %>" selected><%= x.name %></option>
-                                    <% else %>
-                                        <option value="<%= x.id %>"><%= x.name %></option>
-                                    <% end %>
-                                <% end %>
-                            </select>
-                        </div>
-                        <div class="form-group2">
-                            <label>담당자이름</label>
-                            <input type="text" name="clerk_name" class="form-control" value="<%= @b.clerk_name %>" />
-                        </div>
-                        <div class="form-group2">
-                            <label>담당자연락처</label>
-                            <input type="text" name="clerk_call" class="form-control" value="<%= @b.clerk_call %>" />
-                        </div>
-                        <div class="form-group2">
-                            <label>담당자이메일</label>
-                            <input type="text" name="clerk_email" class="form-control" value="<%= @b.clerk_email %>" />
-                        </div>
-                        
-                        <div class="form-group2">
-                            <label>모집연령</label>
-                            <select name="vltr_age_id">
-                                <% VltrAge.all.each do |x| %>
-                                    <% if @mod == "1" && @b.vltr_age_id == x.id %>
-                                        <option value="<%= x.id %>" selected><%= x.name %></option>
-                                    <% else %>
-                                        <option value="<%= x.id %>"><%= x.name %></option>
-                                    <% end %>
-                                <% end %>
-                            </select>
-                        </div>
-                        <div class="form-group2">
-                            <label>등록자</label>
-                            <% if @mod=="1" %>
-                                <%= @b.admin_add %>
-                            <% else %>
-                                <%= current_user.email unless current_user.nil? %>
-                                <input type="hidden" value="<%= current_user.email unless current_user.nil? %>" name="admin_add">
-                            <% end %>
-                        </div>
-                        
-                        <div class="form-group2">
-                            <label>최근 수정자</label>
-                            <input type="text" value="<%= current_user.email unless current_user.nil? %>" name="admin_mod">
-                        </div>
-                    </div>
-                    
-                    <div class="row" align="right">
-                        <% if @mod == "1" %>
-                            <a class="btn btn-orange" href="/admin/del_bongsa?id=<%= @b.id %>">삭제</a>
-                            <input type="submit" value="수정" class="btn btn-orange" />
+<div class="well well-out">
+  <form action="/admin/m_bongsa" enctype="multipart/form-data" method="POST" name="form_b" id="form_b">
+    <input type="hidden" name="mod" value="<%= @mod %>">
+    <input type="hidden" name="id" value="<%= @b.id %>">
+    <div class="well well-in">
+    <!--봉사활동명 시작-->
+      <div class="form-group2">
+        <div class="col-md-12">
+          <label>봉사활동명</label>
+          <input type="text" name="name" class="form-control" value="<%= @b.name %>" required />
+        </div>
+      </div>
+    <!--봉사활동명 끝-->
+        <div class="form-group2">
+            <div class="col-md-12">
+                <label>지역</label> &nbsp
+                <select name="region_id">
+                    <% Region.all.each do |x| %>
+                        <% if @mod == "1" && @b.region_id == x.id %>
+                            <option value="<%= x.id %>" selected><%= x.name %></option>
                         <% else %>
-                            <input type="submit" value="등록" class="btn btn-orange" />
+                            <option value="<%= x.id %>"><%= x.name %></option>
                         <% end %>
-                        <a class="btn btn-orange" href="/admin/index?admin=bongsa">취소</a>
-                    </div>
-                </form>
+                    <% end %>
+                </select> &nbsp&nbsp&nbsp&nbsp
+                <label>주관대학</label> &nbsp
+                <select name="school_id">
+                    <% School.all.each do |x| %>
+                        <% if @mod == "1" && @b.school_id == x.id %>
+                            <option value="<%= x.id %>" selected><%= x.name %></option>
+                        <% else %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    <% end %>
+                </select> &nbsp&nbsp&nbsp&nbsp
+                <label>봉사시간 분류</label> &nbsp
+                <select name="btime_id">
+                    <% Btime.all.each do |x| %>
+                        <% if @mod == "1" && @b.btime_id == x.id %>
+                            <option value="<%= x.id %>" selected><%= x.name %></option>
+                        <% else %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    <% end %>
+                </select> &nbsp&nbsp&nbsp&nbsp
+                <label>분야</label> &nbsp
+                <select name="category_id">
+                    <% Category.all.each do |x| %>
+                        <% if @mod == "1" && @b.category_id == x.id %>
+                            <option value="<%= x.id %>" selected><%= x.name %></option>
+                        <% else %>
+                            <option value="<%= x.id %>"><%= x.name %></option>
+                        <% end %>
+                    <% end %>
+                </select>
             </div>
         </div>
+            <% if @mod=="1" %>
+                <input type="hidden" value="<%= @b.admin_add %>" name="admin_add">
+            <% else %>
+                <input type="hidden" value="<%= current_user.email unless current_user.nil? %>" name="admin_add">
+            <% end %>
+            <br>
+            <div class="form-group2">&nbsp</div>
+            <div class="form-group2">
+              <div class="col-md-12 col_padding">
+                <div class="col-md-6">
+                  <label>메인카드 이미지</label>
+                  <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
+                </div>
+                <div class="col-md-6">
+                  <label>봉사활동 포스터 이미지</label>
+                  <input type="file" name="img_poster" class="form-control" value="<%= @b.img_poster %>" />
+                </div>
+              </div>
+            </div>
+        
+        <div class="form-group2">&nbsp</div>
+        <div class="form-group2">
+            <label>봉사기관</label>
+            <select name="organization_id">
+                <% unless @mod == "1" && @b.organization_id != nil %>
+                    <option value="">선택안함</option>
+                <% end %>
+                <% Organization.all.each do |x| %>
+                    <% if @mod == "1" && @b.organization_id == x.id %>
+                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                    <% else %>
+                        <option value="<%= x.id %>"><%= x.name %></option>
+                    <% end %>
+                <% end %>
+            </select>
+            <% if @mod != "1" %>
+              <input type="text" name="org_name" placeholder="목록에 없는 경우에만 입력하세요">
+            <% end %>
+        </div>
+                
+        <div class="form-group2">
+            <label>정기 / 비정기 봉사</label><br>
+            <% if @mod == "1" && @b.is_regular == true %>
+                <input type="radio" name="is_regular" value="1" checked/> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
+            <% elsif @mod == "1" && @b.is_regular == false %>
+                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
+            <% else %>
+                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
+            <% end %>
+        </div> </br>
+        
+        
+        <div class="form-group2">
+          <label>총 봉사 예상시간</label><br>
+          <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total %>" />&nbsp시간
+        </div>
+        
+        <div class="form-group2" id="f_time">
+            <%= render partial: 'm_bongsa_time' %>
+        </div><br>
+
+        
+        <div class="form-group2">
+          <label>신청하기 링크</label><br>
+          <input type="text" name="link" class="form-control_line" value="<%#= @b.link %>" />
+        </div>
+        
+        <div class="form-group2">
+            <label>봉사활동 간략설명</label>
+            <input type="text" name="summary" class="form-control form-control_line" value="<%= @b.summary %>" />
+        </div></br>
+        
+       <div class="form-group2">
+            <label>모집대상</label><br>
+            <textarea class="form-control form-control_bongsa_information" name="vltr_req" cols="40" rows="5"><%= @b.vltr_req %></textarea>
+        </div><br>
+        
+        <div class="form-group2">
+            <label>모집인원</label><br>
+            <input type="number" name="vltr_num" class="form-control_line" value="<%= @b.vltr_num %>" />&nbsp명
+        </div><br>
+
+        <div class="form-group2">
+            <label>현재 신청인원</label><br>
+            <input type="number" name="vltr_num2" class="form-control_line" value="<%= @b.vltr_num2 %>" />&nbsp명
+        </div><br>
+        
+         <div class="form-group2">
+          <div class="col-md-6">
+            <label>모집기간</label><br>
+              <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start %>" /> ~
+              <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end %>" />
+          </div>
+          
+          <div class="col-md-6">
+              <label>봉사기간(전체)</label> <br>
+              <input type="date" name="date_real_start" class="form-control_date" value="<%= @b.date_real_start %>" /> ~
+              <input type="date" name="date_real_end" class="form-control_date" value="<%= @b.date_real_end %>" />
+          </div>
+        </div><br>
+        
+        <div class="form-group2" id="f_date">
+            <%= render partial: 'm_bongsa_date' %>
+        </div><br>
+        
+        <div class="form-group2">
+            <label>상세주소(활동지역)</label><br>
+            <input type="text" name="address" class="form-control form-control_line" value="<%= @b.address %>" />&nbsp
+        </div><br>
+        
+        <div class="form-group2">
+            <label>봉사활동 활동혜택</label>
+            <textarea class="form-control form-control_bongsa_information" name="incentive" cols="40" rows="5"><%= @b.incentive %></textarea>
+        </div></br>
+        
+        <div class="form-group2" id="f_link">
+            <%= render partial: 'm_bongsa_link' %>
+        </div>
+        
+        <div class="form-group2">
+            <label>담당자이름</label>
+            <input type="text" name="clerk_name" class="form-control" value="<%= @b.clerk_name %>" />
+        </div>
+        
+        <div class="form-group2">
+            <label>담당자연락처</label>
+            <input type="text" name="clerk_call" class="form-control" value="<%= @b.clerk_call %>" />
+        </div>
+        
+        <div class="form-group2">
+            <label>담당자이메일</label>
+            <input type="text" name="clerk_email" class="form-control" value="<%= @b.clerk_email %>" />
+        </div>
+        
+        <div class="form-group2">
+            <label>담당자링크</label>
+            <input type="text" name="clerk_link" class="form-control" value="<%= @b.clerk_link %>" />
+        </div>
+        
+
+        <div class="form-group2">
+            <label>봉사활동 기타사항</label>
+            <textarea class="form-control form-control_bongsa_information" name="content_etc" cols="40" rows="5"><%= @b.content_etc %></textarea>
+        </div></br>
+        
+
+        
+        <div class="form-group2">
+            <label>인증서발급여부</label><br>
+            <% if @mod == "1" && @b.is_approval == true %>
+                <input type="radio" name="is_approval" value="1" checked/> O &nbsp&nbsp
+                <input type="radio" name="is_approval" value="0" /> X
+            <% elsif @mod == "1" && @b.is_approval == false %>
+                <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_approval" value="0" checked/> X
+            <% else %>
+                <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_approval" value="0" checked/> X
+            <% end %>
+        </div> </br>
+        
+        <div class="form-group2">
+            <label>상시모집여부</label><br>
+            <% if @mod == "1" && @b.is_recruit_always == true %>
+                <input type="radio" name="is_recruit_always" value="1" checked/> O &nbsp&nbsp
+                <input type="radio" name="is_recruit_always" value="0" /> X
+            <% elsif @mod == "1" && @b.is_recruit_always == false %>
+                <input type="radio" name="is_recruit_always" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_recruit_always" value="0" checked/> X
+            <% else %>
+                <input type="radio" name="is_recruit_always" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_recruit_always" value="0" /> X
+            <% end %>
+        </div> </br>
+
+        <div class="form-group2">
+            <label>사전교육 유/무</label><br>
+            <% if @mod == "1" && @b.is_edu == true %>
+                <input type="radio" name="is_edu" value="1" checked/> 있음 &nbsp&nbsp
+                <input type="radio" name="is_edu" value="0" /> 없음
+            <% elsif @mod == "1" && @b.is_edu == false %>
+                <input type="radio" name="is_edu" value="1" /> 있음 &nbsp&nbsp
+                <input type="radio" name="is_edu" value="0" checked/> 없음
+            <% else %>
+                <input type="radio" name="is_edu" value="1" /> 있음 &nbsp&nbsp
+                <input type="radio" name="is_edu" value="0" /> 없음
+            <% end %>
+        </div><br>
+        
+        <div class="form-group2">
+            <label>상태</label><br>
+            <input type="radio" name="status" value="모집예정" <%= "checked" if (@mod == "1" && @b.status == "모집예정") || @mod.nil? || @mod=="0"  %>/> 모집예정
+            <input type="radio" name="status" value="모집중" <%= "checked" if @mod == "1" && @b.status == "모집중" %>/> 모집중
+            <input type="radio" name="status" value="모집종료" <%= "checked" if @mod == "1" && @b.status == "모집종료" %>/> 모집종료
+        </div><br>
+        
+        <div class="form-group2">
+            <label>등록자</label>
+            <% if @mod=="1" %>
+                <%= @b.admin_add %>
+            <% else %>
+                <%= current_user.email unless current_user.nil? %>
+                <input type="hidden" value="<%= current_user.email unless current_user.nil? %>" name="admin_add">
+            <% end %>
+        </div>
+        
+        <div class="form-group2">
+            <label>최근 수정자</label>
+            <input type="text" value="<%= current_user.email unless current_user.nil? %>" name="admin_mod">
+        </div>
+        <div class="form-group2">
+            <label>보이기설정</label><br>
+            <% if @mod == "1" && !@b.is_visible %>
+                <input type="radio" name="is_visible" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_visible" value="0" checked/> X
+            <% else %>
+                <input type="radio" name="is_visible" value="1" checked/> O &nbsp&nbsp
+                <input type="radio" name="is_visible" value="0" /> X
+            <% end %>
+        </div><br>
+    </div>
+    
+      
+      
+      <div class="row" align="right">
+          <% if @mod == "1" %>
+              <a class="btn btn-orange" href="/admin/del_bongsa?id=<%= @b.id %>">삭제</a>
+              <input type="submit" value="수정" class="btn btn-orange" />
+              <a class="btn btn-orange" href="/admin/index?admin=bongsa">취소</a>
+          <% else %>
+              <input type="submit" value="등록" class="btn btn-orange" />
+              <a class="btn btn-orange" href="/admin/del_bongsa?id=<%= @b.id %>">취소</a>
+          <% end %>                        
+      </div>
+  </form>
+  </div>
+
         
     	<div class="row">
     		<hr class="feature-divider">
@@ -385,12 +316,296 @@
                     height: 34px;}
 * {text-align:left;}
 .col_padding {padding-left: 0px; padding-right: 0px;}
-select {width: 15%;
+select {width: 20%;
         height: 33px;}
 .day_time{
-    width:300px;
+    width:40%;
 }
 .day_head{
-    width:100px;
+    width:40%;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--여기부터연습 내일 다시...-->
+<%= render :partial => 'home/main_navbar_general' %>
+<div class="col-md-12">&nbsp</div>
+    <div class="col-md-12 col-sm-12">
+      <p class="bongsa_sub_inform" style="width:25%">
+        <strong>메인카드이미지</strong>
+        <span class="bongsa_sub">
+          <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" />
+        </span>
+      </p>
+
+      <p class="bongsa_sub_inform">
+        <strong>모집기간</strong>
+        <span class="bongsa_sub">
+          <input type="date" name="date_recruit_start" class="form-control_date" style="width:14%" value="<%= @b.date_recruit_start %>" /> ~
+          <input type="date" name="date_recruit_end" class="form-control_date" style="width:14%" value="<%= @b.date_recruit_end %>" />
+        </span>
+      </p>
+      
+      <p class="bongsa_sub_inform">
+        <strong>활동기간</strong>
+        <span class="bongsa_sub">
+          <input type="date" name="date_real_start" class="form-control_date" style="width:14%" value="<%= @b.date_real_start %>" /> ~
+          <input type="date" name="date_real_end" class="form-control_date" style="width:14%" value="<%= @b.date_real_end %>" />
+        </span>
+      </p>
+      
+      <p class="bongsa_sub_inform">
+        <strong>봉사시간</strong>
+        <span class="bongsa_sub">
+          <input type="text" name="time_expect_total" class="form-control_line" style="width:4%" value="<%= @b.time_expect_total %>" />&nbsp시간
+        </span>
+      </p>
+      
+      <p class="bongsa_sub_inform">
+        <strong>활동지역</strong>
+        <span class="bongsa_sub">
+          <input type="text" name="address" class="form-control form-control_line" style="width:24%" value="<%= @b.address %>"/>
+        </span>
+      </p>
+      
+      <p class="bongsa_sub_inform_confirm">
+        <strong>인증서발급유무</strong>
+        <span class="bongsa_sub_confirm">
+          <% if @mod == "1" && @b.is_approval == 0 %>
+              <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
+              <input type="radio" name="is_approval" value="0" checked/> X
+          <% else %>
+              <input type="radio" name="is_approval" value="1" checked/> O &nbsp&nbsp
+              <input type="radio" name="is_approval" value="0"/> X
+          <% end %>
+        </span>
+      </p>
+      
+      <p class="bongsa_sub_inform">
+        <strong>신청하기링크</strong>
+        <span class="bongsa_sub">
+          <input type="text" name="link" class="form-control_line" value="<%= @b.link %>" />
+        </span>
+      </p>
+      
+      <p class="bongsa_sub_inform">
+        <strong>봉사간략설명</strong>
+        <span class="bongsa_sub">
+          <input type="text" name="summary" class="form-control form-control_line" value="<%= @b.summary %>">
+        </span>
+      </p>
+    </div>
+    
+   
+  <div class="col-md-2"></div>
+
+  <center>
+    <img src="/img/img_more_horizontal.png" class="info_more"/>
+  </center>
+
+  <div class="row col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category01_target.png"/>
+        </div>
+        <div class="section_contents">
+        	<span class="section_title"><strong>모집대상</strong></span>
+        	<p class="section_text"><textarea class="form-control form-control_bongsa_information" name="vltr_req" cols="40" rows="5"><%= @b.vltr_req %></textarea></p><br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
+        </div>
+        <div class="section_contents">
+        	<span class="section_title"><strong>봉사시간</strong></span>
+        	<p class="section_text">
+            <div class="form-group2" id="f_time">
+                <%= render partial: 'm_bongsa_time' %>
+            </div><br>
+        	</p><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category03_date.png"/>
+        </div>
+        <div class="section_contents">
+        	<span class="section_title"><strong>모집기간</strong></span>
+        	<p class="section_text">위에서 입력함</p><br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category04_location.png"/>
+        </div>
+        <div class="section_contents">
+        	<span class="section_title"><strong>활동지역</strong></span>
+        	<p class="section_text">위에서 입력함</p><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category05_activitydate.png"/>
+        </div>
+        <div class="section_contents">
+        	<span class="section_title"><strong>활동기간</strong></span>
+        	<p class="section_text">
+        	  <label>정기 / 비정기 봉사</label><br>
+            <% if @mod == "1" && @b.is_edu == 0 %>
+                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
+            <% else %>
+                <input type="radio" name="is_regular" value="1" checked/> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0"/> 비정기 봉사
+            <% end %>
+          </p><br>
+        	
+           <div class="form-group2" id="f_date">
+            <%= render partial: 'm_bongsa_date' %>
+           </div><br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category06_manager.png"/>
+        </div>
+        <div class="section_contents">
+        	<span class="section_title"><strong>담당자</strong></span>
+        	<p class="section_text">
+        	  <% unless @b.clerk_name.nil? %>
+        	    <%= "이름 : " + @b.clerk_name %>
+        	    <br>
+        	  <% end %>
+        	  <% unless @b.clerk_call.nil? %>
+        	    <%= "연락처 : " + @b.clerk_call %>
+        	    <br>
+        	  <% end %>
+        	  <% unless @b.clerk_email.nil? %>
+        	    <%= "이메일 : " + @b.clerk_email %>
+        	    <br>
+        	  <% end %>
+        	  <% unless @b.clerk_link.nil? %>
+        	    <%= "링크 : " + @b.clerk_link %>
+        	    <br>
+        	  <% end %>
+        	</p><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 col-xs-12">
+    <div class="col-md-10 col-xs-10">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category07_bonus.png"/>
+        </div>
+        <div class="section_contents_8">
+        	<span class="section_title"><strong>활동혜택</strong></span>
+        	<p class="section_text">
+        	<% if @b.incentive.nil? %>
+        	  -
+        	<% else %>
+        	  <%= @b.incentive %>
+        	<% end %>
+        	</p><br>
+        <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 col-xs-12">
+    <div class="col-md-10 col-xs-10">
+      <div class="info_group">
+        <div class="section_icon_area">
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category08_link.png"/>
+        </div>
+        <div class="section_contents_8">
+        	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>
+        	<p class="section_text">
+            <% @b.bongsa_links.each do |y| %>
+              <a style="color:black;" href="<%= y.url %>"><%= y.name %></a><br>
+            <% end %>
+        	</p><br>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 col-xs-12">
+  <div class="col-md-10 col-xs-10">
+    <div class="info_group">
+      <div class="section_icon_area">
+        <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
+      </div>
+      <div class="section_contents_8">
+      	<span class="section_title"><strong>기타사항</strong></span>
+      	<p class="section_text">
+      	<%= @b.content_etc %>
+      	</p><br>
+      </div>
+      <div class="col-md-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--POSTER 시작-->
+  <center>
+   <!--<span class="info_title"><b>POSTER</b></span>-->
+   <br class="info_line"><br>
+  </center>
+  <% unless @b.img_poster.to_s.length <= 1  %>
+    <div class="col-md-12 slide slided_poster">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <img src="<%= @b.img_poster %>" class="info_poster">
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+  <% else %>
+    <!--<div class="col-md-12 slide slided_poster">-->
+    <!--  <center>-->
+    <!--    <h1 style="margin-bottom:3%; font-size:40px;">-->
+    <!--        <b>해당 포스터가 없습니다</b>-->
+    <!--    </h1>-->
+    <!--  </center>-->
+    <!--</div>-->
+  <% end %>
+
+<style>
+.slided_img{
+  background-image:url('<%= @b.img_main %>');
+}
+</style>
+<!--POSTER 끝-->
+

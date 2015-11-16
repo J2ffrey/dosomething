@@ -2,7 +2,24 @@ class AdminController < ApplicationController
     # before_action {is_signin?}
     # before_action {authority_check?("cAdmin")}
     
+    #instance_variable_set("@" + varname, value)
+    def clear_bongsa
+        Bongsa.all.each do |x|
+            x.delete if x.name == "봉사명"
+        end
+        redirect_to '/admin/'
+    end
+    
     def test
+        @test = "테
+        스트
+        입니다.
+        ㅋ"
+    end
+    
+    def test2
+        #a = 'n'
+        #eval("@#{a} = \'aaa\'")
         
     end
     
@@ -26,6 +43,7 @@ class AdminController < ApplicationController
         end
         
         model.each do |x|
+            i=0
             method.each do |y|
                 check = AuthorityDef.where(value: x + '_' + y).first
                 next unless check.nil?
@@ -34,8 +52,28 @@ class AdminController < ApplicationController
                 tmp.value = x + '_' + y
                 tmp.text = x + ' 모델에 대한 ' + method_k[i] + '권한'
                 tmp.save
+                i+=1
             end
         end
+        
+        auth = ['Baguni Controller','Calendar Controller','Home Controller']
+        p = "Primary User"
+        t = AuthorityBundle.where(name: p).first
+        if t.nil?
+            tmp = AuthorityBundle.new
+            tmp.name = p
+            tmp.text = "초기 유저를 위한 권한 모음"
+            tmp.save
+            auth.each do |x|
+                tmp2 = Authority.new
+                tmp2.authority_bundle_id = tmp.id
+                tmp2.authority_def_id = AuthorityDef.where(name: x)
+                tmp2.save
+            end
+        end
+        
+        
+        
         redirect_to '/admin/index?admin=authority_def'
     end
     
@@ -79,11 +117,11 @@ class AdminController < ApplicationController
             else
                 @b = Region2.new
             end
-        elsif @admin=="m_admin"
+        elsif @admin=="m_setting"
             if @mod == "1"
-                @b = Admin.find(params[:id])
+                @b = Setting.find(params[:id])
             else
-                @b = Admin.new
+                @b = Setting.new
             end
         elsif @admin=="m_org"
             if @mod == "1"
@@ -96,6 +134,7 @@ class AdminController < ApplicationController
                 @b = Bongsa.find(params[:id])
             else
                 @b = Bongsa.new
+                @b.save
             end
         elsif @admin=="m_vltr_age"
             if @mod == "1"
@@ -325,85 +364,137 @@ class AdminController < ApplicationController
     
     def del_org
         re = Organization.find(params[:id])
-        re.destory
+        re.delete
         redirect_to '/admin/index?admin=org'
     end
     
-    def m_admin
-        re = Admin.new
-        re = Admin.find(params[:id]) if params[:mod]=="1"
+    def m_setting
+        re = Setting.new
+        re = Setting.find(params[:id]) if params[:mod]=="1"
         re.name = params[:name]
         re.value = params[:value]
         re.save
-        redirect_to '/admin/index?admin=admin'
+        redirect_to '/admin/index?admin=setting'
     end
     
-    def del_admin
-        re = Admin.find(params[:id])
-        re.destory
-        redirect_to '/admin/index?admin=admin'
+    def del_setting
+        re = Setting.find(params[:id])
+        re.delete
+        redirect_to '/admin/index?admin=setting'
+    end
+    
+    # def del_bongsa_time
+    #     a = Bongsa.find(params[:id]).bongsa_times
+    #     a.delete
+    #     redirect_to '/admin/m_bongsa_time'
+    # end
+    
+    def add_bongsa_link
+        tmp = BongsaLink.new
+        tmp.bongsa_id = params[:id]
+        tmp.name = params[:n]
+        tmp.url = params[:u]
+        tmp.save
+        
+        redirect_to '/admin/m_bongsa_link?bid=' + params[:id].to_s
+    end
+    
+    def del_bongsa_link
+        BongsaLink.find(params[:id]).delete
+        redirect_to '/admin/m_bongsa_link?bid=' + params[:iid].to_s
+    end
+    
+    def m_bongsa_link
+        render :layout => false
+    end
+    
+    def add_bongsa_date
+        tmp = BongsaDate.new
+        tmp.bongsa_id = params[:id]
+        tmp.date_type = params[:t]
+        tmp.date_start = params[:s]
+        tmp.date_end = params[:e]
+        tmp.save
+        
+        redirect_to '/admin/m_bongsa_date?bid=' + params[:id].to_s
+    end
+    
+    def del_bongsa_time
+        BongsaDate.find(params[:id]).delete
+        redirect_to '/admin/m_bongsa_date?bid=' + params[:iid].to_s
+    end
+    
+    def m_bongsa_date
+        render :layout => false
+    end
+    
+    def add_bongsa_time
+        tmp = BongsaTime.new
+        tmp.bongsa_id = params[:id]
+        tmp.time_type = params[:t]
+        tmp.time_start = params[:s]
+        tmp.time_end = params[:e]
+        tmp.save
+        
+        redirect_to '/admin/m_bongsa_time?bid=' + params[:id].to_s
+    end
+    
+    def del_bongsa_time
+        BongsaTime.find(params[:id]).delete
+        redirect_to '/admin/m_bongsa_time?bid=' + params[:iid].to_s
+    end
+    
+    def m_bongsa_time
+        render :layout => false
     end
     
     def m_bongsa
-        re = Bongsa.new
-        re = Bongsa.find(params[:id]) if params[:mod]=="1"
-        re.img_poster = params[:img_poster]
-        re.img_main = params[:img_main]
-        re.name = params[:name]
-        re.is_approval = params[:is_approval]
-        re.address = params[:address]
-        re.clerk_email = params[:clerk_email]
-        re.content = params[:content]
-        re.is_edu = true if params[:is_edu] == 1
-        re.is_edu = false if params[:is_edu] == 0
-        re.status = params[:status]
-        re.organization_id = params[:organization_id]
-        re.clerk_call = params[:clerk_call]
-        re.clerk_name = params[:clerk_name]
-        re.is_regular = true if params[:is_regular] == 1
-        re.is_regular = false if params[:is_regular] == 0
-        re.date_real_end = Date.parse(params[:date_real_end])
-        re.date_real_start = Date.parse(params[:date_real_start])
-        re.date_recruit_end = Date.parse(params[:date_recruit_end])
-        re.date_recruit_start = Date.parse(params[:date_recruit_start])
-        re.time_expect_total = params[:time_expect_total]
-        re.time_daily_end = params[:time_daily_end]
-        re.time_daily_start = params[:time_daily_start]
-        re.vltr_req = params[:vltr_req]
-        re.vltr_sex = params[:vltr_sex]
-        re.vltr_age_id = params[:vltr_age_id]
-        re.vltr_num = params[:vltr_num]
-        re.region_id = params[:region_id]
-        re.school_id = params[:school_id]
-        re.btime_id = params[:btime_id]
-        re.category_id = params[:category_id]
-        re.admin_mod = params[:admin_mod]
-        re.admin_add = params[:admin_add]
-        re.act_time = params[:act_time]
+        # re = Bongsa.new
+        unless params[:org_name].nil?
+            org = Organization.new
+            org.name = params[:org_name]
+            org.save
+            organization_id = org.id
+        end
         
-        re.is_approval = true if params[:is_approval] == 1
-        re.is_approval = false if params[:is_approval] == 0
+        re = Bongsa.find(params[:id])
+        # re.save
+        arr = Bongsa.attribute_names
+        date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
+        spec = ['organization_id']
+        arr.each do |x|
+            next if x=="id" || x=="created_at" || x=="updated_at"
+            if date.include?(x)
+                eval("re.#{x} = Date.parse(params[:#{x}]) unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+            elsif spec.include?(x)
+                if params[:organization_id] == ""
+                    eval("re.#{x} = #{organization_id}")
+                else
+                    eval("re.#{x} = params[:#{x}]")
+                end
+            else
+                eval("re.#{x} = params[:#{x}] ")#unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+            end
+        end
         
-        re.is_recruit_always = true if params[:is_recruit_always] == 1
-        re.is_recruit_always = false if params[:is_recruit_always] == 0
-        
-        re.time_daily_start_1 = params[:time_daily_start_1]
-        re.time_daily_start_2 = params[:time_daily_start_2]
-        re.time_daily_start_3 = params[:time_daily_start_3]
-        re.time_daily_start_4 = params[:time_daily_start_4]
-        re.time_daily_start_5 = params[:time_daily_start_5]
-        re.time_daily_start_6 = params[:time_daily_start_6]
-        re.time_daily_start_7 = params[:time_daily_start_7]
-        
-        re.time_daily_end_1 = params[:time_daily_end_1]
-        re.time_daily_end_2 = params[:time_daily_end_2]
-        re.time_daily_end_3 = params[:time_daily_end_3]
-        re.time_daily_end_4 = params[:time_daily_end_4]
-        re.time_daily_end_5 = params[:time_daily_end_5]
-        re.time_daily_end_6 = params[:time_daily_end_6]
-        re.time_daily_end_7 = params[:time_daily_end_7]
+        re.content = "#{re.summary}
+        #{re.content_etc}"
         
         re.save
+        
+        # params[:n_time1].to_i.times do |x|
+        #     next if eval("params[:t_type_#{x}].nil? || params[:s_#{x}].nil? || params[:s_#{x}]==\"\" || params[:e_#{x}].nil? || params[:e_#{x}]==\"\"")
+        #     eval("
+        #     tmp = BongsaTime.new
+        #     tmp.bongsa_id = re.id
+        #     tmp.name = \"tmp\"
+        #     tmp.time_type = params[:t_type_#{x}]
+        #     tmp.time_start = params[:s_#{x}]
+        #     tmp.time_end = params[:e_#{x}]
+        #     tmp.save
+        #     ")
+        # end
+        
         redirect_to '/admin/index?admin=bongsa'
     end
     
@@ -429,12 +520,12 @@ class AdminController < ApplicationController
         @stop_keytmp = result_keytmp_first.to_i
         
         if Tempcrl.count == 0
-            @stop_keytmp = 190600
-            @result_keytmp = 190500
-        else 
+            @stop_keytmp = 191609
+            @result_keytmp = 191452
+        else  
             loop do
                 break if Tempcrl.where(:keytemp => result_keytmp).take != nil
-                break if result_keytmp <= 190200
+                break if result_keytmp <= 200
                 ary << result_keytmp
                 result_keytmp = result_keytmp - 1
             end
@@ -579,52 +670,38 @@ class AdminController < ApplicationController
     end
     
     def bongsa_post_tmp_save
-        
-        if params[:organization_id]=="1"
-        org = Organization.new
-        org.name = params[:org_name]
-        org.save
-        @org_id = org.id
+        unless params[:org_name].nil?
+            org = Organization.new
+            org.name = params[:org_name]
+            org.save
+            organization_id = org.id
         end
-        re = BongsaTmp.new
-        re = BongsaTmp.find(params[:id]) if params[:mod]=="1"
         
-        re.img_poster = params[:img_poster]
-        re.img_main = params[:img_main]
-        re.name = params[:name]
-        re.content = params[:content]
-        re.is_edu = true if params[:is_edu] == "1"    #사전교육 있음
-        re.is_edu = false if params[:is_edu] == "0"   #없음
-        re.status = params[:status]
-        if params[:organization_id]=="1"
-            re.organization_id = @org_id
+        if params[:mod]=="1"
+            re = BongsaTmp.find(params[:id]) 
         else
-            re.organization_id = params[:organization_id]
+            re = BongsaTmp.new
         end
-        re.clerk_call = params[:clerk_call]
-        re.clerk_name = params[:clerk_name]
-        re.is_regular = true if params[:is_regular] == 1    #정기
-        re.is_regular = false if params[:is_regular] == 0   #비정기
-        re.date_real_end = Date.parse(params[:date_real_end]) unless params[:date_real_end]==nil
-        re.date_real_start = Date.parse(params[:date_real_start]) unless params[:date_real_start]==nil
-        re.date_recruit_end = Date.parse(params[:date_recruit_end]) unless params[:date_recruit_end]==nil
-        re.date_recruit_start = Date.parse(params[:date_recruit_start]) unless params[:date_recruit_start]==nil
-        re.time_expect_total = params[:time_expect_total]
-        re.time_daily_end = params[:time_daily_end]
-        re.time_daily_start = params[:time_daily_start]
-        re.vltr_req = params[:vltr_req]
-        re.vltr_sex = params[:vltr_sex]
-        re.vltr_age_id = params[:vltr_age_id]
-        re.vltr_num = params[:vltr_num]
-        re.region_id = params[:region_id]
-        re.school_id = params[:school_id]
-        re.btime_id = params[:btime_id]
-        re.category_id = params[:category_id]
-        re.admin_mod = params[:admin_mod]
-        re.admin_add = params[:admin_add]
-        re.act_time = params[:act_time]
-        
+        # re.save
+        arr = Bongsa.attribute_names
+        date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
+        spec = ['organization_id']
+        arr.each do |x|
+            next if x=="id" || x=="created_at" || x=="updated_at" || x=="link"
+            if date.include?(x)
+                eval("re.#{x} = Date.parse(params[:#{x}]) unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+            elsif spec.include?(x)
+                if params[:organization_id] == ""
+                    eval("re.#{x} = #{organization_id}")
+                else
+                    eval("re.#{x} = params[:#{x}]")
+                end
+            else
+                eval("re.#{x} = params[:#{x}] ")#unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+            end
+        end
         re.save
+        
         @iid = re.id
         
         if params[:mod]!="1"

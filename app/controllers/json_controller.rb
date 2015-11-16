@@ -62,7 +62,7 @@ class JsonController < ApplicationController
     #/my_bucket_del?user_id=int&id=int
     def my_bucket_del
         if params[:id] && params[:user_id]
-            b = Bucket.where(user_id: params[:user_id], target_bongsa_id: params[:id])
+            b = Bucket.where(user_id: params[:user_id], bongsa_id: params[:id])
             #Bucket.destroy(b)
             #u = User.find(params[:user_id])
             #b = u.buckets.find(params[:id])
@@ -80,7 +80,7 @@ class JsonController < ApplicationController
             pa = Bongsa.find(params[:id])
             b = Bucket.new
             b.user_id   = params[:user_id]
-            b.target_bongsa_id = pa.id
+            b.bongsa_id = pa.id
             b.save
             #render json: {Bucket: b}
             render json: {Bucket: User.find(params[:user_id]).buckets}
@@ -127,7 +127,9 @@ class JsonController < ApplicationController
         a = params[:id_arr].split(',')
         b = []
         a.each do |x|
-            b << Bongsa.find(x)
+            k = Bongsa.where(id: x).first
+            next if k.nil?
+            b << k
         end
         render json: {Bongsa: b}
     end
@@ -141,6 +143,16 @@ class JsonController < ApplicationController
     def region
         #http://dosomething-j2ffrey-2.c9.io/json/region
         render json: {Region: Region.all}
+    end
+    
+    def category
+        #http://dosomething-j2ffrey-2.c9.io/json/category
+        render json: {Category: Category.all}
+    end
+    
+    def btime
+        #http://dosomething-j2ffrey-2.c9.io/json/btime
+        render json: {Btime: Btime.all}
     end
     
     def load

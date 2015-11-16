@@ -1,0 +1,54 @@
+<% 
+  @b = Bongsa.find(params[:bid]) unless params[:bid].nil?
+%>
+
+<label>기타 기간</label><br>
+
+<table style="width:400px">
+  <% @b.bongsa_dates.each do |x| %>
+    <tr>
+      <td style="width:200px;" class="day_head">
+        <%= x.date_type %>
+      </td>
+      <td style="width:200px;" class="day_date">
+        <%= x.date_start %> ~ <%= x.date_end %>
+      </td>
+      <td>
+        <a href="javascript:date_delete(<%= x.id %>);">삭제</a>
+      </td>
+    <tr>
+  <% end %>
+  <tr>
+    <td class="day_head">
+      <input type="text" name="date_type" class="form-control_date" placeholder="ex)신청기간"/>
+    </td>
+    <td class="day_date">
+      <input type="date" name="start_date" class="form-control_date"/> ~
+      <input type="date" name="end_date" class="form-control_date"/>
+    </td>
+    <td>
+      <a href="javascript:date_add();">추가</a>
+    <td>
+  </tr>
+</table>
+
+<script>
+  function date_delete(id){
+				var site_text = "/admin/del_bongsa_date?id=" + id
+				+ "&iid=" + "<%= @b.id %>"
+				;
+			  
+				$('#f_date').load(site_text);
+  }
+  
+  function date_add(){
+				var site_text = "/admin/add_bongsa_date?"
+				+ 'id=' + "<%= @b.id %>"
+				+ '&t=' + form_b.date_type.value
+				+ '&s=' + form_b.start_date.value
+				+ '&e=' + form_b.end_date.value
+				;
+			  
+				$('#f_date').load(site_text);
+  }
+</script>

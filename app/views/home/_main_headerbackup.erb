@@ -211,7 +211,7 @@ $(function(){
 			datatype:"html",
 			success:function(r){
 				$("#main_contents").empty();
-				$("#main_contents").append("<style>"+r+"</style>");
+				$("#main_contents").append(r);
 			},
 			error:function(){
 				alert("데이터를 가져오지 못하였습니다.");
@@ -224,5 +224,5 @@ $(function(){
 
 
 
-<%= render :partial => 'style/main_headercss' %>
+<%#= render :partial => 'style/main_headercss' %>
 <%= render :partial => 'style/dropdowncss' %>

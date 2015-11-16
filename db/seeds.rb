@@ -1,7 +1,7 @@
 #User.create!([
 #  {email: "j2ffrey@gmail.com", encrypted_password: "$2a$10$nvWu83q4Oq0VyKe9s0oMnexgGxOo9UjOUkxUJz9mXQLJm/ueQZvz6", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-09-18 13:41:14", last_sign_in_at: "2015-09-18 13:41:14", current_sign_in_ip: "211.118.166.131", last_sign_in_ip: "211.118.166.131"}
 #])
-Admin.create!([
+Setting.create!([
   {name: "메인 페이지에 보일 봉사 수", value: "6"}
 ])
 # Bongsa.create!([
@@ -46,6 +46,7 @@ Organization.create!([
   {name: "강북청소년수련관", phone: ""}
 ])
 Region.create!([
+  {name: "무관"},
   {name: "강동구"},
   {name: "강남구"},
   {name: "강북구"},
@@ -71,10 +72,10 @@ Region.create!([
   {name: "종로구"},
   {name: "중구"},
   {name: "중랑구"},
-  {name: "무관"},
   {name: "해외"}
 ])
 School.create!([
+  {name: "무관"},
   {name: "서울교육대학교"},
   {name: "서울대학교"},
   {name: "서울과학기술대학교"},
@@ -120,8 +121,7 @@ School.create!([
   {name: "한성대학교"},
   {name: "한양대학교"},
   {name: "한영신학대학교"},
-  {name: "홍익대학교"},
-  {name: "무관"}
+  {name: "홍익대학교"}
 ])
 # ViewCount.create!([
 #   {ip_adress: "211.118.166.131"},

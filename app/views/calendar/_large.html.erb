@@ -39,19 +39,46 @@
 <%= render :partial => 'script/calendar' %>
 
 <div class="row">
-  <div class="col-md-12 col-sm-12" style="background: #502da5; color: white">
-    <div class="col-md-5 col-sm-5">
-      <button id="prev_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none; float: right" onclick="refresh(<%= @year1 %>,<%= @month1 %>,<%= @day1 %>);">&lt;</button>
+  <div class="col-md-12 col-sm-12">
+    <div class="row">
+    <center>
+      <p class="index_calendar_title">
+        <button id="prev_" onclick="refresh(<%= @year1 %>,<%= @month1 %>,<%= @day1 %>);" class="calendar_arrow_btn">
+          <img class="index_calendar_title_arrow" src="/img/ic/ic_calendar_previous.png"/>
+        </button>
+        <%= @year %>.<%= @month %>
+        <button id="next_" onclick="refresh(<%= @year2 %>,<%= @month2 %>,<%= @day2 %>);" class="calendar_arrow_btn">
+          <img class="index_calendar_title_arrow" src="/img/ic/ic_calendar_next.png"/>
+        </button>
+      </p>
+    </center>
     </div>
-    <div class="col-md-2 col-sm-2">
-      <span style="margin-bottom: 2%; font-size: 24px;"><center><%= @year %>.<%= @month %></center></span>
-    </div>
-    <div class="col-md-5 col-sm-5">
-      <button id="next_" style="font-size: 25px;  background-color: none; background-color: #502da5; border: none;" onclick="refresh(<%= @year2 %>,<%= @month2 %>,<%= @day2 %>);">&gt;</button>
-    </div>
+    <!--<div class="col-md-5 col-sm-5">-->
+    <!--  <button id="prev_" style="font-size: 25px;background-color: #ffffff; border: none; float: right" onclick="refresh(<%= @year1 %>,<%= @month1 %>,<%= @day1 %>);">-->
+    <!--    <img src="/img/ic/ic_calendar_previous.png"/>-->
+    <!--  </button>-->
+    <!--</div>-->
+    <!--<div class="col-md-2 col-sm-2">-->
+    <!--  <span style="font-size: 40px;"><center><%= @year %>.<%= @month %></center></span>-->
+    <!--</div>-->
+    <!--<div class="col-md-5 col-sm-5">-->
+    <!--  <button id="next_" style="font-size: 25px;background-color: #ffffff; border: none;" onclick="refresh(<%= @year2 %>,<%= @month2 %>,<%= @day2 %>);">-->
+    <!--    <img src="/img/ic/ic_calendar_next.png"/>-->
+    <!--  </button>-->
+    <!--</div>-->
   </div>
 </div>
+<!--하루섹션(요일)-->
 <div class="row">
+  <% ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'].each do |x| %>
+    <div class="col-7" style="background: #ffffff;">
+      <center><p class="calendar_day"><%= x %></p></center>
+    </div>
+  <% end %>
+</div>
+<!--하루섹션(요일) 끝-->
+<!--하루섹션(날짜)-->
+<div class="row" style="border-bottom: 1px solid black;">
   <%# i = 0 %>
   <% (0..6).to_a.each do |x| %>
     <% tmp = @date.next_day(x) %>  
@@ -59,34 +86,20 @@
       @day = tmp.day
     %>
     <%#= render partial: 'day' %>
-    
-    <!--하루섹션(날짜)-->
-  <div class="col-7" style="background: #b29cda; color: white;">
+  <div class="col-7" style="background: #ffffff;">
     <center><p class="calendar_date"><%= @day %></p></center>
   </div>
+  <% end %>
+</div>
 <!--하루섹션(날짜) 끝-->
-    
-  <% end %>
-</div>
 
-<div class="row">
-
-<!--하루섹션(요일)-->
-  <% ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'].each do |x| %>
-    <div class="col-7" style="background: #b29cda;">
-      <center><p class="calendar_day"><%= x %></p></center>
-    </div>
-  <% end %>
-<!--하루섹션(요일) 끝-->
-
-</div>
 
 <!--캘린더 안 봉사 내용-->
 <div>
   <!-- 여기부터 7번 반복 -->
   
   <% (0..6).to_a.each do |x| %>
-    <div class="col-7 calendar_content_background" style="padding-top:5px;">
+    <div class="col-7 calendar_content_background">
       <% tmp = @date.next_day(x) %>  
       <% 
         @year = tmp.year
