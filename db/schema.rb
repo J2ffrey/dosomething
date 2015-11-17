@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114072720) do
+ActiveRecord::Schema.define(version: 20151117112402) do
 
   create_table "authorities", force: :cascade do |t|
     t.integer  "authority_bundle_id", limit: 4
@@ -35,6 +35,46 @@ ActiveRecord::Schema.define(version: 20151114072720) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "b_temps", force: :cascade do |t|
+    t.string   "name",               limit: 255,   default: "봉사명", null: false
+    t.text     "content",            limit: 65535
+    t.string   "summary",            limit: 255,   default: ""
+    t.text     "content_etc",        limit: 65535
+    t.text     "incentive",          limit: 65535
+    t.string   "status",             limit: 255,   default: ""
+    t.boolean  "is_approval",        limit: 1,     default: true
+    t.text     "address",            limit: 65535
+    t.boolean  "is_edu",             limit: 1,     default: false
+    t.boolean  "is_visible",         limit: 1,     default: false
+    t.integer  "time_expect_total",  limit: 4,     default: 0
+    t.integer  "view_count",         limit: 4,     default: 0
+    t.string   "link",               limit: 255,   default: ""
+    t.string   "img_main",           limit: 255,   default: ""
+    t.string   "img_poster",         limit: 255,   default: ""
+    t.integer  "organization_id",    limit: 4,     default: 1,     null: false
+    t.string   "clerk_name",         limit: 255,   default: ""
+    t.string   "clerk_call",         limit: 255,   default: ""
+    t.string   "clerk_email",        limit: 255,   default: ""
+    t.string   "clerk_link",         limit: 255,   default: ""
+    t.boolean  "is_recruit_always",  limit: 1,     default: false
+    t.boolean  "is_regular",         limit: 1,     default: false
+    t.date     "date_recruit_start"
+    t.date     "date_recruit_end"
+    t.date     "date_real_start"
+    t.date     "date_real_end"
+    t.integer  "vltr_num",           limit: 4,     default: 1
+    t.integer  "vltr_num2",          limit: 4,     default: 0
+    t.string   "vltr_req",           limit: 255,   default: ""
+    t.integer  "region_id",          limit: 4,     default: 1,     null: false
+    t.integer  "school_id",          limit: 4,     default: 1,     null: false
+    t.integer  "btime_id",           limit: 4,     default: 1,     null: false
+    t.integer  "category_id",        limit: 4,     default: 1,     null: false
+    t.string   "admin_add",          limit: 255,   default: ""
+    t.string   "admin_mod",          limit: 255,   default: ""
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
   create_table "bongsa_dates", force: :cascade do |t|
     t.integer  "bongsa_id",  limit: 4,                null: false
     t.string   "date_type",  limit: 255, default: ""
@@ -50,6 +90,11 @@ ActiveRecord::Schema.define(version: 20151114072720) do
     t.string   "url",        limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "bongsa_temps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bongsa_times", force: :cascade do |t|

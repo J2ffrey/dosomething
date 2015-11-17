@@ -24,7 +24,7 @@ class AdminController < ApplicationController
     end
     
     def authority_seed
-        model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongsaTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
+        model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BTemp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
         method = ['c', 'u', 'r', 'd']
         
         controller = ['Admin', 'Baguni', 'Calendar', 'Home', 'Json', 'User']
@@ -134,7 +134,6 @@ class AdminController < ApplicationController
                 @b = Bongsa.find(params[:id])
             else
                 @b = Bongsa.new
-                @b.save
             end
         elsif @admin=="m_vltr_age"
             if @mod == "1"
@@ -144,9 +143,9 @@ class AdminController < ApplicationController
             end
         elsif @admin=="m_bongsa_tmp"
             if @mod == "1"
-                @b = BongsaTmp.find(params[:id])
+                @b = BTemp.find(params[:id])
             else
-                @b = BongsaTmp.new
+                @b = BTemp.new
             end
         elsif @admin=="m_authority_def"
             if @mod == "1"
@@ -449,7 +448,7 @@ class AdminController < ApplicationController
     end
     
     def m_bongsa
-        # re = Bongsa.new
+        
         unless params[:org_name].nil?
             org = Organization.new
             org.name = params[:org_name]
@@ -457,8 +456,12 @@ class AdminController < ApplicationController
             organization_id = org.id
         end
         
-        re = Bongsa.find(params[:id])
-        # re.save
+        if params[:mod] == "1"
+            re = Bongsa.find(params[:id])
+        else
+            re = Bongsa.new
+        end
+            
         arr = Bongsa.attribute_names
         date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
         spec = ['organization_id']
@@ -481,19 +484,6 @@ class AdminController < ApplicationController
         #{re.content_etc}"
         
         re.save
-        
-        # params[:n_time1].to_i.times do |x|
-        #     next if eval("params[:t_type_#{x}].nil? || params[:s_#{x}].nil? || params[:s_#{x}]==\"\" || params[:e_#{x}].nil? || params[:e_#{x}]==\"\"")
-        #     eval("
-        #     tmp = BongsaTime.new
-        #     tmp.bongsa_id = re.id
-        #     tmp.name = \"tmp\"
-        #     tmp.time_type = params[:t_type_#{x}]
-        #     tmp.time_start = params[:s_#{x}]
-        #     tmp.time_end = params[:e_#{x}]
-        #     tmp.save
-        #     ")
-        # end
         
         redirect_to '/admin/index?admin=bongsa'
     end
@@ -661,7 +651,7 @@ class AdminController < ApplicationController
         parsed_call = doc_final.css(".table_t2//tr:nth-child(11)//td:nth-child(2)").inner_text
         @parsed_call = parsed_call
         
-        #파싱(담당자 연락처)
+        #파싱(담당자 이메일)
         parsed_email = doc_final.css(".table_t2//tr:nth-child(12)//td:nth-child(2)").inner_text
         @parsed_email = parsed_email
     
@@ -678,12 +668,12 @@ class AdminController < ApplicationController
         end
         
         if params[:mod]=="1"
-            re = BongsaTmp.find(params[:id]) 
+            re = BTemp.find(params[:id]) 
         else
-            re = BongsaTmp.new
+            re = BTemp.new
         end
         # re.save
-        arr = Bongsa.attribute_names
+        arr = BTemp.attribute_names
         date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
         spec = ['organization_id']
         arr.each do |x|
@@ -719,23 +709,23 @@ class AdminController < ApplicationController
     end
     
     def modify_bongsa_tmp
-        @re = BongsaTmp.find(params[:id])
+        @re = BTemp.find(params[:id])
         @mod = params[:mod]
     end
     
     def del_bongsa_tmp
-        re = BongsaTmp.find(params[:id])
+        re = BTemp.find(params[:id])
         re.destroy
         redirect_to :back
     end
     
     def crawled_realmodify
-        @re = BongsaTmp.find(params[:id])
+        @b = BTemp.find(params[:id])
     end
     
     def crawled_realsave
         
-        del = BongsaTmp.find(params[:idd])
+        del = BTemp.find(params[:idd])
         del.destroy
         
         re = Bongsa.new

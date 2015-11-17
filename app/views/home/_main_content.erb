@@ -27,20 +27,15 @@
 
   <!--글씨체 한나체로 변경-->
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css' rel='stylesheet' type='text/css'>
       <style>
         body {
-            font-family: 'Nanum Gothic', sans-serif;
-            font-family: 'Noto Sans', sans-serif;}
+            @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+            font-family: 'Noto Sans KOR','Noto Sans CJK KR','Noto Sans KOR' sans-serif;
+            }
       </style>
   <%= render :partial => 'style/index' %>
 </head>
-<body class="col-md-12 gray">
-  <div class="col-md-1"></div>
-    <div class="col-md-10 color" style="padding:0px;">
-      <%= yield %>
-    </div>
-  <div class="col-md-1"></div>
+<body>
   
 <!--layout 적용 안함-->
   <br>
@@ -56,11 +51,11 @@
   %>
 
 <% 
-@region = params[:region] if !params[:region].nil? && params[:region]!="empty" # 정확한 값이 있다면
-@school = params[:school] if !params[:school].nil? && params[:school]!="empty"
-@category = params[:category] if !params[:category].nil? && params[:category]!="empty"
-@btime = params[:btime] if !params[:btime].nil? && params[:btime]!="empty"
-@s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
+  @region = params[:region] if !params[:region].nil? && params[:region]!="empty" # 정확한 값이 있다면
+  @school = params[:school] if !params[:school].nil? && params[:school]!="empty"
+  @category = params[:category] if !params[:category].nil? && params[:category]!="empty"
+  @btime = params[:btime] if !params[:btime].nil? && params[:btime]!="empty"
+  @s_word = params[:s_word] if !params[:s_word].nil? && params[:s_word]!="empty"
 %>
 
 <%
@@ -82,16 +77,6 @@
         check.call "category_id LIKE \"#{@category}\"" unless @category.nil?
         @bongsa = Bongsa.where("#{tmp}")
 %>
-<%#= @s_word %>
-<%#= @region %>
-<%#= @school %>
-<%#= @btime %>
-<%#= @category %>
-<div class="blank"></div>
-<div id="ajax_target">
-  <div class="bongsas"></div>
-</div>
-
 <!--메인 컨텐츠-->
 <br>
 
@@ -127,13 +112,17 @@
               아래는 컨텐츠 카드/  [시간 | 지역 | 디데이]  /코드입니다 
           -------------------------------------------------------------->
           <% unless b.date_recruit_end.nil? %>
-            <% d__day = (Date.parse("#{b.date_recruit_end}") - Date.parse(Time.now.to_s)).to_i %>
+            <% d_day = (Date.parse("#{b.date_recruit_end}") - Date.parse(Time.zone.now.to_s)).to_i %>
+              <% if d_day == 0 
+                 d_day = "Today!"
+               elsif d_day < 0
+                 d_day = "모집종료"
+               elsif b.is_recruit_always == true
+                 d_day = "상시모집"
+               else
+                 d_day = "D - " + d_day.to_s
+               end %>
           <% end %>
-          <% if d__day == 0 
-               d__day = "Today!"
-             else
-               d__day = d__day
-             end %>
               
           <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
@@ -146,7 +135,7 @@
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
               <p class="ptag_up_css">모집마감</p>
-              <p class="ptag_bottom_css">D - <%= d__day %>
+              <p class="ptag_bottom_css"><%= d_day %>
               </p>
               <!--<p style="color:#000000; font-size:18px;"> ~ <%#= b.date_real_end %></p>-->
             </div>  
@@ -203,20 +192,20 @@
 
 <!--봉사달력-->
 
-<br><br>
-<center>
-  <div class="row">
-    <a href = '/calendar/index'>
-      <i class="fa fa-calendar-check-o fa-3x"></i>
-    </a>
-    <p style="font-size:25px; text-align:center; color:#512da7; margin-top: 5px;">
-      <a href = '/calendar/index' style="color:#512da7;">
-        <b> 봉사달력 보러가기</b>
-      </a>
-    </p>
-  </div>
-</center>
-<br><br>
+<!--<br><br>-->
+<!--<center>-->
+<!--  <div class="row">-->
+<!--    <a href = '/calendar/index'>-->
+<!--      <i class="fa fa-calendar-check-o fa-3x"></i>-->
+<!--    </a>-->
+<!--    <p style="font-size:25px; text-align:center; color:#512da7; margin-top: 5px;">-->
+<!--      <a href = '/calendar/index' style="color:#512da7;">-->
+<!--        <b> 봉사달력 보러가기</b>-->
+<!--      </a>-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</center>-->
+<!--<br><br>-->
 
 <!-- Main Content CSS -->
 <%#= render :partial => 'style/main_contentcss' %>

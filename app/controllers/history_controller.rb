@@ -6,9 +6,6 @@ class HistoryController < ApplicationController
     h.time = params[:time]
     h.name = params[:name]
     
-    if h.time.nil?
-      h.time = 0
-    end
     h.save
     
     redirect_to '/history/edit'

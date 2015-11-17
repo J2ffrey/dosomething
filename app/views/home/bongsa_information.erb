@@ -6,7 +6,7 @@
 
 <%
   unless @b.date_recruit_end.nil?
-    today = Date.today
+    today = Time.zone.now.to_date
     
     td = today - @b.date_recruit_end
     td = td.to_i
@@ -23,26 +23,35 @@
   <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
 <%# end %>
 <!-- Tables ================================================== -->
-
+<% 
+  unless (@b.date_recruit_end.nil? && @b.date_recruit_start.nil?)
+    d_day = ( Date.parse("#{@b.date_recruit_end}") - Date.parse(Time.zone.now.to_s)).to_i
+    s_day = ( Date.parse(Time.zone.now.to_s) - Date.parse("#{@b.date_recruit_start}") ).to_i 
+  end
+  if d_day <= -1
+    dd_day = (0 - d_day).to_s + "일 지남"
+  elsif d_day == 0
+    dd_day = "Today"
+  elsif @b.is_recruit_always
+    dd_day = "상시모집"
+  else
+    dd_day = "D - " + d_day.to_s
+  end
+%>
   <div class="col-md-2"></div>
   <div class="col-md-8 col-sm-12">
     <div class="row">
       <p class="bongsa_img_title"><strong><%= @b.name %></strong>
       <button class="dday_btn"><strong>
-      <% unless @b.date_recruit_end.nil? %>
-      D-<%=( Date.parse("#{@b.date_recruit_end}") - Date.parse(Time.now.to_s)).to_i %>
+      <% if @b.date_recruit_end %>
+        <%= dd_day %>
+      <% elsif @b.is_recruit_always %>
+        <%= "상시모집" %>
       <% else %>
-      D-?
+        D-?
       <% end %>
       </strong></button>
-      <% 
-        unless (@b.date_recruit_end.nil? && @b.date_recruit_start.nil?)
-          d_day = ( Date.parse("#{@b.date_recruit_end}") - Date.parse(Time.now.to_s)).to_i
-          s_day = ( Date.parse(Time.now.to_s) - Date.parse("#{@b.date_recruit_start}") ).to_i 
-        end
-      %>
-      
-      <%= @b.status %>
+      <%#= @b.status %>
       <% if d_day > 3 && s_day >= 0 %>
         <button class="term_btn">모집중</button>
       <% elsif d_day > 3 && s_day < 0 %>
@@ -102,44 +111,47 @@
   </center>
 
   <div class="row col-md-12 col-sm-12 col-xs-12">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category01_target.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>모집대상</strong></span>
-        	<p class="section_text"><%= @b.vltr_req %></p><br>
+    <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+    <!--  <div class="info_group">-->
+    <!--    <div class="section_icon_area">-->
+    <!--      <img class="ic_bongsa_inform" src="/img/ic_category/ic_category01_target.png"/>-->
+    <!--    </div>-->
+    <!--    <div class="section_contents">-->
+    <!--    	<span class="section_title"><strong>모집대상</strong></span>-->
+    <!--    	<textarea class="section_text"><%= @b.vltr_req %></textarea><br>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
+    <% unless @b.bongsa_times.count == 0 %>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
+          </div>
+          <div class="section_contents">
+          	<span class="section_title"><strong>상세봉사일정</strong></span>
+          	<p class="section_text">
+          	<table>
+              <% @b.bongsa_times.each do |y| %>
+                <tr>
+                  <td class="day_head">
+                    <%#= arr[y.time_type ]  %>
+                    <%= y.time_type %>
+                  </td>
+                  <td class="day_time">
+                    <%= y.time_start %> ~
+                    <%= y.time_end %>
+                  <td>
+                </tr>
+              <% end %>
+            </table>
+          	</p><br>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>봉사시간</strong></span>
-        	<p class="section_text">
-        	<table>
-            <% @b.bongsa_times.each do |y| %>
-              <tr>
-                <td class="day_head">
-                  <%= arr[y.time_type - 1] %>
-                </td>
-                <td class="day_time">
-                  <%= y.time_start %> ~
-                  <%= y.time_end %>
-                <td>
-              </tr>
-            <% end %>
-          </table>
-        	</p><br>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row col-md-12 col-sm-12 col-xs-12">
+    <% end %>
+  <!--</div>-->
+  <!--<div class="row col-md-12 col-sm-12 col-xs-12">-->
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="info_group">
         <div class="section_icon_area">
@@ -168,8 +180,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row col-md-12 col-sm-12 col-xs-12">
+  <!--</div>-->
+  <!--<div class="row col-md-12 col-sm-12 col-xs-12">-->
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="info_group">
         <div class="section_icon_area">
@@ -210,60 +222,62 @@
       </div>
     </div>
   </div>
+  <!--<div class="row col-md-12 col-xs-12">-->
+  <!--  <div class="col-md-10 col-xs-10">-->
+  <!--    <div class="info_group">-->
+        <!--<div class="section_icon_area">-->
+        <!--  <img class="ic_bongsa_inform" src="/img/ic_category/ic_category07_bonus.png"/>-->
+        <!--</div>-->
+        <!--<div class="section_contents_8">-->
+        <!--	<span class="section_title"><strong>활동혜택</strong></span>-->
+        <!--	<p class="section_text">-->
+        <!--	<% if @b.incentive.nil? %>-->
+        <!--	  --->
+        <!--	<% else %>-->
+        <!--	  <%= @b.incentive %>-->
+        <!--	<% end %>-->
+        <!--	</p><br>-->
+        <!--<div class="col-md-2"></div>-->
+        <!--</div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</div>-->
+  <div class="row col-md-12 col-xs-12">
+    <div class="col-md-10 col-xs-10">
+      <div class="info_group">
+        <!--<div class="section_icon_area">-->
+        <!--  <img class="ic_bongsa_inform" src="/img/ic_category/ic_category08_link.png"/>-->
+        <!--</div>-->
+        <!--<div class="section_contents_8">-->
+        <!--	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>-->
+        <!--	<p class="section_text">-->
+        <!--    <% @b.bongsa_links.each do |y| %>-->
+        <!--      <a style="color:black;" href="<%= y.url %>"><%= y.name %></a><br>-->
+        <!--    <% end %>-->
+        <!--	</p><br>-->
+        <!--</div>-->
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </div>
+  <% if @b.content_etc.length >= 1 %>
   <div class="row col-md-12 col-xs-12">
     <div class="col-md-10 col-xs-10">
       <div class="info_group">
         <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category07_bonus.png"/>
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
         </div>
         <div class="section_contents_8">
-        	<span class="section_title"><strong>활동혜택</strong></span>
-        	<p class="section_text">
-        	<% if @b.incentive.nil? %>
-        	  -
-        	<% else %>
-        	  <%= @b.incentive %>
-        	<% end %>
-        	</p><br>
-        <div class="col-md-2"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row col-md-12 col-xs-12">
-    <div class="col-md-10 col-xs-10">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category08_link.png"/>
-        </div>
-        <div class="section_contents_8">
-        	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>
-        	<p class="section_text">
-            <% @b.bongsa_links.each do |y| %>
-              <a style="color:black;" href="<%= y.url %>"><%= y.name %></a><br>
-            <% end %>
-        	</p><br>
+        	<span class="section_title"><strong>기타사항</strong></span>
+        	<%= simple_format(@b.content_etc, class: 'section_text') %>
+        	<br>
         </div>
         <div class="col-md-2"></div>
       </div>
     </div>
   </div>
-  <div class="row col-md-12 col-xs-12">
-  <div class="col-md-10 col-xs-10">
-    <div class="info_group">
-      <div class="section_icon_area">
-        <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
-      </div>
-      <div class="section_contents_8">
-      	<span class="section_title"><strong>기타사항</strong></span>
-      	<p class="section_text">
-      	<%= @b.content_etc %>
-      	</p><br>
-      </div>
-      <div class="col-md-2"></div>
-      </div>
-    </div>
-  </div>
+  <% else %>
+  <% end %>
 
 
 

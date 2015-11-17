@@ -8,13 +8,18 @@ class NewJsonController < ApplicationController
     end
   end
   
+  def time
+    @a = Time.now
+  end
+  
+  
   #token.status
   # 400 = Error
   # 200 = Good
   # msg = 메시지내용
   
-  #상세정보페이지에서 필요한 정보를 모두 보내준다.
-  #필요한 정보. id
+  # 상세정보페이지에서 필요한 정보를 모두 보내준다.
+  # 필요한 정보. id
   # 봉사제목
   # 남은기간
   # 모집기간
@@ -34,6 +39,7 @@ class NewJsonController < ApplicationController
   # http://dosomething-j2ffrey-2.c9.io/new_json/info
   # input : id=상세정보를 받을 봉사의 id값
   # output : 해당 id값의 봉사 상세정보
+  
   def info
     #id값을 받는다.
     t = Token.new
@@ -62,11 +68,11 @@ class NewJsonController < ApplicationController
     i = 0
     b2 = []
     a.each do |b|
-      next if b.id!=params[:id] && i == 0 && params[:id].present?
+      next if b.id!=params[:id].to_i && i == 0 && !params[:id].nil?
       i+=1
       bt = parsing_bongsa(b)
       b2 << bt
-      break if i==params[:limit]
+      break if i==params[:limit].to_i
     end
     t = Token.new
     if b2.empty?

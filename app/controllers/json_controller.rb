@@ -1,6 +1,19 @@
 class JsonController < ApplicationController
     #before_action( :only => :kk) {authority_check?([self.name.to_s])}
     
+    #임시 필터기능
+    def tmp_filter(b)
+        b2 = []
+        b.each do |x|
+            next if x.is_visible==0
+            next if x.date_recruit_end.nil?
+            next if x.date_recruit_start.nil?
+            next if x.date_real_start.nil?
+            next if x.date_real_end.nil?
+            b2 << x
+        end
+    end
+    
     #http://dosomething-j2ffrey-2.c9.io/json/all_update_at
     def all_update_at
         #모든 봉사의 id와 update_at만 보내기
@@ -157,7 +170,9 @@ class JsonController < ApplicationController
     
     def load
         #http://dosomething-j2ffrey-2.c9.io/json/load?limit=3&offset=5
-        render json: {Bongsa: Bongsa.order(id: :desc).limit(params[:limit]).offset(params[:offset])}
+        b = Bongsa.order(id: :desc).limit(params[:limit]).offset(params[:offset])
+        b = tmp_filter(b)
+        render json: {Bongsa: b}
     end
     
     def find
@@ -197,7 +212,10 @@ class JsonController < ApplicationController
         render json: {Bongsa: Bongsa.where("date_recruit_start LIKE \"#{a}\" OR date_recruit_end LIKE \"#{a}\"")}
     end
     
+    # s_word, region, school, btime, category, limit, offset
     def filter
+        # render json: {Bongsa: Bongsa.first}
+        
         first = 0
         tmp = ""
         check = Proc.new {|x|

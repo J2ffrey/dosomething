@@ -1,0 +1,82 @@
+      <% time_total = 0 %>
+      <p class="volunteer_career_title">수상 및 경력</p>
+       <p class="under_title"></p>
+      <div class="row col-md-12">
+        <table class="career">
+          <tbody>
+              <% i=0 %>
+              <% current_user.careers.each do |x| %>
+                <% i+=1 %>
+                <tr>
+                  <td><input type="checkbox" name="chk_info" value=<%=x.id%> /><%= x.name %></td>
+                  <td>
+                    <% if current_user.careers.size == i %>
+                      <button onclick="career_delete();">삭제</button>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+          </tbody>
+          <br>
+          <tfooter>
+              <tr>
+                <td>
+                  <input type="text" id="name" class="volunteer_work_name">
+                </td>
+                <td>
+                  <b>&nbsp&nbsp<img src="/img/ic_logo/mypage_career_plus_24px.png" class="mypage_career_plus"/>
+                  <button class="edit_icon" onclick="career_save();">등록</button></b>
+                </td>
+              </tr>
+          </tfooter>
+        </table>
+      </div>
+
+<script>
+  document.getElementById("name").addEventListener("keydown", function(e) {
+      if (!e) { var e = window.event; }
+      // Enter is pressed
+      if (e.keyCode == 13) { career_save(); }
+  }, false);
+
+  function career_delete(){
+    chk_=document.getElementsByName("chk_info");
+    var chk_i="";
+    
+    for(var i=0; i<chk_.length;i++){
+      if(chk_[i].checked==true){   
+        chk_i+=chk_[i].value+",";
+      }
+    }
+    
+		var site_text = "/career/delete?" 
+		+ 'chk_info=' + chk_i
+		;
+		$('.volunteer_career_box').load(site_text);
+		
+		return false;
+  }
+  
+  function career_save(){
+    b = document.getElementById("name");
+		var site_text = "/career/save?"
+		+ '&name=' + b.value
+		;
+		$('.volunteer_career_box').load(site_text);
+		return false;
+  }
+  
+</script>
+
+<style>
+  table.careers{
+    width:60%;
+    margin-left:5%;
+  }
+  table.careers>td:first-child{
+    width:20%;
+  }
+  table.careers>td:nth-child(2){
+    width:20%;
+  }
+</style>

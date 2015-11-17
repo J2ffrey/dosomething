@@ -4,7 +4,7 @@
   @n = 1 if @n.nil?
   @b = Bongsa.find(params[:bid]) unless params[:bid].nil?
 %>
-<label>봉사시간</label><br>
+<label>상세 봉사일정</label><br>
 
 <table style="width:400px">
   <% @b.bongsa_times.each do |x| %>

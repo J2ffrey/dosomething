@@ -124,16 +124,16 @@
           <label>신청하기 링크</label><br>
           <input type="text" name="link" class="form-control_line" value="<%#= @b.link %>" />
         </div>
+       
+        <!--<div class="form-group2">-->
+        <!--    <label>봉사활동 간략설명</label>-->
+        <!--    <input type="text" name="summary" class="form-control form-control_line" value="<%= @b.summary %>" />-->
+        <!--</div></br>-->
         
-        <div class="form-group2">
-            <label>봉사활동 간략설명</label>
-            <input type="text" name="summary" class="form-control form-control_line" value="<%= @b.summary %>" />
-        </div></br>
-        
-       <div class="form-group2">
-            <label>모집대상</label><br>
-            <textarea class="form-control form-control_bongsa_information" name="vltr_req" cols="40" rows="5"><%= @b.vltr_req %></textarea>
-        </div><br>
+       <!--<div class="form-group2">-->
+       <!--     <label>모집대상</label><br>-->
+       <!--     <textarea class="form-control form-control_bongsa_information" name="vltr_req" cols="40" rows="5"><%= @b.vltr_req %></textarea>-->
+       <!-- </div><br>-->
         
         <div class="form-group2">
             <label>모집인원</label><br>
@@ -168,10 +168,10 @@
             <input type="text" name="address" class="form-control form-control_line" value="<%= @b.address %>" />&nbsp
         </div><br>
         
-        <div class="form-group2">
-            <label>봉사활동 활동혜택</label>
-            <textarea class="form-control form-control_bongsa_information" name="incentive" cols="40" rows="5"><%= @b.incentive %></textarea>
-        </div></br>
+        <!--<div class="form-group2">-->
+        <!--    <label>봉사활동 활동혜택</label>-->
+        <!--    <textarea class="form-control form-control_bongsa_information" name="incentive" cols="40" rows="5"><%= @b.incentive %></textarea>-->
+        <!--</div></br>-->
         
         <div class="form-group2" id="f_link">
             <%= render partial: 'm_bongsa_link' %>
@@ -186,16 +186,16 @@
             <label>담당자연락처</label>
             <input type="text" name="clerk_call" class="form-control" value="<%= @b.clerk_call %>" />
         </div>
+        <!-- 담당자 이메일을 담당자 연락처에 합치기 -->
+        <!--<div class="form-group2">-->
+        <!--    <label>담당자이메일</label>-->
+        <!--    <input type="text" name="clerk_email" class="form-control" value="<%= @b.clerk_email %>" />-->
+        <!--</div>-->
         
-        <div class="form-group2">
-            <label>담당자이메일</label>
-            <input type="text" name="clerk_email" class="form-control" value="<%= @b.clerk_email %>" />
-        </div>
-        
-        <div class="form-group2">
-            <label>담당자링크</label>
-            <input type="text" name="clerk_link" class="form-control" value="<%= @b.clerk_link %>" />
-        </div>
+        <!--<div class="form-group2">-->
+        <!--    <label>담당자링크</label>-->
+        <!--    <input type="text" name="clerk_link" class="form-control" value="<%#= @b.clerk_link %>" />-->
+        <!--</div>-->
         
 
         <div class="form-group2">
@@ -398,15 +398,14 @@ select {width: 20%;
         </span>
       </p>
       
-      <p class="bongsa_sub_inform">
-        <strong>봉사간략설명</strong>
-        <span class="bongsa_sub">
-          <input type="text" name="summary" class="form-control form-control_line" value="<%= @b.summary %>">
-        </span>
-      </p>
+      <!--<p class="bongsa_sub_inform">-->
+      <!--  <strong>봉사간략설명</strong>-->
+      <!--  <span class="bongsa_sub">-->
+      <!--    <input type="text" name="summary" class="form-control form-control_line" value="<%#= @b.summary %>">-->
+      <!--  </span>-->
+      <!--</p>-->
     </div>
     
-   
   <div class="col-md-2"></div>
 
   <center>
@@ -419,10 +418,10 @@ select {width: 20%;
         <div class="section_icon_area">
           <img class="ic_bongsa_inform" src="/img/ic_category/ic_category01_target.png"/>
         </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>모집대상</strong></span>
-        	<p class="section_text"><textarea class="form-control form-control_bongsa_information" name="vltr_req" cols="40" rows="5"><%= @b.vltr_req %></textarea></p><br>
-        </div>
+        <!--<div class="section_contents">-->
+        <!--	<span class="section_title"><strong>모집대상</strong></span>-->
+        <!--	<p class="section_text"><textarea class="form-control form-control_bongsa_information" name="vltr_req" cols="40" rows="5"><%#= @b.vltr_req %></textarea></p><br>-->
+        <!--</div>-->
       </div>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -431,7 +430,7 @@ select {width: 20%;
           <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
         </div>
         <div class="section_contents">
-        	<span class="section_title"><strong>봉사시간</strong></span>
+        	<span class="section_title"><strong>상세봉사일정</strong></span>
         	<p class="section_text">
             <div class="form-group2" id="f_time">
                 <%= render partial: 'm_bongsa_time' %>
@@ -525,17 +524,17 @@ select {width: 20%;
         <div class="section_icon_area">
           <img class="ic_bongsa_inform" src="/img/ic_category/ic_category07_bonus.png"/>
         </div>
-        <div class="section_contents_8">
-        	<span class="section_title"><strong>활동혜택</strong></span>
-        	<p class="section_text">
-        	<% if @b.incentive.nil? %>
-        	  -
-        	<% else %>
-        	  <%= @b.incentive %>
-        	<% end %>
-        	</p><br>
-        <div class="col-md-2"></div>
-        </div>
+        <!--<div class="section_contents_8">-->
+        <!--	<span class="section_title"><strong>활동혜택</strong></span>-->
+        <!--	<p class="section_text">-->
+        <!--	<%# if @b.incentive.nil? %>-->
+        <!--	  --->
+        <!--	<%# else %>-->
+        <!--	  <%#= @b.incentive %>-->
+        <!--	<%# end %>-->
+        <!--	</p><br>-->
+        <!--<div class="col-md-2"></div>-->
+        <!--</div>-->
       </div>
     </div>
   </div>
@@ -545,14 +544,14 @@ select {width: 20%;
         <div class="section_icon_area">
           <img class="ic_bongsa_inform" src="/img/ic_category/ic_category08_link.png"/>
         </div>
-        <div class="section_contents_8">
-        	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>
-        	<p class="section_text">
-            <% @b.bongsa_links.each do |y| %>
-              <a style="color:black;" href="<%= y.url %>"><%= y.name %></a><br>
-            <% end %>
-        	</p><br>
-        </div>
+        <!--<div class="section_contents_8">-->
+        <!--	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>-->
+        <!--	<p class="section_text">-->
+        <!--    <%# @b.bongsa_links.each do |y| %>-->
+        <!--      <a style="color:black;" href="<%#= y.url %>"><%#= y.name %></a><br>-->
+        <!--    <%# end %>-->
+        <!--	</p><br>-->
+        <!--</div>-->
         <div class="col-md-2"></div>
       </div>
     </div>

@@ -149,10 +149,10 @@
           <input type="text" name="link" class="form-control_line" value="<%#= @b.link %>" />
         </div>
         
-        <div class="form-group2">
-            <label>봉사활동 간략설명</label>
-            <input type="text" name="summary" class="form-control form-control_line" value="<%= @b.summary if @mod == "1" %>" />
-        </div></br>
+        <!--<div class="form-group2">-->
+        <!--    <label>봉사활동 간략설명</label>-->
+        <!--    <input type="text" name="summary" class="form-control form-control_line" value="<%#= @b.summary if @mod == "1" %>" />-->
+        <!--</div></br>-->
         
         <div class="form-group2">
             <label>모집대상</label><br>
@@ -252,7 +252,7 @@
         
 
         <div class="form-group2">
-            <label>봉사활동 기타사항</label>
+            <label>봉사활동 상세정보</label>
             <% if @mod == "1" %>
             <textarea class="form-control form-control_bongsa_information" name="content_etc" cols="40" rows="5"><%= @b.content_etc %></textarea>
             <% else %>
