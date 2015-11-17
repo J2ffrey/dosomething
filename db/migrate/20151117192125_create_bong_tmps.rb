@@ -1,9 +1,9 @@
-class CreateBongsaTmps < ActiveRecord::Migration
+class CreateBongTmps < ActiveRecord::Migration
   def change
-      create_table :bongsa_tmps do |t|
+    create_table :bong_tmps do |t|
       
       #봉사정보
-      t.string	:name		          , null: false     #봉사명
+      t.string	:name		          , default: "봉사명", null: false     #봉사명
       t.text		:content	                          #상세 내용
       t.string  :summary          , default: ""     #간략 설명
       t.text    :content_etc                        #기타 설명
@@ -12,10 +12,10 @@ class CreateBongsaTmps < ActiveRecord::Migration
       t.boolean :is_approval      , default: true   #인증서 발급여부
       t.text    :address                            #주소(디테일한 지역주소)
       t.boolean	:is_edu 	        , default: false  #사전교육 유/무
-      t.boolean :is_visible       , default: true   #봉사활동 보이기 여부
+      t.boolean :is_visible       , default: false  #봉사활동 보이기 여부
       t.integer :time_expect_total, default: 0      #총 획득 예상시간
-      
       t.integer :view_count       , default: 0      #조회수
+      t.string  :link             , default: ""     #신청링크
       
       #관련 링크 달기 bongsa_links
       #기타 기간 달기 bongsa_dates
@@ -27,7 +27,7 @@ class CreateBongsaTmps < ActiveRecord::Migration
       t.string  :img_poster       , default: ""     #포스터 사진
       
       #주최 및 담당처 정보
-      t.integer :organization_id  , null: false     #주관단체//
+      t.integer :organization_id  , default: 1, null: false     #주관단체//
       t.string  :clerk_name       , default: ""     #담당자
       t.string  :clerk_call       , default: ""     #담당자 연락처
       t.string  :clerk_email      , default: ""     #담당자 이메일
@@ -44,18 +44,19 @@ class CreateBongsaTmps < ActiveRecord::Migration
       #지원 자격 요건 및 신청
       t.integer :vltr_num         , default: 1      #모집인원
       t.integer :vltr_num2        , default: 0      #신청인원
-      t.string		:vltr_req	      , default: ""     #지원가능 상세조건
+      t.string	:vltr_req 	      , default: ""     #지원가능 상세조건
       
       #분류 Selector _id
-      t.integer	:region_id		    , null: false     #지역           <== region
-      t.integer :school_id        , null: false     #주관 대학      <== school
-      t.integer :btime_id         , null: false     #봉사시간       <== time
-      t.integer	:category_id		  , null: false     #분야(category) <== category
+      t.integer	:region_id		    , default: 1, null: false     #지역           <== region
+      t.integer :school_id        , default: 1, null: false     #주관 대학      <== school
+      t.integer :btime_id         , default: 1, null: false     #봉사시간       <== time
+      t.integer	:category_id		  , default: 1, null: false     #분야(category) <== category
       
       #관리자서명(최초에 데이터 입력시 기록.)-> 수정시에도.
       t.string  :admin_add        , default: ""     #최초 등록한 관리자 이메일
       t.string  :admin_mod        , default: ""     #최근 수정한 관리자 이메일
       
+
       t.timestamps null: false
     end
   end

@@ -24,7 +24,7 @@ class AdminController < ApplicationController
     end
     
     def authority_seed
-        model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BTemp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
+        model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
         method = ['c', 'u', 'r', 'd']
         
         controller = ['Admin', 'Baguni', 'Calendar', 'Home', 'Json', 'User']
@@ -143,9 +143,9 @@ class AdminController < ApplicationController
             end
         elsif @admin=="m_bongsa_tmp"
             if @mod == "1"
-                @b = BTemp.find(params[:id])
+                @b = BongTmp.find(params[:id])
             else
-                @b = BTemp.new
+                @b = BongTmp.new
             end
         elsif @admin=="m_authority_def"
             if @mod == "1"
@@ -668,12 +668,12 @@ class AdminController < ApplicationController
         end
         
         if params[:mod]=="1"
-            re = BTemp.find(params[:id]) 
+            re = BongTmp.find(params[:id]) 
         else
-            re = BTemp.new
+            re = BongTmp.new
         end
         # re.save
-        arr = BTemp.attribute_names
+        arr = BongTmp.attribute_names
         date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
         spec = ['organization_id']
         arr.each do |x|
@@ -709,60 +709,86 @@ class AdminController < ApplicationController
     end
     
     def modify_bongsa_tmp
-        @re = BTemp.find(params[:id])
+        @re = BongTmp.find(params[:id])
         @mod = params[:mod]
     end
     
     def del_bongsa_tmp
-        re = BTemp.find(params[:id])
+        re = BongTmp.find(params[:id])
         re.destroy
         redirect_to :back
     end
     
     def crawled_realmodify
-        @b = BTemp.find(params[:id])
+        @b = BongTmp.find(params[:id])
     end
     
     def crawled_realsave
         
-        del = BTemp.find(params[:idd])
+        del = BongTmp.find(params[:idd])
         del.destroy
         
+        # re = Bongsa.new
+        # re.img_poster = params[:img_poster]
+        # re.img_main = params[:img_main]
+        # re.name = params[:name]
+        # re.is_approval = params[:is_approval]
+        # re.address = params[:address]
+        # re.clerk_email = params[:clerk_email]
+        # re.content = params[:content]
+        # re.is_edu = true if params[:is_edu] == 1
+        # re.is_edu = false if params[:is_edu] == 0
+        # re.status = params[:status]
+        # re.organization_id = params[:organization_id]
+        # re.clerk_call = params[:clerk_call]
+        # re.clerk_name = params[:clerk_name]
+        # re.is_regular = true if params[:is_regular] == 1
+        # re.is_regular = false if params[:is_regular] == 0
+        # re.date_real_end = Date.parse(params[:date_real_end])
+        # re.date_real_start = Date.parse(params[:date_real_start])
+        # re.date_recruit_end = Date.parse(params[:date_recruit_end])
+        # re.date_recruit_start = Date.parse(params[:date_recruit_start])
+        # re.time_expect_total = params[:time_expect_total]
+        # re.time_daily_end = params[:time_daily_end]
+        # re.time_daily_start = params[:time_daily_start]
+        # re.vltr_req = params[:vltr_req]
+        # re.vltr_sex = params[:vltr_sex]
+        # re.vltr_age_id = params[:vltr_age_id]
+        # re.vltr_num = params[:vltr_num]
+        # re.region_id = params[:region_id]
+        # re.school_id = params[:school_id]
+        # re.btime_id = params[:btime_id]
+        # re.category_id = params[:category_id]
+        # re.admin_mod = params[:admin_mod]
+        # re.admin_add = params[:admin_add]
+        # re.act_time = params[:act_time]
+        # re.save
+        # redirect_to '/admin/index?admin=bongsa'
+        #==============================================
         re = Bongsa.new
-        re.img_poster = params[:img_poster]
-        re.img_main = params[:img_main]
-        re.name = params[:name]
-        re.is_approval = params[:is_approval]
-        re.address = params[:address]
-        re.clerk_email = params[:clerk_email]
-        re.content = params[:content]
-        re.is_edu = true if params[:is_edu] == 1
-        re.is_edu = false if params[:is_edu] == 0
-        re.status = params[:status]
-        re.organization_id = params[:organization_id]
-        re.clerk_call = params[:clerk_call]
-        re.clerk_name = params[:clerk_name]
-        re.is_regular = true if params[:is_regular] == 1
-        re.is_regular = false if params[:is_regular] == 0
-        re.date_real_end = Date.parse(params[:date_real_end])
-        re.date_real_start = Date.parse(params[:date_real_start])
-        re.date_recruit_end = Date.parse(params[:date_recruit_end])
-        re.date_recruit_start = Date.parse(params[:date_recruit_start])
-        re.time_expect_total = params[:time_expect_total]
-        re.time_daily_end = params[:time_daily_end]
-        re.time_daily_start = params[:time_daily_start]
-        re.vltr_req = params[:vltr_req]
-        re.vltr_sex = params[:vltr_sex]
-        re.vltr_age_id = params[:vltr_age_id]
-        re.vltr_num = params[:vltr_num]
-        re.region_id = params[:region_id]
-        re.school_id = params[:school_id]
-        re.btime_id = params[:btime_id]
-        re.category_id = params[:category_id]
-        re.admin_mod = params[:admin_mod]
-        re.admin_add = params[:admin_add]
-        re.act_time = params[:act_time]
+        arr = Bongsa.attribute_names
+        date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
+        spec = ['organization_id']
+        arr.each do |x|
+            next if x=="id" || x=="created_at" || x=="updated_at"
+            if date.include?(x)
+                eval("re.#{x} = Date.parse(params[:#{x}]) unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+            elsif spec.include?(x)
+                if params[:organization_id] == ""
+                    eval("re.#{x} = #{organization_id}")
+                else
+                    eval("re.#{x} = params[:#{x}]")
+                end
+            else
+                eval("re.#{x} = params[:#{x}] ")#unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+            end
+        end
+        
+        re.content = "#{re.summary}
+        #{re.content_etc}"
+        
         re.save
+        
         redirect_to '/admin/index?admin=bongsa'
     end
 end

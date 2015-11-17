@@ -17,7 +17,7 @@
     end
   end
 %>
-
+<form action="/admin/crawled_realsave" enctype="multipart/form-data" method="POST" name="form_b" id="form_b">
 <!-- 이거슨 팝업창 -->
 <%# if flash[:alert].present? %>
   <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
@@ -41,6 +41,67 @@
   <div class="col-md-2"></div>
   <div class="col-md-8 col-sm-12">
     <div class="row">
+      <div class="form-group2" align="center" style="margin-top:20px;">
+          <h4>메인페이지에 보이기</h4>
+          <% if @mod == "1" || !@b.is_visible %>
+              <input type="radio" name="is_visible" value="1" /> O &nbsp&nbsp
+              <input type="radio" name="is_visible" value="0" checked/> X
+          <% else %>
+              <input type="radio" name="is_visible" value="1" checked/> O &nbsp&nbsp
+              <input type="radio" name="is_visible" value="0" /> X
+          <% end %><br>
+          기관명 : <%= Organization.find(@b.organization_id).name %>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-3">
+            <label style="margin-top:0%">지역</label> &nbsp
+            <select name="region_id" style="width:90%;color: black;border: 1px solid black;">
+                <% Region.all.each do |x| %>
+                    <% if @mod == "1" && @b.region_id == x.id %>
+                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                    <% else %>
+                        <option value="<%= x.id %>"><%= x.name %></option>
+                    <% end %>
+                <% end %>
+            </select> &nbsp&nbsp&nbsp&nbsp
+        </div>
+        <div class="col-md-3">
+            <label style="margin-top:0%">주관대학</label> &nbsp
+            <select name="school_id" style="width:90%;color: black;border: 1px solid black;">
+                <% School.all.each do |x| %>
+                    <% if @mod == "1" && @b.school_id == x.id %>
+                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                    <% else %>
+                        <option value="<%= x.id %>"><%= x.name %></option>
+                    <% end %>
+                <% end %>
+            </select> &nbsp&nbsp&nbsp&nbsp
+        </div>
+        <div class="col-md-3">
+            <label style="margin-top:0%">봉사시간 분류</label> &nbsp
+            <select name="btime_id" style="width:90%;color: black;border: 1px solid black;">
+                <% Btime.all.each do |x| %>
+                    <% if @mod == "1" && @b.btime_id == x.id %>
+                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                    <% else %>
+                        <option value="<%= x.id %>"><%= x.name %></option>
+                    <% end %>
+                <% end %>
+            </select> &nbsp&nbsp&nbsp&nbsp
+        </div>
+        <div class="col-md-3">
+            <label style="margin-top:0%">분야</label> &nbsp
+            <select name="category_id" style="width:90%;color: black;border: 1px solid black;">
+                <% Category.all.each do |x| %>
+                    <% if @mod == "1" && @b.category_id == x.id %>
+                        <option value="<%= x.id %>" selected><%= x.name %></option>
+                    <% else %>
+                        <option value="<%= x.id %>"><%= x.name %></option>
+                    <% end %>
+                <% end %>
+            </select>
+        </div>
+    </div>
       <p class="bongsa_img_title"><strong><%= @b.name %></strong>
       <button class="dday_btn"><strong>
       <% if @b.date_recruit_end %>
@@ -62,39 +123,57 @@
       <% end %>
       </p>
     </div>
-    
+    <div class="row">
+      <input type="text" name="name" class="form-control" value="<%= @b.name %>" required style="margin: -2% 0% 2% 1%;padding: 0%;width: 80%;"/>
+      <input type="hidden" name="organization_id" value="<%= @b.organization_id %>">
+      <input type="hidden" value="<%= current_user.email unless current_user.nil? %>" name="admin_add">
+      <input type="hidden" value="<%= @b.id %>" name="idd">
+    </div>
     <div class="col-md-12 col-sm-12">
-      <div class="col-md-5 col-sm-5 col-xs-12"><img src="<%= @b.img_main %>" alt="img" class="bongsa_img"></div>
+      <div class="col-md-5 col-sm-5 col-xs-12">
+        <img src="<%= @b.img_main %>" alt="img" class="bongsa_img">
+        <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" style="margin-left: -12%; width: 59%; margin-top: 10px;"/>
+      </div>
       <div class="info_box col-md-7 col-sm-7 col-xs-12">
         <p class="bongsa_sub_inform">
           <strong>모집기간</strong>
-          <span class="bongsa_sub"><%= @b.date_recruit_start.to_s + " ~ " + @b.date_recruit_end.to_s unless (@b.date_recruit_end.nil? && @b.date_recruit_start.nil?)%></span>
+          <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start %>" style="line-height: 20px;width: 23%;margin-left:13%;"/> ~
+          <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end %>" style="line-height: 20px;width: 23%;"/>
         </p>
         <p class="bongsa_sub_inform">
           <strong>활동기간</strong>
-          <span class="bongsa_sub"><%= @b.date_real_start.to_s + " ~ " + @b.date_real_end.to_s unless (@b.date_real_end.nil? && @b.date_real_start.nil?) %></span>
+          <input type="date" name="date_real_start" class="form-control_date" value="<%= @b.date_real_start %>" style="line-height: 20px;width: 23%;margin-left:13%;"/> ~
+          <input type="date" name="date_real_end" class="form-control_date" value="<%= @b.date_real_end %>" style="line-height: 20px;width: 23%;"/>
         </p>
         <p class="bongsa_sub_inform">
           <strong>봉사시간</strong>
-          <span class="bongsa_sub"><%= @b.time_expect_total %></span>
+          <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total %>" style="line-height: 20px;width: 10%;margin-left:13%;"/>&nbsp시간
         </p>
         <p class="bongsa_sub_inform">
           <strong>활동지역</strong>
-          <span class="bongsa_sub"><%= @b.address %></span>
+          <input type="text" name="address" class="form-control form-control_line" value="<%= @b.address %>" style="width: 100%;"/>
         </p>
         <p class="bongsa_sub_inform_confirm">
           <strong>인증서발급유무</strong>
             <span class="bongsa_sub_confirm">
-            <%= "X" if !@b.is_approval %>
-            <%= "O" if @b.is_approval %>
+            <% if @mod == "1" && @b.is_approval == true %>
+                <input type="radio" name="is_approval" value="1" checked/> O &nbsp&nbsp
+                <input type="radio" name="is_approval" value="0" /> X
+            <% elsif @mod == "1" && @b.is_approval == false %>
+                <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_approval" value="0" checked/> X
+            <% else %>
+                <input type="radio" name="is_approval" value="1" /> O &nbsp&nbsp
+                <input type="radio" name="is_approval" value="0" checked/> X
+            <% end %>
             </span>
         </p>
-        <a href="/baguni/bucket_save/<%= @b.id %>">
-          <button class="bongsa_choice">찜하기</button>
-        </a>
-        <a href="<%= @b.link unless @b.link.nil? %>">
-          <button class="bongsa_apply">신청하기</button>
-        </a>
+        <span style="color:#fff;">
+          <button class="bongsa_choice" disabled="disabled">찜하기</button>
+        </span>
+        <span style="color:#fff;">
+          <button class="bongsa_apply" disabled="disabled">신청하기</button>
+        </span>
       </div>
     </div>
     <div class="col-md-12">
@@ -103,206 +182,178 @@
       </div>
       <div class="col-md-4"></div>
     </div>
-  <div class="col-md-2"></div>
-
-  <center>
-    <img src="/img/img_more_horizontal.png" class="info_more"/>
-  </center>
-
-  <div class="row col-md-12 col-sm-12 col-xs-12">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category01_target.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>모집대상</strong></span>
-        	<textarea class="section_text"><%= @b.vltr_req %></textarea><br>
-        </div>
-      </div>
-    </div>
-    <% unless @b.bongsa_times.count == 0 %>
+    
+    <center>
+      <img src="/img/img_more_horizontal.png" class="info_more"/>
+    </center>
+  
+    <div class="row col-md-12 col-sm-12 col-xs-12">
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="info_group">
           <div class="section_icon_area">
-            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category01_target.png"/>
           </div>
           <div class="section_contents">
-          	<span class="section_title"><strong>상세봉사일정</strong></span>
+          	<span class="section_title"><strong>모집대상</strong></span>
+          	<textarea class="section_text" style="resize:none"><%= @b.vltr_req %></textarea><br>
+          </div>
+        </div>
+      </div>
+      <%# unless @b.bongsa_times.count == 0 %>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="info_group">
+            <div class="section_icon_area">
+              <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
+            </div>
+            <div class="section_contents">
+            	<span class="section_title"><strong>상세봉사일정</strong></span>
+            	<p class="section_text">
+            	<table>
+                <%# @b.bongsa_times.each do |y| %>
+                  <tr>
+                    <td class="day_head">
+                      <%#= arr[y.time_type ]  %>
+                      <%#= y.time_type %>
+                    </td>
+                    <td class="day_time">
+                      <%#= y.time_start %> ~
+                      <%#= y.time_end %>
+                    <td>
+                  </tr>
+                <%# end %>
+              </table>
+            	</p><br>
+            </div>
+          </div>
+        </div>
+      <%# end %>
+    </div>
+    <div class="row col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category03_date.png"/>
+          </div>
+          <div class="section_contents">
+          	<span class="section_title"><strong>모집기간</strong></span>
           	<p class="section_text">
-          	<table>
-              <% @b.bongsa_times.each do |y| %>
-                <tr>
-                  <td class="day_head">
-                    <%#= arr[y.time_type ]  %>
-                    <%= y.time_type %>
-                  </td>
-                  <td class="day_time">
-                    <%= y.time_start %> ~
-                    <%= y.time_end %>
-                  <td>
-                </tr>
-              <% end %>
-            </table>
+          	<% if @b.is_recruit_always %>
+          	  상시모집
+          	<% else %>
+          	  <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start %>" style="line-height: 20px;width: 36%;" /> ~
+              <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end %>" style="line-height: 20px;width: 36%;" />
+          	<% end %>
           	</p><br>
           </div>
         </div>
       </div>
-    <% else %>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="info_group">
           <div class="section_icon_area">
-            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category02_hours.png"/>
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category04_location.png"/>
           </div>
           <div class="section_contents">
-          	<span class="section_title"><strong>상세봉사일정</strong></span>
+          	<span class="section_title"><strong>활동지역</strong></span>
+          	<input type="text" name="address" class="form-control form-control_line" value="<%= @b.address %>" style="width: 135%;"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category05_activitydate.png"/>
+          </div>
+          <div class="section_contents">
+          	<span class="section_title"><strong>활동기간</strong></span><p>
+          	<% if @mod == "1" && @b.is_regular == true %>
+                <input type="radio" name="is_regular" value="1" checked/> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
+            <% elsif @mod == "1" && @b.is_regular == false %>
+                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
+            <% else %>
+                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
+            <% end %><br><br>
+            <input type="date" name="date_real_start" class="form-control_date" value="<%= @b.date_real_start %>" style="line-height: 20px;width: 40%;"/> ~
+            <input type="date" name="date_real_end" class="form-control_date" value="<%= @b.date_real_end %>" style="line-height: 20px;width: 40%;"/></p><br>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category06_manager.png"/>
+          </div>
+          <div class="section_contents">
+          	<span class="section_title"><strong>담당자</strong></span>
           	<p class="section_text">
-          	<table>
-              <% @b.bongsa_times.each do |y| %>
-                <tr>
-                  <td class="day_head">
-                    <%#= arr[y.time_type ]  %>
-                    <%= y.time_type %>
-                  </td>
-                  <td class="day_time">
-                    <%= y.time_start %> ~
-                    <%= y.time_end %>
-                  <td>
-                </tr>
-              <% end %>
-            </table>
+        	    이름 : <input type="text" name="clerk_name" class="" value="<%= @b.clerk_name %>" style="width: 50%; line-height: 20px;margin-bottom: 5px;margin-left: 3%;"/>
+        	    <br>
+        	    연락처 : <input type="text" name="clerk_call" class="" value="<%= @b.clerk_call %>" style="width: 50%; line-height: 20px;margin-bottom: 5px;"/>
+        	    <br>
+        	    이메일 : <input type="text" name="clerk_email" class="" value="<%= @b.clerk_email %>" style="width: 50%; line-height: 20px;margin-bottom: 5px;"/>
+        	    <br>
+        	    링크 : <input type="text" name="clerk_link" class="" value="<%= @b.clerk_link %>" style="width: 85%; line-height: 20px;margin-left: 3%;"/>
+        	    <br>
           	</p><br>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
-  <div class="row col-md-12 col-sm-12 col-xs-12">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category03_date.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>모집기간</strong></span>
-        	<p class="section_text">
-        	<% if @b.is_recruit_always %>
-        	  상시모집
-        	<% else %>
-        	  <%= @b.date_recruit_start %> ~ <%= @b.date_recruit_end %>
-        	<% end %>
-        	</p><br>
+    </div>
+    <div class="row col-md-12 col-xs-12">
+      <div class="col-md-10 col-xs-10">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category07_bonus.png"/>
+          </div>
+          <div class="section_contents_8">
+          	<span class="section_title"><strong>활동혜택</strong></span>
+          	<p class="section_text">
+          	  <textarea class="form-control form-control_bongsa_information" name="incentive" cols="40" rows="5"><%= @b.incentive %></textarea>
+          	</p><br>
+          <div class="col-md-2"></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category04_location.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>활동지역</strong></span>
-        	<p class="section_text"><%= @b.address %></p><br>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row col-md-12 col-sm-12 col-xs-12">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category05_activitydate.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>활동기간</strong></span>
-        	<p class="section_text"><%= "비" if !@b.is_regular %>정기<br><%= @b.date_real_start %> ~ <%= @b.date_real_end %> </p><br>
+    <div class="row col-md-12 col-xs-12">
+      <div class="col-md-10 col-xs-10">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category08_link.png"/>
+          </div>
+          <div class="section_contents_8">
+          	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>
+          	<p class="section_text">
+              <%# @b.bongsa_links.each do |y| %>
+                <a style="color:black;" href="<%#= y.url %>"><%#= y.name %></a><br>
+              <%# end %>
+          	</p><br>
+          </div>
+          <div class="col-md-2"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category06_manager.png"/>
-        </div>
-        <div class="section_contents">
-        	<span class="section_title"><strong>담당자</strong></span>
-        	<p class="section_text">
-        	  <% unless @b.clerk_name.nil? %>
-        	    <%= "이름 : " + @b.clerk_name %>
-        	    <br>
-        	  <% end %>
-        	  <% unless @b.clerk_call.nil? %>
-        	    <%= "연락처 : " + @b.clerk_call %>
-        	    <br>
-        	  <% end %>
-        	  <% unless @b.clerk_email.nil? %>
-        	    <%= "이메일 : " + @b.clerk_email %>
-        	    <br>
-        	  <% end %>
-        	  <% unless @b.clerk_link.nil? %>
-        	    <%= "링크 : " + @b.clerk_link %>
-        	    <br>
-        	  <% end %>
-        	</p><br>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row col-md-12 col-xs-12">
+    <div class="row col-md-12 col-xs-12">
     <div class="col-md-10 col-xs-10">
       <div class="info_group">
         <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category07_bonus.png"/>
+          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
         </div>
         <div class="section_contents_8">
-        	<span class="section_title"><strong>활동혜택</strong></span>
+        	<span class="section_title"><strong>기타사항</strong></span>
         	<p class="section_text">
-        	<% if @b.incentive.nil? %>
-        	  -
-        	<% else %>
-        	  <%= @b.incentive %>
-        	<% end %>
+        	<textarea rows="15" cols="120" style="resize:none"><%= @b.content_etc %></textarea>
         	</p><br>
+        </div>
         <div class="col-md-2"></div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row col-md-12 col-xs-12">
-    <div class="col-md-10 col-xs-10">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category08_link.png"/>
-        </div>
-        <div class="section_contents_8">
-        	<span class="section_title"><strong>관련링크(클릭하면 해당 페이지로 이동합니다.)</strong></span>
-        	<p class="section_text">
-            <%# @b.bongsa_links.each do |y| %>
-              <a style="color:black;" href="<%#= y.url %>"><%#= y.name %></a><br>
-            <%# end %>
-        	</p><br>
-        </div>
-        <div class="col-md-2"></div>
-      </div>
-    </div>
-  </div>
-  <div class="row col-md-12 col-xs-12">
-  <div class="col-md-10 col-xs-10">
-    <div class="info_group">
-      <div class="section_icon_area">
-        <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
-      </div>
-      <div class="section_contents_8">
-      	<span class="section_title"><strong>기타사항</strong></span>
-      	<p class="section_text">
-      	<%= @b.content_etc %>
-      	</p><br>
-      </div>
-      <div class="col-md-2"></div>
-      </div>
-    </div>
-  </div>
-
+  
 
 
   <!--<div class="col-md-6">-->
@@ -395,8 +446,6 @@
   
   
   
-  
-</div>
 
   <!--POSTER 시작-->
   <center>
@@ -424,6 +473,13 @@
     <!--  </center>-->
     <!--</div>-->
   <% end %>
+    <div class="row" align="center" style="margin-bottom:30px;">
+      <input type="submit" value="등록" class="btn btn-orange" />
+      <button class="btn btn-orange"><a href="/admin/bongsa_tmp" style="color:black">취소</a></button>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</form>
 
 <style>
 .slided_img{

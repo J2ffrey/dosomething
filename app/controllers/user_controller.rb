@@ -1,6 +1,5 @@
 class UserController < ApplicationController
-  #before_action {is_signin?}
-  
+  before_action :is_signin?, except: [:sign_up, :sign_up_confirm, :sign_in, :user_agreement]
   
   def sign_up_confirm
     
@@ -41,7 +40,6 @@ class UserController < ApplicationController
       session[:user_id] = u.id
     else
       flash[:error] ="아이디 혹은 비밀번호가 맞지 않습니다"
-      
     end
     
     redirect_to "#{params[:redirect]}" unless params[:redirect].nil?
@@ -55,11 +53,21 @@ class UserController < ApplicationController
   end  
   
   def mypage
-      
+    
   end
   
   def mypage_edit
     
+  end
+  
+  def delete_account
+    
+  end
+  
+  def delete_account_confirm
+    current_user.delete
+    reset_session
+    redirect '/home/index'
   end
 
   def mypage_confirm

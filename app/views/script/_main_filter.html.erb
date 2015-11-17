@@ -1,79 +1,24 @@
 <script type="text/javascript">
-	
+	document.getElementById("s_word").addEventListener("keydown", function(e) {
+      if (!e) { var e = window.event; }
+      // Enter is pressed
+      if (e.keyCode == 13) { filter(); }
+  }, false);
+  
 	function filter(){
-				//var t = document.getElementsById("s_word")
-				var site_text = "/home/filter?" + 'region=' + form_s.region_select.value
-		 			+ '&school=' + form_s.school_select.value
-	  			+ '&btime=' + form_s.btime_select.value
-	  			+ '&category=' + form_s.category_select.value
-	  			+ '&s_word=' + form_s.s_word.value;
+			    var site_text = "/home/filter?" + 'region=' + $('#region_select').val()
+		 			+ '&school=' + $('#school_select').val()
+	  			+ '&btime=' + $('#btime_select').val()
+	  			+ '&category=' + $('#category_select').val()
+	  			+ '&s_word=' + $('#s_word').val()
+	  			;
 			
 				$('#main_contents').load(site_text);
 				
 				return false;
   }
   
-  $(function(){
-     //onKeypress="javascript:if(event.keyCode==13) {dongCheck();}"
-    // $("#form_s").submit(function(){
-    //   $.ajax({
-    // 			type:"get",
-    // 			url:"/home/filter?" + 'region=' + $('#region_select').val() 
-    // 			+ '&school=' + $('#school_select').val() 
-    // 			+ '&btime=' + $('#btime_select').val()
-    // 			+ '&category=' + $('#category_select').val()
-    // 			+ '&s_word=' + $('#s_word').val(),
-    // 			datatype:"html",
-    // 			success:function(r){
-    // 				$("#main_contents").empty();
-    // 				$("#main_contents").append("<style>"+r+"</style>");
-    // 			},
-    // 			error:function(){
-    // 				alert("데이터를 가져오지 못하였습니다.");
-    // 			},
-    // 		});
-    // 		return false;
-    // });
-    
-    // $("#search-icon").on("click",function(){
-    //   $.ajax({
-    // 			type:"get",
-    // 			url:"/home/filter?" + 'region=' + $('#region_select').val() 
-    // 			+ '&school=' + $('#school_select').val() 
-    // 			+ '&btime=' + $('#btime_select').val()
-    // 			+ '&category=' + $('#category_select').val()
-    // 			+ '&s_word=' + $('#s_word').val(),
-    // 			datatype:"html",
-    // 			success:function(r){
-    // 				$("#main_contents").empty();
-    // 				$("#main_contents").append("<style>"+r+"</style>");
-    // 			},
-    // 			error:function(){
-    // 				alert("데이터를 가져오지 못하였습니다.");
-    // 			},
-    // 		});
-    // 		return false;
-    // });
-  
-    // $("#search").on("click", function(){
-  		// $.ajax({
-  		// 	type:"get",
-  		// 	url:"/home/filter?" + 'region=' + $('#region_select').val() 
-  		// 	+ '&school=' + $('#school_select').val() 
-  		// 	+ '&btime=' + $('#btime_select').val() 
-  		// 	+ '&category=' + $('#category_select').val()
-  		// 	+ '&s_word=' + $('#s_word').val(),
-  		// 	datatype:"html",
-  		// 	success:function(r){
-  		// 		$("#main_contents").empty();
-  		// 		$("#main_contents").append("<style>"+r+"</style>");
-  		// 	},
-  		// 	error:function(){
-  		// 		alert("데이터를 가져오지 못하였습니다.");
-  		// 	},
-  		// });
-    // })
-    
+  $(function(){    
     $("#region_select, #school_select, #btime_select, #category_select").on("change", function(){
   		$.ajax({
   			type:"get",

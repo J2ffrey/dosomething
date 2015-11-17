@@ -195,7 +195,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% BongsaTmp.all.reverse.each do |pos| %>
+                <% BongTmp.all.reverse.each do |pos| %>
                     <tr class="tr-content">
                         <td><%= pos.id %></td>
                         <td><a href="/admin/modify_bongsa_tmp?id=<%= pos.id %>&mod=1" style="color:blue;"><%= pos.name %></a></td>

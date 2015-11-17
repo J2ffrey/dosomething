@@ -1,55 +1,53 @@
 <!--layout 적용 안함-->  
 <!-- 한글패치 -->
-  <meta charset="utf-8">
-  <title>봉사꾼</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<!--  <meta charset="utf-8">-->
+<!--  <title>봉사꾼</title>-->
+<!--  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>-->
+<!--  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>-->
+<!--  <%= csrf_meta_tags %>-->
   
   <!-- 합쳐지고 최소화된 최신 CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
   <!-- 부가적인 테마 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">-->
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
 
   <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
   <!-- 드롭바용 제이커리 -->
-  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script> 
+<!--  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script> -->
   <!-- 아이콘용 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/all.css">
-  <link rel="stylesheet" href="/css/-480.css" media="all and (max-width:480px)">
-  <link rel="stylesheet" href="/css/481-767.css" media="all and (min-width:481px) and (max-width:767px)">
-  <link rel="stylesheet" href="/css/768-979.css" media="all and (min-width:768px) and (max-width:979px)">
-  <link rel="stylesheet" href="/css/980-1199.css" media="all and (min-width:980px) and (max-width:1199px)">
-  <link rel="stylesheet" href="/css/1200-.css" media="all and (min-width:1200px)">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
+<!--  <link rel="stylesheet" href="/css/all.css">-->
+<!--  <link rel="stylesheet" href="/css/-480.css" media="all and (max-width:480px)">-->
+<!--  <link rel="stylesheet" href="/css/481-767.css" media="all and (min-width:481px) and (max-width:767px)">-->
+<!--  <link rel="stylesheet" href="/css/768-979.css" media="all and (min-width:768px) and (max-width:979px)">-->
+<!--  <link rel="stylesheet" href="/css/980-1199.css" media="all and (min-width:980px) and (max-width:1199px)">-->
+<!--  <link rel="stylesheet" href="/css/1200-.css" media="all and (min-width:1200px)">-->
 
   <!--글씨체 한나체로 변경-->
-  <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
-      <style>
-        body {
-            @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-            font-family: 'Noto Sans KOR','Noto Sans CJK KR','Noto Sans KOR' sans-serif;
-            }
-      </style>
-  <%= render :partial => 'style/index' %>
-</head>
-<body>
+<!--  <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>-->
+<!--      <style>-->
+<!--        body {-->
+<!--            @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);-->
+<!--            font-family: 'Noto Sans KOR','Noto Sans CJK KR','Noto Sans KOR' sans-serif;-->
+<!--            }-->
+<!--      </style>-->
+<!--  <%= render :partial => 'style/index' %>-->
+<!--</head>-->
+<!--<body>-->
   
 <!--layout 적용 안함-->
-  <br>
-<%
-  k = params[:k].to_i unless params[:k].nil?
-  k = Setting.first.value if params[:k].nil?
-  k2 = k + Setting.first.value
-  k3 = 0
-  k3 = 1 if k == Bongsa.all.count
-  k2 = Bongsa.all.count if Bongsa.all.count < k2
-  k = k.to_i
-  
+  <!--<br>-->
+  <% 
+    blank="col--0-1 col-5-1" 
+    content="col--0-22 col-5-10"
+    content_card="col-0-12 col-3-6 col-4-4 col-5-4 row_main_content hvr-border-fade"
   %>
-
+<div class="rows">
+  <div class="<%= blank %>"></div> <!-- 여백 -->
+  <div class="<%= content %>"><!-- 시작 -->
+  
 <% 
   @region = params[:region] if !params[:region].nil? && params[:region]!="empty" # 정확한 값이 있다면
   @school = params[:school] if !params[:school].nil? && params[:school]!="empty"
@@ -76,11 +74,20 @@
         check.call "btime_id LIKE \"#{@btime}\"" unless @btime.nil?
         check.call "category_id LIKE \"#{@category}\"" unless @category.nil?
         @bongsa = Bongsa.where("#{tmp}")
+        
+  k = params[:k].to_i unless params[:k].nil?
+  k = Setting.first.value if params[:k].nil?
+  k2 = k + Setting.first.value
+  k3 = 0
+  k3 = 1 if k >= @bongsa.all.count
+  k2 = @bongsa.all.count if @bongsa.all.count < k2
+  k = k.to_i
+  
 %>
 <!--메인 컨텐츠-->
 <br>
 
-<div class="col-md-12 col-sm-12">
+<div class="rows">
   <center>
     <% i = 0 %>
     <!--/컨텐츠 카드 시작-->
@@ -88,12 +95,13 @@
       <% break if i==k %>
       <% next if !b.is_visible %>
       <% i+=1 %>
+      
       <a href="/home/bongsa_information/<%= b.id %>">
-        <div class="col-md-4 col-sm-12 row_main_content hvr-border-fade">
+        <div class="<%= content_card %>">
           <!-------------------------------------------------------------
           아래는 컨텐츠 카드/  [사진 ㄴ> 봉사기간, 봉사명 ]  /코드입니다 
           -------------------------------------------------------------->
-          <div class="col-md-12" style="padding:0px;">
+          <div class="col-0-12" style="padding:0px;">
             <img class="main_content_volunteer_img" src="<%= b.img_main %>">
             
             <% if b.name.nil? %>
@@ -124,24 +132,26 @@
                end %>
           <% end %>
               
-          <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
+          <div class="rows" style="padding:0px;">
+            <div class="col-0-4 main_content__content"></br>
               <p class="ptag_up_css">총 봉사시간</p>
               <p class="ptag_bottom_css"><%= b.time_expect_total %></p>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
+            <div class="col-0-4 main_content__content"></br>
               <p class="ptag_up_css">지역 </p>
               <p class="ptag_bottom_css"><%= Region.find(b.region_id).name %></p>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 main_content__content"></br>
+            <div class="col-0-4 main_content__content"></br>
               <p class="ptag_up_css">모집마감</p>
               <p class="ptag_bottom_css"><%= d_day %>
               </p>
               <!--<p style="color:#000000; font-size:18px;"> ~ <%#= b.date_real_end %></p>-->
             </div>  
           </div>
+          
         </div>
       </a>
+      
     <% end %>
     <!--/컨텐츠 카드 끝-->
   </center>
@@ -190,23 +200,7 @@
       //
 </script>
 
-<!--봉사달력-->
+</div><!-- 끝 -->
+<div class="<%= blank %>"></div> <!-- 여백 -->
+</div>
 
-<!--<br><br>-->
-<!--<center>-->
-<!--  <div class="row">-->
-<!--    <a href = '/calendar/index'>-->
-<!--      <i class="fa fa-calendar-check-o fa-3x"></i>-->
-<!--    </a>-->
-<!--    <p style="font-size:25px; text-align:center; color:#512da7; margin-top: 5px;">-->
-<!--      <a href = '/calendar/index' style="color:#512da7;">-->
-<!--        <b> 봉사달력 보러가기</b>-->
-<!--      </a>-->
-<!--    </p>-->
-<!--  </div>-->
-<!--</center>-->
-<!--<br><br>-->
-
-<!-- Main Content CSS -->
-<%#= render :partial => 'style/main_contentcss' %>
-<%#= render :partial => 'home/main_footer' %>
