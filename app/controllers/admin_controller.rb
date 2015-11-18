@@ -604,9 +604,9 @@ class AdminController < ApplicationController
         #파싱(정기여부)
         parsed_regular = doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(7)//td:nth-child(2)").inner_text
         if parsed_regular.first == "정"
-            icon = 1 # (정기)
+            icon = "1" # (정기)
         else
-            icon = 0 # (비정기)
+            icon = "0" # (비정기)
         end
         @parsed_regular = icon
         
@@ -623,9 +623,9 @@ class AdminController < ApplicationController
         #파싱(사전교육)
         parsed_preedu = doc_final.css(".table_t1//tr:nth-child(6)//.table_t2//tr:nth-child(5)//td:nth-child(2)").inner_text
         if parsed_preedu.length <= 2
-        parsed_preedu = 0 #(사전교육 없음)
+        parsed_preedu = "0" #(사전교육 없음)
         else
-        parsed_preedu = 1 #(사전교육 있음)
+        parsed_preedu = "1" #(사전교육 있음)
         end
         @parsed_preedu = parsed_preedu
         
@@ -728,8 +728,8 @@ class AdminController < ApplicationController
     
     def crawled_realsave
         
-        del = BongTmp.find(params[:idd])
-        del.destroy
+        # del = BongTmp.find(params[:idd])
+        # del.destroy
         
         # re = Bongsa.new
         # re.img_poster = params[:img_poster]
@@ -768,14 +768,25 @@ class AdminController < ApplicationController
         # re.save
         # redirect_to '/admin/index?admin=bongsa'
         #==============================================
-        re = Bongsa.new
+        unless params[:org_name].nil?
+            org = Organization.new
+            org.name = params[:org_name]
+            org.save
+            organization_id = org.id
+        end
+        
+        if params[:mod]=="1"
+            re = Bongsa.find(params[:id]) 
+        else
+            re = Bongsa.new
+        end
         arr = Bongsa.attribute_names
         date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
         spec = ['organization_id']
         arr.each do |x|
             next if x=="id" || x=="created_at" || x=="updated_at"
             if date.include?(x)
-                eval("re.#{x} = Date.parse(params[:#{x}]) unless params[:#{x}].nil? || params[:#{x}]==\'\'")
+                eval("re.#{x} = Date.parse(params[:#{x}])") #unless params[:#{x}].nil? || params[:#{x}]==\'\'")
             elsif spec.include?(x)
                 if params[:organization_id] == ""
                     eval("re.#{x} = #{organization_id}")
@@ -792,6 +803,12 @@ class AdminController < ApplicationController
         
         re.save
         
-        redirect_to '/admin/index?admin=bongsa'
+        if params[:mod]!="1"
+            tt = Tempcrl.find(params[:tid]) 
+            tt.is_registerd = 1
+            tt.save
+        end
+        
+        redirect_to '/admin/bongsa_tmp'
     end
 end

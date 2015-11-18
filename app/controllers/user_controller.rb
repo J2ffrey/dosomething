@@ -1,5 +1,10 @@
 class UserController < ApplicationController
-  before_action :is_signin?, except: [:sign_up, :sign_up_confirm, :sign_in, :user_agreement]
+  before_action :is_signin?, except: [:sign_up, :sign_up_confirm, :sign_in, :user_agreement, :test]
+  
+  def test
+    reset_session
+    redirect_to :back
+  end
   
   def sign_up_confirm
     
@@ -42,6 +47,10 @@ class UserController < ApplicationController
   
   # 로그인
   def sign_in
+    if params[:email] == "facebook"
+      flash[:error] ="잘못된 아이디입니다."
+      redirect_to :back
+    end
     u = User.where(email: params[:email], password: params[:password]).first
     unless u.nil?
       session[:user_id] = u.id
@@ -82,15 +91,16 @@ class UserController < ApplicationController
   
   def delete_account_confirm
     current_user.delete
+    # session[:user_id] = nil
     reset_session
-    redirect '/home/index'
+    redirect_to '/home/index'
   end
 
   def mypage_confirm
     u = User.find(current_user.id)
     
-    @destroy = History.find(params[:id])
-    @destroy.destroy
+    # @destroy = History.find(params[:id])
+    # @destroy.destroy
     
     @new_password = params[:password]
     @confirm_password = params[:confirm_password]
@@ -142,13 +152,7 @@ class UserController < ApplicationController
       
   end
   
-  
-  def user_delete
-    u = current_user
-    
-    u.delete
-    redirect_to '/home/index'
-  end
+
   # def user_find
   
   # end

@@ -7,22 +7,16 @@ class CreateUsers < ActiveRecord::Migration
       
       #기본 유저 정보
       ## Database authenticatable
-      t.string :email,                     null: false    #이메일
-      t.string :password,                  null: false    #비밀번호
+      t.string :email,                     null: false, default: "facebook"    #이메일
+      t.string :password,                  null: false, default: "facebook"    #비밀번호
       t.string :school,                    default: ""  #학교
       t.text :intro,                     default: ""  #자기소개
       t.string :career,                    default: ""  #수상 및 경력
-      t.string :name,                      null: false    #이름
+      t.string :name,                      null: false, default: "facebook"    #이름
       t.string :picture,                   default: ""  #프로필 사진
       t.string :phonenumber,               default: ""  #폰번호
       t.integer :organization_id,          default: 0  #소속기관
-      t.string :confirm_password,          null: false #비밀번호확인
-    #페이스북
-      t.string :provider
-      t.string :uid
-      t.string :f_name
-      t.string :oauth_token
-      t.datetime :oauth_expires_at
+      t.string :confirm_password,          null: false, default: "facebook" #비밀번호확인
 
       t.integer :authority_bundle_id, null: false, default: 1 #계정의 권한모음
       
@@ -34,6 +28,15 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
       
       t.timestamps null: false
+      
+      #facebook
+      t.string :provider
+      t.string :uid
+      t.string :f_name
+      # t.string :name
+      t.string :oauth_token
+      t.datetime :oauth_expires_at
+      
     end
   end
 end
