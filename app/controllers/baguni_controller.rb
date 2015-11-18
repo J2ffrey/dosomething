@@ -89,12 +89,30 @@ class BaguniController < ApplicationController
     
     def bucket_save
         pa = Bongsa.find(params[:id])
-        b = Bucket.new
-        b.user_id   = current_user.id
-        b.bongsa_id = pa.id
-    
-        b.save
-        flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
-        redirect_to :back
+        my_buckets = Bucket.where(:user_id => current_user.id)
+        
+        unless my_buckets.nil?
+            i = 0
+            my_buckets.each do |same|
+                if same.bongsa_id.to_i == pa.id.to_i
+                    i = 1
+                end
+            end
+        end
+        
+        if i == 1
+            flash[:alert] = "'" + pa.name + "' 는 이미 찜한 봉사입니다."
+            redirect_to :back
+        else
+            b = Bucket.new
+            b.user_id   = current_user.id
+            b.bongsa_id = pa.id
+        
+            b.save
+            flash[:alert] = "'" + pa.name + "' 가 스크랩 되었습니다."
+            redirect_to :back
+        end
+        
+        
     end
 end

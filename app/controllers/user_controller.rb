@@ -86,7 +86,9 @@ class UserController < ApplicationController
   end
   
   def delete_account
-    
+    me = User.find(current_user.id)
+    me.delete
+    redirect_to '/'
   end
   
   def delete_account_confirm

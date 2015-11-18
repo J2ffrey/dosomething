@@ -95,6 +95,35 @@
         <a href="<%= @b.link unless @b.link.nil? %>">
           <button class="bongsa_apply">신청하기</button>
         </a>
+        <% unless flash[:alert].nil? %>
+        <div class="falert">
+          <%= flash[:alert] %> >> <a href="/baguni/timemanage" style="color: red;font-weight: bolder;text-decoration: underline;">보기(Click)</a>
+        </div>
+        <style>
+          .falert {
+            text-align:center;
+            /*width: 74%;*/
+            margin: 0px;
+            background-color: yellow;
+            border: 0px solid green;
+            border-radius: 5px;
+            margin: 2% 0% 0% 0%;
+            padding: 0.5% 0% 0.5% 2%;
+            font-weight: bolder;
+            color: blue;
+          }
+          /* input 태그의 type 속성이 checkbox인 태그가 체크되었을 때,
+	        바로 뒤에 위치하는 div 태그의 height 속성을 0픽셀로 적용합니다. */
+          .falert {width: 74%;} + .falert {height: 0px;}
+          .falert {overflow: hidden; width: 650px;
+          /* 변환 효과를 적용합니다. */
+            -ms-transition-duration: 2s;
+            -webkit-transition-duration: 2s;
+            -moz-transition-duration: 2s;
+            -o-transition-duration: 2s;
+            transition-duration: 2s; }
+        </style>
+        <% end %>
       </div>
     </div>
     <div class="col-md-12">

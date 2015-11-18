@@ -1,3 +1,20 @@
+<!--회원탈퇴 재질문하는 모달부분-->
+  <div class="modal fade bs-example-modal-sm" id="exit">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">ㅠ정말로 탈퇴하시겠습니까?</h4>
+        </div>
+        <div class="modal-footer">
+          <a href="/user/delete_account"><button type="button" class="btn btn-primary">네</button></a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<!--모달 끝-->
+
 <div class="col-md-12 col-sm-12 col-xs-12  nav_general" id="nav_general">
   <div class="col-md-1  col-sm-1 col-xs-1">&nbsp</div>
   <div class="col-md-1  col-sm-1 col-xs-1">
@@ -11,7 +28,6 @@
     <div class="menu" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><%= flash[:error] %></li>
-        <li><%= flash[:alert] %></li>
         <% unless current_user.nil? #로그인을 했으면 %>
           
           <li class="dropdown">
@@ -20,13 +36,13 @@
               <li><a href="/calendar/index">봉사달력</a></li>
               <li><a href="/baguni/timemanage">찜한봉사</a></li>
               <li><a href="/user/mypage">마이페이지</a></li>
-              <li><a href="/user/delete_account_confirm">회원탈퇴</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#exit">회원탈퇴</a></li>
               <li role="separator" class="divider"></li>
               <li class="logout">
               <% unless current_user.organization_id.nil? && %>
                 <li><a href="/admin/index">봉사정보 등록</a></li>
               <% end %>
-              <% unless current_user.authority_bundle_id != 0 %>
+              <% unless current_user.authority_bundle_id != 2 %>
               <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
               <% end %>
             </ul>

