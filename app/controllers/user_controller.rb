@@ -147,6 +147,7 @@ class UserController < ApplicationController
     u = current_user
     
     u.delete
+    redirect_to '/home/index'
   end
   # def user_find
   
@@ -159,5 +160,5 @@ class UserController < ApplicationController
   #   else
   #     flash[:error] ="이름 혹은 전화번호가 맞지 않습니다"
   #   end
-  end
+  # end
 end
