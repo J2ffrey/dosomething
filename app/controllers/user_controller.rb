@@ -33,11 +33,27 @@ class UserController < ApplicationController
     
   end
   
+  #     t.integer  :sign_in_count,           null: false, default: 0
+  #     t.datetime :current_sign_in_at
+  #     t.datetime :last_sign_in_at
+  #     t.string   :current_sign_in_ip
+  #     t.string   :last_sign_in_ip
+      
+  
   # 로그인
   def sign_in
     u = User.where(email: params[:email], password: params[:password]).first
     unless u.nil?
       session[:user_id] = u.id
+      
+      u.last_sign_in_ip = u.current_sign_in_ip
+      u.last_sign_in_at = u.current_sign_in_at
+      
+      u.sign_in_count += 1
+      
+      u.current_sign_in_ip = request.remote_ip
+      u.current_sign_in_at = Time.zone.now
+      u.save
     else
       flash[:error] ="아이디 혹은 비밀번호가 맞지 않습니다"
     end
@@ -124,5 +140,24 @@ class UserController < ApplicationController
   
   def user_agreement
       
+  end
+  
+  
+  def user_delete
+    u = current_user
+    
+    u.delete
+  end
+  # def user_find
+  
+  # end
+  
+  # def user_find_confirm
+  #   u = User.find(params[:name], params[:phonenumber])
+  #   unless u.nil?
+  #     session[:user_id] = u.id
+  #   else
+  #     flash[:error] ="이름 혹은 전화번호가 맞지 않습니다"
+  #   end
   end
 end

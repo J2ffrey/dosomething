@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  
-  
     if session[:user_id]
       u = User.where(id: session[:user_id]).first
       if u.nil?

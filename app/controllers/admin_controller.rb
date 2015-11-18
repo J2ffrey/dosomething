@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
-    # before_action {is_signin?}
-    # before_action {authority_check?("cAdmin")}
+    before_action {is_signin?}
+    before_action {authority_check?("cAdmin")}
     
     #instance_variable_set("@" + varname, value)
     def clear_bongsa
@@ -576,6 +576,8 @@ class AdminController < ApplicationController
         #크롤된 목록에서 봉사 1개 선택시 vms의 해당 봉사페이지에서 파싱해오는 함수 + 수정가능한 형태로 뿌려준다.
         
         #result_final = Array.new
+        unless params[:mod].nil?
+        else
         @k = Tempcrl.find(params[:id])
         
         uri = URI("http://www.vms.or.kr/partspace/reqView.jsp?seq=" + @k.keytemp.to_s )
@@ -589,7 +591,7 @@ class AdminController < ApplicationController
         
         #파싱(봉사기관)
         parsed_org =  doc_final.css(".table_t1//tr:nth-child(3)//td:nth-child(4)").inner_text
-        @parsed_org = parsed_org
+        @parsed_org = parsed_org.strip!.split("").drop(1).join
         
         #파싱(상세내용)
         parsed_content = doc_final.css(".table_t2//tr:nth-child(9)//td:nth-child(2)").inner_text
@@ -656,7 +658,8 @@ class AdminController < ApplicationController
         @parsed_email = parsed_email
     
         # @result_final = result_final
-        
+        #redirect_to '/admin/bongsa_post_tmp_save?drt=1'
+        end
     end
     
     def bongsa_post_tmp_save

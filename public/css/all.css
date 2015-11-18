@@ -204,6 +204,12 @@
 
 /*----------------- navbar_general_start ----------------------*/
 
+
+
+.header header--home{
+  position: absolute;
+}
+
 .navbar-header{
   width:15%;
 }
@@ -519,6 +525,10 @@ a {
     color: white
 }
 /*----------------- footer_end -----------------*/
+
+
+
+
 
 /* mypage_css start */
 

@@ -259,25 +259,26 @@
       </div>
     </div>
   </div>
-  <% if @b.content_etc.length >= 1 %>
-  <div class="row col-md-12 col-xs-12">
-    <div class="col-md-10 col-xs-10">
-      <div class="info_group">
-        <div class="section_icon_area">
-          <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
+  <% if @b.content_etc != nil %>
+    <% if @b.content_etc.length >= 1 %>
+    <div class="row col-md-12 col-xs-12">
+      <div class="col-md-10 col-xs-10">
+        <div class="info_group">
+          <div class="section_icon_area">
+            <img class="ic_bongsa_inform" src="/img/ic_category/ic_category09_other.png"/>
+          </div>
+          <div class="section_contents_8">
+          	<span class="section_title"><strong>기타사항</strong></span>
+          	<%= simple_format(@b.content_etc, class: 'section_text') %>
+          	<br>
+          </div>
+          <div class="col-md-2"></div>
         </div>
-        <div class="section_contents_8">
-        	<span class="section_title"><strong>기타사항</strong></span>
-        	<%= simple_format(@b.content_etc, class: 'section_text') %>
-        	<br>
-        </div>
-        <div class="col-md-2"></div>
       </div>
     </div>
-  </div>
-  <% else %>
+    <% else %>
+    <% end %>
   <% end %>
-
 
 
   <!--<div class="col-md-6">-->

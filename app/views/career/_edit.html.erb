@@ -1,12 +1,9 @@
-      <% time_total = 0 %>
-      <p class="volunteer_career_title">수상 및 경력</p>
+      <p class="volunteer_history_title">수상 및 경력</p>
        <p class="under_title"></p>
       <div class="row col-md-12">
-        <table class="career">
+        <table class="careers">
           <tbody>
-              <% i=0 %>
               <% current_user.careers.each do |x| %>
-                <% i+=1 %>
                 <tr>
                   <td><input type="checkbox" name="chk_info" value=<%=x.id%> /><%= x.name %></td>
                   <td>
@@ -21,7 +18,7 @@
           <tfooter>
               <tr>
                 <td>
-                  <input type="text" id="name" class="volunteer_work_name">
+                  <input type="text" id="name" class="volunteer_work_name" placeholder="봉사왕">
                 </td>
                 <td>
                   <b>&nbsp&nbsp<img src="/img/ic_logo/mypage_career_plus_24px.png" class="mypage_career_plus"/>
@@ -30,9 +27,10 @@
               </tr>
           </tfooter>
         </table>
-      </div>
+      </div
+      >
 
-<script>
+<script>                    
   document.getElementById("name").addEventListener("keydown", function(e) {
       if (!e) { var e = window.event; }
       // Enter is pressed
@@ -58,9 +56,9 @@
   }
   
   function career_save(){
-    b = document.getElementById("name");
+    a = document.getElementById("name");
 		var site_text = "/career/save?"
-		+ '&name=' + b.value
+		+ '&name=' + a.value
 		;
 		$('.volunteer_career_box').load(site_text);
 		return false;

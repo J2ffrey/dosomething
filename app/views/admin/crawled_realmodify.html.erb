@@ -5,17 +5,17 @@
 %>
 
 <%
-  unless @b.date_recruit_end.nil?
-    today = Time.zone.now.to_date
-    
-    td = today - @b.date_recruit_end
-    td = td.to_i
-    
-    if td > 0
-      @b.status="모집종료"
-      @b.save
+    unless @b.date_recruit_end.nil?
+      today = Time.zone.now.to_date
+      
+      td = today - @b.date_recruit_end
+      td = td.to_i
+      
+      if td > 0
+        @b.status="모집종료"
+        @b.save
+      end
     end
-  end
 %>
 <form action="/admin/crawled_realsave" enctype="multipart/form-data" method="POST" name="form_b" id="form_b">
 <!-- 이거슨 팝업창 -->
@@ -50,14 +50,14 @@
               <input type="radio" name="is_visible" value="1" checked/> O &nbsp&nbsp
               <input type="radio" name="is_visible" value="0" /> X
           <% end %><br>
-          기관명 : <%= Organization.find(@b.organization_id).name %>
+          <span style="font-size:20px;">기관명 : <b><%= Organization.find(@b.organization_id).name %></b></span>
       </div>
       <div class="col-md-12">
         <div class="col-md-3">
             <label style="margin-top:0%">지역</label> &nbsp
             <select name="region_id" style="width:90%;color: black;border: 1px solid black;">
                 <% Region.all.each do |x| %>
-                    <% if @mod == "1" && @b.region_id == x.id %>
+                    <% if @b.region_id == x.id %>
                         <option value="<%= x.id %>" selected><%= x.name %></option>
                     <% else %>
                         <option value="<%= x.id %>"><%= x.name %></option>
@@ -69,7 +69,7 @@
             <label style="margin-top:0%">주관대학</label> &nbsp
             <select name="school_id" style="width:90%;color: black;border: 1px solid black;">
                 <% School.all.each do |x| %>
-                    <% if @mod == "1" && @b.school_id == x.id %>
+                    <% if @b.school_id == x.id %>
                         <option value="<%= x.id %>" selected><%= x.name %></option>
                     <% else %>
                         <option value="<%= x.id %>"><%= x.name %></option>
@@ -81,7 +81,7 @@
             <label style="margin-top:0%">봉사시간 분류</label> &nbsp
             <select name="btime_id" style="width:90%;color: black;border: 1px solid black;">
                 <% Btime.all.each do |x| %>
-                    <% if @mod == "1" && @b.btime_id == x.id %>
+                    <% if @b.btime_id == x.id %>
                         <option value="<%= x.id %>" selected><%= x.name %></option>
                     <% else %>
                         <option value="<%= x.id %>"><%= x.name %></option>
@@ -93,7 +93,7 @@
             <label style="margin-top:0%">분야</label> &nbsp
             <select name="category_id" style="width:90%;color: black;border: 1px solid black;">
                 <% Category.all.each do |x| %>
-                    <% if @mod == "1" && @b.category_id == x.id %>
+                    <% if @b.category_id == x.id %>
                         <option value="<%= x.id %>" selected><%= x.name %></option>
                     <% else %>
                         <option value="<%= x.id %>"><%= x.name %></option>

@@ -19,9 +19,8 @@ class CareerController < ApplicationController
       a = Career.where(id: x).first
       a.delete unless a.nil?
     end
-    
+  
     redirect_to '/career/edit'
   end
-  
-  end
 end
+  

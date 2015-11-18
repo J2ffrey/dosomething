@@ -74,29 +74,30 @@
 <!--봉사history 끝-->
 
 <!--수상 및 표창 시작-->
-    <% ary = "x.id" %>
-    <div class="career_box rows">
-      <p class="career_title">수상 및 표창</p>
-      <p class="under_title"></p>
-        <div class="row col-md-12">
-          <form action="/career/d_career">
-          <% current_user.careers.each do |x| %>
-          <input type="checkbox" class="volunteer_work_name" name="chk_info" value=<%= x.id %> > <%=x.name%><br>
-          <% end %>
+    <%= render partial: 'career/edit' %>
+    <!--<% ary = "x.id" %>-->
+    <!--<div class="career_box rows">-->
+    <!--  <p class="career_title">수상 및 표창</p>-->
+    <!--  <p class="under_title"></p>-->
+    <!--    <div class="row col-md-12">-->
+    <!--      <form action="/career/d_career">-->
+    <!--      <% current_user.careers.each do |x| %>-->
+    <!--      <input type="checkbox" class="volunteer_work_name" name="chk_info" value=<%= x.id %> > <%=x.name%><br>-->
+    <!--      <% end %>-->
           
-          <button type="submit">제거</button><br>
-          </form>
+    <!--      <button type="submit">제거</button><br>-->
+    <!--      </form>-->
             
           
-        <div class="col-md-12" style="margin-top: 2%;">
-          <form action="/career/index/" method="POST">
-          <input type ="text" class="volunteer_work_name" name ="name">
-          <b>&nbsp&nbsp<img src="/img/ic_logo/mypage_career_plus_24px.png" class="mypage_career_plus"/>
-          <input type="submit" class="edit_icon" value="등록" placeholder="수상내용"></b>
-          </form>
-        </div>
-       </div>
-    </div>
+    <!--    <div class="col-md-12" style="margin-top: 2%;">-->
+    <!--      <form action="/career/index/" method="POST">-->
+    <!--      <input type ="text" class="volunteer_work_name" name ="name">-->
+    <!--      <b>&nbsp&nbsp<img src="/img/ic_logo/mypage_career_plus_24px.png" class="mypage_career_plus"/>-->
+    <!--      <input type="submit" class="edit_icon" value="등록" placeholder="수상내용"></b>-->
+    <!--      </form>-->
+    <!--    </div>-->
+    <!--   </div>-->
+    <!--</div>-->
 <!--수상 및 표창 끝-->
 
 <!--자기소개 시작-->
