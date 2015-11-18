@@ -560,6 +560,7 @@ select {width: 20%;
             <button class="term_btn">마감임박</button>
           <% elsif d_day < 0 %>
             <button class="term_btn">모집종료</button>
+          <% end %>
       <% else %>
         <button class="term_btn">모집상태미정</button>
       <% end %>
@@ -567,14 +568,19 @@ select {width: 20%;
     </div>
     <div class="row">
       <input type="text" name="name" class="form-control" value="<%= @parsed_title %>" required style="margin: -2% 0% 2% 1%;padding: 0%;width: 80%;"/>
-      <!--<input type="hidden" name="organization_id" value="<%= @b.organization_id %>">-->
+      <!--<input type="hidden" name="organization_id" value="<%#= @b.organization_id %>">-->
       <input type="hidden" value="<%= current_user.email unless current_user.nil? %>" name="admin_add">
       <input type="hidden" value="<%= @b.id %>" name="idd">
     </div>
     <div class="col-md-12 col-sm-12">
       <div class="col-md-5 col-sm-5 col-xs-12">
+        <% if params[:mod] =="1" %>
         <img src="<%= @b.img_main %>" alt="img" class="bongsa_img">
-        <input type="file" name="img_main" class="form-control" alt="메인 이미지를 올려주세요" value="<%#= @b.img_main %>" style="margin-left: -12%; width: 59%; margin-top: 10px;"/>
+        <input type="file" name="img_main" class="form-control" value="<%= @b.img_main %>" style="margin-left: -12%; width: 59%; margin-top: 10px;"/>
+        <% else %>
+        <img src="<%#= @b.img_main %>" alt="메인 이미지를 올려주세요" class="bongsa_img">
+        <input type="file" name="img_main" class="form-control" value="" style="margin-left: -12%; width: 59%; margin-top: 10px;"/>
+        <% end %>
       </div>
       <div class="info_box col-md-7 col-sm-7 col-xs-12">
         <p class="bongsa_sub_inform">
