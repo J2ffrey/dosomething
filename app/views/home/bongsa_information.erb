@@ -82,6 +82,26 @@
           <strong>활동지역</strong>
           <span class="bongsa_sub"><%= @b.address %></span>
         </p>
+        <% unless @b.link.nil? %>
+        <p class="bongsa_sub_inform">
+          <strong>인증서발급유무</strong>
+            <span class="bongsa_sub">
+            <%= "X" if !@b.is_approval %>
+            <%= "O" if @b.is_approval %>
+            </span>
+        </p>
+        
+        <!--임시로 만들어놨습니다. 정보의 무단 이용-개인정보 등 법적 문제가 있을 수 있겠다 싶었고, -->
+        <!--허가를 받고 출처를 밝히라는 사이트들의 지침이 있어 출처를 밝히는 폼을 우선 만들어두었습니다.-->
+        
+        <p class="bongsa_sub_inform_confirm">
+          <strong>출처</strong>
+            <span class="bongsa_sub_confirm">
+            <%= "이 봉사활동은 VMS 사이트에 게시되어 있습니다." unless @b.link.index('vms').nil? %>
+            <%= "이 봉사활동은 1365 사이트에 게시되어 있습니다." unless @b.link.index('1365.go.kr').nil? %>
+            </span>
+        </p>
+        <% else %>
         <p class="bongsa_sub_inform_confirm">
           <strong>인증서발급유무</strong>
             <span class="bongsa_sub_confirm">
@@ -89,12 +109,21 @@
             <%= "O" if @b.is_approval %>
             </span>
         </p>
+        <% end %>
         <a href="/baguni/bucket_save/<%= @b.id %>">
           <button class="bongsa_choice">찜하기</button>
         </a>
-        <a href="<%= @b.link unless @b.link.nil? %>">
+        <% unless @b.link.nil? %>
+          <% if @b.link.first(7).index('http') != nil %>
+            <a href="<%= @b.link %>">
+          <% else %>
+            <a href="<%= ("http://" + @b.link) %>">
+          <% end %>
+        <% end %>
           <button class="bongsa_apply">신청하기</button>
+        <% unless @b.link.nil? %>
         </a>
+        <% end %>
         <% unless flash[:alert].nil? %>
         <div class="falert">
           <%= flash[:alert] %> >> <a href="/baguni/timemanage" style="color: red;font-weight: bolder;text-decoration: underline;">보기(Click)</a>

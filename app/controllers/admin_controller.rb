@@ -17,12 +17,6 @@ class AdminController < ApplicationController
         ㅋ"
     end
     
-    def test2
-        #a = 'n'
-        #eval("@#{a} = \'aaa\'")
-        
-    end
-    
     def authority_seed
         model = ['User', 'Bongsa', 'Bucket', 'Region', 'School', 'Btime', 'Category', 'Region2', 'Admin', 'Organiztion', 'VltrAge', 'RealBongsa', 'BongTmp', 'Authority', 'AuthorityBundle', 'AuthorityDef']
         method = ['c', 'u', 'r', 'd']
@@ -71,8 +65,6 @@ class AdminController < ApplicationController
                 tmp2.save
             end
         end
-        
-        
         
         redirect_to '/admin/index?admin=authority_def'
     end
@@ -551,18 +543,10 @@ class AdminController < ApplicationController
     end
     
     def bongsa_tmp
-        if params[:mod] == nil
-            @moddd = 1
-        elsif params[:mod] == 2
-            @moddd = params[:mod]
-        elsif params[:mod] == 3
-            @moddd = params[:mod]
-        elsif params[:mod] == 10
-            @moddd = params[:mod]
-        elsif params[:mod] == 20
-            @moddd = params[:mod]
-        elsif params[:mod] == 30
-            @moddd = params[:mod]
+        if params[:lsst] == nil
+            @lsst = 1
+        else
+            @lsst = params[:lsst].to_i
         end
     end
     
@@ -659,6 +643,36 @@ class AdminController < ApplicationController
     
         # @result_final = result_final
         #redirect_to '/admin/bongsa_post_tmp_save?drt=1'
+        
+        #메인이미지 추천
+          #선언들
+            str_arr = Array.new
+            str_f = Array.new
+            str_a = Array.new
+            img_src_arr = Array.new
+            
+          #검색어 처리기
+            str = params[:img_keyword].to_s
+            str_arr = str.split(' ')
+            str_arr.each do |sr|
+                str_f << sr + "+"
+            end
+            str_a = str_f.join('').split('')
+            str_a.pop
+            str = str_a.join('')
+          
+          #이미지 파싱
+            require 'cgi'
+            sth = CGI.escape(str)
+            uri = URI("https://www.google.co.kr/search?q="+sth+"&hl=ko&biw=1536&bih=758&site=webhp&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjR5-X_hKDJAhXLk5QKHUtlArAQ_AUIBigB")
+            @net = Net::HTTP.get(uri) #.force_encoding('UTF-8')
+            @doc = Nokogiri::HTML(@net, nil, 'UTF-8').to_s.scrub!("?")
+            @doc_final = Nokogiri::HTML(@doc)
+            @doc_final.css('div#ires tr a img').xpath('//img/@src').each do |parsed|
+              img_src_arr << parsed.to_s
+            end
+            img_src_arr.delete_at(0)
+            @img_src_arr = img_src_arr
         end
     end
     
@@ -769,8 +783,22 @@ class AdminController < ApplicationController
         # redirect_to '/admin/index?admin=bongsa'
         #==============================================
         unless params[:org_name].nil?
+            org_name = params[:org_name]
+            # org_name = org_name.split(" ")
+            # oarray = Array.new
+            
+            # Organization.all.each do |odb|
+            #     org_name.each do |oname|
+            #         if odb.index(oname) != nil
+            #             oarray << oname
+            #         end
+            #         if oarray.count > 1
+            #             org_name = odb
+            #         end
+            #     end
+            # end
             org = Organization.new
-            org.name = params[:org_name]
+            org.name = org_name
             org.save
             organization_id = org.id
         end
@@ -809,6 +837,258 @@ class AdminController < ApplicationController
             tt.save
         end
         
-        redirect_to '/admin/bongsa_tmp'
+        if params[:lsst]=="2"
+            redirect_to '/admin/bongsa_tmp?lsst=2'
+        else
+            redirect_to '/admin/bongsa_tmp'
+        end
+    end
+    
+    def bongsa_tmp_save_second
+        result_keytmp_all = Array.new
+        i=1
+        loop do
+          @i = i
+          uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkList.do?menuNo=P9130&currentPageNo="+i.to_s+"&schSido=6110000&korNm1=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C&korNm3=%EC%A0%84%EC%B2%B4&schCateGu=all")
+          html_doc = Nokogiri::HTML(Net::HTTP.get(uri))
+          html_doc.xpath('//td[@class="subject"]/a/@href').each do |a|
+              aa = a.value.last(10).first(7)
+              result_keytmp_all << aa
+          end
+          break if Tempcrl.where(:from => 1).where(:keytemp => result_keytmp_all.last).take != nil
+          #아래의 break 조건문은 Tmpcrl이 비어있을때를 제외하고는 주석처리해둘것.
+          # break if result_keytmp_all.count >= 15
+          
+          break if i.to_i > 79
+          i = i.to_i + 1
+        end
+        
+        if Tempcrl.where(:from => 1).count != 0
+          n=1
+          loop do
+            iidd = Tempcrl.where(:keytemp => result_keytmp_all.last)
+            break if iidd.count == 0
+            result_keytmp_all.pop
+            n=n+1
+            break if n > 10 # 10으로 설정한 이유 : 한 페이지에 10개 게시물이 보여지고 이전 페이지까지 체크하러갈 필요가 없기 때문에.
+          end
+        end
+        
+        result_keytmp_all.reverse.each do |key|
+          #nametmp 추출
+          uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + key.to_s )
+          doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
+            
+        next if doc_final == nil
+          title = doc_final.css(".subject//h3").inner_text
+          result_nametmp = title.strip!
+          #Tempcrawl에 key 저장, nametmp 저장
+          tt = Tempcrl.new
+          tt.keytemp = key.to_i
+          tt.nametemp = result_nametmp
+          tt.is_registerd = 0
+          tt.from = 1
+          tt.save
+        end
+        
+        redirect_to '/admin/bongsa_tmp?lsst=2'
+    end
+    
+    def m_bongsa_tmp_second
+        
+        #크롤된 목록에서 봉사 1개 선택시 1365의 해당 봉사페이지에서 파싱해오는 함수 + 수정가능한 형태로 뿌려준다.
+        
+        unless params[:mod].nil?
+        else
+        @k = Tempcrl.find(params[:id])
+        
+        uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + @k.keytemp.to_s )
+        uri_final = uri
+        doc_final = Nokogiri::HTML(Net::HTTP.get(uri_final))
+        
+        #파싱(봉사명)
+        parsed_title =  doc_final.css(".subject//h3").inner_text.strip!
+        @parsed_title = parsed_title
+        
+        #파싱(봉사기관)
+        parsed_org =  doc_final.css(".info//table//tbody//tr:nth-child(5)//td:nth-child(2)").inner_text
+        @parsed_org = parsed_org.strip!#.split("").drop(1).join
+        
+        #파싱(상세내용)
+        parsed_content = doc_final.css(".content_view").inner_text
+        @parsed_content = parsed_content
+        
+        #파싱(봉사지역)
+        parsed_region = doc_final.css(".info//table//tbody//tr:nth-child(6)//td:nth-child(2)").inner_text
+        @parsed_region = parsed_region
+        
+        # #파싱(정기여부) # 1365에서는 알 수 없음.
+        # parsed_regular = doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(7)//td:nth-child(2)").inner_text
+        # if parsed_regular.first == "정"
+        #     icon = "1" # (정기)
+        # else
+        #     icon = "0" # (비정기)
+        # end
+        # @parsed_regular = icon
+        
+        #파싱(봉사기간) # 1365는 모집기간 + 봉사시간 도 받을 수 있음.
+        parsed_term = doc_final.css(".info//table//tbody//tr:nth-child(1)//td:nth-child(2)").inner_text
+        parsed_term_start = parsed_term.first(10).first(4) + '-' + parsed_term.first(10).first(7).last(2) + '-' + parsed_term.first(10).last(2)
+        @parsed_term_start = parsed_term_start
+        parsed_term_end = parsed_term.last(10).first(4) + '-' + parsed_term.last(10).first(7).last(2) + '-' + parsed_term.last(10).last(2)
+        @parsed_term_end   = parsed_term_end
+        
+        #파싱(모집인원) #1365는 신청인원도 받을 수 있음.
+        parsed_howmany =  doc_final.css(".info//table//tbody//tr:nth-child(2)//td:nth-child(4)").inner_text.split("")
+        
+        ir=1
+        loop do
+          parsed_howmany.pop
+          ir = ir+1
+          break if ir > 6
+        end
+        @parsed_howmany = parsed_howmany.join('').to_i
+        
+        # #파싱(사전교육) # 1365는 알 수 없음.
+        # parsed_preedu = doc_final.css(".table_t1//tr:nth-child(6)//.table_t2//tr:nth-child(5)//td:nth-child(2)").inner_text
+        # if parsed_preedu.length <= 2
+        # parsed_preedu = "0" #(사전교육 없음)
+        # else
+        # parsed_preedu = "1" #(사전교육 있음)
+        # end
+        # @parsed_preedu = parsed_preedu
+        
+        #파싱(특이조건)
+        parsed_sp_note_one = doc_final.css(".info//table//tbody//tr:nth-child(4)//th:nth-child(1)").inner_text
+        parsed_sp_note_two = doc_final.css(".info//table//tbody//tr:nth-child(4)//td:nth-child(2)").inner_text
+        parsed_sp_note_three = doc_final.css(".info//table//tbody//tr:nth-child(4)//th:nth-child(3)").inner_text
+        parsed_sp_note_four = doc_final.css(".info//table//tbody//tr:nth-child(4)//td:nth-child(4)").inner_text
+        @parsed_sp_note = parsed_sp_note_one + " : " + parsed_sp_note_two.strip + " // " + parsed_sp_note_three + " : " + parsed_sp_note_four.strip
+        
+        #파싱(모집상태)
+        parsed_status = doc_final.xpath('//div[@class="subject"]/h3/img/@alt').inner_text
+        if parsed_status.index('모집중') != nil 
+            parsed_status.replace "1" #"모집중"
+        elsif parsed_status.index('모집완료') != nil
+            parsed_status.replace "2" #"모집완료"
+        else
+            parsed_status.replace "0" #"모집예정"
+        end
+        
+        @parsed_status = parsed_status
+        
+        # #파싱(담당자)
+        parsed_clerk = doc_final.css(".name//em").inner_text
+        @parsed_clerk = parsed_clerk
+        
+        #파싱(담당자 연락처)
+        parsed_call = doc_final.css(".phone//em").inner_text
+        @parsed_call = parsed_call
+        
+        #파싱(담당자 이메일) #1365는 이메일은 안나오고 펙스 + 기관주소만 나옴.
+        parsed_fax = doc_final.css(".fax//em").inner_text
+        @parsed_fax = parsed_fax
+    
+        # @result_final = result_final
+        #redirect_to '/admin/bongsa_post_tmp_save?drt=1'
+        
+        
+        #*** 위에 있으면서 바뀐것들.
+        #*** 이메일 >> 펙스 // 특이조건의 정형화.
+        
+        #=========1365만 추가되는 것들============#
+        
+        
+        #파싱(신청인원)
+        parsed_bitches_many = doc_final.css(".info//table//tbody//tr:nth-child(3)//td:nth-child(4)").inner_text
+        @parsed_bitches_many = parsed_bitches_many
+        
+        #파싱(모집기간)
+        parsed_recruit = doc_final.css(".info//table//tbody//tr:nth-child(2)//td:nth-child(2)").inner_text
+        parsed_recruit_start = parsed_recruit.first(10).first(4) + '-' + parsed_recruit.first(10).first(7).last(2) + '-' + parsed_recruit.first(10).last(2)
+        @parsed_recruit_start = parsed_recruit_start
+        parsed_recruit_end = parsed_recruit.last(10).first(4) + '-' + parsed_recruit.last(10).first(7).last(2) + '-' + parsed_recruit.last(10).last(2)
+        @parsed_recruit_end = parsed_recruit_end
+        
+        #파싱(봉사시간)
+        parsed_daily = doc_final.css(".info//table//tbody//tr:nth-child(1)//td:nth-child(4)").inner_text
+        
+        parsed_daily_start = parsed_daily.first(3).split("")
+        parsed_daily_start.pop
+        @parsed_daily_start = parsed_daily_start.join('').to_i
+        
+        parsed_daily_end = parsed_daily.last(3).split("")
+        parsed_daily_end.pop
+        @parsed_daily_end = parsed_daily_end.join('').to_i
+        
+        #파싱(봉사요일)
+        parsed_weekday = doc_final.css(".info//table//tbody//tr:nth-child(3)//td:nth-child(2)").inner_text
+        parsed_weekday = parsed_weekday.strip!
+        @parsed_weekday = Array.new
+          loop do
+            nn = 1
+            if parsed_weekday.index('월')
+              @parsed_weekday << '월'
+            end
+            
+            if parsed_weekday.index('화')
+              @parsed_weekday << '화'
+            end
+            
+            if parsed_weekday.index('수')
+              @parsed_weekday << '수'
+            end
+            
+            if parsed_weekday.index('목')
+              @parsed_weekday << '목'
+            end
+            
+            if parsed_weekday.index('금')
+              @parsed_weekday << '금'
+            end
+            
+            if parsed_weekday.index('토')
+              @parsed_weekday << '토'
+            end
+            
+            if parsed_weekday.index('일')
+              @parsed_weekday << '일'
+            end
+            break if nn == 1
+          end
+        @parsed_weekday = @parsed_weekday.join('')
+        
+        #메인이미지 추천
+          #선언들
+            str_arr = Array.new
+            str_f = Array.new
+            str_a = Array.new
+            img_src_arr = Array.new
+            
+          #검색어 처리기
+            str = params[:img_keyword].to_s
+            str_arr = str.split(' ')
+            str_arr.each do |sr|
+                str_f << sr + "+"
+            end
+            str_a = str_f.join('').split('')
+            str_a.pop
+            str = str_a.join('')
+          
+          #이미지 파싱
+            require 'cgi'
+            sth = CGI.escape(str)
+            uri = URI("https://www.google.co.kr/search?q="+sth+"&hl=ko&biw=1536&bih=758&site=webhp&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjR5-X_hKDJAhXLk5QKHUtlArAQ_AUIBigB")
+            @net = Net::HTTP.get(uri) #.force_encoding('UTF-8')
+            @doc = Nokogiri::HTML(@net, nil, 'UTF-8').to_s.scrub!("?")
+            @doc_final = Nokogiri::HTML(@doc)
+            @doc_final.css('div#ires tr a img').xpath('//img/@src').each do |parsed|
+              img_src_arr << parsed.to_s
+            end
+            img_src_arr.delete_at(0)
+            @img_src_arr = img_src_arr
+        
+        end
+  
     end
 end

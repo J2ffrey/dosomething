@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">ㅠ정말로 탈퇴하시겠습니까?</h4>
+          <h4 class="modal-title">정말로 탈퇴하시겠습니까?ㅠㅠ</h4>
         </div>
         <div class="modal-footer">
           <a href="/user/delete_account"><button type="button" class="btn btn-primary">네</button></a>
@@ -15,16 +15,16 @@
   </div><!-- /.modal -->
 <!--모달 끝-->
 
-<div class="col-md-12 col-sm-12 col-xs-12  nav_general" id="nav_general">
-  <div class="col-md-1  col-sm-1 col-xs-1">&nbsp</div>
-  <div class="col-md-1  col-sm-1 col-xs-1">
-    <a href="/home/index"><img src="/img/ic_logo/main_navbar_logo.png" alt="" class="nav-logo"></a>
+<div class="rows nav_general" id="nav_general">
+  <div class="col-0-1 col--3-1">&nbsp</div>
+  <div class="col-0-1 col--3-4">
+    <a href="/"><img src="/img/ic_logo/main_navbar_logo.png" class="nav-logo"></a>
   </div>
-  <div class="col-md-6  col-sm-6 col-xs-6" >
+  <div class="col-0-6 col--3-10">
     &nbsp&nbsp&nbsp<input type="text" class="navbar_search_input" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
     <button class="search_btn_round"><img class="ic_navbar_search" src="/img/ic/ic_search_white_48dp_2x.png"></button>&nbsp
   </div>
-  <div class="col-md-4  col-sm-4 col-xs-4" style="margin-top: 1%;">
+  <div class="col-0-4 col--3-9" style="margin-top: 1%; padding-right:0px; padding-left:0px;">
     <div class="menu" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><%= flash[:error] %></li>
@@ -39,11 +39,12 @@
               <li><a href="#" data-toggle="modal" data-target="#exit">회원탈퇴</a></li>
               <li role="separator" class="divider"></li>
               <li class="logout">
-              <% unless current_user.organization_id.nil? && %>
+              <% unless current_user.organization_id.nil? %>
                 <li><a href="/admin/index">봉사정보 등록</a></li>
               <% end %>
-              <% unless current_user.authority_bundle_id != 2 %>
-              <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
+              
+              <% if authority_confirm?("cAdmin") %>
+                <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
               <% end %>
             </ul>
           </li>

@@ -1,4 +1,9 @@
 /* custom column sets */
+.col-5-0{
+  width:0%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
 
 .col-5-1{
   width:8.33%;
@@ -46,6 +51,12 @@
 
 .col-5-12{
   width:100%;
+}
+
+.col--5-0{
+  width:0
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .col--5-1{
@@ -152,10 +163,8 @@
 }
 
 .nav-logo{
-  width: 158%;
-  margin-top: 17%;
-  margin-bottom: 17%;
-  
+  width: 100%;
+  margin-top: 9%;
 }
 
 .nav_calendar {
@@ -178,7 +187,7 @@
 
 
 .search_btn_round {
-  width: 7%;
+  width: 5%;
   height: 35px;
   padding: 0.27% 0% 0% 0.2%;
   background-color: #26a69a;
@@ -208,7 +217,7 @@ select {
   background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 90%;
+  width: 86%;
   height: 39px;
   border-radius: 25px;
   margin-left: -17%;
@@ -395,7 +404,6 @@ a:hover {
   padding-left: 5px;
   width: 96%;
   font-weight: 600;
-  margin-left: 4%;
   border-radius: 35px;
   color: #57ce9b;
   margin-left: 4%;

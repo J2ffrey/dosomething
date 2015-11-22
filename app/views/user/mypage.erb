@@ -19,22 +19,57 @@
     <div class="profile_box">
       <p class="profile_title">프로필</p>
       <p class="under_title"></p>
-      <div class="row col-md-12">
-        <div class="row col-md-12" style="margin-bottom: 4%">
-        <div class="col-md-4">
-          <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp학교</strong></p>
-          <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_phone_24px.png"/>&nbsp&nbsp&nbsp연락처</strong></p>
-          <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_email_24px.png"/>&nbsp&nbsp&nbsp이메일</strong></p>
-          <p class="profile_sub_title"><strong><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호</strong></p>
-          <p class="profile_sub_title"><strong><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호 확인</strong></p>
-        </div>
-        <div class="col-md-8" style="margin-top: 1%;">
-          <p class="profile_sub_info"><%= current_user.school %></p>
-          <p class="profile_sub_info"><%= current_user.phonenumber %></p>
-          <p class="profile_sub_info"><%= current_user.email %></p>
-          <p class="profile_sub_info">***********</p>
-          <p class="profile_sub_info">***********</p>
-        </div>
+      <div class="row col-0-12">
+        <div class="row col-0-12" style="margin-bottom: 4%">
+        <table class="profile_">
+          <tr>
+            <td>
+              <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp학교</strong></p>
+            </td>
+            <td>
+              <p class="profile_sub_info"><%= current_user.school %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp연락처</strong></p>
+            </td>
+            <td>
+              <p class="profile_sub_info"><%= current_user.phonenumber %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp이메일</strong></p>
+            </td>
+            <td>
+              <p class="profile_sub_info"><%= current_user.email %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp비밀번호</strong></p>
+            </td>
+            <td>
+              <p class="profile_sub_info">*************</p>
+            </td>
+          </tr>
+        </table>
+          
+        <!--<div class="col-md-4">-->
+        <!--  <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_school_24px.png"/>&nbsp&nbsp&nbsp학교</strong></p>-->
+        <!--  <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_phone_24px.png"/>&nbsp&nbsp&nbsp연락처</strong></p>-->
+        <!--  <p class="profile_sub_title"><strong><img src="/img/ic_logo/user_email_24px.png"/>&nbsp&nbsp&nbsp이메일</strong></p>-->
+        <!--  <p class="profile_sub_title"><strong><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호</strong></p>-->
+        <!--  <p class="profile_sub_title"><strong><img src="/img/ic_logo/mypage_lock_24px.png"/>&nbsp&nbsp&nbsp비밀번호 확인</strong></p>-->
+        <!--</div>-->
+        <!--<div class="col-md-8" style="margin-top: 1%;">-->
+        <!--  <p class="profile_sub_info"><%= current_user.school %></p>-->
+        <!--  <p class="profile_sub_info"><%= current_user.phonenumber %></p>-->
+        <!--  <p class="profile_sub_info"><%= current_user.email %></p>-->
+        <!--  <p class="profile_sub_info">***********</p>-->
+        <!--  <p class="profile_sub_info">***********</p>-->
+        <!--</div>-->
       </div>
     </div>
         <!--<div class="profile_box_line col-md-9">-->

@@ -41,8 +41,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  #권한 확인하는 function
-  def authority_check?(*authorities)
+  def authority_confirm?(*authorities)
     flag=0
     if session[:user_id].nil?
       flag=0
@@ -79,13 +78,20 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    if !(!(c.include?(0)) || (AuthorityBundle.find(u.authority_bundle_id).name == "Administrator"))
+    b = true
+    
+    if (c.include?(0)) && (AuthorityBundle.find(u.authority_bundle_id).name != "Administrator")
+      b = false
+    end
+    
+    return b
+  end
+  
+  #권한 확인하는 function
+  def authority_check?(*authorities)
+    if !(authority_confirm?(authorities))
       flash[:error] = "해당 권한이 없는 사용자입니다."
       redirect_to '/error'
     end
   end
-  
-
-  
-  
 end

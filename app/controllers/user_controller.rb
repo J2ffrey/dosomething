@@ -3,7 +3,7 @@ class UserController < ApplicationController
   
   def test
     reset_session
-    redirect_to :back
+    redirect_to '/'
   end
   
   def sign_up_confirm
@@ -155,16 +155,17 @@ class UserController < ApplicationController
   end
   
 
-  # def user_find
+  def user_find
   
-  # end
+  end
   
-  # def user_find_confirm
-  #   u = User.find(params[:name], params[:phonenumber])
-  #   unless u.nil?
-  #     session[:user_id] = u.id
-  #   else
-  #     flash[:error] ="이름 혹은 전화번호가 맞지 않습니다"
-  #   end
-  # end
+  def user_find_confirm
+    u = User.where(name: params[:name], phonenumber: params[:phonenumber]).first
+    session[:u_email] = u.email
+    unless u.nil?
+      @user_email = u.email
+    else
+      flash[:error] ="이름 혹은 전화번호가 맞지 않습니다"
+    end
+  end
 end

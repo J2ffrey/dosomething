@@ -252,8 +252,13 @@ select {width: 20%;
       <div class="info_box col-md-7 col-sm-7 col-xs-12">
         <p class="bongsa_sub_inform">
           <strong>모집기간</strong>
-          <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start if @mod =="1" %>" style="line-height: 20px;width: 23%;margin-left:13%;"/> ~
-          <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end if @mod =="1" %>" style="line-height: 20px;width: 23%;"/>
+          <% if @mod=="1"%>
+          <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @b.date_recruit_start %>" style="line-height: 20px;width: 23%;margin-left:13%;"/> ~
+          <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @b.date_recruit_end %>" style="line-height: 20px;width: 23%;"/>
+          <% else %>
+          <input type="date" name="date_recruit_start" class="form-control_date" value="<%= @parsed_recruit_start %>" style="line-height: 20px;width: 23%;margin-left:13%;"/> ~
+          <input type="date" name="date_recruit_end" class="form-control_date" value="<%= @parsed_recruit_end %>" style="line-height: 20px;width: 23%;"/>
+          <% end %>
         </p>
         <p class="bongsa_sub_inform">
           <strong>활동기간</strong>
@@ -267,7 +272,11 @@ select {width: 20%;
         </p>
         <p class="bongsa_sub_inform">
           <strong>봉사시간</strong>
-          <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total if @mod =="1" %>" style="line-height: 20px;width: 10%;margin-left:13%;"/>&nbsp시간
+          <% if @mod =="1"%>
+          <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total %>" style="line-height: 20px;width: 10%;margin-left:13%;"/>&nbsp시간/일
+          <% else %>
+          <input type="text" name="time_expect_total" class="form-control_line" value="<%= @parsed_daily_end - @parsed_daily_start %>" style="line-height: 20px;width: 10%;margin-left:13%;"/>&nbsp시간/일
+          <% end %>
         </p>
         <p class="bongsa_sub_inform">
           <strong>활동지역</strong>
@@ -302,8 +311,8 @@ select {width: 20%;
                 <input type="radio" name="is_edu" value="1" /> 있음 &nbsp&nbsp
                 <input type="radio" name="is_edu" value="0" checked/> 없음
             <% else %>
-                <input type="radio" name="is_edu" value="1" <%= "checked" if @parsed_preedu=="1"%>/> 있음 &nbsp&nbsp
-                <input type="radio" name="is_edu" value="0" <%= "checked" if @parsed_preedu=="0"%>/> 없음
+                <input type="radio" name="is_edu" value="1" /> 있음 &nbsp&nbsp
+                <input type="radio" name="is_edu" value="0" /> 없음
             <% end %>
             </span>
         </p>
@@ -322,7 +331,7 @@ select {width: 20%;
             <% if @mod=="1" %>
             <input type="number" name="vltr_num2" class="form-control_line" value="<%= @b.vltr_num2 %>" style="width: 5%;" />&nbsp명
             <% else %>
-            <input type="number" name="vltr_num2" class="form-control_line" value="" style="width: 5%;" />&nbsp명
+            <input type="number" name="vltr_num2" class="form-control_line" value="<%= @parsed_bitches_many %>" style="width: 5%;" />&nbsp명
             <% end %>
             </span>
         </p>
@@ -335,7 +344,7 @@ select {width: 20%;
         <% if @mod=="1"%>
         <input type="text" name="link" class="form-control_line" placeholder="신청 링크주소는 여기에" value="<%= @b.link %>" />
         <% else %>
-        <input type="text" name="link" class="form-control_line" value="<%= "http://www.vms.or.kr/partspace/reqView.jsp?seq=" + @k.keytemp.to_s %>" />
+        <input type="text" name="link" class="form-control_line" value="<%= "http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + @k.keytemp.to_s %>" />
         <% end %>
       </div>
     </div>
@@ -379,10 +388,12 @@ select {width: 20%;
                 <%# @b.bongsa_times.each do |y| %>
                   <tr>
                     <td class="day_head">
+                      (임시로 여기에 띄움) <%= @parsed_weekday %>
                       <%#= arr[y.time_type ]  %>
                       <%#= y.time_type %>
                     </td>
                     <td class="day_time">
+                      (임시로 여기에 띄움) <%= @parsed_daily_start %>시 ~ <%= @parsed_daily_end %>시
                       <%#= y.time_start %> ~
                       <%#= y.time_end %>
                     <td>
@@ -455,11 +466,11 @@ select {width: 20%;
                 <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
                 <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
             <% else %>
-                <input type="radio" name="is_regular" value="1" <%= "checked" if @parsed_regular=="1"%>/> 정기 봉사 &nbsp&nbsp
-                <input type="radio" name="is_regular" value="0" <%= "checked" if @parsed_regular=="0"%>/> 비정기 봉사
+                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
             <% end %><br><br>
-            <!--<input type="date" name="" class="form-control_date" value="<%= @b.date_real_start if @mod=="1" %>" style="line-height: 20px;width: 40%;"/> ~-->
-            <!--<input type="date" name="" class="form-control_date" value="<%= @b.date_real_end if @mod=="1" %>" style="line-height: 20px;width: 40%;"/></p><br>-->
+            <!--<input type="date" name="" class="form-control_date" value="<%#= @b.date_real_start if @mod=="1" %>" style="line-height: 20px;width: 40%;"/> ~-->
+            <!--<input type="date" name="" class="form-control_date" value="<%#= @b.date_real_end if @mod=="1" %>" style="line-height: 20px;width: 40%;"/></p><br>-->
           </div>
         </div>
       </div>
@@ -486,13 +497,13 @@ select {width: 20%;
         	    <% if @mod=="1" %>
         	    이메일 : <input type="text" name="clerk_email" class="" value="<%= @b.clerk_email %>" style="width: 50%; line-height: 20px;margin-bottom: 5px;"/>
         	    <% else %>
-        	    이메일 : <input type="text" name="clerk_email" class="" value="<%= @parsed_email %>" style="width: 50%; line-height: 20px;margin-bottom: 5px;"/>
+        	    이메일(fax) : <input type="text" name="clerk_email" class="" value="<%= @parsed_fax %>" style="width: 50%; line-height: 20px;margin-bottom: 5px;"/>
         	    <% end %>
         	    <br>
         	    <% if @mod=="1" %>
         	    링크 : <input type="text" name="clerk_link" class="" value="<%= @b.clerk_link %>" style="width: 85%; line-height: 20px;margin-left: 3%;"/>
         	    <% else %>
-        	    링크 : <input type="text" name="clerk_link" class="" value="<%#= @b.clerk_link %>" style="width: 85%; line-height: 20px;margin-left: 3%;"/>
+        	    링크 : <input type="text" name="clerk_link" class="" value="<% %>" style="width: 85%; line-height: 20px;margin-left: 3%;"/>
         	    <% end %>
         	    <br>
           	</p><br>
@@ -555,145 +566,57 @@ select {width: 20%;
       </div>
     </div>
   
-
-
-  <!--<div class="col-md-6">-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>모집대상</strong></span>-->
-  <!--    	<p class="section_text">신한생명 보험 20대 가입자</p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_sex.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>모집기간</strong></span>-->
-  <!--    	<p class="section_text"><%#= @b.date_recruit_start %> ~ <%#= @b.date_recruit_end %></p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_info.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>활동기간</strong></span>-->
-  <!--    	<p class="section_text">정기인지 or 비정기 / 몇일부터 몇일까지인지. </p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--</div>-->
-  <!--<div class="col-md-6">-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>봉사시간</strong></span>-->
-  <!--    	<p class="section_text">요일별로 몇시부터 몇시까지 or 무관하고 기타 여러가지 경우 포함가능하게.</p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>활동지역</strong></span>-->
-  <!--    	<p class="section_text">정형화된 카테고리 지역 넘어서 디테일하게 입력할 수 있도록</p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>담당자</strong></span>-->
-  <!--    	<p class="section_text">이름 or 전화 or 메일 or 링크</p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--</div>-->
-  <!--<div class="col-md-12"><!--리스트 형식으로 작성되는 경우에는 ul 태그 li li 해서 앞에 쩜 띄워줄 수 있게.-->
-    <!--<div class="info_group">-->
-    <!--  <div class="section_icon_area">-->
-    <!--    <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-    <!--  </div>-->
-    <!--  <div class="section_contents">-->
-    <!--  	<span class="section_title"><strong>활동혜택</strong></span>-->
-    <!--  	<p class="section_text">있으면 상세하게 써줄 수 있고, 없으면 "-"</p><br>-->
-    <!--  </div>-->
-    <!--</div>-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>관련링크</strong></span>-->
-  <!--    	<p class="section_text">있으면 상세하게 써줄 수 있고, 없으면 "-" </p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <div class="info_group">-->
-  <!--    <div class="section_icon_area">-->
-  <!--      <img class="ic_bongsa_inform" src="/img/ic/ic_details_location.png"/>-->
-  <!--    </div>-->
-  <!--    <div class="section_contents">-->
-  <!--    	<span class="section_title"><strong>기타사항</strong></span>-->
-  <!--    	<p class="section_text">있으면 상세하게 써줄 수 있고, 없으면 "-" </p><br>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--</div>-->
-  
-  
-  
-
-  <!--POSTER 시작-->
-  <center>
-   <!--<span class="info_title"><b>POSTER</b></span>-->
-   <br class="info_line"><br>
-  </center>
-  <% if @mod =="1" %>
-    <% unless @b.img_poster.to_s.length <= 1  %>
-      <div class="col-md-12 slide slided_poster">
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <img src="<%= @b.img_poster %>" class="info_poster">
-          </div>
-          <div class="col-md-2"></div>
-          </div>
-          <div class="col-md-1"></div>
-      </div>
-    <% else %>
-      <!--<div class="col-md-12 slide slided_poster">-->
-      <!--  <center>-->
-      <!--    <h1 style="margin-bottom:3%; font-size:40px;">-->
-      <!--        <b>해당 포스터가 없습니다</b>-->
-      <!--    </h1>-->
-      <!--  </center>-->
-      <!--</div>-->
-    <% end %>
-  <% else %>
-    <div class="col-md-12 slide slided_poster">
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
+    <!--POSTER 시작-->
+    <center>
+     <!--<span class="info_title"><b>POSTER</b></span>-->
+     <br class="info_line"><br>
+    </center>
+    <% if @mod =="1" %>
+      <% unless @b.img_poster.to_s.length <= 1  %>
+        <div class="col-md-12 slide slided_poster">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-              <input type="file" name="img_poster" class="form-control" value="" />
-              <img src="<%#= @b.img_poster %>" alt="포스터를 등록하세요" class="info_poster">
+              <img src="<%= @b.img_poster %>" class="info_poster">
             </div>
             <div class="col-md-2"></div>
-          </div>
-          <div class="col-md-1"></div>
-      </div>
-  <% end %>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+      <% else %>
+        <!--<div class="col-md-12 slide slided_poster">-->
+        <!--  <center>-->
+        <!--    <h1 style="margin-bottom:3%; font-size:40px;">-->
+        <!--        <b>해당 포스터가 없습니다</b>-->
+        <!--    </h1>-->
+        <!--  </center>-->
+        <!--</div>-->
+      <% end %>
+    <% else %>
+      <div class="col-md-12 slide slided_poster">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <input type="file" name="img_poster" class="form-control" value="" />
+                <img src="<%#= @b.img_poster %>" alt="포스터를 등록하세요" class="info_poster">
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    <% end %>
+    <div class="col-md-12 slide slided_poster" align="center" style="margin-bottom:30px;padding-top: 20px;border-bottom: 10px double green;border-top: 10px double green;">
+      <% @img_src_arr.each do |src| %>
+      <div class="col-md-3"><img src="<%= src %>"  alt="출처 : <%= src %>"></div>
+      <% end %>
+    </div>
     <div class="col-md-12 slide slided_poster" align="center" style="margin-bottom:30px;">
       <div class="col-md-5"></div>
       <div class="col-md-2">
         <input type="submit" value="등록" class="btn btn-orange" />
-        <button class="btn btn-orange"><a href="/admin/bongsa_tmp" style="color:black">취소</a></button>
+        <button class="btn btn-orange"><a href="/admin/bongsa_tmp?lsst=2" style="color:black">취소</a></button>
       </div>
       <div class="col-md-5"></div>
     </div>
@@ -710,3 +633,25 @@ select {width: 20%;
 
  
 <%= render :partial => 'home/main_footer' %>
+<br><br><br><br>개발 전용 파싱정보들<br><br>
+@k.keytemp = <%= @k.keytemp %><br>
+Parsing from = http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=<%= @k.keytemp.to_s %><br>
+parsed_title = <%= @parsed_title %><br>
+parsed_org = <%= @parsed_org %><br>
+parsed_content = <br><textarea rows="15" cols="70"><%= @parsed_content %></textarea><br>
+parsed_region = <%= @parsed_region %><br>
+parsed_regular = 알 수 없음.<%#= @parsed_regular %><br>
+parsed_term_start ~ parsed_term_end = <%= @parsed_term_start %> // ~ // <%= @parsed_term_end %><br>
+parsed_howmany = <%= @parsed_howmany %><br>
+parsed_preedu = 알 수 없음.<%#= @parsed_preedu %><br>
+parsed_sp_note = <%= @parsed_sp_note %><br>
+parsed_status = <%= @parsed_status %><br>
+parsed_clerk = <%= @parsed_clerk %><br>
+parsed_call = <%= @parsed_call %><br>
+parsed_fax = <%= @parsed_fax %><br>
+
+1365만 새롭게 추가되는 것들.<br>
+신청인원 = parsed_bitches_many = <%= @parsed_bitches_many %><br>
+모집시작 ~ 종료 = parsed_recruit_end ~ parsed_recruit_start = <%= @parsed_recruit_start %> // ~ // <%= @parsed_recruit_end %><br>
+시작시간 ~ 종료 = parsed_daily_start ~ parsed_daily_end = <%= @parsed_daily_start %> // ~ // <%= @parsed_daily_end %><br>
+봉사요일 = parsed_weekday = <%= @parsed_weekday %><br>
