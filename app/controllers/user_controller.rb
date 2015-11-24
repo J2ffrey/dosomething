@@ -167,5 +167,12 @@ class UserController < ApplicationController
     else
       flash[:error] ="이름 혹은 전화번호가 맞지 않습니다"
     end
+    p = User.where(name: params[:name], phonenumber: params[:phonenumber], email: params[:email]).first
+    session[:password] = p.password
+    unless p.nil?
+      @user_password = p.password
+    else
+      flash[:error] ="이름 혹은 전화번호가 맞지 않습니다"
+    end
   end
 end

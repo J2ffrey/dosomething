@@ -1,1 +1,5 @@
+<% if @user_password.nil? %>
 회원님의 아이디는: <%= @user_email %>입니다.
+<% else %>
+회원님의 비밀번호는: <%= @user_password %>입니다.
+<% end %>

@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 #gem 'devise-ios-rails'
 #gem 'simple_token_authentication', '~> 1.0'
 #gem 'active_model_serializers'
+
+gem 'json'
+#https://github.com/tj/google-search
+gem 'google-search'
+
 gem 'mysql2', '~> 0.3.18'
 
 gem 'yaml_db'

@@ -31,18 +31,6 @@ select {width: 20%;
 }
 </style>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <%= render :partial => 'home/main_navbar_general' %>
 
 <% 
@@ -607,11 +595,11 @@ select {width: 20%;
             <div class="col-md-1"></div>
         </div>
     <% end %>
+    
     <div class="col-md-12 slide slided_poster" align="center" style="margin-bottom:30px;padding-top: 20px;border-bottom: 10px double green;border-top: 10px double green;">
-      <% @img_src_arr.each do |src| %>
-      <div class="col-md-3"><img src="<%= src %>"  alt="출처 : <%= src %>"></div>
-      <% end %>
+      <%= render partial: 'crlr/img_search' %>
     </div>
+    
     <div class="col-md-12 slide slided_poster" align="center" style="margin-bottom:30px;">
       <div class="col-md-5"></div>
       <div class="col-md-2">

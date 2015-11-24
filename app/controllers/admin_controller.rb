@@ -551,8 +551,13 @@ class AdminController < ApplicationController
     end
     
     def bongsa_tmp_list_delete
-        tt = Tempcrl.find(params[:id])
-        tt.destroy
+        if params[:lsst]=="1"
+            tt = Tempcrl.find(params[:id])
+            tt.destroy
+        elsif params[:lsst]=="2"
+            tt = TempcrlA.find(params[:id])
+            tt.destroy
+        end
         redirect_to :back
     end
     
@@ -646,33 +651,17 @@ class AdminController < ApplicationController
         
         #메인이미지 추천
           #선언들
-            str_arr = Array.new
-            str_f = Array.new
-            str_a = Array.new
             img_src_arr = Array.new
-            
+              
           #검색어 처리기
             str = params[:img_keyword].to_s
-            str_arr = str.split(' ')
-            str_arr.each do |sr|
-                str_f << sr + "+"
-            end
-            str_a = str_f.join('').split('')
-            str_a.pop
-            str = str_a.join('')
-          
+            
           #이미지 파싱
-            require 'cgi'
-            sth = CGI.escape(str)
-            uri = URI("https://www.google.co.kr/search?q="+sth+"&hl=ko&biw=1536&bih=758&site=webhp&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjR5-X_hKDJAhXLk5QKHUtlArAQ_AUIBigB")
-            @net = Net::HTTP.get(uri) #.force_encoding('UTF-8')
-            @doc = Nokogiri::HTML(@net, nil, 'UTF-8').to_s.scrub!("?")
-            @doc_final = Nokogiri::HTML(@doc)
-            @doc_final.css('div#ires tr a img').xpath('//img/@src').each do |parsed|
-              img_src_arr << parsed.to_s
+            Google::Search::Image.new(:query => str).each do |image|
+              img_src_arr << image.uri
             end
-            img_src_arr.delete_at(0)
             @img_src_arr = img_src_arr
+            
         end
     end
     
@@ -832,15 +821,21 @@ class AdminController < ApplicationController
         re.save
         
         if params[:mod]!="1"
-            tt = Tempcrl.find(params[:tid]) 
-            tt.is_registerd = 1
-            tt.save
+            if params[:lsst]=="1"
+                tt = Tempcrl.find(params[:tid]) 
+                tt.is_registerd = 1
+                tt.save
+            elsif params[:lsst]=="2"
+                tt = TempcrlA.find(params[:tid]) 
+                tt.is_registerd = 1
+                tt.save
+            end
         end
         
-        if params[:lsst]=="2"
-            redirect_to '/admin/bongsa_tmp?lsst=2'
-        else
+        if params[:lsst]=="1"
             redirect_to '/admin/bongsa_tmp'
+        elsif params[:lsst]=="2"
+            redirect_to '/admin/bongsa_tmp?lsst=2'
         end
     end
     
@@ -855,18 +850,18 @@ class AdminController < ApplicationController
               aa = a.value.last(10).first(7)
               result_keytmp_all << aa
           end
-          break if Tempcrl.where(:from => 1).where(:keytemp => result_keytmp_all.last).take != nil
+          break if TempcrlA.where(:from => 1).where(:keytemp => result_keytmp_all.last).take != nil
           #아래의 break 조건문은 Tmpcrl이 비어있을때를 제외하고는 주석처리해둘것.
           # break if result_keytmp_all.count >= 15
           
-          break if i.to_i > 79
+          break if i.to_i > 81
           i = i.to_i + 1
         end
         
-        if Tempcrl.where(:from => 1).count != 0
+        if TempcrlA.where(:from => 1).count != 0
           n=1
           loop do
-            iidd = Tempcrl.where(:keytemp => result_keytmp_all.last)
+            iidd = TempcrlA.where(:keytemp => result_keytmp_all.last)
             break if iidd.count == 0
             result_keytmp_all.pop
             n=n+1
@@ -883,7 +878,7 @@ class AdminController < ApplicationController
           title = doc_final.css(".subject//h3").inner_text
           result_nametmp = title.strip!
           #Tempcrawl에 key 저장, nametmp 저장
-          tt = Tempcrl.new
+          tt = TempcrlA.new
           tt.keytemp = key.to_i
           tt.nametemp = result_nametmp
           tt.is_registerd = 0
@@ -900,7 +895,7 @@ class AdminController < ApplicationController
         
         unless params[:mod].nil?
         else
-        @k = Tempcrl.find(params[:id])
+        @k = TempcrlA.find(params[:id])
         
         uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + @k.keytemp.to_s )
         uri_final = uri
@@ -1024,69 +1019,15 @@ class AdminController < ApplicationController
         #파싱(봉사요일)
         parsed_weekday = doc_final.css(".info//table//tbody//tr:nth-child(3)//td:nth-child(2)").inner_text
         parsed_weekday = parsed_weekday.strip!
+        week_day_index = ['월','화','수','목','금','토','일']
         @parsed_weekday = Array.new
-          loop do
-            nn = 1
-            if parsed_weekday.index('월')
-              @parsed_weekday << '월'
+        week_day_index.each do |x|
+            if parsed_weekday.index(x)
+              @parsed_weekday << x
             end
-            
-            if parsed_weekday.index('화')
-              @parsed_weekday << '화'
-            end
-            
-            if parsed_weekday.index('수')
-              @parsed_weekday << '수'
-            end
-            
-            if parsed_weekday.index('목')
-              @parsed_weekday << '목'
-            end
-            
-            if parsed_weekday.index('금')
-              @parsed_weekday << '금'
-            end
-            
-            if parsed_weekday.index('토')
-              @parsed_weekday << '토'
-            end
-            
-            if parsed_weekday.index('일')
-              @parsed_weekday << '일'
-            end
-            break if nn == 1
-          end
-        @parsed_weekday = @parsed_weekday.join('')
+        end
         
-        #메인이미지 추천
-          #선언들
-            str_arr = Array.new
-            str_f = Array.new
-            str_a = Array.new
-            img_src_arr = Array.new
-            
-          #검색어 처리기
-            str = params[:img_keyword].to_s
-            str_arr = str.split(' ')
-            str_arr.each do |sr|
-                str_f << sr + "+"
-            end
-            str_a = str_f.join('').split('')
-            str_a.pop
-            str = str_a.join('')
-          
-          #이미지 파싱
-            require 'cgi'
-            sth = CGI.escape(str)
-            uri = URI("https://www.google.co.kr/search?q="+sth+"&hl=ko&biw=1536&bih=758&site=webhp&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjR5-X_hKDJAhXLk5QKHUtlArAQ_AUIBigB")
-            @net = Net::HTTP.get(uri) #.force_encoding('UTF-8')
-            @doc = Nokogiri::HTML(@net, nil, 'UTF-8').to_s.scrub!("?")
-            @doc_final = Nokogiri::HTML(@doc)
-            @doc_final.css('div#ires tr a img').xpath('//img/@src').each do |parsed|
-              img_src_arr << parsed.to_s
-            end
-            img_src_arr.delete_at(0)
-            @img_src_arr = img_src_arr
+        @parsed_weekday = @parsed_weekday.join('')
         
         end
   

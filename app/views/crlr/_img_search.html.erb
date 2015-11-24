@@ -1,0 +1,9 @@
+<%
+#메인이미지 추천
+  str = params[:img_keyword].to_s
+#이미지 파싱
+  Google::Search::Image.new(:query => str).each do |img|%>
+    <div class="col-0-4"><img src="<%= img.uri %>"  alt="출처 : <%= img.uri %>" width="100%"></div>
+<%
+  end
+%>

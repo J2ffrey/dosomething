@@ -39,7 +39,7 @@
         page = params[:page].to_i
        end  
        
-       count = Tempcrl.where(:from => nil).count
+       count = Tempcrl.count
        show = 20 #(갯수)
                            %>
     <div class="well well-in">
@@ -104,16 +104,16 @@
                #일반적인 경우
                #page가 n일 때, [count-{show*(n-1)}]::top ~ [count-{show*n}+1]::bottom 번까지 보여주고
                n = page
-               top = Tempcrl.where(:from => nil).first(count - show*(n - 1)).last.id
+               top = Tempcrl.first(count - show*(n - 1)).last.id
                
                if n == count/show + 1
-                   bottom = Tempcrl.where(:from => nil).first.id
+                   bottom = Tempcrl.first.id
                else
-                   bottom = Tempcrl.where(:from => nil).first(count - show*n + 1).last.id
+                   bottom = Tempcrl.first(count - show*n + 1).last.id
                end
                
                top.downto(bottom) do |x|
-                next if Tempcrl.where(:from => nil).where(:id => x).any? == false
+                next if Tempcrl.where(:id => x).any? == false
                 
                #마지막 page에 다다른 경우
                # 즉, n == {(count/show의 몫)+1} 인 경우
@@ -123,12 +123,13 @@
             <tbody>
                 <% post = Tempcrl.find(x) %>
                 <tr class="tr-content">
-                    <form action="/admin/m_bongsa_tmp" enctype="multipart/form-data" method="POST" name="form_e" id="form_e">
+                    <form action="/admin/m_bongsa_tmp" method="POST" name="form_e" id="form_e">
                     <td><%= post.id %></td>
                     <td><%= post.nametemp %></td>
                     <td>
                         <input type="text" name="img_keyword">
                         <input type="hidden" name="id" value="<%= post.id %>">
+                        <input type="hidden" name="lsst" value="1">
                         <input type="submit" value="지금 등록">
                     </td>
                     <td>
@@ -146,7 +147,7 @@
                     <% end %>
                     </td>
                     <td>
-                        <a href="/admin/bongsa_tmp_list_delete/<%= post.id %>" style="color:blue;">[X]</a>
+                        <a href="/admin/bongsa_tmp_list_delete?id=<%= post.id %>&lsst=1" style="color:blue;">[X]</a>
                     </td>
                     </form>
                 </tr>
@@ -207,7 +208,7 @@
         page = params[:page].to_i
        end  
        
-       count = Tempcrl.where(:from => 1).count
+       count = TempcrlA.count
        show = 15 #(갯수)
                            %>
     <div class="well well-in">
@@ -262,7 +263,7 @@
                             </ul>
                         </nav>
                     </td>
-                    <td>이미지 검색 키워드</td>
+                    <!--<td>이미지 검색 키워드</td>-->
                     <td>keytmp</td>
                     <td>업데이트 여부</td>
                     <td></td>
@@ -273,32 +274,37 @@
                #일반적인 경우
                #page가 n일 때, [count-{show*(n-1)}]::top ~ [count-{show*n}+1]::bottom 번까지 보여주고
                n = page
-               top = Tempcrl.where(:from => 1).first(count - show*(n - 1)).last.id
+               top = TempcrlA.first(count - show*(n - 1)).last.id
                
                if n == count/show + 1
-                   bottom = Tempcrl.where(:from => 1).first.id
+                   bottom = TempcrlA.first.id
                else
-                   bottom = Tempcrl.where(:from => 1).first(count - show*n + 1).last.id
+                   bottom = TempcrlA.first(count - show*n + 1).last.id
                end
                
                top.downto(bottom) do |x|
-                next if Tempcrl.where(:from => 1, :id => x).any? == false
+                next if TempcrlA.where(:id => x).any? == false
                 
                #마지막 page에 다다른 경우
                # 즉, n == {(count/show의 몫)+1} 인 경우
                #마지막 page {(count/show의 몫)+1}에서는,  [count-{show*(n-1)}] ~ 1 번까지 보여준다. == 처음부터 (count/show의 나머지)개 만큼 보여준다.
                
                 %>
-                <% post = Tempcrl.find(x) %>
+                <% post = TempcrlA.find(x) %>
                 <tr class="tr-content">
-                    <form action="/admin/m_bongsa_tmp_second" enctype="multipart/form-data" method="POST" name="form_e" id="form_e">
+                    <!--<form action="/admin/m_bongsa_tmp_second" enctype="multipart/form-data" method="POST" name="form_e" id="form_e">-->
                     <td><%= post.id %></td>
-                    <td><%= post.nametemp %></td>
                     <td>
-                        <input type="text" name="img_keyword">
-                        <input type="hidden" name="id" value="<%= post.id %>">
-                        <input type="submit" value="지금 등록">
+                        <a href="/admin/m_bongsa_tmp_second?id=<%= post.id %>&lsst=2">
+                            <%= post.nametemp %>
+                        </a>
                     </td>
+                    <!--<td>-->
+                        <!--<input type="text" name="img_keyword">-->
+                        <!--<input type="hidden" name="id" value="<%= post.id %>">-->
+                        <!--<input type="hidden" name="lsst" value="2">-->
+                        <!--<input type="submit" value="지금 등록">-->
+                    <!--</td>-->
                     <td>
                     <% if post.keytemp %>
                         <%= post.keytemp %>
@@ -314,7 +320,7 @@
                     <% end %>
                     </td>
                     <td>
-                        <a href="/admin/bongsa_tmp_list_delete/<%= post.id %>" style="color:blue;">[X]</a>
+                        <a href="/admin/bongsa_tmp_list_delete?id=<%= post.id %>&lsst=2" style="color:blue;">[X]</a>
                     </td>
                     </form>
                 </tr>

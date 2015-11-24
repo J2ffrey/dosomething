@@ -1,6 +1,15 @@
+<h1>아이디 찾기</h1>
 <form action="/user/user_find_confirm" method:"POST">
   이름: <input type="text" name="name" placeholder="홍길동">
   전화번호<input type="text" name="phonenumber" placeholder="01022223333">
   <input type="submit" value="확인">
 </form>
 <p style="color:#ff0000"><%= flash[:error] %></p>
+
+<h1>비밀번호 찾기</h1>
+<form action="/user/user_find_confirm" method="POST">
+  아이디: <input type="email" name="email" placeholder="example@google.com">
+  이름: <input type="text" name="name" placeholder="홍길동">
+  전화번호<input type="text" name="phonenumber" placeholder="01022223333">
+  <input type="submit" value="확인">
+</form>

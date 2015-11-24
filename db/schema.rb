@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117192125) do
+ActiveRecord::Schema.define(version: 20151123120234) do
 
   create_table "authorities", force: :cascade do |t|
     t.integer  "authority_bundle_id", limit: 4
@@ -309,6 +309,15 @@ ActiveRecord::Schema.define(version: 20151117192125) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "tempcrl_as", force: :cascade do |t|
+    t.integer  "keytemp",      limit: 4
+    t.string   "nametemp",     limit: 255
+    t.integer  "is_registerd", limit: 4
+    t.integer  "from",         limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "tempcrls", force: :cascade do |t|
     t.integer  "keytemp",      limit: 4
     t.string   "nametemp",     limit: 255
@@ -329,23 +338,28 @@ ActiveRecord::Schema.define(version: 20151117192125) do
   create_table "users", force: :cascade do |t|
     t.boolean  "available",           limit: 1,   default: true
     t.integer  "user_type_id",        limit: 4,   default: 1
-    t.string   "email",               limit: 255,                null: false
-    t.string   "password",            limit: 255,                null: false
+    t.string   "email",               limit: 255, default: "Facebook", null: false
+    t.string   "password",            limit: 255, default: "Facebook", null: false
     t.string   "school",              limit: 255, default: ""
     t.string   "intro",               limit: 255, default: ""
     t.string   "career",              limit: 255, default: ""
-    t.string   "name",                limit: 255,                null: false
+    t.string   "name",                limit: 255, default: "Facebook", null: false
     t.string   "picture",             limit: 255, default: ""
     t.string   "phonenumber",         limit: 255, default: ""
     t.integer  "organization_id",     limit: 4,   default: 0
-    t.integer  "authority_bundle_id", limit: 4,   default: 1,    null: false
-    t.integer  "sign_in_count",       limit: 4,   default: 0,    null: false
+    t.integer  "authority_bundle_id", limit: 4,   default: 1,          null: false
+    t.integer  "sign_in_count",       limit: 4,   default: 0,          null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",  limit: 255
     t.string   "last_sign_in_ip",     limit: 255
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.string   "provider",            limit: 255
+    t.string   "uid",                 limit: 255
+    t.string   "oauth_token",         limit: 255
+    t.datetime "oauth_expires_at"
+    t.string   "f_name",              limit: 255
   end
 
   create_table "view_counts", force: :cascade do |t|
