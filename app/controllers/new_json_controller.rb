@@ -13,39 +13,24 @@ class NewJsonController < ApplicationController
   end
   
   
-  #token.status
-  # 400 = Error
+  # Token.status
+  # 400 = Unknown, General Error
+  # 401 = User 정보 잘못됨
+  # 402 = Bongsa 정보 잘못됨 (없는 봉사를 엑세스)
+  # 403 = 로그인 정보(email, pwd) 잘못됨
+  # 404 = Bongsa 정보가 없음 (해당 조건의 봉사가 없음)
   # 200 = Good
   # msg = 메시지내용
-  
-  # 상세정보페이지에서 필요한 정보를 모두 보내준다.
-  # 필요한 정보. id
-  # 봉사제목
-  # 남은기간
-  # 모집기간
-  # 활동기간
-  # 기타기간
-  # 봉사총시간
-  # 활동지역
-  # 인증서발급유무
-  # 이미지 2개
-  # 신청하기링크
-  # 모집대상
-  # 일별 봉사시간
-  # 담당자정보
-  # 활동혜택
-  # 관련링크
-  # 기타사항
+
   # http://dosomething-j2ffrey-2.c9.io/new_json/info
   # input : id=상세정보를 받을 봉사의 id값
   # output : 해당 id값의 봉사 상세정보
-  
   def info
     #id값을 받는다.
     t = Token.new
     b = Bongsa.where(id: params[:id]).first
     if b.nil?
-      t.status = 400
+      t.status = 402
       t.msg = "해당 id값의 봉사정보가 존재하지 않습니다."
       render json: {Token: t}
     else
@@ -56,6 +41,125 @@ class NewJsonController < ApplicationController
         Token: t,
         Bongsa: b2
       }
+    end
+  end
+  
+  # http://dosomething-j2ffrey-2.c9.io/new_json/signin
+  # input : email=이메일
+  #         password=비번
+  # output : 성공시 해당 유저의 id
+  def signin
+    a = User.where(email: params[:email], password: params[:password]).first
+    t = Token.new
+    if a.nil?
+      t.status = 403
+      t.msg = "Email이나 비밀번호가 잘못되었습니다."
+      render json: {Token: t}
+    else
+      t.status = 200
+      t.msg = "로그인 성공!"
+      render json: {
+        Token: t,
+        User: {id: a.id}
+      }
+    end
+  end
+  
+  # http://dosomething-j2ffrey-2.c9.io/new_json/bucket
+  # input : id=user_id
+  #         password=비번
+  # output : 성공시 해당 유저의 id
+  def bucket
+    a = User.where(id: params[:id]).first
+    t = Token.new
+    arr = Array.new
+    
+    if a.nil?
+      t.status = 401
+      t.msg = "잘못된 유저입니다."
+      render json: {Token: t}
+    else
+      a.buckets.each do |y|
+        
+        b = Hash.new
+        x = Bongsa.where(id: y.bongsa_id).first
+        if x.nil?
+          y.delete
+          next
+        end
+        b['id'] = x.id
+        b['name'] = x.name
+        b['img_main_url'] = x.img_main.url
+        b['date_recruit_start'] = x.date_recruit_start
+        b['date_recruit_end'] = x.date_recruit_end
+        b['time_expect_total'] = x.time_expect_total
+        b['region'] = Region.find(x.region_id).name
+        b['organization'] = Organization.find(x.organization_id).name
+        
+        arr << b
+      end
+      
+      t = Token.new
+      if arr.empty?
+        t.status = 400
+        t.msg = "찜목록 정보가 없습니다."
+        render json: {Token: t}
+      else
+        t.status = 200
+        t.msg = "데이터 전송 성공!"
+        render json: {
+          Token: t,
+          Bongsa: arr
+        }
+      end
+    end
+  end
+  
+  # http://dosomething-j2ffrey-2.c9.io/new_json/bucket_save
+  # input : u_id=user_id
+  #         b_id=봉사_id
+  # output : Token
+  def bucket_save
+    u = User.where(id: params[:u_id]).first
+    t = Token.new
+    c = 0
+    
+    if u.nil?
+      t.status = 401
+      t.msg = "잘못된 유저입니다."
+      render json: {Token: t}
+    else
+      b = Bongsa.where(id: params[:b_id]).first
+      if b.nil?
+        t.status = 402
+        t.msg = "잘못된 봉사입니다."
+        render json: {Token: t}
+      else
+        unless u.buckets.empty?
+          u.buckets.each do |x|
+            if params[:b_id] == x.bongsa_id
+              c = 1
+              break
+            end
+          end
+          
+          if c==1
+            t.status = 403
+            t.msg = "이미 추가한 찜봉사입니다!"
+            render json: {Token: t}
+          end
+        end
+        if c==0
+          bu = Bucket.new
+          bu.user_id   = params[:u_id]
+          bu.bongsa_id = params[:b_id]
+          bu.save
+          
+          t.status = 200
+          t.msg = "찜 추가 성공!"
+          render json: {Token: t}
+        end
+      end
     end
   end
   
@@ -76,7 +180,7 @@ class NewJsonController < ApplicationController
     end
     t = Token.new
     if b2.empty?
-      t.status = 400
+      t.status = 402
       t.msg = "봉사 정보가 없습니다."
       render json: {Token: t}
     else
@@ -95,7 +199,7 @@ class NewJsonController < ApplicationController
   def all
     t = Token.new
     if Bongsa.all.empty?
-      t.status = 400
+      t.status = 402
       t.msg = "봉사정보가 존재하지 않습니다."
       render json: {Token: t}
     else
@@ -112,6 +216,113 @@ class NewJsonController < ApplicationController
       }
     end
   end
+  
+  # http://dosomething-j2ffrey-2.c9.io/new_json/calendar
+  # input : year=년
+  #         month=월
+  # output : type의 1은 모집시작, 2는 모집마감
+  def calendar
+    
+    a = Array.new
+    b = Hash.new
+    today = Time.zone.now.to_date
+    
+    Bongsa.all.each do |x|
+      next if !x.is_visible
+      if (x.date_recruit_end.month == params[:month].to_i && x.date_recruit_end.year == params[:year].to_i)
+        b = Hash.new
+        b['id'] = x.id
+        b['day'] = x.date_recruit_end.day
+        b['weekday'] = $week_day_index[x.date_recruit_end.cwday]
+        b['name'] = x.name
+        b['d_day'] = ((today - x.date_recruit_end).to_i) * -1
+        b['region'] = Region.find(x.region_id).name
+        b['type'] = 2
+        
+        a << b
+      elsif (x.date_recruit_start.month == params[:month].to_i && x.date_recruit_start.year == params[:year].to_i)
+        b = Hash.new
+        b['id'] = x.id
+        b['day'] = x.date_recruit_start.day
+        b['weekday'] = $week_day_index[x.date_recruit_start.cwday]
+        b['name'] = x.name
+        b['d_day'] = ((today - x.date_recruit_start).to_i) * -1
+        b['region'] = Region.find(x.region_id).name
+        b['type'] = 1
+        
+        a << b
+      end
+    end
+    
+    t = Token.new
+    if a.empty?
+      t.status = 404
+      t.msg = "봉사 정보가 없습니다."
+      render json: {Token: t}
+    else
+      t.status = 200
+      t.msg = "데이터 전송 성공!"
+      render json: {
+        Token: t,
+        Bongsa: a
+      }
+    end
+  end
+  
+  # http://dosomething-j2ffrey-2.c9.io/new_json/home
+  # input : id=해당 id부터
+  #         limit=불러올 정보개수
+  #         r=1 reverse
+  # output : 봉사정보 id값부터 limit개
+  def home
+    a = Array.new
+    b = Hash.new
+    today = Time.zone.now.to_date
+    i = 0
+    bongsa = Bongsa.where("id <= #{params[:id].to_i}").reverse if !params[:id].nil?
+    bongsa = Bongsa.all.reverse if params[:id].nil?
+    bongsa.each do |x|
+      break if i==params[:limit].to_i
+      next if x.id < params[:id].to_i && !params[:id].nil? && i==0
+      next if x.is_visible==0
+      b = Hash.new
+      b['id'] = x.id
+      b['img_main_url'] = x.img_main.url
+      b['date_recruit_end'] = x.date_recruit_end
+      b['date_recruit_start'] = x.date_recruit_start
+      b['time_expect_total'] = x.time_expect_total
+      b['name'] = x.name
+      b['d_day'] = ((today - x.date_recruit_end).to_i) * -1
+      b['region'] = Region.find(x.region_id).name
+      
+      a << b
+      i+=1
+    end
+    
+    t = Token.new
+    if a.empty?
+      t.status = 404
+      t.msg = "봉사 정보가 없습니다."
+      render json: {Token: t}
+    else
+      # a = a.reverse
+      t.status = 200
+      t.msg = "데이터 전송 성공!"
+      render json: {
+        Token: t,
+        Bongsa: a
+      }
+    end
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   def parsing_bongsa(b)
     # dday = (b.date_recruit_end - Date.today).to_i
@@ -170,6 +381,4 @@ class NewJsonController < ApplicationController
     # b2[""] =
     b2
   end
-  
-  
 end

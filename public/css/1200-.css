@@ -161,9 +161,13 @@
 .nav_general{
   background-color:#57ce9b; ;
 }
-
+.user_menu_box {
+  margin-top: 1%;
+  padding-right:0px;
+  padding-left:0px;
+}
 .nav-logo{
-  width: 100%;
+  width: 79%;
   margin-top: 9%;
 }
 
@@ -207,6 +211,9 @@
   width:26px;
   height: 25px;
 }
+.secondary-nav-item {
+  font-size: 18px;  
+}
 /*----------------- navbar_index_end ----------------------*/
 
 /*main_page_start*/
@@ -217,20 +224,20 @@ select {
   background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 86%;
+  width: 80%;
   height: 39px;
   border-radius: 25px;
-  margin-left: -17%;
+  margin-left: -20%;
 }
 
 .ic_calendar {
   background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 97%;
+  width: 85%;
   height: 39px;
   border-radius: 25px;
-  margin-left: -46.5%;
+  margin-left: -41.5%;
 }
 .fieldset_list {
     margin: auto;
@@ -256,11 +263,11 @@ select {
 }
 
 .main-logo-before{
-    margin-left: -101%;
-    margin-top: 70%;
-    margin-bottom: 98px;
-    height: 149px;
-    width: 156%;
+  margin-left: -101%;
+  margin-top: 63%;
+  margin-bottom: 98px;
+  height: 193px;
+  width: 156%;
 }
 
 .main-logo{
@@ -402,7 +409,7 @@ a:hover {
   height: 39px;
   margin: 0;
   padding-left: 5px;
-  width: 96%;
+  width: 90%;
   font-weight: 600;
   border-radius: 35px;
   color: #57ce9b;
@@ -975,7 +982,7 @@ login_modal_end ----------------------*/
   border: 2px solid white;
   background-color: #a3a3a3;
   height: 88px;
-  width: 11%;
+  width: 88px;
   border-radius: 100%;
   margin-top: 22%;
 }
@@ -1008,7 +1015,7 @@ login_modal_end ----------------------*/
 
 /* mypage_css start */
 .mypage_profile {
-    width: 52%;
+    width: 96px;
     height: 96px;
     background-color: #a3a3a3;
     border: 2px solid white;

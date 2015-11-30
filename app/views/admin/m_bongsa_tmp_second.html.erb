@@ -31,6 +31,18 @@ select {width: 20%;
 }
 </style>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <%= render :partial => 'home/main_navbar_general' %>
 
 <% 
@@ -53,7 +65,7 @@ select {width: 20%;
    end
        
 %>
-<form action="/admin/crawled_realsave" enctype="multipart/form-data" method="POST" name="form_b" id="form_b">
+
 <!-- 이거슨 팝업창 -->
 <%# if flash[:alert].present? %>
   <!--<div class="col-md-12 alert alert-danger"><%#= flash[:alert] %></div>-->
@@ -78,6 +90,7 @@ select {width: 20%;
    end
 %>
   <div class="col-md-2"></div>
+  <form action="/admin/crawled_realsave" enctype="multipart/form-data" method="POST" name="form_b" id="form_b">
   <div class="col-md-8 col-sm-12">
     <div class="row">
       <div class="form-group2" align="center" style="margin-top:20px;margin-bottom: 20px;">
@@ -235,6 +248,7 @@ select {width: 20%;
         <% else %>
         <img src="<%#= @b.img_main %>" alt="메인 이미지를 올려주세요" class="bongsa_img">
         <input type="file" name="img_main" class="form-control" value="" style="margin-left: -12%; width: 59%; margin-top: 10px;"/>
+        <input type="text" name="img_main_url" class="form-control" value="" id="img_main_url" placeholder="메인 이미지 url" style="margin-left: -12%; width: 59%; margin-top: 10px;"/>
         <% end %>
       </div>
       <div class="info_box col-md-7 col-sm-7 col-xs-12">
@@ -447,16 +461,10 @@ select {width: 20%;
           </div>
           <div class="section_contents">
           	<span class="section_title"><strong>활동기간</strong></span><p>
-          	<% if @mod == "1" && @b.is_regular == true %>
-                <input type="radio" name="is_regular" value="1" checked/> 정기 봉사 &nbsp&nbsp
-                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
-            <% elsif @mod == "1" && @b.is_regular == false %>
-                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
-                <input type="radio" name="is_regular" value="0" checked/> 비정기 봉사
-            <% else %>
-                <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
-                <input type="radio" name="is_regular" value="0" /> 비정기 봉사
-            <% end %><br><br>
+          	  활동 정기 여부 : 
+              <input type="radio" name="is_regular" value="1" /> 정기 봉사 &nbsp&nbsp
+              <input type="radio" name="is_regular" value="0" /> 비정기 봉사
+            <br><br>
             <!--<input type="date" name="" class="form-control_date" value="<%#= @b.date_real_start if @mod=="1" %>" style="line-height: 20px;width: 40%;"/> ~-->
             <!--<input type="date" name="" class="form-control_date" value="<%#= @b.date_real_end if @mod=="1" %>" style="line-height: 20px;width: 40%;"/></p><br>-->
           </div>
@@ -595,11 +603,6 @@ select {width: 20%;
             <div class="col-md-1"></div>
         </div>
     <% end %>
-    
-    <div class="col-md-12 slide slided_poster" align="center" style="margin-bottom:30px;padding-top: 20px;border-bottom: 10px double green;border-top: 10px double green;">
-      <%= render partial: 'crlr/img_search' %>
-    </div>
-    
     <div class="col-md-12 slide slided_poster" align="center" style="margin-bottom:30px;">
       <div class="col-md-5"></div>
       <div class="col-md-2">
@@ -609,8 +612,18 @@ select {width: 20%;
       <div class="col-md-5"></div>
     </div>
   </div>
+  </form>
   <div class="col-md-2"></div>
-</form>
+  <div class="rows">
+    <div class="col-0-2"></div>
+    <div class="col-0-8">
+      <div class="col-md-12 slide slided_poster" id="img_search_div" align="center" style="margin-bottom:30px;padding-top: 20px;border-bottom: 10px double green;border-top: 10px double green;">
+        <%= render partial: 'crlr/img_search' %>
+      </div>
+    </div>
+    <div class="col-0-2"></div>
+  </div>
+
 
 <style>
 .slided_img{

@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   
   resources :entries, defaults: { format: 'json' }
   
-  #get "error", to: 'home#error'
-
+  get "error", to: 'home#error'
+  get "loading", to: 'home#loading'
+  
   get "auth(/:provider(/:callback))", to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'

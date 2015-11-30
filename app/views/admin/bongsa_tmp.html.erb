@@ -94,7 +94,7 @@
                             </ul>
                         </nav>
                     </td>
-                    <td>이미지 검색 키워드</td>
+                    <!--<td>이미지 검색 키워드</td>-->
                     <td>keytmp</td>
                     <td>업데이트 여부</td>
                     <td></td>
@@ -125,13 +125,17 @@
                 <tr class="tr-content">
                     <form action="/admin/m_bongsa_tmp" method="POST" name="form_e" id="form_e">
                     <td><%= post.id %></td>
-                    <td><%= post.nametemp %></td>
                     <td>
-                        <input type="text" name="img_keyword">
-                        <input type="hidden" name="id" value="<%= post.id %>">
-                        <input type="hidden" name="lsst" value="1">
-                        <input type="submit" value="지금 등록">
+                        <a href="/admin/m_bongsa_tmp?id=<%= post.id %>&lsst=1" style="color:black;">
+                            <b><%= post.nametemp %></b>
+                        </a>
                     </td>
+                    <!--<td>-->
+                        <!--<input type="text" name="img_keyword">-->
+                        <!--<input type="hidden" name="id" value="<%= post.id %>">-->
+                        <!--<input type="hidden" name="lsst" value="1">-->
+                        <!--<input type="submit" value="지금 등록">-->
+                    <!--</td>-->
                     <td>
                     <% if post.keytemp %>
                         <%= post.keytemp %>
@@ -295,8 +299,8 @@
                     <!--<form action="/admin/m_bongsa_tmp_second" enctype="multipart/form-data" method="POST" name="form_e" id="form_e">-->
                     <td><%= post.id %></td>
                     <td>
-                        <a href="/admin/m_bongsa_tmp_second?id=<%= post.id %>&lsst=2">
-                            <%= post.nametemp %>
+                        <a href="/admin/m_bongsa_tmp_second?id=<%= post.id %>&lsst=2" style="color:black;">
+                            <b><%= post.nametemp %></b>
                         </a>
                     </td>
                     <!--<td>-->

@@ -1,9 +1,49 @@
+<div class="rows">
+  <input type="text" id="img_keyword" />
+  <button onclick="img_search();" class="btn primary"> 검색 </button>
+</div>
+
 <%
-#메인이미지 추천
-  str = params[:img_keyword].to_s
 #이미지 파싱
-  Google::Search::Image.new(:query => str).each do |img|%>
-    <div class="col-0-4"><img src="<%= img.uri %>"  alt="출처 : <%= img.uri %>" width="100%"></div>
-<%
+unless params[:img_keyword].nil?
+  str = params[:img_keyword].to_s
+  i = 1
+  img_arr=Array.new
+  
+  Google::Search::Image.new(:query => str).each do |img|
+    img_arr << img.uri
+    i+=1
+    break if i>50
   end
+  i=0
+  img_arr.each do |x|
 %>
+    <div class="col-0-4"><a href="javascript::img_click('<%= x %>');"><img src="<%= x %>" onclick="img_click('<%= x %>');" alt="출처 : <%= x %>" width="100%" /></a></div>
+<%
+  i+=1
+  end
+end
+%>
+
+<script type="text/javascript">
+  function img_click(i){
+    document.getElementById('img_main').value = i;
+    document.getElementById('img_main_url').value = i;
+  }
+
+  document.getElementById("img_keyword").addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    
+    // Enter is pressed
+    if (e.keyCode == 13) { img_search(); }
+  }, false);
+  
+  function img_search(){
+    // $('#img_search_div').load("/loading");
+    // sleep(2000);
+    var site_text = "/crlr/img_search?img_keyword=" + $('#img_keyword').val()
+    ;
+    
+    $('#img_search_div').load(site_text);
+  }
+</script>

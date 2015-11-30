@@ -196,6 +196,9 @@
   width:26px;
   height: 25px;
 }
+.secondary-nav-item {
+  font-size: 18px;  
+}
 /*----------------- navbar_index_end ----------------------*/
 
 /*main_page*/
@@ -347,25 +350,25 @@ select {
   width: 109%;  
 }
 .ic_search {
-  background-color: #26a69a;
-  border: none;
-  cursor: pointer;
-  width: 182%;
-  height: 35px;
-  border-radius: 25px;
-  margin-left: -100%;
-  margin-top: 11px;
+    background-color: #26a69a;
+    border: none;
+    cursor: pointer;
+    width: 84%;
+    height: 35px;
+    border-radius: 25px;
+    margin-left: 0%;
+    margin-top: 14px;
 }
 
 .ic_calendar {
-  background-color: #4caf50;
+  background-color: #26a69a;
   border: none;
   cursor: pointer;
-  width: 200%;
+  width: 120%;
   height: 35px;
   border-radius: 25px;
-  margin-top: 11px;
-  margin-left: -50%;
+  margin-left: 0%;
+  margin-top: 14px;
 }
 .fieldset_list {
     margin: auto;
@@ -386,19 +389,24 @@ select {
     margin-bottom: 6%;
 }
 .nav-logo{
-  margin-left: -15%;
+  margin-left: 0%;
   height: 36px;
-  width: 77%;
+  width: 68%;
   margin-top: 6%;
+}
+.user_menu_box {
+  margin-top: 1%;
+  padding-right:0px;
+  padding-left:0px;
 }
 .navbar_search_input {
     border: none;
-    width: 98%;
+    width: 78%;
     height: 35px;
     border-radius: 100px;
     margin-top: 3%;
     margin-bottom: 4%;
-    margin-left: -18%;
+    margin-left: 0%;
     padding-left: 6px;
 }
 .search_btn_round {
@@ -467,7 +475,7 @@ select {
   margin-top: 11px;
   height: 35px;
   width: 100%;
-  margin-left: -12%;
+  margin-left: 0%;
   margin-right: 0px;
 }
 
@@ -754,7 +762,7 @@ p {
   border: 2px solid white;
   background-color: #a3a3a3;
   height: 88px;
-  width: 16%;
+  width: 88px;
   border-radius: 100%;
   margin-top: 33%;
 }
@@ -784,3 +792,177 @@ p {
     color: white;
 }
 /* main_header_login_css end*/
+
+/*mypage_css_start*/
+.mypage_profile {
+    width: 96px;
+    height: 96px;
+    background-color: #a3a3a3;
+    border: 2px solid white;
+    border-radius: 100%;
+    margin-top: 20%;
+    margin-bottom: 14%;
+}
+.mypage_name {
+  color: black;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 1%;
+}
+.mypage_user_email {
+  color: black;
+  font-size: 15px;
+  margin-top: -5%;
+}
+
+.edit_icon{
+  background-color: white;
+  border: none;
+  color: #BABABC;
+  font-size: 19px;
+
+}
+
+mypage_career_plus{
+      width: 4%;
+    margin-top: -2%;
+
+}
+
+.profile_title {
+  margin-left: 3%;
+  font-size: 22px;
+  margin-top: 5%;
+  color: black;
+  font-weight: 800;
+  text-align: left;
+}
+
+.profile_sub_title {
+  font-size: 15px;
+  color: #2f9e9e;
+  text-align: left;
+}
+
+.profile_sub_title_edit{
+  font-size: 15px;
+  color: #2f9e9e;
+  text-align: left;
+  width: 31%;
+}
+.profile_box_line_pws_confirm {
+  margin-top: 21%;
+  width: 75%;
+  padding-left: 15px;  
+}
+
+.profile_sub_info {
+  color: #a3a3a3;
+  font-size: 15px;
+  text-align: left;
+}
+
+.profile_sub_info_edit {
+  color: #a3a3a3;
+  font-size: 15px;
+  text-align: left;
+}
+.profile_sub_modify {
+    border: none;
+    background-color: white;
+    height: 27px;
+    margin-left: 64%;
+    margin-top: 0%;
+    margin-bottom: 10%;
+    width: 18%;
+    font-size: 14px;
+    color: #a3a3a3;
+  /*margin-bottom: -1%;*/
+}
+.under_title {
+  margin-left: 3%;
+  border-bottom: 3px solid black;
+  width: 30px;
+  margin-top: -2%;
+}
+
+.volunteer_history_title {
+    margin-left: 3%;
+    font-size: 22px;
+    color: black;
+    font-weight: 800;
+    text-align: left;
+}
+.career_title {
+  margin-left: 3%;
+  font-size: 22px;
+  color: black;
+  font-weight: 800;
+  text-align: left;
+}
+.self_intro_title {
+  margin-left: 3%;
+  font-size: 22px;
+  color: black;
+  font-weight: 800;  
+  text-align: left;
+}
+.whole_volunteer_time {
+  font-size: 15px;
+  color: #a3a3a3;
+  margin-left: 19%;  
+}
+.check_time {
+  font-size: 19px;
+  font-weight: 600;
+  color: #008888;
+}
+.volunteer_work_name {
+  text-align: left;
+  font-size: 15px;
+  color: #514E4E;
+  margin-bottom: -1%;  
+}
+.volunteer_work_time {
+  font-size: 15px;
+  color: #514E4E;
+  margin-bottom: -1%; 
+  text-align: right;
+  width:25%;
+}
+.plus_career {
+  color: #bbbbbd;
+  font-size: 18px;
+}
+.career_plus {
+  margin-left: 41%;
+  width:20px;
+  height: 20px;
+}
+.history_plus {
+  margin-left: 36%;
+  width:20px;
+  height: 20px; 
+}
+.self_intro_info {
+  text-align: left;
+  margin-left: 3%;
+  margin-bottom: 8%;
+  color: #514E4E;
+}
+
+.self_info_modify {
+  color: #bbbbbd;
+  font-size: 18px;
+  margin-left: 46%;
+}
+
+.go_mypage_edit {
+  width: 17%;
+  color: white;
+  background-color: #26A69A;
+  height: 35px;
+  border: none;
+  margin-bottom: 2%;
+}
+/*mypage_css_end*/

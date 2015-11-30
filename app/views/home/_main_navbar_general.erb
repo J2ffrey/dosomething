@@ -16,15 +16,15 @@
 <!--모달 끝-->
 
 <div class="rows nav_general" id="nav_general">
-  <div class="col-0-1 col--3-1">&nbsp</div>
-  <div class="col-0-1 col--3-4">
+  <div class="col-0-1 col--3-1 col--2-1">&nbsp</div>
+  <div class="col-0-1 col--3-4 col--2-2">
     <a href="/"><img src="/img/ic_logo/main_navbar_logo.png" class="nav-logo"></a>
   </div>
-  <div class="col-0-6 col--3-10">
+  <div class="col-0-6 col--3-10 col--2-11">
     &nbsp&nbsp&nbsp<input type="text" class="navbar_search_input" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
     <button class="search_btn_round"><img class="ic_navbar_search" src="/img/ic/ic_search_white_48dp_2x.png"></button>&nbsp
   </div>
-  <div class="col-0-4 col--3-9" style="margin-top: 1%; padding-right:0px; padding-left:0px;">
+  <div class="col-0-4 col--3-9 col--2-10 user_menu_box">
     <div class="menu" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><%= flash[:error] %></li>
@@ -43,9 +43,9 @@
                 <li><a href="/admin/index">봉사정보 등록</a></li>
               <% end %>
               
-              <% if authority_confirm?("cAdmin") %>
-                <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index" style="font-size:18px;">Admin</a></li>
-              <% end %>
+              <%# if authority_confirm?("cAdmin") %>
+                <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index">Admin</a></li>
+              <%# end %>
             </ul>
           </li>
           <li class="logout">
@@ -53,8 +53,8 @@
           </li>
           
         <% else %>
-          <li class="nav_login"><a href="/home/index">로그인</a></li>
-          <li class="nav_signin"><a id="link--login" class="secondary-nav-item" href="/user/sign_up" style="font-size:18px;">회원가입</a></li>
+          <li class="nav_login secondary-nav-item"><a href="/home/index">로그인</a></li>
+          <li class="nav_signin"><a id="link--login" class="secondary-nav-item" href="/user/sign_up">회원가입</a></li>
         <% end %>
       </ul>
     </div>

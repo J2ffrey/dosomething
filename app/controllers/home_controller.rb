@@ -69,11 +69,11 @@ class HomeController < ApplicationController
         @s_word = params[:s_word]
         @bongsa = Bongsa.all
         #방문자
-        ip_adress_set = Array.new
-        ViewCount.all.each do |x|
-            ip_adress_set << x.ip_adress
-            @total_view_count = ip_adress_set.count
-        end
+        # ip_adress_set = Array.new
+        # ViewCount.all.each do |x|
+        #     ip_adress_set << x.ip_adress
+        #     @total_view_count = ip_adress_set.count
+        # end
         
         # render layout: false #J커리 코드 중첩 피하는 코드
     end

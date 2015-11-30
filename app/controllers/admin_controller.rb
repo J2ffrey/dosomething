@@ -597,7 +597,7 @@ class AdminController < ApplicationController
         else
             icon = "0" # (비정기)
         end
-        @parsed_regular = icon
+        @parsed_regular = icon.to_s
         
         #파싱(봉사기간)
         parsed_term = doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(8)//td:nth-child(2)").inner_text
@@ -649,19 +649,6 @@ class AdminController < ApplicationController
         # @result_final = result_final
         #redirect_to '/admin/bongsa_post_tmp_save?drt=1'
         
-        #메인이미지 추천
-          #선언들
-            img_src_arr = Array.new
-              
-          #검색어 처리기
-            str = params[:img_keyword].to_s
-            
-          #이미지 파싱
-            Google::Search::Image.new(:query => str).each do |image|
-              img_src_arr << image.uri
-            end
-            @img_src_arr = img_src_arr
-            
         end
     end
     
@@ -797,6 +784,7 @@ class AdminController < ApplicationController
         else
             re = Bongsa.new
         end
+        
         arr = Bongsa.attribute_names
         date = ['date_real_end','date_real_start','date_recruit_end','date_recruit_start']
         spec = ['organization_id']
@@ -817,6 +805,10 @@ class AdminController < ApplicationController
         
         re.content = "#{re.summary}
         #{re.content_etc}"
+        
+        unless params[:img_main_url].nil?
+            re.img_main = params[:img_main_url].to_s
+        end
         
         re.save
         
@@ -898,8 +890,7 @@ class AdminController < ApplicationController
         @k = TempcrlA.find(params[:id])
         
         uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + @k.keytemp.to_s )
-        uri_final = uri
-        doc_final = Nokogiri::HTML(Net::HTTP.get(uri_final))
+        doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
         
         #파싱(봉사명)
         parsed_title =  doc_final.css(".subject//h3").inner_text.strip!

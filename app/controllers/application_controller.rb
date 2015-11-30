@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
-  private
-  
+  #private
+  $week_day_index = ['','월','화','수','목','금','토','일']
   helper_method :current_user
   def current_user
     # @current_user ||= User.find(session[:user_id]) if session[:user_id]

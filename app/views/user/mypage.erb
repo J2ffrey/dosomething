@@ -1,10 +1,9 @@
 <%= render :partial => 'home/main_navbar_general' %> 
 
-<div class="col-md-12">
-  <div class="col-md-3">
-    <div class="col-md-3"></div>
+<div class="col-0-12 col-1-12 col-2-12">
+  <div class="col-0-3 col-1-12 col-2-12">
     <center>
-      <div class="col-md-9 user_box">
+      <div class="col-0-12 user_box">
         <% if current_user.picture.length == 0 %>
         <button class="mypage_profile"><img src="/img/ic_logo/ic_login_user_32px.png"></button>
         <% else %>
@@ -15,12 +14,12 @@
       </div>
     </center>
   </div>
-  <div class="col-md-9" style="border-left: 1px solid black;">
+  <div class="col-0-9 col-1-12 col-2-12" style="border-left: 1px solid black;">
     <div class="profile_box">
       <p class="profile_title">프로필</p>
       <p class="under_title"></p>
       <div class="row col-0-12">
-        <div class="row col-0-12" style="margin-bottom: 4%">
+        <div class="row col-0-12" style="margin-bottom: 4%; margin-left: 3%;">
         <table class="profile_">
           <tr>
             <td>
@@ -101,7 +100,7 @@
     <div class="volunteer_history_box">
       <p class="volunteer_history_title">봉사활동 History</p>
        <p class="under_title"></p>
-      <div class="row col-md-12">
+      <div class="row col-0-12">
         <table class="histories">
           <thead>
             <tr>
@@ -132,23 +131,23 @@
     <div class="career_box">
       <p class="career_title">수상 및 표창</p>
       <p class="under_title"></p>
-          <div class="row col-md-12">
+          <div class="row col-0-12">
           <% current_user.careers.each do |x| %>
             <p class="volunteer_work_name"><%= x.name %></p>
           <% end %>
-        <div class="col-md-6">
+        <div class="col-0-6">
         </div>
       </div>
     </div>
 <!--자기소개시작-->
-    <div class="col-md-12">&nbsp</div>
+    <div class="col-md-0">&nbsp</div>
     <div class="self_intro_box">
       <p class="self_intro_title">자기소개</p>
       <p class="under_title"></p>
       <p class="self_intro_info"><%= current_user.intro %></p>
       </div>
 <!--자기소개 끝-->
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-0 col-sm-12 col-xs-12">
       <center>
         <a href="/user/mypage_edit/"><button class="go_mypage_edit"><b>수정하기</b></button></a>
       </center>
