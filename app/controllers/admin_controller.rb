@@ -597,7 +597,7 @@ class AdminController < ApplicationController
         else
             icon = "0" # (비정기)
         end
-        @parsed_regular = icon.to_s
+        @parsed_regular = icon
         
         #파싱(봉사기간)
         parsed_term = doc_final.css(".table_t1//tr:nth-child(5)//.table_t2//tr:nth-child(8)//td:nth-child(2)").inner_text
