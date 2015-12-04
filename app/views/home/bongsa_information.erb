@@ -110,9 +110,11 @@
             </span>
         </p>
         <% end %>
-        <a href="/baguni/bucket_save/<%= @b.id %>">
-          <button class="bongsa_choice">찜하기</button>
-        </a>
+        <%= render partial: 'modal_baguni' %>
+        <!--<a href="/baguni/bucket_save/<%= @b.id %>">-->
+          <button type="button" class="bongsa_choice" data-toggle="modal" data-target=".modal-baguni">찜하기</button>
+          <!--<button type="button" class="btn btn-primary" >Small modal</button>-->
+        <!--</a>-->
         <% unless @b.link.nil? %>
           <% if @b.link.first(7).index('http') != nil %>
             <a href="<%= @b.link %>">

@@ -20,6 +20,20 @@
     @date=@date.prev_day(1)
   end
   
+  @ck0 = params[:ck0].to_i unless params[:ck0].nil?
+  @ck1 = params[:ck1].to_i unless params[:ck1].nil?
+  @ck2 = params[:ck2].to_i unless params[:ck2].nil?
+  @ck3 = params[:ck3].to_i unless params[:ck3].nil?
+  @ck4 = params[:ck4].to_i unless params[:ck4].nil?
+  @ck5 = params[:ck5].to_i unless params[:ck5].nil?
+  @s_c = params[:s_c].to_i unless params[:s_c].nil?
+  @e_c = params[:e_c].to_i unless params[:e_c].nil?
+  
+  # (0..5).step(1) do |x|
+  #   eval("@ck" + x.to_s + "= params[:ck" + x.to_s + "].to_i")
+  # end
+  # @s_c = params[:s_c].to_i
+  # @e_c = params[:e_c].to_i
 %>
 
 <%
@@ -68,6 +82,12 @@
     <!--</div>-->
   </div>
 </div>
+<!--<%= "ck0=" + @ck0.to_s %>-->
+<!--<%= "ck1=" + @ck1.to_s %>-->
+<!--<%= "ck2=" + @ck2.to_s %>-->
+<!--<%= "ck3=" + @ck3.to_s %>-->
+<!--<%= "ck4=" + @ck4.to_s %>-->
+<!--<%= "ck5=" + @ck5.to_s %>-->
 <!--하루섹션(요일)-->
 <div class="row">
   <% ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'].each do |x| %>

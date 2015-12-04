@@ -8,11 +8,6 @@ class NewJsonController < ApplicationController
     end
   end
   
-  def time
-    @a = Time.now
-  end
-  
-  
   # Token.status
   # 400 = Unknown, General Error
   # 401 = User 정보 잘못됨
@@ -238,6 +233,7 @@ class NewJsonController < ApplicationController
         b['d_day'] = ((today - x.date_recruit_end).to_i) * -1
         b['region'] = Region.find(x.region_id).name
         b['type'] = 2
+        b['time_expect_total'] = x.time_expect_total
         
         a << b
       elsif (x.date_recruit_start.month == params[:month].to_i && x.date_recruit_start.year == params[:year].to_i)
@@ -249,6 +245,7 @@ class NewJsonController < ApplicationController
         b['d_day'] = ((today - x.date_recruit_start).to_i) * -1
         b['region'] = Region.find(x.region_id).name
         b['type'] = 1
+        b['time_expect_total'] = x.time_expect_total
         
         a << b
       end
@@ -315,7 +312,62 @@ class NewJsonController < ApplicationController
     end
   end
   
+  # http://dosomething-j2ffrey-2.c9.io/new_json/list
+  def list
+    t = Token.new
+    t.status = 200
+    t.msg = "전송 완료."
+    
+    render json: {
+      Token: t,
+      Region: Region.all,
+      School: School.all,
+      Btime: Btime.all,
+      Category: Category.all
+    }
+    
+  end
   
+  # s_word, region, school, btime, category, limit, offset
+  def filter
+    first = 0
+    tmp = ""
+    check = Proc.new {|x|
+        if first == 0
+            first = 1
+        else
+            tmp += " AND "
+        end
+        tmp += "#{x}"
+    }
+    check.call "name LIKE \"%#{params[:s_word]}%\"" unless params[:s_word].nil?
+    check.call "region_id LIKE \"#{params[:region]}\"" unless params[:region].nil?
+    check.call "school_id LIKE \"#{params[:school]}\"" unless params[:school].nil?
+    check.call "btime_id LIKE \"#{params[:btime]}\"" unless params[:btime].nil?
+    check.call "category_id LIKE \"#{params[:category]}\"" unless params[:category].nil?
+    
+    b = Bongsa.where("#{tmp}")
+    b = b.order(id: :desc)
+    b = b.limit(params[:limit]).offset(params[:offset]) unless params[:limit].nil? && params[:offset].nil?
+    
+    t = Token.new
+    if b.empty?
+      t.status = 404
+      t.msg = "봉사 정보가 없습니다."
+      render json: {Token: t}
+    else
+      b2 = Array.new
+      b.each do |x|
+        b2 << parsing_bongsa(x)
+      end
+      t.status = 200
+      t.msg = "전송 완료."
+      render json: {
+        Token: t,
+        Bongsa: b2
+      }
+    end
+  end
   
   
   
@@ -327,6 +379,8 @@ class NewJsonController < ApplicationController
   def parsing_bongsa(b)
     # dday = (b.date_recruit_end - Date.today).to_i
     b2 = Hash.new
+    td = Time.zone.now.to_date
+    td = (td - b.date_recruit_end).to_i * -1
     b2['id'] = b.id
     b2['name'] = b.name
     # b2['date_recruit_string'] = b.date_recruit_start.to_s + ' ~ ' + b.date_recruit_end.to_s + '(' + dday.to_s + ')'
@@ -363,6 +417,7 @@ class NewJsonController < ApplicationController
     b2["category"] = Category.find(b.category_id).name
     b2["region"] = Region.find(b.region_id).name
     b2["school"] = School.find(b.school_id).name
+    b2["dday"] = td
     i=0
     b.bongsa_links.each do |x|
       i+=1

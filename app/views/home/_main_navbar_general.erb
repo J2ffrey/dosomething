@@ -21,8 +21,10 @@
     <a href="/"><img src="/img/ic_logo/main_navbar_logo.png" class="nav-logo"></a>
   </div>
   <div class="col-0-6 col--3-10 col--2-11">
+    <form action="/home/index" method="POST">
     &nbsp&nbsp&nbsp<input type="text" class="navbar_search_input" name="s_word" id="s_word" onchange="hideIcon(this);" placeholder="&nbsp&nbsp&nbsp봉사활동을 검색해보세요">
-    <button class="search_btn_round"><img class="ic_navbar_search" src="/img/ic/ic_search_white_48dp_2x.png"></button>&nbsp
+    <button type="submit" class="search_btn_round"><img class="ic_navbar_search" src="/img/ic/ic_search_white_48dp_2x.png"></button>&nbsp
+    </form>
   </div>
   <div class="col-0-4 col--3-9 col--2-10 user_menu_box">
     <div class="menu" id="bs-example-navbar-collapse-1">
@@ -43,9 +45,9 @@
                 <li><a href="/admin/index">봉사정보 등록</a></li>
               <% end %>
               
-              <%# if authority_confirm?("cAdmin") %>
+              <% if current_user.authority_bundle_id == 2 %>
                 <li class="login"><a id="link--login" class="secondary-nav-item" href="/admin/index">Admin</a></li>
-              <%# end %>
+              <% end %>
             </ul>
           </li>
           <li class="logout">

@@ -1,25 +1,92 @@
 <script>
+var s_c = 0;
+var e_c = 0;
+var ck0 = 0;
+var ck1 = 0;
+var ck2 = 0;
+var ck3 = 0;
+var ck4 = 0;
+var ck5 = 0;
+
+function v_refresh(){
+	s_c = e_c = ck0 = ck1 = ck2 = ck3 = ck4 = ck5 = 0;
+	
+	if($("#ck0").is(":checked") == true){
+    ck0 = 1;
+  }
+  if($("#ck1").is(":checked") == true){
+    ck1 = 1;
+  }
+  if($("#ck2").is(":checked") == true){
+    ck2 = 1;
+  }
+  if($("#ck3").is(":checked") == true){
+    ck3 = 1;
+  }
+  if($("#ck4").is(":checked") == true){
+    ck4 = 1;
+  }
+  if($("#ck5").is(":checked") == true){
+    ck5 = 1;
+  }
+  
+  if($(".s_check").is(":checked") == true){
+    s_c = 1;
+  }
+  if($(".e_check").is(":checked") == true){
+    e_c = 1;
+  }
+}
 
 function s_refresh(year,month){
+				// v_refresh();
 				var site_text = "/calendar/small?" + 'month=' + month
-  			+ '&year=' + year;
+  			+ '&year=' + year
+  			// + '&ck0=' + ck0
+		   // + "&ck1=" + ck1
+		   // + "&ck2=" + ck2
+		   // + "&ck3=" + ck3
+		   // + "&ck4=" + ck4
+		   // + "&ck5=" + ck5
+		   // + "&s_c=" + s_c
+		   // + "&e_c=" + e_c
+		    ;
 			
 				$('#small').load(site_text);
 }
 
 function refresh(year,month,day){
+				v_refresh();
 				var site_text = "/calendar/large?" + 'month=' + month
   			+ '&year=' + year
-  			+ '&day=' + day;
-			
+  			+ '&day=' + day
+  			+ '&ck0=' + ck0
+		    + "&ck1=" + ck1
+		    + "&ck2=" + ck2
+		    + "&ck3=" + ck3
+		    + "&ck4=" + ck4
+		    + "&ck5=" + ck5
+		    + "&s_c=" + s_c
+		    + "&e_c=" + e_c
+  			;
 				$('#large').load(site_text);
 }
 
 function r_refresh(){
+				// v_refresh();
 				var site_text = "/calendar/large?" + 'month=' + "<%= @month %>"
 		 			+ '&year=' + "<%= @year %>"
 	  			+ '&day=' + "<%= @day %>"
-	  			+ '&s_word=' + form_s.s_word.value;
+	  			+ '&s_word=' + form_s.s_word.value
+	  			// + '&ck0=' + ck0
+			   // + "&ck1=" + ck1
+			   // + "&ck2=" + ck2
+			   // + "&ck3=" + ck3
+			   // + "&ck4=" + ck4
+			   // + "&ck5=" + ck5
+			   // + "&s_c=" + s_c
+			   // + "&e_c=" + e_c
+	  			;
 			
 				$('#large').load(site_text);
 				return false;

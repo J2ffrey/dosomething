@@ -107,12 +107,13 @@ window.onload = function() {
             <input class="login_id" type="email" name="email" placeholder="아이디를 입력하세요"><br>
             <input class="login_psw" type="password" name="password" placeholder="비밀번호를 입력하세요"><br>
             <input type="submit" class="login_btn" value="로그인">
-            
+  
             <!--<% if current_user %>-->
             <!--  Signed in as <strong><%= current_user.name %></strong>-->
             <!--  <%= link_to "Sign out", signout_path, id: "sign_out" %>-->
             <!--<% else %>-->
             <a href="/auth/facebook" id="sign_in">
+            <p class="p_login_or">OR</p>
               <button class="login_facebook">
                 <img class="facebook_img" src="/img/ic_logo/facebook_48.png">&nbsp&nbsp&nbsp페이스북으로 로그인
                 <!--<%= link_to "페이스북으로 로그인", "/auth/facebook", id: "sign_in" %>-->
@@ -186,7 +187,7 @@ window.onload = function() {
           
           
           <div class="row">
-            <fieldset class="fieldset_list" style="margin-top: 6%;">
+            <fieldset class="fieldset_list" style="margin-top: 14px;">
               <ul>
                 <div class="col-md-3 col-sm-3 col-xs-6">
                   <li class="wantlist">
