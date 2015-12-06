@@ -24,31 +24,32 @@ class CrlrController < ApplicationController
           
           # 이 울타리 안에있는건 몇개를 검사하고 지울지 정하기 위해서(한번에 다하면 오래걸리고 에러나는 경우가 많아서) 만들어둠
           #====================================================================================================================
-          tempcrlA = TempcrlA.first(200) #처음 200개를 검사하도록 설정했음. 해보시고 잘 되면 all로 바꿔주면 됨
+          tempcrla = Array.new
+          @many = Array.new
+          
+          tempcrla = TempcrlA.all
+        #   tempcrla = TempcrlA.first(200) #처음 200개를 검사하도록 설정했음. 해보시고 잘 되면 all로 바꿔주면 됨
           
               #  이 변수들은 앞에 200개만 돌렸을때 그 마지막 데이터가 뭔지 확인하려고 만들어둠
               #===============================================================================
-              @id = tempcrlA.last.id.to_s
-              @keytemp = tempcrlA.last.keytemp.to_s
+              @id = tempcrla.last.id.to_s
+              @keytemp = tempcrla.last.keytemp.to_s
               #===============================================================================
           #===================================================================================================================
-          n=1
-          tempcrlA.each do |x|
-              break if n > 200
-              uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + x.keytemp.to_s )
-              doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
-              title = doc_final.css(".subject//h3").inner_text
-               
-                if title.nil?
-                    shit = TempcrlA.find(x.id)
-                    shit.delete
-                end # DELETE_if End
-              n=n+1
           
-                 
-              end # Each do(x) End
+          tempcrla.each do |x|
+            uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + x.keytemp.to_s )
+            doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
+            title = doc_final.css(".subject//h3").inner_text.strip!
+             
+            if title.to_s != TempcrlA.find(x.id).nametemp.to_s
+                shit = TempcrlA.find(x.id)
+                @many << shit.id
+                shit.delete
+            end # DELETE_if End
+          end # Each do(x) End
               
-          redirect_to "/admin/bongsa_tmp?lsst=2&id=#{@id}&keytemp=#{@keytemp}"
+          redirect_to "/admin/bongsa_tmp?lsst=2&id=#{@id}&keytemp=#{@keytemp}&many=#{@many.count}"
           #redirect_to '/admin/bongsa_tmp?lsst=2'
           
       end # if(@lsst => parameter) End
