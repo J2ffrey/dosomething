@@ -276,7 +276,7 @@ select {width: 20%;
           <input type="text" name="time_expect_total" class="form-control_line" value="<%= @b.time_expect_total if @mod =="1" %>" style="line-height: 20px;width: 10%;margin-left:13%;"/>&nbsp시간
         </p>
         <p class="bongsa_sub_inform">
-          <strong><a href="/admin/bongsa_tmp_list_delete?id=<%= @b.id %>&page=<%= @page %>" style="color:#a9a9a9;">활</a>동지역</strong>
+          <strong><a href="/admin/bongsa_tmp_list_delete?lsst=1&id=<%= @b.id %>&page=<%= @page %>" style="color:#a9a9a9;">활</a>동지역</strong>
           <% if @mod =="1"%>
         	<input type="text" name="address" class="form-control form-control_line" value="<%= @b.address %>" style="width: 100%;"/>
         	<% else %>
