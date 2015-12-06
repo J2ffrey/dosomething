@@ -126,7 +126,7 @@
                     <form action="/admin/m_bongsa_tmp" method="POST" name="form_e" id="form_e">
                     <td><%= post.id %></td>
                     <td>
-                        <a href="/admin/m_bongsa_tmp?id=<%= post.id %>&lsst=1" style="color:black;">
+                        <a href="/admin/m_bongsa_tmp?id=<%= post.id %>&lsst=1&page=<%=@page%>" style="color:black;">
                             <b><%= post.nametemp %></b>
                         </a>
                     </td>

@@ -548,6 +548,12 @@ class AdminController < ApplicationController
         else
             @lsst = params[:lsst].to_i
         end
+        
+        if params[:page] == nil
+            @page = 1
+        else
+            @page = params[:page].to_i
+        end
     end
     
     def bongsa_tmp_list_delete
@@ -558,10 +564,17 @@ class AdminController < ApplicationController
             tt = TempcrlA.find(params[:id])
             tt.destroy
         end
-        redirect_to :back
+        
+        unless params[:page].nil?
+            redirect_to "/admin/bongsa_tmp?page=#{params[:page]}"
+        else
+            redirect_to :back
+        end
     end
     
     def m_bongsa_tmp
+        @page = params[:page]
+        
         #크롤된 목록에서 봉사 1개 선택시 vms의 해당 봉사페이지에서 파싱해오는 함수 + 수정가능한 형태로 뿌려준다.
         
         #result_final = Array.new
