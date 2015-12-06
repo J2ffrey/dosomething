@@ -800,19 +800,21 @@ p {
     background-color: #a3a3a3;
     border: 2px solid white;
     border-radius: 100%;
-    margin-top: 20%;
-    margin-bottom: 14%;
+    margin-top: 5%;
+    margin-bottom: 0%;
 }
 .mypage_name {
   color: black;
   font-size: 17px;
   font-weight: 700;
   margin-top: 1%;
+  margin-bottom: 0%;
 }
 .mypage_user_email {
   color: black;
   font-size: 15px;
-  margin-top: -5%;
+  margin-top: 0%;
+  margin-bottom: 2%;
 }
 
 .edit_icon{

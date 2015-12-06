@@ -5,7 +5,7 @@ class CrlrController < ApplicationController
       @lsst = params[:lsst]
       # 만약 vms에 대한 데이터를 청소할땐
       if @lsst == nil
-          Tempcrl.where(:from => nil).reverse.each do |x|
+          Tempcrl.all.reverse.each do |x|
               uri = URI("http://www.vms.or.kr/partspace/reqView.jsp?seq=" + x.keytemp.to_s )
               uri_final = uri
               doc_final = Nokogiri::HTML(Net::HTTP.get(uri_final))
@@ -20,38 +20,35 @@ class CrlrController < ApplicationController
         #   redirect_to '/admin/bongsa_tmp'
       
       # 만약 1365에 대한 데이터를 청소할땐
-      elsif @lsst == "2"
-          tempcrl_first_hundred = Tempcrl.where(:from => 1).first(2) #(100)
-          tempcrl_last_hundred = Tempcrl.where(:from => 1).last(2) #(100)
+      elsif @lsst != nil
           
+          # 이 울타리 안에있는건 몇개를 검사하고 지울지 정하기 위해서(한번에 다하면 오래걸리고 에러나는 경우가 많아서) 만들어둠
+          #====================================================================================================================
+          tempcrlA = TempcrlA.first(200) #처음 200개를 검사하도록 설정했음. 해보시고 잘 되면 all로 바꿔주면 됨
+          
+              #  이 변수들은 앞에 200개만 돌렸을때 그 마지막 데이터가 뭔지 확인하려고 만들어둠
+              #===============================================================================
+              @id = tempcrlA.last.id.to_s
+              @keytemp = tempcrlA.last.keytemp.to_s
+              #===============================================================================
+          #===================================================================================================================
           n=1
-          tempcrl_first_hundred.each do |x|
+          tempcrlA.each do |x|
+              break if n > 200
               uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + x.keytemp.to_s )
               doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
               title = doc_final.css(".subject//h3").inner_text
-              
-                  if title.nil?
-                      shit = Tempcrl.find(x.id)
-                      shit.delete
-                  end # DELETE_if End
-              puts n
+               
+                if title.nil?
+                    shit = TempcrlA.find(x.id)
+                    shit.delete
+                end # DELETE_if End
               n=n+1
-          end # Each do(x) End
           
-          m=1
-          tempcrl_last_hundred.each do |x|
-              uri = URI("http://www.1365.go.kr/nanum/prtl/web/vols/vol/selectWrkView.do?menuNo=P9130&progrmRegistNo=" + x.keytemp.to_s )
-              doc_final = Nokogiri::HTML(Net::HTTP.get(uri))
-              title = doc_final.css(".subject//h3").inner_text
+                 
+              end # Each do(x) End
               
-                  if title.nil?
-                      shit = Tempcrl.find(x.id)
-                      shit.delete
-                  end # DELETE_if End
-              puts m
-              m=m+1
-          end # Each do(x) End
-          redirect_to '/'
+          redirect_to "/admin/bongsa_tmp?lsst=2&id=#{@id}&keytemp=#{@keytemp}"
           #redirect_to '/admin/bongsa_tmp?lsst=2'
           
       end # if(@lsst => parameter) End

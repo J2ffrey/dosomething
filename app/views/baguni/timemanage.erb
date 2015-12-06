@@ -49,62 +49,62 @@
 <!--  </div>-->
 <!--</div>-->
 
-<div class="col-md-12">
-  <div class="col-md-3">
-    <div class="col-md-3"></div>
+<div class="col-0-12 col-1-12 col-2-12 col-3-12">
+  <div class="col-0-3 col-1-12 col-2-12 col-3-12">
+    <div class="col-0-3 col-1-12 col-2-12 col-3-12"></div>
     <center>
-    <div class="col-md-9 user_box">
+    <div class="col-0-9 col-1-12 col-2-12 col-3-12 user_box">
       <button class="mypage_profile"><img src="/img/ic_logo/ic_login_user_32px.png"></button>
       <p class="mypage_name"><%=current_user.name %></p>
       <p class="mypage_user_email"><%= current_user.email %></p>
     </div>
     </center>
   </div>
-  <div class="col-md-9" style="border-left: 1px solid black;">
+  <div class="col-0-9 col-1-12 col-2-12 col-3-12" style="border-left: 1px solid black;">
     <div class="select_box">
-      <div class="col-md-10">
+      <div class="col-0-10">
         <p class="select_title">찜한봉사</p>
         <p class="under_title"></p>
       </div>
-      <div class="col-md-2">
+      <div class="col-0-2">
         <p class="select_number">
           <%= @buckets.count %>건
         </p>
       </div>
       <% @buckets.each do |x| %>
       <% y = Bongsa.find(x.bongsa_id) %>
-      <div class="col-md-12" style="border: 1px solid black; margin-bottom: 2%; padding: 10px;">
-        <div class="col-md-2" style="width: 120px; height: 120px; padding: 0px;">
+      <div class="col-0-12" style="border: 1px solid black; margin-bottom: 2%; padding: 10px;">
+        <div class="col-0-2" style="width: 120px; height: 120px; padding: 0px;">
           <img src="<%= y.img_main %>"/ style="width: 100%; height: 100%;">
         </div>
-        <div class="col-md-8">
-          <div class="col-md-12">
+        <div class="col-0-8">
+          <div class="col-0-12">
             <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;">
             <span style="font-size: 20px"><b><%= y.name %></b></span></a>
           </div>
-          <div class="col-md-2" style="color:#26a69a;">
+          <div class="col-0-2" style="color:#26a69a;">
             <span><b>D-day</b></span><br>
             <span><b>활동기간</b></span><br>
             <span><b>봉사시간</b></span><br>
             <span><b>봉사지역</b></span><br>
             <span><b>봉사내용</b></span>
           </div>
-          <div class="col-md-8">
+          <div class="col-0-8">
             <span>D-<%= ( Date.parse("#{y.date_recruit_end}") - Date.parse(Time.now.to_s)).to_i %></span><br>
             <span><%= y.date_real_start %> ~ <%= y.date_real_end %></span><br>
             <span><%= y.time_expect_total %></span><br>
             <span><%= Region.find(y.region_id).name %></span><br>
             <span><%= y.summary %></span><br>
           </div>
-          <div class="col-md-2">
+          <div class="col-0-2">
             <!--기관명 넣을려고 UI에 있는거같은데 div 만들어둘테니 구현은 프론트에게 맡김-->
           </div>
-          <div class="col-md-12">
+          <div class="col-0-12">
             <a href="/home/bongsa_information/<%= y.id %>" style="color:#000;">
             <span style=""><b><%= y.content %></b></span></a>
           </div>
         </div>
-        <div class="col-md-2" style="float: right; padding: 0px;">
+        <div class="col-0-2" style="float: right; padding: 0px;">
           <a href="/baguni/bongsa_delete/<%= x.id %>"><button class="ic_timemanagement_cancle"><b>X 취소</b></button></a>
         </div>
       </div>

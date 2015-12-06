@@ -2,6 +2,11 @@
     <div class="well well-in">
         봉사목록
         <a class="btn btn-orange" href="/admin/index?admin=m_bongsa">등록</a>
+        유정 : <%= Bongsa.where(:admin_add => "hwang920@naver.com").count %> 개 | 
+        진이 : <%= Bongsa.where(:admin_add => "jinyee0829@naver.com").count %> 개 | 
+        재철 : <%= Bongsa.where(:admin_add => "cnrzo114@naver.com").count %> 개 | 
+        용현 : <%= Bongsa.where(:admin_add => "yhk1038@hanmail.net").count %> 개
+        
     </div>
     
     <div class="well well-in">

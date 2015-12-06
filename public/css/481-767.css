@@ -792,7 +792,7 @@ p {
     background-color: #a3a3a3;
     border: 2px solid white;
     border-radius: 100%;
-    margin-top: 20%;
+    margin-top: 5%;
     margin-bottom: 3%;
 }
 .mypage_name {
@@ -805,7 +805,7 @@ p {
   color: black;
   font-size: 15px;
   margin-top: -2%;
-  margin-bottom: 10%;
+  margin-bottom: 2%;
 }
 
 .edit_icon{
